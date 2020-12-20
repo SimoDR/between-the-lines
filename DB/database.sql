@@ -1,0 +1,71 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+DROP TABLE IF EXISTS autori;
+CREATE TABLE autori (
+  ID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  cognome VARCHAR(255) NOT NULL,
+  data_nascita DATE NOT NULL,
+  data_morte DATE
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS libri;
+CREATE TABLE libri (
+  ID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  titolo TEXT NOT NULL,
+  id_autore INTEGER UNSIGNED NOT NULL,
+  trama TEXT NOT NULL
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS copertine;
+CREATE TABLE copertine (
+  ID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  id_libro INTEGER UNSIGNED NOT NULL,
+  path_img VARCHAR(255) NOT NULL,
+  alt_text VARCHAR(255) NOT NULL,
+  FOREIGN KEY (id_libro) REFERENCES libri(ID)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS utenti;
+CREATE TABLE utenti (
+  ID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(31) NOT NULL,
+  password VARCHAR(31) NOT NULL,
+  path_foto VARCHAR(255),
+  mail VARCHAR(127) NOT NULL,
+  is_admin TINYINT(1) NOT NULL,
+  UNIQUE(username)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS recensioni;
+CREATE TABLE recensioni (
+  ID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  dataora DATETIME NOT NULL,
+  valutazione TINYINT(1) NOT NULL,
+  id_libro INTEGER UNSIGNED NOT NULL,
+  id_utente INTEGER UNSIGNED NOT NULL,
+  testo TEXT NOT NULL,
+  FOREIGN KEY (id_libro) REFERENCES libri(ID),
+  FOREIGN KEY (id_utente) REFERENCES utenti(ID)
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS generi;
+CREATE TABLE generi (
+  ID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nome STRING NOT NULL
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS classificazioni;
+CREATE TABLE classificazioni (
+  id_libro INTEGER UNSIGNED NOT NULL,
+  id_genere INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY (id_libro, id_genere),
+  FOREIGN KEY (id_libro) REFERENCES libri(ID),
+  FOREIGN KEY (id_genere) REFERENCES generi(ID)
+) ENGINE=InnoDB;
+-- insert some values
+INSERT INTO libri VALUES (1, 'Sulla Strada', 1,'Narra una serie di viaggi dell''autore in automobile attraverso gli Stati Uniti, in parte con il suo amico Neal Cassady e in parte in autostop.');
+INSERT INTO autori VALUES (1, 'Jack', 'Kerouac', '1922-03-12', '1969-10-21');
