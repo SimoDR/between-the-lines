@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title xml:lang="en">Registrazione - Between the Lines</title>
+            <meta name="title" content="Registrazione - Between the Lines" />
+            <meta name="description" content="Pagina per la registrazione dell'utente al sito Between the Lines." />
+
+            <meta name="keywords"
+                content="Between the Lines, registrazione, email, password, utente, libri, recensioni, opinioni" />
+            <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
+            <meta name="language" content="italian it" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+            <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
+            <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />
+    </head>
+
+    <body>
+        <div id="header">
+            <img id="logo" src="../images/btllogo.jpg" alt="Libro aperto stilizzato" />
+            <h1 xml:lang="en">Between the Lines</h1>
+            <h2 xml:lang="en">A world of books for young and old people</h2>
+        </div>
+
+        <div id="breadcrumb">
+            <p>Ti trovi in: Registrazione</p>
+        </div>
+
+        <div id="menu">
+            <ul class="menu-list">
+                <li xml:lang="en"><a href="ricerca.html">Home</li>
+                <li><a href="classifiche.html">Classifiche</a></li>
+                <li><a href="ricerca.html">Ricerca</a>
+                <li><a href="chisiamo.html">Chi Siamo</a></li>
+                <li><a href="contattaci.html">Contattaci</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <form method="post" action="registrazione.php" enctype="multipart/form-data" id="form_registrazione"
+                class="vertical_input_form">
+                <!--multipart/form-data	Non vengono codificati i caratteri,
+                è necessario per i form che fanno file upload.
+                (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
+                <fieldset>
+                    <legend>Registrazione</legend>
+                    %ERROR%
+                    <span> Tipologia di registrazione: </span>
+                    <input type="radio" name="tipo_utente" value="0" tabindex="1" id="recensore"
+                        checked="%REC_CHECKED%" />
+                    <label class="radio_label" for="recensore">Recensore</label>
+
+                    <input type="radio" name="tipo_utente" value="1" id="ristoratore" checked="%RIST_CHECKED%" />
+                    <label class="radio_label" for="ristoratore">Bibliotecaio</label>
+
+                    <label for="email" lang="en">Email:</label>
+                    <input type="email" name="email" id="email" required="required" tabindex="2"
+                        class="full_width_input" value="%MAIL_VALUE%" />
+
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome" required="required" tabindex="3" class="full_width_input"
+                        value="%NOME_VALUE%" />
+
+                    <label for="cognome">Cognome:</label>
+                    <input type="text" name="cognome" id="cognome" required="required" tabindex="4"
+                        class="full_width_input" value="%COGNOME_VALUE%" />
+
+                    <label for="sesso">Sesso:</label>
+                    <select name="sesso" id="sesso" required="required" tabindex="5" class="full_width_input">
+                        <option value="ns" selected="%SEL_NS%">Non Specificato</option>
+                        <option value="Uomo" selected="%SEL_UOMO%">Uomo</option>
+                        <option value="Donna" selected="%SEL_DONNA%">Donna</option>
+                        <option value="Altro" selected="%SEL_ALTRO%">Altro</option>
+                    </select>
+
+                    <label for="nascita">Data di nascita:</label>
+                    <input type="date" name="nascita" id="nascita" required="required" tabindex="6"
+                        class="full_width_input" value="%DATAN_VALUE%" />
+
+                    <label for="password" lang="en">Password:</label>
+                    <input type="password" name="password" id="password" required="required" tabindex="7"
+                        class="full_width_input" value="%PWD1_VALUE%" />
+
+                    <label for="repeatpassword">Ripeti <span lang="en">password</span>:</label>
+                    <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8"
+                        class="full_width_input" value="%PWD2_VALUE%" />
+
+                    <label id="piva_l" for="piva">Partita IVA:</label>
+                    <input id="piva" type="text" name="piva" tabindex="9" class="full_width_input"
+                        value="%PIVA_VALUE%" />
+
+                    <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
+                    <input id="rsoc" type="text" name="rsoc" tabindex="10" class="full_width_input"
+                        value="%RSOC_VALUE%" />
+
+                    <div id="img_sel">
+                        <label for="img_profilo">Immagine profilo:</label>
+                        <img id="img_profilo_preview" src="../img/imgnotfound.jpg" alt="immagine di profilo" />
+                        <input type="file" name="fileToUpload" id="img_profilo" tabindex="11" />
+                    </div>
+                    <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12" />
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="footer">
+            <img id="imgValidCode" src="../images/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
+            <img id="imgValidCSS" src="../images/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
+            <ul id="footerlist">
+                <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
+                <li>049-267276 - Padova, Via Paolotti 5</li>
+                <li xml:lang="en">betweenthelines@gmail.com</li>
+                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+            </ul>
+
+            <a id="turnBack" class="hidden" href="#header">Torna su</a>
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+
+</html>
