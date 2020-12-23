@@ -20,7 +20,7 @@
 
     <body>
         <div id="header">
-            <img id="logo" src="../images/btllogo.jpg" alt="Libro aperto stilizzato" />
+            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
             <h1 xml:lang="en">Between the Lines</h1>
             <h2 xml:lang="en">A world of books for young and old people</h2>
         </div>
@@ -31,7 +31,7 @@
 
         <div id="menu">
             <ul class="menu-list">
-                <li xml:lang="en"><a href="ricerca.html">Home</li>
+                <li xml:lang="en"><a href="ricerca.html">Home</a></li>
                 <li><a href="classifiche.html">Classifiche</a></li>
                 <li><a href="ricerca.html">Ricerca</a>
                 <li><a href="chisiamo.html">Chi Siamo</a></li>
@@ -48,25 +48,10 @@
                 <fieldset>
                     <legend>Registrazione</legend>
                     %ERROR%
-                    <span> Tipologia di registrazione: </span>
-                    <input type="radio" name="tipo_utente" value="0" tabindex="1" id="recensore"
-                        checked="%REC_CHECKED%" />
-                    <label class="radio_label" for="recensore">Recensore</label>
-
-                    <input type="radio" name="tipo_utente" value="1" id="ristoratore" checked="%RIST_CHECKED%" />
-                    <label class="radio_label" for="ristoratore">Bibliotecaio</label>
 
                     <label for="email" lang="en">Email:</label>
                     <input type="email" name="email" id="email" required="required" tabindex="2"
                         class="full_width_input" value="%MAIL_VALUE%" />
-
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" required="required" tabindex="3" class="full_width_input"
-                        value="%NOME_VALUE%" />
-
-                    <label for="cognome">Cognome:</label>
-                    <input type="text" name="cognome" id="cognome" required="required" tabindex="4"
-                        class="full_width_input" value="%COGNOME_VALUE%" />
 
                     <label for="sesso">Sesso:</label>
                     <select name="sesso" id="sesso" required="required" tabindex="5" class="full_width_input">
@@ -78,27 +63,20 @@
 
                     <label for="nascita">Data di nascita:</label>
                     <input type="date" name="nascita" id="nascita" required="required" tabindex="6"
-                        class="full_width_input" value="%DATAN_VALUE%" />
+                        class="full_width_input" value="%BDATE_VALUE%" />
 
                     <label for="password" lang="en">Password:</label>
                     <input type="password" name="password" id="password" required="required" tabindex="7"
-                        class="full_width_input" value="%PWD1_VALUE%" />
+                        class="full_width_input" value="%PWD_VALUE%" />
 
                     <label for="repeatpassword">Ripeti <span lang="en">password</span>:</label>
                     <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8"
-                        class="full_width_input" value="%PWD2_VALUE%" />
+                        class="full_width_input" value="%PWDC_VALUE%" />
 
-                    <label id="piva_l" for="piva">Partita IVA:</label>
-                    <input id="piva" type="text" name="piva" tabindex="9" class="full_width_input"
-                        value="%PIVA_VALUE%" />
-
-                    <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
-                    <input id="rsoc" type="text" name="rsoc" tabindex="10" class="full_width_input"
-                        value="%RSOC_VALUE%" />
 
                     <div id="img_sel">
                         <label for="img_profilo">Immagine profilo:</label>
-                        <img id="img_profilo_preview" src="../img/imgnotfound.jpg" alt="immagine di profilo" />
+                        <img id="img_profilo_preview" src="../img/defaultuser.png" alt="immagine di profilo" />
                         <input type="file" name="fileToUpload" id="img_profilo" tabindex="11" />
                     </div>
                     <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12" />
@@ -107,8 +85,8 @@
         </div>
 
         <div id="footer">
-            <img id="imgValidCode" src="../images/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
-            <img id="imgValidCSS" src="../images/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
+            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
+            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
             <ul id="footerlist">
                 <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
                 <li>049-267276 - Padova, Via Paolotti 5</li>
