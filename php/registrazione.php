@@ -1,69 +1,92 @@
 <?php
-require('sessione.php')
+
+require_once("sessione.php");
+require_once('connessione.php');
+require_once("regex_checker.php");
 
 
-/*Aggiunta header e menu*/
+if($_SESSION['logged']==true){
+    header('location:index.php');
+    exit();
+}
+
+/*Aggiunta header,menu e footer*/
 $page= file_get_contents("../html/registrazione.html");
 
-$error='';
-/* se ci sono valori in _POST cerca di fare il login o stampa errore */
-if(isset($_POST['email'])){
-    $email=$_POST['email'];
+$mail='';
+$pwd='';
+$pwd2='';
+$id_foto=NULL;
+$no_error=true;
+$error="";
+
+if(isset($_POST['registrati'])){
+    if(isset($_POST['email'])){
+        $mail=$_POST['email'];
+    }
     if(isset($_POST['password'])){
         $pwd=$_POST['password'];
     }
-    if(isset($_POST['remember_me'])){
-        $check='checked="checked"';
+    if(isset($_POST['repeatpassword'])){
+        $pwd2=$_POST['repeatpassword'];
     }
 
-    /* crea connessione al DB */
-    require_once('connessione.php');
+    //connessione db
     $obj_connection = new DBConnection();
+    if(!$obj_connection->create_connection()){
+        $error=$error."<div class=\"msg_box error_box\">Errore di connessione al database</div>";
+        $no_error=false;
+    }
+    //controllo input
+    if(!check_email($mail)){
+        $error=$error."<div class=\"msg_box error_box\">'La mail inserita non è valida.</div>";
+        $no_error=false;
+    }
+    if($obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$mail."'")){
+        $error=$error."<div class=\"msg_box error_box\">Questa mail è già in uso.</div>";
+        $no_error=false;
+    }
+    if($pwd!=$pwd2){
+        $error=$error."<div class=\"msg_box error_box\">Password e Ripeti Password non coincidono.</div>";
+        $no_error=false;
+    }
+    if(!check_pwd($pwd)){
+        $error=$error."<div class=\"msg_box error_box\">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
+        $no_error=false;
+    }
 
-    if($obj_connection->create_connection()){
-
-        $email=$obj_connection->escape_str(trim($email));
+    if($no_error){
+        $mail=$obj_connection->escape_str(trim(htmlentities($mail)));
+        $nome=$obj_connection->escape_str(trim(htmlentities($nome)));
         $hashed_pwd=hash("sha256",$obj_connection->escape_str(trim($pwd)));
 
-        if(!$log_query=$obj_connection->connessione->query("SELECT * FROM utente WHERE Mail=\"$email\" AND PWD=\"$hashed_pwd\"")){
-            $error="[La query non è andata a buon fine]";
+        $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", NULL, NULL, \"$permessi\", \"$sesso\")");
+        }
+
+        //check dati inseriti
+        if(!$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$mail."'")){
+            $error="<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
         }else{
-            if(!$log_array=$obj_connection->queryToArray($log_query)){
-                $error="[Le credenziali inserite non sono corrette]";
-            }else{
-                $_SESSION['logged']=true;
-                $_SESSION['email']=$email;
-                $_SESSION['ID']=$log_array[0]['ID'];
-                $_SESSION['permesso']=$log_array[0]['Permessi'];
-
-                if(isset($_POST['remember_me'])){
-                    setcookie("user_email",$email,time()+60*60*24*30);
-                    setcookie("user_pwd",$pwd,time()+60*60*24*30);
-                }else{
-                    setcookie("user_email",$email,time()-3600);
-                    setcookie("user_pwd",$pwd,time()-3600);
-                }
-
-                $obj_connection->close_connection();
-
-                header('location: index.php');
-                exit;
-            }
+            $obj_connection->close_connection();
+            header('location: login.php');
+            exit;
         }
         $obj_connection->close_connection();
-
-    }else{
-        $error=(new errore('DBConnection'))->printHTMLerror();
     }
 
 }
-
-$error=str_replace("[",'<p class="msg_box error_box">',$error);
-$error=str_replace("]","</p>",$error);
+if($tipo==1){
+    $page=str_replace('checked="%REC_CHECKED%"',"",$page);
+    $page=str_replace('checked="%RIST_CHECKED%"',"checked=\"checked\"",$page);
+}
+else{
+    $page=str_replace('checked="%REC_CHECKED%"',"checked=\"checked\"",$page);
+    $page=str_replace('checked="%RIST_CHECKED%"',"",$page);
+}
+$page=str_replace("%MAIL_VALUE%",$mail,$page);
+$page=str_replace("%PWD1_VALUE%",$pwd,$page);
+$page=str_replace("%PWD2_VALUE%",$pwd2,$page);
 $page=str_replace("%ERROR%",$error,$page);
-$page=str_replace("%VALUE_EMAIL%",$email,$page);
-$page=str_replace("%VALUE_PASSWORD%",$pwd,$page);
-$page=str_replace("%CHECKED%",$check,$page);
-
 echo $page;
+
 ?>
