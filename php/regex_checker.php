@@ -1,7 +1,21 @@
 <?php
 
+//TODO: control everything here: not sure it works properly
+
 function check_email($email){
     if(preg_match('/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/',$email)==1){
+        return true;
+    }
+    return false;
+}
+
+// USERNAME PROPERTIES:
+//  - Only letters and numbers (a-z, A-z, 0-9).
+//  - No spaces, linebreaks, tabs or special characters.
+//  - At least 5 characters in length.
+//  - No more than 20 characters in length.
+function check_username($username){
+    if(preg_match('/^[a-zA-Z0-9]{5,30}$/',$username)==1){
         return true;
     }
     return false;
@@ -21,12 +35,6 @@ function check_nome($nome){
     return false;
 }
 
-function check_tel($tel){
-    if(preg_match('/^(\d{10})$/',$tel)==1){
-        return true;
-    }
-    return false;
-}
 
 function check_num($num){
     if(preg_match('/^([1-9][0-9]*)$/',$num)==1){
@@ -37,20 +45,6 @@ function check_num($num){
 
 function check_number($num){
     if(preg_match('/^([0-9]*)$/',$num)==1){
-        return true;
-    }
-    return false;
-}
-
-function check_cap($cap){
-    if(preg_match('/^(\d{5})$/',$cap)==1){
-        return true;
-    }
-    return false;
-}
-
-function check_piva($piva){
-    if(preg_match('/^[0-9]{11}$/',$piva)==1){
         return true;
     }
     return false;

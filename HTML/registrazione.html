@@ -51,39 +51,41 @@
 
                     <label for="email" lang="en">Email:</label>
                     <input type="email" name="email" id="email" required="required" tabindex="2"
-                        class="full_width_input" value="%MAIL_VALUE%" />
+                        class="full_width_input" value="<EMAIL/>" />
 
-                    <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" required="required" tabindex="5" class="full_width_input">
-                        <option value="ns" selected="%SEL_NS%">Non Specificato</option>
-                        <option value="Uomo" selected="%SEL_UOMO%">Uomo</option>
-                        <option value="Donna" selected="%SEL_DONNA%">Donna</option>
-                        <option value="Altro" selected="%SEL_ALTRO%">Altro</option>
-                    </select>
-
-                    <label for="nascita">Data di nascita:</label>
-                    <input type="date" name="nascita" id="nascita" required="required" tabindex="6"
-                        class="full_width_input" value="%BDATE_VALUE%" />
+                    <label for="username" lang="en">Nome utente:</label>
+                    <input type="text" name="username" id="username" required="required" tabindex="2"
+                           class="full_width_input" value="<USERNAME/>" />
 
                     <label for="password" lang="en">Password:</label>
                     <input type="password" name="password" id="password" required="required" tabindex="7"
-                        class="full_width_input" value="%PWD_VALUE%" />
+                        class="full_width_input" value="<PWD/>" />
 
                     <label for="repeatpassword">Ripeti <span lang="en">password</span>:</label>
                     <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8"
-                        class="full_width_input" value="%PWDC_VALUE%" />
+                        class="full_width_input" value="%<PWD_CONFIRMATION/>" />
 
+                    //TODO: add images to the radiobuttons
+                    <p>Seleziona un'immagine profilo:</p>
+                        <div>
+                            <input type="radio" id="red" name="propic" value="red"
+                                   checked>
+                            <label for="red">Libro rosso</label>
+                        </div>
 
-                    <div id="img_sel">
-                        <label for="img_profilo">Immagine profilo:</label>
-                        <img id="img_profilo_preview" src="../img/defaultuser.png" alt="immagine di profilo" />
-                        <input type="file" name="fileToUpload" id="img_profilo" tabindex="11" />
-                    </div>
+                        <div>
+                            <input type="radio" id="green" name="propic" value="green">
+                            <label for="green">Libro verde</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="blue" name="propic" value="blue">
+                            <label for="blue">Libro azzurro</label>
+                        </div>
                     <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12" />
                 </fieldset>
             </form>
         </div>
-
         <div id="footer">
             <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
             <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
