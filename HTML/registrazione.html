@@ -47,7 +47,7 @@
                 (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
                 <fieldset>
                     <legend>Registrazione</legend>
-                    %ERROR%
+                    <ERROR/>
 
                     <label for="email" lang="en">Email:</label>
                     <input type="email" name="email" id="email" required="required" tabindex="2"
@@ -63,23 +63,23 @@
 
                     <label for="repeatpassword">Ripeti <span lang="en">password</span>:</label>
                     <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8"
-                        class="full_width_input" value="%<PWD_CONFIRMATION/>" />
+                        class="full_width_input" value="<PWD_CONFIRMATION/>" />
 
                     //TODO: add images to the radiobuttons
                     <p>Seleziona un'immagine profilo:</p>
                         <div>
-                            <input type="radio" id="red" name="propic" value="red"
+                            <input type="radio" id="red" name="propic" value="1"
                                    checked>
                             <label for="red">Libro rosso</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="green" name="propic" value="green">
+                            <input type="radio" id="green" name="propic" value="2">
                             <label for="green">Libro verde</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="blue" name="propic" value="blue">
+                            <input type="radio" id="blue" name="propic" value="3">
                             <label for="blue">Libro azzurro</label>
                         </div>
                     <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12" />
