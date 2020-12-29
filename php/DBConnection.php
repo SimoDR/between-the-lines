@@ -5,9 +5,9 @@ class DBAccess
 
 	// TODO: definire username, password, database_name
 	private const HOST_DB = "localhost";
-	private const USERNAME = "";
-	private const PASSWORD = "";
-	private const DATABASE_NAME = "";
+	private const USERNAME = "root";
+	private const PASSWORD = "root";
+	private const DATABASE_NAME = "betweenthelines";
 
 	private $connection = null;
 
@@ -34,7 +34,7 @@ class DBAccess
      */
     public function queryDB($query){
         $result=null;
-        if($queryResult = $this->connessione->query($query)){
+        if($queryResult = $this->connection->query($query)){
             $result=array();
             if($queryResult && $queryResult->num_rows>0){
                 while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
@@ -54,6 +54,5 @@ class DBAccess
 		}
 	}
 }
-
 
  ?>

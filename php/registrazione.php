@@ -1,7 +1,7 @@
 <?php
 
 require_once("sessione.php");
-//require_once('connessione.php');
+require_once('DBConnection.php.php');
 require_once("regex_checker.php");
 
 
@@ -36,6 +36,7 @@ if (isset($_POST['registrati'])) {
     if (isset($_POST['propic'])) {
         $propic = $_POST['propic'];
     }
+    //TODO: usare streplace per snellire i messggi di errore
     //db connection
     $obj_connection = new DBConnection();
     if (!$obj_connection->create_connection()) {
@@ -67,7 +68,7 @@ if (isset($_POST['registrati'])) {
     }
 
     //check dati inseriti
-    if (!$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='" . $mail . "'")) {
+    if (!$obj_connection->queryDB("SELECT * FROM utenti WHERE mail='" . $mail . "'")) {
         $error = "<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
     } else {
         $obj_connection->close_connection();
