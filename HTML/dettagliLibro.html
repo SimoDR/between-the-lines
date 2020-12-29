@@ -28,57 +28,48 @@
         </div>
 
         <div id="menu">
-            <ul class="menu-list"> 
-            <li xml:lang="en"><a href="home.html">Home</li>
-            <li><a href="classifiche.html">Classifiche</a></li>
-            <li><a href="ricerca.html">Ricerca</a>
-            <li><a href="chisiamo.html">Chi Siamo</a></li>
-            <li><a href="contattaci.html">Contattaci</a></li>
-            </ul>
-        </div>  
+            <MENU/>
+        </div>    
 
         <div id="content">
-			<h1 id="book_title">%BOOK_TITLE%</h1>
+			<h1 id="book_title"><NOME_LIBRO/></h1>
 			
 			<div id="book_frontpage">
-				<img src="%BOOK_FRONTPAGE_PATH%" alt="%BOOK_FRONTPAGE_ALT%" />
-				
-				%FORM_MODIFICA_FOTO% <!-- TODO -->
-
+				<img src="<LIBRO_COPERTINA/>" alt="<LIBRO_COPERTINA_ALT/>" />
 			</div>
 			
 				<div id="details">
 					<dl id="book_details">
 						<dt>Autore:</dt>
-						<dd>%AUTORE%</dd>
-						%FORM_MODIFICA_AUTORE% <!-- TODO -->
+						<dd><AUTORE/></dd>
 						<dt>Genere: </dt>
-						<dd>%GENERE%</dd>
-						%FORM_MODIFICA_GENERE% <!-- TODO -->				
+						<dd><GENERE/></dd>
 						<dt>Riassunto: </dt>
-						<dd>%RIASSUNTO%</dd>
-						%FORM_MODIFICA_RIASSUNTO% <!-- TODO -->
+						<dd><RIASSUNTO/></dd>
 					</dl>
 				</div>
 			
 			<div>	
 				<h2 id="reviews">Recensioni: </h2>
-				<span class="reviews_stars">Stelle %NUMERO_STELLE%/5 
-					<span class="review_stars_counter">%LISTA_STELLE%</span>
+				<span class="reviews_average">Stelle <NUMERO_STELLE/>/5 
+					<span class="review_average_stars"><DISEGNO_STELLE/></span>
 				</span>
-				<h3 class="review_info_title">Numero di recensioni totali: %NUMERO_RECENSIONI%</h3>
+				<h3 class="review_info_title">Numero di recensioni totali: <NUMERO_RECENSIONI/></h3>
 				
 				<h3 class="review_info_title">Recensioni degli utenti: </h3>
 				
 				<a id="help_write_review" href="#review_box">Inserisci recensione<\a>
 				
-				%LIST%
-				%PAGESLIST% <!-- TODO -->
+				<LISTA_RECENSIONI/> <!-- lista delle recensioni del libro -->
+				
+				<PAGINE_RECENSIONI/> <!-- pagine di recensioni -->
 				
 				<div>
 					<span id="review_box">
-					%FORM_INSERIMENTO_RECENSIONE% <!-- TODO -->
-					<a id="goBack" href="#reviews">Torna su</a>
+					
+					<FORM_INSERIMENTO_RECENSIONE/> <!-- TODO -->
+					
+					<a id="goBack" href="#reviews">Torna alle recensioni</a>
 				</div>
 				
 			</div>

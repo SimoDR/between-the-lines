@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Dettagli del libro e recensioni - Between The Lines</title>
+        <meta name="title" content="Nuova recensione - Between The Lines" />
+        <meta name="description" content="pagina per inserimento di nuova recensione da parte dell'utente" />
+
+        <meta name="keywords" content="libro, visualizza, recensioni, opinioni, gradimento, recensire, nome, utente, stelle, voto" />
+        <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
+        <meta name="language" content="italian it" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+         
+        <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
+    </head>
+
+    <body>
+        <div id="header">
+            <img id="logo" src="../images/btllogo.jpg" alt="Libro aperto stilizzato" />
+            <h1 xml:lang="en">Between the Lines</h1>
+            <h2 xml:lang="en">A world of books for young and old</h2>
+        </div>
+    
+        <div id="breadcrumb">
+            <p>Ti trovi in: <BREADCRUMBS/> </p>
+        </div>
+
+        <div id="menu">
+            <MENU/>
+        </div>  
+
+        <div id="content">
+						
+			<noscript>
+                <div class="msg_box warning_box">
+                    <span xml:lang="en">JAVASCRIPT</span> NON ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO NON ESSERE DISPONIBILI
+                </div>
+            </noscript>
+            
+            <h1>Recensisci questo libro</h1>
+            
+            <img src="<LIBRO_COPERTINA/>" id="ins_review_img" alt="<LIBRO_COPERTINA_ALT/>"/>
+            <span id="ins_review_title"><NOME_LIBRO/></span>
+            <span><AUTORE/></span>
+            
+            <h2>
+                Condividi un pensiero su questo libro per aiutare gli altri utenti a scegliere le migliori letture!
+            </h2>
+       
+            <form class="form" method="post" action="" id="form_ins_review"> 
+                <fieldset>
+                    <legend>Inserimento nuova recensione</legend>
+					
+					<fieldset> 
+						<legend>Gradimento del libro:</legend>
+							<div><label for="one_stars">1 stella</label>
+								<input type="radio" name="stars" id="one_stars" value="one_stars" tabindex=1 /></div>
+							<div><label for="two_stars">2 stelle</label>
+								<input type="radio" name="stars" id="two_stars" value="two_stars" tabindex=2 /></div>
+							<div><label for="three_stars">3 stelle</label> 
+								<input type="radio" name="stars" id="three_stars" value="three_stars" tabindex=3 /></div>	
+							<div><label for="four_stars">4 stelle</label>
+								<input type="radio" name="stars" id="four_stars" value="four_stars" tabindex=4 /></div>
+							<div><label for="five_stars">5 stelle</label>
+								<input type="radio" name="stars" id="five_stars" value="five_stars" tabindex=5 /></div>						
+                    </fieldset>					
+                    
+                    <ERRORE_CONTENUTO/>
+					
+                    <label for="form_ins_review_text">La tua recensione: </label>
+                    <textarea id="form_ins_review_textarea" rows="50" cols="50" name="form_ins_review_textarea"  class="full_width_input" tabindex=6>					
+					<CONTENUTO_RECENSIONE/>					
+					</textarea>
+                    
+                    <input type="hidden" name="id_book" value="<ID_LIBRO/>"/>
+					
+                    <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex=6 />
+					
+                </fieldset>
+            </form>
+        </div>			
+			
+			
+        <div id="footer">
+            <img id="imgValidCode" src="../images/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+            <img id="imgValidCSS" src="../images/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+            <ul id="footerlist">
+                <li><span xml:lang="en"> Beetween the Lines</span> - Opinioni sui libri</li>
+                <li>049-267276 - Padova, Via Paolotti 5</li>
+                <li xml:lang="en">beetweenthelines@gmail.com</li>
+                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+            </ul>
+
+            <a id="turnBack" class="hidden" href="#header">Torna su</a>
+        </div>
+              
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>
