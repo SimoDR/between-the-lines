@@ -23,20 +23,15 @@
             <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
             <h1 xml:lang="en">Between the Lines</h1>
             <h2 xml:lang="en">A world of books for young and old people</h2>
+            <HEADER/>
         </div>
 
         <div id="breadcrumb">
-            <p>Ti trovi in: Registrazione</p>
+            <p>Ti trovi in: <BREADCRUMBS/> </p>
         </div>
 
         <div id="menu">
-            <ul class="menu-list">
-                <li xml:lang="en"><a href="ricerca.html">Home</a></li>
-                <li><a href="classifiche.html">Classifiche</a></li>
-                <li><a href="ricerca.html">Ricerca</a>
-                <li><a href="chisiamo.html">Chi Siamo</a></li>
-                <li><a href="contattaci.html">Contattaci</a></li>
-            </ul>
+                <MENU/>
         </div>
 
         <div id="content">
@@ -68,18 +63,17 @@
                     //TODO: add images to the radiobuttons
                     <p>Seleziona un'immagine profilo:</p>
                         <div>
-                            <input type="radio" id="red" name="propic" value="1"
-                                   checked>
-                            <label for="red"><img src="../img/icona_libro_rosso.png"></label>
+                            <input type="radio" id="red" name="propic" value="1" checked="checked" />
+                            <label for="red"><img src="../img/icona_libro_rosso.png" /></label>
                         </div>
 
                         <div>
-                            <input type="radio" id="green" name="propic" value="2">
+                            <input type="radio" id="green" name="propic" value="2" />
                             <label for="green">Libro verde</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="blue" name="propic" value="3">
+                            <input type="radio" id="blue" name="propic" value="3" />
                             <label for="blue">Libro azzurro</label>
                         </div>
                     <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12" />
