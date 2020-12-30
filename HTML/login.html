@@ -1,90 +1,89 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-        <title xml:lang="en"> Login - Between the Lines </title>
-            <meta name="title" content="Login - Between the Lines" />
-            <meta name="description" content="Pagina per il login al sito Between the Lines." />
+    <title xml:lang="en"> Login - Between the Lines </title>
+    <meta name="title" content="Login - Between the Lines"/>
+    <meta name="description" content="Pagina per il login al sito Between the Lines."/>
 
-            <meta name="keywords"
-                content="Between the Lines, login, email, password, accesso, libri, recensioni, opinioni" />
-            <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
-            <meta name="language" content="italian it" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords"
+          content="Between the Lines, login, email, password, accesso, libri, recensioni, opinioni"/>
+    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+    <meta name="language" content="italian it"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-            <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
-            <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />
-    </head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+</head>
 
-    <body>
-        <div id="header">
-            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
-            <h1 xml:lang="en">Between the Lines</h1>
-            <h2 xml:lang="en">A world of books for young and old people</h2>
-        </div>
+<body>
+<div id="header">
+    <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
+    <h1 xml:lang="en">Between the Lines</h1>
+    <h2 xml:lang="en">A world of books for young and old people</h2>
+</div>
 
-        <div id="breadcrumb">
-            <p>Ti trovi in: Login</p>
-        </div>
+<div id="breadcrumb">
+    <p>Ti trovi in: Login</p>
+</div>
 
-        <div id="menu">
-            <ul class="menu-list">
-                <li xml:lang="en"><a href="index.html">Home</li>
-                <li><a href="classifiche.html">Classifiche</a></li>
-                <li><a href="ricerca.html">Ricerca</a>
-                <li><a href="chisiamo.html">Chi Siamo</a></li>
-                <li><a href="contattaci.html">Contattaci</a></li>
-            </ul>
-        </div>
+<div id="menu">
+    <ul class="menu-list">
+        <li xml:lang="en"><a href="index.html">Home</a></li>
+        <li><a href="classifiche.html">Classifiche</a></li>
+        <li><a href="ricerca.html">Ricerca</a>
+        <li><a href="chisiamo.html">Chi Siamo</a></li>
+        <li><a href="contattaci.html">Contattaci</a></li>
+    </ul>
+</div>
 
-        <div id="content">
-            <form method="post" action="../php/login.php" id="login_form" class="vertical_input_form">
-                <fieldset>
-                    <legend xml:lang="en">Login</legend>
+<div id="content">
+    <form method="post" action="../php/login.php" id="login_form" class="vertical_input_form">
+        <fieldset>
+            <legend xml:lang="en">Login</legend>
 
-                    <noscript>
-                        <div class="msg_box warning_box">
-                            ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA'
-                            POTREBBERO
-                            NON ESSERE DISPONIBILI
-                        </div>
-                    </noscript>
+            <noscript>
+                <div class="msg_box warning_box">
+                    ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA'
+                    POTREBBERO
+                    NON ESSERE DISPONIBILI
+                </div>
+            </noscript>
 
-                    %ERROR%
-                    <label for="email" xml:lang="en">Email:</label>
-                    <input type="text" name="email" id="email" value="%VALUE_EMAIL%" maxlength="30" tabindex="1"
-                        class="full_width_input" />
+            <ERROR/>
+            <label for="email" xml:lang="en">Email:</label>
+            <input type="text" name="email" id="email" value="<EMAIL/>" maxlength="30" tabindex="1"
+                   class="full_width_input"/>
 
-                    <label for="password" xml:lang="en">Password:</label>
-                    <input type="password" name="password" id="password" value="%VALUE_PASSWORD%" maxlength="15"
-                        tabindex="2" class="full_width_input" />
+            <label for="password" xml:lang="en">Password:</label>
+            <input type="password" name="password" id="password" value="<PASSWORD/>" maxlength="15"
+                   tabindex="2" class="full_width_input"/>
 
-                    <input type="checkbox" id="remember_me" name="remember_me" %CHECKED% />
-                    <label for="remember_me">Ricordati di me</label>
+            <!-- TODO: valutare "ricordati di me" gestito con cookies-->
 
-                    <input type="submit" id="login_btn" class="btn" name="accedi" value="Accedi" tabindex="4" />
+            <input type="submit" id="login_btn" class="btn" name="accedi" value="Accedi" tabindex="3"/>
 
-                    <a href="registrazione.php" tabindex="3">Non sei ancora registrato? CLICCA QUI</a>
-                </fieldset>
-            </form>
-        </div>
+            <a href="registrazione.php" tabindex="3">Non sei ancora registrato? CLICCA QUI</a>
+        </fieldset>
+    </form>
+</div>
 
-        <div id="footer">
-            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
-            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
-            <ul id="footerlist">
-                <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-                <li>049-267276 - Padova, Via Paolotti 5</li>
-                <li xml:lang="en">betweenthelines@gmail.com</li>
-                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-            </ul>
+<div id="footer">
+    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+    <ul id="footerlist">
+        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
+        <li>049-267276 - Padova, Via Paolotti 5</li>
+        <li xml:lang="en">betweenthelines@gmail.com</li>
+        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+    </ul>
 
-            <a id="turnBack" class="hidden" href="#header">Torna su</a>
-        </div>
+    <a id="turnBack" class="hidden" href="#header">Torna su</a>
+</div>
 
-        <script type="text/javascript" src="../js/script.js"></script>
-    </body>
+<script type="text/javascript" src="../js/script.js"></script>
+</body>
 
 </html>
