@@ -44,6 +44,19 @@ class DBAccess
         return $result;
     }
 
+    /**
+     * @param $query string the query text
+     * @return bool true if the query is successful otherwise false
+     */
+    public function insertDB($query)
+    {
+        $this->connection->query($query);
+        if($this->connection->affected_rows>0) {
+            return true;
+        }
+        return false;
+    }
+
     public function closeDBConnection()
     {
         if ($this->connection) {
