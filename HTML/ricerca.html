@@ -21,24 +21,18 @@
             <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
             <h1 xml:lang="en">Between the Lines</h1>
             <h2 xml:lang="en">A world of books for young and old people</h2>
+            <HEADER/>
         </div>
     
         <div id="breadcrumb">
-            <p>Ti trovi in: Home </p>
+            <p>Ti trovi in: <span xml:lang="en">Home</span> &gt;&gt; Ricerca</p>
         </div>
 
         <div id="menu">
-            <ul class="menu-list"> 
-            <li xml:lang="en">Home</li>
-            <li><a href="pannelloadmin.html">Pannello di amministrazione</a></li> <!-- compare solo per l'amministratore -->
-            <li><a href="classifiche.html">Classifiche</a></li>
-            <li><a href="chisiamo.html">Chi Siamo</a></li>
-            <li><a href="contattaci.html">Contattaci</a></li>
-            </ul>
-        </div>  
+            <MENU/>
+        </div> 
 
         <div id="content">
-            <h2>Informazioni e scopo del sito</h2>
             <h2>Ricerca</h2>
 
             <form id="search-form" method="get" action="../php/ricerca.php">
@@ -47,26 +41,30 @@
                     
                     <div class="element-form">
                         <label for="search-bar"></label>
-                        <input id="search-bar" tabindex="1" name="search-bar" type="text"/>
+                        <input id="search-bar" tabindex="1" name="RICERCA_TAG" type="text"/>
                         
-                        <input id="f-title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
+                        <input id="f-title" tabindex="2" name="FILTRO_TAG" type="radio" checked="checked" value="0"/>
                         <label for="f-title">Cerca per TITOLO</label>
                           
-                        <input id="f-author" name="filter" type="radio" value="11"/>
+                        <input id="f-author" name="FILTRO_TAG" type="radio" value="11"/>
                         <label for="f-author">Cerca per AUTORE</label> 
                     </div>
 
                     <div class="element-form">
                         <label for="literary-genre">GENERE:</label>
-                        <select id="literary-genre" name="literary-genre" tabindex="3" >
-                            <option value="qualsiasi">Qualsiasi</option>
+                        <select id="literary-genre" name="GENERE_TAG" tabindex="3" >
+                            <option value="QUALSIASI_TAG">Qualsiasi</option>
                             %GENERE% <!-- TO DO inserire il genere ... senza fare la query per la selezione  -->
                         </select>
                     </div>
-
+                    
                     <input id="search-btn" tabindex="4" name="search-button" class="button" type="submit" value="Avvia Ricerca!"/>  
                 </fieldset>
             </form>
+
+            <h2>Risultati di ricerca</h2>
+
+            <Risultati />
 
         </div>
     
