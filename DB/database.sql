@@ -48,7 +48,8 @@ CREATE TABLE utenti (
 DROP TABLE IF EXISTS foto_profilo;
 CREATE TABLE foto_profilo (
   ID SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  path_foto VARCHAR(255)
+  path_foto VARCHAR(255),
+  alt_text VARCHAR(255)
 ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS recensioni;
