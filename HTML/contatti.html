@@ -21,25 +21,61 @@
             <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
             <h1 xml:lang="en">Between the Lines</h1>
             <h2 xml:lang="en">A world of books for young and old people</h2>
+            <HEADER/>
         </div>
     
         <div id="breadcrumb">
-            <p>Ti trovi in: Home </p>
+            <p>Ti trovi in: Contatti </p>
         </div>
 
         <div id="menu">
-            <ul class="menu-list"> 
-            <li xml:lang="en">Home</li>
-            <li><a href="pannelloadmin.html">Pannello di amministrazione</a></li> <!-- compare solo per l'amministratore -->
-            <li><a href="classifiche.html">Classifiche</a></li>
-            <li><a href="chisiamo.html">Chi Siamo</a></li>
-            <li><a href="../php/contatti.php">Contattaci</a></li>
-            </ul>
-        </div>  
+            <MENU/>
+        </div> 
 
         <div id="content">
-            <h2> Informazioni e scopo del sito</h2>
-            <h2> Ricerca</h2>
+
+            <div id="contact_e-mail">
+                <h2><span lang="en">e-mail</span></h2>
+                <p> Puoi mandarci una <span lang="en">e-mail</span>: betweenthelines@gmail.com</p>
+            </div>
+            
+            <div id="contact_phone">
+                <h2>telefono</h2>
+                <p> Puoi chiamarci al numero: 049-267276</p>
+            </div>
+
+            <div id="contact_message">  
+                <h2>Oppure puoi scriverci direttamente qui...</h2>
+                <form id="message-form" method="POST" action="../php/contatti.php">
+                    <fieldset>
+                        <legend>Form di messaggio: </legend>
+
+                    <div class="element-form">
+                        <label for="first_name">Nome:</label>
+                        <input id="first_name" name="first_name" type="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
+                        <span class="error"> <ERRORE_NOME/> </span>
+
+                        <label for="last_name">Cognome:</label>
+                        <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
+                        <span class="error"> <ERRORE_COGNOME/> </span>
+
+                        <label for="e_mail">e-mail:</label>
+                        <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
+                        <span class="error"> <ERRORE_E_MAIL/> </span>
+
+                        <label for="message">Messaggio:</label>
+                        <textarea id="message" name="message" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
+                        <span class="error"> <ERRORE_MESSAGGIO/> </span>
+
+                        <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
+                    </div>
+
+                  </fieldset>
+                </form>
+            </div>
+
+            <CONFERMA_INVIO/>
+        
         </div>
     
         <div id="footer">
