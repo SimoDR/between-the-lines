@@ -17,19 +17,16 @@
 	}
 	else{
 
-		/* TODO SISTEMARE
-		$genreList="";
 		// creo menù a tendina con generi
+		$genreList="";
 		$queryGenre=$dbAccess->queryDB("SELECT nome FROM generi");
-
         if ($queryGenre != null) {
 			//stampo la ricerca
 			foreach ($queryGenre as $genre) {
-				$genreList.= "<option value=\"$nome\">$nome</option>";
+				$genreList.= '<option value='. '"' . $genre['nome'] . '"">' . $genre['nome'] . '</option>';
 			}
-			$pagHTML = str_replace("<GENERI/>", $genreList, $pagHTML);
+			$pagHTML=str_replace("<GENERI/>", $genreList, $pagHTML);
 		}
-		*/
 
 		if( !(isset($_GET['search_bar'])) )
 		{
@@ -59,20 +56,16 @@
         $dbAccess->closeDBConnection();
         $bookList = "";
 
-        if ($resultSearch != null) 
-        {
+        if ($resultSearch != null) {
 			//stampo la ricerca
 			$bookList = '<dl id="book_list">';
-			foreach ($resultSearch as $book) 
-			{
+			foreach ($resultSearch as $book) {
 				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
 				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
 				$bookList .= '<dd>' . $book['genere'];
 			}
-		$bookList .= '</dl>';
-		}
-		else 
-		{
+			$bookList .= '</dl>';
+		} else {
 		// messaggio che dice che non ci sono risultati del DB
 		$bookList = "<p>Nessun risultato corrispondente ai criteri di ricerca</p>";
 		}
