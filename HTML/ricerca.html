@@ -35,36 +35,36 @@
         <div id="content">
             <h2>Ricerca</h2>
 
-            <form id="search-form" method="get" action="../php/ricerca.php">
+            <form id="search_form" method="get" action="../php/ricerca.php">
                 <fieldset>
                     <legend>Form di ricerca: </legend>
                     
-                    <div class="element-form">
-                        <label for="search-bar"></label>
-                        <input id="search-bar" tabindex="1" name="RICERCA_TAG" type="text"/>
+                    <div class="element_form">
+                        <label for="search_bar"></label>
+                        <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
                         
-                        <input id="f-title" tabindex="2" name="FILTRO_TAG" type="radio" checked="checked" value="0"/>
-                        <label for="f-title">Cerca per TITOLO</label>
+                        <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
+                        <label for="filter_title">Cerca per TITOLO</label>
                           
-                        <input id="f-author" name="FILTRO_TAG" type="radio" value="11"/>
-                        <label for="f-author">Cerca per AUTORE</label> 
+                        <input id="filter_author" name="filter" type="radio" value="11"/>
+                        <label for="filter_author">Cerca per AUTORE</label> 
                     </div>
 
-                    <div class="element-form">
-                        <label for="literary-genre">GENERE:</label>
-                        <select id="literary-genre" name="GENERE_TAG" tabindex="3" >
-                            <option value="QUALSIASI_TAG">Qualsiasi</option>
-                            %GENERE% <!-- TO DO inserire il genere ... senza fare la query per la selezione  -->
+                    <div class="element_form">
+                        <label for="genre">GENERE:</label>
+                        <select id="genre" name="genre" tabindex="3" >
+                            <option value="Qualsiasi">Qualsiasi</option>
+                            <GENERE/>
                         </select>
                     </div>
                     
-                    <input id="search-btn" tabindex="4" name="search-button" class="button" type="submit" value="Avvia Ricerca!"/>  
+                    <input id="search_button" tabindex="4" name="search_button" class="button" type="submit" value="Avvia Ricerca!"/>  
                 </fieldset>
             </form>
 
             <h2>Risultati di ricerca</h2>
 
-            <Risultati />
+            <RISULTATI/>
 
         </div>
     

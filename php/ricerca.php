@@ -1,59 +1,73 @@
 <?php
 	
-	require_once("DBconnection.php");
+	require_once('DBConnection.php');
 
 	$pagHTML = file_get_contents("../HTML/ricerca.html");
+
 	$dbAccess = new DbAccess();
 	$connectionSuccess = $dbAccess->openDBConnection();
 
-	if ($connectionSuccess == false) 
-	{
+	//TO DO: dividere i risultati per pagina
+	//TO DO: cambiare query base
+	//TO DO: fissare un max di ricerche per pagina	
+
+	if ($connectionSuccess == false) {
 	// TO DO: NON VA BENE: bisogna sollevare eccezioni con try e catch
 		die ("Errore nell'apertura del DB");
 	}
+	else{
 
-	else 
-	{
-		//TO DO: dividere i risultati per pagina
+		/* TODO SISTEMARE
+		$genreList="";
+		// creo menù a tendina con generi
+		$queryGenre=$dbAccess->queryDB("SELECT nome FROM generi");
 
-		// TO DO: inserire ricerche forse ti piacerebbe di altri generi, dello stesso autore...
+        if ($queryGenre != null) {
+			//stampo la ricerca
+			foreach ($queryGenre as $genre) {
+				$genreList.= "<option value=\"$nome\">$nome</option>";
+			}
+			$pagHTML = str_replace("<GENERI/>", $genreList, $pagHTML);
+		}
+		*/
 
-		//TO DO: cambiare query base
-		//TO DO: fissare un max di ricerche per pagina
-		$query = "SELECT * FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
-
-		if( !isset($_GET['RICERCA_TAG']) )
+		if( !(isset($_GET['search_bar'])) )
 		{
 			// TO DO: NON VA BENE: bisogna sollevare eccezioni con try e catch
+			$dbAccess->closeDBConnection();
 			die ("Errore inserire un valore");
 		}
 
-		$titleOrAuthor=$_GET['FILTRO_TAG'];
-		$genre=$_GET['GENERE_TAG'];
+		// TODO: MANCA IL VOTO del libro
+		$querySearch = "SELECT * FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
+
+		$titleOrAuthor=$_GET['filter'];
+		$genre=$_GET['genre'];
+		$search=$_GET['search_bar'];
 
 		if($titleOrAuthor == 0){ // ricerca per titolo
-			$query .= "L.titolo LIKE '% "$_GET['RICERCA_TAG']" %' ";
+			$querySearch .= " L.titolo LIKE '%$search%' ";
         }
         else{ //ricerca per autore 
-        	$query .= "(A.nome LIKE '%"$_GET['RICERCA_TAG']"%' OR A.cognome LIKE '%"$_GET['RICERCA_TAG']"%')";
+        	$querySearch .= "(A.nome LIKE '%$search%' OR A.cognome LIKE '%$search%' )";
         }
-        if($genre!=="QUALSIASI_TAG"){ // ricerca per genere
-                $query .= " AND G.nome='GENERE_TAG' ";
+        if($genre!=="Qualsiasi"){ // filtro per genere
+                $querySearch .= " AND G.nome='genre' ";
         }
 
-        $result=queryDB($query);
+        $resultSearch=$dbAccess->queryDB($querySearch);
         $dbAccess->closeDBConnection();
         $bookList = "";
 
-        if ($result != null) 
+        if ($resultSearch != null) 
         {
 			//stampo la ricerca
-			$bookList = '<dl id="book-list">';
-			foreach ($resultQuery as $ book) 
+			$bookList = '<dl id="book_list">';
+			foreach ($resultSearch as $book) 
 			{
-				$bookList .= '<dt>' . $book['titolo'] '</dt>';
-				$bookList .= '<dd>' . $book['nome'] '</dd>';
-				$bookList .= '<dd>' . $book['cognome'] '</dd>';
+				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
+				$bookList .= '<dd>' . $book['nome'] . '</dd>';
+				$bookList .= '<dd>' . $book['cognome'] . '</dd>';
 			}
 		$bookList .= '</dl>';
 		}
@@ -64,7 +78,8 @@
 		}
 
 		// sostituisco il segnaposto
-		echo str_replace("<Risultati />", $bookList, $pagHTML);
+		$pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
+		echo $pagHTML;
 	}
 
 ?>
