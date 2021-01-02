@@ -23,12 +23,12 @@
         if ($queryGenre != null) {
 			//stampo la ricerca
 			foreach ($queryGenre as $genre) {
-				$genreList.= '<option value='. '"' . $genre['nome'] . '"">' . $genre['nome'] . '</option>';
+				$genreList.= '<option value='. '"' . $genre['nome'] . '">' . $genre['nome'] . '</option>';
 			}
 			$pagHTML=str_replace("<GENERI/>", $genreList, $pagHTML);
 		}
 
-		if( !(isset($_GET['search_bar'])) )
+		if( empty($_GET['search_bar']) )
 		{
 			// TO DO: NON VA BENE: bisogna sollevare eccezioni con try e catch
 			$dbAccess->closeDBConnection();
@@ -36,7 +36,7 @@
 		}
 
 		// TODO: MANCA IL VOTO del libro
-		$querySearch = "SELECT L.titolo, A.nome, A.cognome, G.nome AS 'genere' FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
+		$querySearch = "SELECT L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
 
 		$titleOrAuthor=$_GET['filter'];
 		$genre=$_GET['genre'];
@@ -49,7 +49,7 @@
         	$querySearch .= "(A.nome LIKE '%$search%' OR A.cognome LIKE '%$search%' )";
         }
         if($genre!=="Qualsiasi"){ // filtro per genere
-                $querySearch .= " AND G.nome='genre' ";
+                $querySearch .= " AND G.nome='$genre' ";
         }
 
         $resultSearch=$dbAccess->queryDB($querySearch);
