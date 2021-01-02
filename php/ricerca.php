@@ -39,7 +39,7 @@
 		}
 
 		// TODO: MANCA IL VOTO del libro
-		$querySearch = "SELECT * FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
+		$querySearch = "SELECT L.titolo, A.nome, A.cognome, G.nome AS 'genere' FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
 
 		$titleOrAuthor=$_GET['filter'];
 		$genre=$_GET['genre'];
@@ -66,8 +66,8 @@
 			foreach ($resultSearch as $book) 
 			{
 				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
-				$bookList .= '<dd>' . $book['nome'] . '</dd>';
-				$bookList .= '<dd>' . $book['cognome'] . '</dd>';
+				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
+				$bookList .= '<dd>' . $book['genere'];
 			}
 		$bookList .= '</dl>';
 		}
