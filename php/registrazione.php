@@ -37,8 +37,8 @@ if (isset($_POST['registrati'])) {
     }
     //TODO: usare streplace per snellire i messggi di errore
     //db connection
-    $obj_connection = new DBAccess();
-    if (!$obj_connection->openDBConnection()) {
+    $$DBconnection = new DBAccess();
+    if (!$$DBconnection->openDBConnection()) {
         $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al database</div>";
     }
     //check mail
@@ -46,7 +46,7 @@ if (isset($_POST['registrati'])) {
         $error = $error . "<div class=\"msg_box error_box\">'La mail inserita non è valida.</div>";
     }
     //check existence
-    if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail='" . $mail . "'")) {
+    if ($$DBconnection->queryDB("SELECT * FROM utenti WHERE mail='" . $mail . "'")) {
         $error = $error . "<div class=\"msg_box error_box\">Esiste già un utente con questa mail.</div>";
     }
     //check username
@@ -63,13 +63,13 @@ if (isset($_POST['registrati'])) {
     }
     //insert new user (hashed pwd)
     if ($error == "") {
-        $mail = $obj_connection->escape_string(trim(htmlentities($mail)));
-        $username = $obj_connection->escape_string(trim(htmlentities($username)));
-        $hashed_pwd = hash("sha256", $obj_connection->escape_string(trim($pwd)));
+        $mail = $$DBconnection->escape_string(trim(htmlentities($mail)));
+        $username = $$DBconnection->escape_string(trim(htmlentities($username)));
+        $hashed_pwd = hash("sha256", $$DBconnection->escape_string(trim($pwd)));
 
         $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$hashed_pwd\", $propic , \"$mail\", 0)";
-        $queryResult =$obj_connection->insertDB($query);
-        $obj_connection->closeDBConnection();
+        $queryResult =$$DBconnection->insertDB($query);
+        $$DBconnection->closeDBConnection();
 
         //check dati inseriti
         if (!$queryResult) {
@@ -82,13 +82,13 @@ if (isset($_POST['registrati'])) {
 }
 //profile picture search and rendering
 $pictures='';
-$obj_connection = new DBAccess();
-if(!$obj_connection->openDBConnection()){
+$$DBconnection = new DBAccess();
+if(!$$DBconnection->openDBConnection()){
     $error=$error."<div class=\"msg_box error_box\">Errore di connessione al database</div>";
 }
 else{
     //TODO: nothing is checked by default. Is it a probem?
-    $result=$obj_connection->queryDB("SELECT * FROM foto_profilo");
+    $result=$$DBconnection->queryDB("SELECT * FROM foto_profilo");
     for ($i = 0; $i < count($result); $i++){
         $path=$result[$i]['path_foto'];
         $alt=$result[$i]['alt_text'];
@@ -99,7 +99,7 @@ else{
                         </div>";
 
     }
-    $obj_connection->closeDBConnection();;
+    $$DBconnection->closeDBConnection();;
 }
 //php tag replacement
 $page = str_replace("<EMAIL/>", $mail, $page);

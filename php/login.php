@@ -17,14 +17,14 @@ if (isset($_POST['email'])) {
 
     /* crea connessione al DB */
     require_once('DBConnection.php');
-    $obj_connection = new DBAccess();
-    if ($obj_connection->openDBConnection()) {
+    $$DBconnection = new DBAccess();
+    if ($$DBconnection->openDBConnection()) {
         //TODO: capire se altri controlli debbano essere fatti backend per sanificare l'input
-        $email = $obj_connection->escape_string(trim($email));
-        $hashed_pwd = $obj_connection->escape_string(hash("sha256", trim($pwd)));
+        $email = $$DBconnection->escape_string(trim($email));
+        $hashed_pwd = $$DBconnection->escape_string(hash("sha256", trim($pwd)));
 
         //check to the db
-        $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$hashed_pwd\"");
+        $queryResult = $$DBconnection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$hashed_pwd\"");
         if (!isset($queryResult)) {
             $error = "[La query non è andata a buon fine]";
         } else {
@@ -40,7 +40,7 @@ if (isset($_POST['email'])) {
                 exit;
             }
         }
-        $obj_connection->closeDBConnection();
+        $$DBconnection->closeDBConnection();
     } else {
         //TODO: gestire in modo diverso l'errore di connessione al db
         $error = "[La query non è andata a buon fine]";

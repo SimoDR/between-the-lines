@@ -59,7 +59,7 @@ function addMenu(&$page) {
     if (isset($_SESSION['logged']) && $_SESSION['logged']) {
 
         // se è admin
-        if (isset($_SESSION['permesso']) && ($_SESSION['permesso'] == 'is_admin')) {
+        if (isset($_SESSION['permesso']) && ($_SESSION['permesso'] == 1)) {
             // rimuovi area personale
             $menu = str_replace('<li><a href="areapersonale.php">Area personale</a></li>',
                     "", $header);
