@@ -35,22 +35,26 @@
 			die ("Errore inserire un valore");
 		}
 
-		// TODO: MANCA IL VOTO del libro
-		$querySearch = "SELECT L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere FROM libri L, autori A, classificazioni C, generi G WHERE L.id_autore=A.ID AND C.id_libro=L.ID AND G.ID=C.id_genere AND";
+		// TODO: MANCA IL VOTO del libro - se non ci sono recensioni voto medio = 0
+		$querySearch = "SELECT L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, AVG(IFNULL(R.valutazione,0)) AS media FROM libri L LEFT JOIN recensioni R ON  R.id_libro=L.ID INNER JOIN autori A ON L.id_autore=A.ID INNER JOIN classificazioni C ON C.id_libro=L.ID INNER JOIN generi G ON G.ID=C.id_genere AND ";
 
 		$titleOrAuthor=$_GET['filter'];
 		$genre=$_GET['genre'];
 		$search=$_GET['search_bar'];
 
 		if($titleOrAuthor == 0){ // ricerca per titolo
-			$querySearch .= " L.titolo LIKE '%$search%' ";
+			$querySearch .= "L.titolo LIKE '%$search%' ";
         }
         else{ //ricerca per autore 
         	$querySearch .= "(A.nome LIKE '%$search%' OR A.cognome LIKE '%$search%' )";
         }
         if($genre!=="Qualsiasi"){ // filtro per genere
-                $querySearch .= " AND G.nome='$genre' ";
+                $querySearch .= "AND G.nome='$genre' ";
         }
+
+        $querySearch .="GROUP BY L.id";
+
+
 
         $resultSearch=$dbAccess->queryDB($querySearch);
         $dbAccess->closeDBConnection();
@@ -62,7 +66,8 @@
 			foreach ($resultSearch as $book) {
 				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
 				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
-				$bookList .= '<dd>' . $book['genere'];
+				$bookList .= '<dd>' . $book['genere']. '</dd>';
+				$bookList .= '<dd>' . $book['media']. '</dd>';
 			}
 			$bookList .= '</dl>';
 		} else {
