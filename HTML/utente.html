@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>Dettagli del libro e recensioni - Between The Lines</title>
+    <meta name="title" content="Dettagli del libro e recensioni - Between The Lines"/>
+    <meta name="description"
+          content="pagina per la visualizzazione dei dettagli del libro, scrittura e visualizzazione delle sue recensioni"/>
+
+    <meta name="keywords"
+          content="dettagli, libro, visualizza, recensioni, opinioni, gradimento, recensire, titolo, copertina, autore, genere"/>
+    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+    <meta name="language" content="italian it"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+</head>
+
+<body>
+<div id="header">
+    <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
+    <h1 xml:lang="en">Between the Lines</h1>
+    <h2 xml:lang="en">A world of books for young and old</h2>
+</div>
+
+<div id="breadcrumb">
+    <p>Ti trovi in: Utente</p>
+</div>
+
+<div id="menu">
+    <MENU/>
+</div>
+
+<div id="content">
+    <div class="userInfo">
+        <INFO_UTENTE/>
+        <img class="userPic"
+             src="../img/utenti/def1.png"
+             alt="la tua immagine del profilo" />
+        <h1 class="userName">
+            admin1
+        </h1>
+        <p class="info-attuale"> <span xml:lang="en" lang="en">E-mail</span> attuale:
+            admin@gmail.com
+        </p>
+    </div>
+    <ul class="newAuthorGenre">
+        <li><a href="aggiungiAutore.php">Aggiungi un nuovo autore</a></li>
+        <li><a href="aggiungiGenere.php">Aggiungi un nuovo genere</a></li>
+    </ul>
+
+    <a id="addBook" href=" ../php/stepWizard" > Aggiungi un nuovo libro </a>
+
+    <!-- link modifica dati -->
+    <p id="link-modifica-dati">
+        Per modificare i tuoi dati vai su:
+        <a id="modifica-link"
+           href="../php/modifica-utente.php">Modifica
+            dati</a>
+    </p>
+
+    <!--Eliminazione account-->
+<!--    TODO: ste cose nel layout di stampa si possono cancellare-->
+    <form id="deleteAccount" class="print-hide cambio-info"
+          method="post"
+          action="../php/handle-elimina-account.php">
+        <fieldset class="form-fieldset fieldset-elimina-account">
+            <legend class="legend">Eliminazione <span xml:lang="en" lang="en">Account</span></legend>
+            <label for="userPwd">Per confermare inserisci la tua <span xml:lang="en" lang="en">password</span>:</label>
+            <input type="password"
+                   id="userPwd"
+                   name="userPwd"
+                   class="barra-input" />
+            <input type="submit"
+                   name="deleteUser"
+                   value="Elimina"
+                   class="deleteUserBtn" />
+        </fieldset>
+        <p id="WarningMessage">
+            <strong>Attenzione!</strong> L&apos;eliminazione
+            dell&apos;<span xml:lang="en" lang="en">account</span> &egrave; irreversibile e comporta
+            la rimozione di tutte le recensioni associate ad esso.
+        </p>
+    </form>
+
+
+</div>
+
+<div id="footer">
+    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+    <ul id="footerlist">
+        <li><span xml:lang="en"> Beetween the Lines</span> - Opinioni sui libri</li>
+        <li>049-267276 - Padova, Via Paolotti 5</li>
+        <li xml:lang="en">beetweenthelines@gmail.com</li>
+        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+    </ul>
+
+    <a id="turnBack" class="hidden" href="#header">Torna su</a>
+</div>
+</body>
+</html>
