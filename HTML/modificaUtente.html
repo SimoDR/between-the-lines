@@ -38,7 +38,7 @@
       id="changeInfoForm"
       class="changeInfo"
       enctype="multipart/form-data">
-
+    <ERRORI/>
     <!-- change profile picture -->
     <fieldset class="form-fieldset">
         <legend class="legend">Cambio foto profilo</legend>
@@ -47,28 +47,35 @@
     <!-- change username -->
     <fieldset class="form-fieldset">
         <legend class="legend">Cambio <span xml:lang="en" lang="en">username</span></legend>
-
-        <label for="user-nickname">Nuovo <span xml:lang="en" lang="en">username</span>:</label>
+        <ERRORI_USERNAME/>
+        <label for="username">Nuovo <span xml:lang="en" lang="en">username</span>:</label>
         <input class="barra-input"
-               id="user-nickname"
+               id="username"
                type="text"
-               name="user-nickname"/>
+               name="username"/>
+        value="
+        <USERNAME/>
+        "
     </fieldset>
 
     <!-- change email-->
     <fieldset class="form-fieldset">
         <legend class="legend">Cambio <span xml:lang="en" lang="en">e-mail</span></legend>
+        <ERRORI_EMAIL/>
         <label for="user-email">Nuova <span xml:lang="en" lang="en">email</span>:</label>
         <input class="barra-input"
                id="user-email"
                type="text"
                name="user-email"/>
+        value="
+        <EMAIL/>
+        "
     </fieldset>
 
     <!--    change password-->
     <fieldset class="form-fieldset">
         <legend class="legend">Cambio <span xml:lang="en" lang="en">password</span></legend>
-
+        <ERRORI_PASSWORD/>
         <label for="newPassword1">Nuova <span xml:lang="en" lang="en">password</span>:</label>
         <input class="barra-input"
                id="newPassword1"
@@ -78,7 +85,8 @@
         <input class="barra-input"
                id="newPassword2"
                type="password"
-               name="newPassword2"/>
+               name="newPassword2"
+               maxlength="30"/>
     </fieldset>
     <fieldset class="form-fieldset">
         <label for="oldPassword">Inserisci la tua <span xml:lang="en" lang="en">password</span> per confermare
@@ -86,7 +94,8 @@
         <input class="barra-input"
                id="oldPassword"
                type="password"
-               name="oldPassword"/>
+               name="oldPassword"
+               maxlength="15"/>
         <legend class="legend">Conferma le modifiche</legend>
         <input class="submitModifiche"
                type="submit"

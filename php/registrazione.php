@@ -35,7 +35,7 @@ if (isset($_POST['registrati'])) {
     if (isset($_POST['propic'])) {
         $propic = $_POST['propic'];
     }
-    //TODO: usare streplace per snellire i messggi di errore
+
     //db connection
     $obj_connection = new DBAccess();
     if (!$obj_connection->openDBConnection()) {
