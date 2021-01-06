@@ -61,13 +61,13 @@ if (isset($_POST['registrati'])) {
     if (!check_pwd($pwd)) {
         $error = $error . "<div class=\"msg_box error_box\">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
     }
-    //insert new user (hashed pwd)
+    //insert new user
     if ($error == "") {
         $mail = $obj_connection->escape_string(trim(htmlentities($mail)));
         $username = $obj_connection->escape_string(trim(htmlentities($username)));
-        $hashed_pwd = hash("sha256", $obj_connection->escape_string(trim($pwd)));
+        $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
 
-        $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$hashed_pwd\", $propic , \"$mail\", 0)";
+        $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$pwd\", $propic , \"$mail\", 0)";
         $queryResult =$obj_connection->insertDB($query);
         $obj_connection->closeDBConnection();
 

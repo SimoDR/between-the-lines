@@ -33,12 +33,10 @@ $message="";
 if(isset($_POST["deleteUser"])) {
     $pwd=$_POST["userPwd"];
     if($obj_connection->openDBConnection()) {
-
-        $result = $obj_connection->insertDB("DELETE * FROM utenti WHERE password=\"$pwd\"");
+        $result = $obj_connection->insertDB("DELETE FROM utenti WHERE username= \"$username\" AND password=\"$pwd\"");
         if($result){
-            //TODO: effettuare il logout: creare funzione apposta
-            header('location: login.php');
-            exit;
+            header('location: logout.php'); //handle logout
+            exit();
         }
         else{
             $message="la password inserita è errata";
@@ -48,7 +46,7 @@ if(isset($_POST["deleteUser"])) {
 
     }
 }
-
+$page=str_replace("<ERRORI/>", "$message", $page);
 $page=str_replace("<INFO_UTENTE/>", "$userInfo", $page);
 echo($page);
 

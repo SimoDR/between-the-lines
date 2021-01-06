@@ -20,11 +20,11 @@ if (isset($_POST['email'])) {
     $obj_connection = new DBAccess();
     if ($obj_connection->openDBConnection()) {
         //TODO: capire se altri controlli debbano essere fatti backend per sanificare l'input
-        $email = $obj_connection->escape_string(trim($email));
-        $hashed_pwd = $obj_connection->escape_string(hash("sha256", trim($pwd)));
+        $email = $obj_connection->escape_string(trim(htmlentities($email)));
+        $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
 
         //check to the db
-        $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$hashed_pwd\"");
+        $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$pwd\"");
         if (!isset($queryResult)) {
             $error = "[La query non è andata a buon fine]";
         } else {
@@ -34,7 +34,7 @@ if (isset($_POST['email'])) {
                 $_SESSION['logged'] = true;
                 $_SESSION['email'] = $email;
                 $_SESSION['ID'] = $queryResult[0]['ID'];
-                //TODO: refactor in db
+                //permesso is bool: 0 user, 1 admin
                 $_SESSION['permesso'] = $queryResult[0]['is_admin'];
                 header('location: index.php');
                 exit;
@@ -42,8 +42,7 @@ if (isset($_POST['email'])) {
         }
         $obj_connection->closeDBConnection();
     } else {
-        //TODO: gestire in modo diverso l'errore di connessione al db
-        $error = "[La query non è andata a buon fine]";
+        $error = "[Impossibile connettersi al database]";
     }
 }
 //TODO: riguardare le 2 righe successive

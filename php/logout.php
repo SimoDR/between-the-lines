@@ -1,7 +1,11 @@
 <?php
-function logOut() {
-    //TODO:logout e reindirizza a index
-}
 
+session_start();
+
+session_unset();
+
+session_destroy();
+
+header('location: index.php');
 
 ?>
