@@ -26,10 +26,10 @@ if (isset($_POST['email'])) {
         //check to the db
         $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$pwd\"");
         if (!isset($queryResult)) {
-            $error = "[La query non è andata a buon fine]";
+            $error = "<div class=\"msg_box error_box\"> La query non è andata a buon fine</div>";
         } else {
             if (empty($queryResult)) {
-                $error = "[Le credenziali inserite non sono corrette]";
+                $error = "<div class=\"msg_box error_box\"> Le credenziali inserite non sono corrette</div>";
             } else {
                 $_SESSION['logged'] = true;
                 $_SESSION['email'] = $email;
@@ -42,12 +42,9 @@ if (isset($_POST['email'])) {
         }
         $obj_connection->closeDBConnection();
     } else {
-        $error = "[Impossibile connettersi al database]";
+        $error = "<div class=\"msg_box error_box\"> Impossibile connettersi al database </div>";
     }
 }
-//TODO: riguardare le 2 righe successive
-$error = str_replace("[", '<p class="msg_box error_box">', $error);
-$error = str_replace("]", "</p>", $error);
 
 $page = str_replace("<ERROR/>", $error, $page);
 $page = str_replace("<EMAIL/>", $email, $page);

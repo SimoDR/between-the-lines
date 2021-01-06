@@ -4,12 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>Dettagli del libro e recensioni - Between The Lines</title>
-    <meta name="title" content="Dettagli del libro e recensioni - Between The Lines"/>
+    <meta name="title" content="Il mio profilo - Between The Lines"/>
     <meta name="description"
-          content="pagina per la visualizzazione dei dettagli del libro, scrittura e visualizzazione delle sue recensioni"/>
+          content="pagina per la visualizzazione dei dati dell'utente"/>
 
     <meta name="keywords"
-          content="dettagli, libro, visualizza, recensioni, opinioni, gradimento, recensire, titolo, copertina, autore, genere"/>
+          content="dati, utente, visualizza, elimina, modifica, profilo"/>
     <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
     <meta name="language" content="italian it"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -26,7 +26,7 @@
 </div>
 
 <div id="breadcrumb">
-    <p>Ti trovi in: Utente</p>
+    <p>Ti trovi in: Profilo utente</p>
 </div>
 
 <div id="menu">
@@ -37,46 +37,19 @@
     <div class="userInfo">
         <INFO_UTENTE/>
     </div>
-    <ul class="newAuthorGenre">
-        <li><a href="aggiungiAutore.php">Aggiungi un nuovo autore</a></li>
-        <li><a href="aggiungiGenere.php">Aggiungi un nuovo genere</a></li>
-    </ul>
-
-    <a id="addBook" href=" ../php/stepWizard" > Aggiungi un nuovo libro </a>
+    <BOTTONI_ADMIN/>
 
     <!-- link modifica dati -->
     <p id="link-modifica-dati">
         Per modificare i tuoi dati vai su:
         <a id="modifica-link"
-           href="../php/modifica-utente.php">Modifica
+           href="../php/modificaUtente.php">Modifica
             dati</a>
     </p>
 
     <!--Eliminazione account-->
 <!--    TODO: ste cose nel layout di stampa si possono cancellare-->
-    <form id="deleteAccount" class="print-hide cambio-info"
-          method="post"
-          action="../php/utente.php">
-        <fieldset class="form-fieldset fieldset-elimina-account">
-            <legend class="legend">Eliminazione <span xml:lang="en" lang="en">Account</span></legend>
-            <ERRORI/>
-            <label for="userPwd">Per confermare inserisci la tua <span xml:lang="en" lang="en">password</span>:</label>
-            <input type="password"
-                   id="userPwd"
-                   name="userPwd"
-                   class="barra-input" />
-            <input type="submit"
-                   name="deleteUser"
-                   value="Elimina"
-                   class="deleteUserBtn" />
-        </fieldset>
-        <p id="WarningMessage">
-            <strong>Attenzione!</strong> L&apos;eliminazione
-            dell&apos;<span xml:lang="en" lang="en">account</span> &egrave; irreversibile e comporta
-            la rimozione di tutte le recensioni associate ad esso.
-        </p>
-    </form>
-
+    <ELIMINA_ACCOUNT/>
 
 </div>
 

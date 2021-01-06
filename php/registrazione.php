@@ -87,7 +87,7 @@ if(!$obj_connection->openDBConnection()){
     $error=$error."<div class=\"msg_box error_box\">Errore di connessione al database</div>";
 }
 else{
-    //TODO: nothing is checked by default. Is it a probem?
+    //TODO: nothing is checked by default. Find a way to default check a radiob
     $result=$obj_connection->queryDB("SELECT * FROM foto_profilo");
     for ($i = 0; $i < count($result); $i++){
         $path=$result[$i]['path_foto'];
