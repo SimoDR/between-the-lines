@@ -30,7 +30,7 @@
 
         <div id="menu">
             <MENU/>
-        </div> 
+        </div>
 
         <div id="content">
 
@@ -49,23 +49,23 @@
                 <form id="message-form" method="POST" action="../php/contatti.php">
                     <fieldset>
                         <legend>Form di messaggio: </legend>
-
+                        <CONFERMA_INVIO/>
                     <div class="element-form">
                         <label for="first_name">Nome:</label>
                         <input id="first_name" name="first_name" type="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
-                        <span class="error"> <ERRORE_NOME/> </span>
+                        <div class="errorMessagge"> <ERRORE_NOME/> </div>
 
                         <label for="last_name">Cognome:</label>
                         <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
-                        <span class="error"> <ERRORE_COGNOME/> </span>
+                        <div class="errorMessagge"> <ERRORE_COGNOME/> </div>
 
                         <label for="e_mail">e-mail:</label>
                         <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
-                        <span class="error"> <ERRORE_E_MAIL/> </span>
+                        <div class="errorMessagge"> <ERRORE_E_MAIL/> </div>
 
                         <label for="message">Messaggio:</label>
                         <textarea id="message" name="message" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
-                        <span class="error"> <ERRORE_MESSAGGIO/> </span>
+                        <div class="errorMessagge"> <ERRORE_MESSAGGIO/> </div>
 
                         <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
                     </div>
@@ -73,10 +73,10 @@
                   </fieldset>
                 </form>
             </div>
-
-            <CONFERMA_INVIO/>
         
         </div>
+    
+        <div class="turnBack"> <a class="turnBackLink" href="#header">Torna su</a> </div>
     
         <div id="footer">
             <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
@@ -87,8 +87,6 @@
                 <li xml:lang="en">betweenthelines@gmail.com</li>
                 <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
             </ul>
-
-            <a id="turnBack" class="hidden" href="#header">Torna su</a>
         </div>
               
         <script type="text/javascript" src="../js/script.js"></script>
