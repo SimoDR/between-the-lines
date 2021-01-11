@@ -90,11 +90,16 @@ else{
     //TODO: nothing is checked by default. Find a way to default check a radiob
     $result=$obj_connection->queryDB("SELECT * FROM foto_profilo");
     for ($i = 0; $i < count($result); $i++){
+        $checked="";
         $path=$result[$i]['path_foto'];
         $alt=$result[$i]['alt_text'];
         $id=$result[$i]['ID'];
+        if(i==0)
+        {
+            $checked="checked=\"checked\"";
+        }
         $pictures=$pictures."<div>
-                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\">
+                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" \>
                             <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
                         </div>";
 
