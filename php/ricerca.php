@@ -8,12 +8,12 @@
 	$connectionSuccess = $dbAccess->openDBConnection();
 
 	//TO DO: dividere i risultati per pagina
-	//TO DO: cambiare query base
 	//TO DO: fissare un max di ricerche per pagina	
 
 	if ($connectionSuccess == false) {
-	// TO DO: NON VA BENE: bisogna sollevare eccezioni con try e catch
-		die ("Errore nell'apertura del DB");
+		$pagHTML=str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>
+", $pagHTML);
+		echo $pagHTML;
 	}
 	else{
 
@@ -28,15 +28,7 @@
 			$pagHTML=str_replace("<GENERI/>", $genreList, $pagHTML);
 		}
 
-		if( empty($_GET['search_bar']) )
-		{
-			// TO DO: NON VA BENE: bisogna sollevare eccezioni con try e catch
-			$dbAccess->closeDBConnection();
-			die ("Errore inserire un valore");
-		}
-
-		// TODO: MANCA IL VOTO del libro - se non ci sono recensioni voto medio = 0
-		$querySearch = "SELECT L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, AVG(IFNULL(R.valutazione,0)) AS media FROM libri L LEFT JOIN recensioni R ON  R.id_libro=L.ID INNER JOIN autori A ON L.id_autore=A.ID INNER JOIN classificazioni C ON C.id_libro=L.ID INNER JOIN generi G ON G.ID=C.id_genere AND ";
+		$querySearch = "SELECT L.ID AS id, L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, COALESCE( AVG(R.valutazione),'Nessun voto') AS media, CO.path_img AS path_img, CO.alt_text AS alt_text FROM libri L LEFT JOIN recensioni R ON  R.id_libro=L.ID INNER JOIN autori A ON L.id_autore=A.ID INNER JOIN classificazioni C ON C.id_libro=L.ID INNER JOIN generi G ON G.ID=C.id_genere INNER JOIN copertine CO ON CO.id_libro=L.ID AND ";
 
 		$titleOrAuthor=$_GET['filter'];
 		$genre=$_GET['genre'];
@@ -62,12 +54,19 @@
 
         if ($resultSearch != null) {
 			//stampo la ricerca
+
 			$bookList = '<dl id="book_list">';
 			foreach ($resultSearch as $book) {
 				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
+				$bookList .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>' ;
 				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
 				$bookList .= '<dd>' . $book['genere']. '</dd>';
 				$bookList .= '<dd>' . $book['media']. '</dd>';
+				$bookList .= 
+				'<dd><form action="dettagli_libro.php " method="get"> 
+					<input type="hidden" name="id_libro" value =' . $book['id'] . '/>
+					<input type="submit" value="Dettagli" class="button"/>
+ 				</form></dd>';
 			}
 			$bookList .= '</dl>';
 		} else {
