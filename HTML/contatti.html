@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title xml:lang="en">Between the Lines</title>
+        <meta name="title" content="Between the Lines - Opinioni sui libri" />
+        <meta name="description" content="Sito di cultura letteraria, per leggere e condividere Opinioni sui libri." />
+
+        <meta name="keywords" content="Between the Lines, libri, recensioni, opinioni" />
+        <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
+        <meta name="language" content="italian it" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+         
+        <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
+    </head>
+
+    <body>
+        <div id="header">
+            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
+            <h1 xml:lang="en">Between the Lines</h1>
+            <h2 xml:lang="en">A world of books for young and old people</h2>
+            <HEADER/>
+        </div>
+    
+        <div id="breadcrumb">
+            <p>Ti trovi in: Contatti </p>
+        </div>
+
+        <div id="menu">
+            <MENU/>
+        </div>
+
+        <div id="content">
+
+            <div id="contact_e-mail">
+                <h2><span lang="en">e-mail</span></h2>
+                <p> Puoi mandarci una <span lang="en">e-mail</span>: betweenthelines@gmail.com</p>
+            </div>
+            
+            <div id="contact_phone">
+                <h2>telefono</h2>
+                <p> Puoi chiamarci al numero: 049-267276</p>
+            </div>
+
+            <div id="contact_message">  
+                <h2>Oppure puoi scriverci direttamente qui...</h2>
+                <form id="message-form" method="POST" action="../php/contatti.php">
+                    <fieldset>
+                        <legend>Form di messaggio: </legend>
+                        <CONFERMA_INVIO/>
+                    <div class="element-form">
+                        <label for="first_name">Nome:</label>
+                        <input id="first_name" name="first_name" type="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
+                        <div class="errorMessagge"> <ERRORE_NOME/> </div>
+
+                        <label for="last_name">Cognome:</label>
+                        <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
+                        <div class="errorMessagge"> <ERRORE_COGNOME/> </div>
+
+                        <label for="e_mail">e-mail:</label>
+                        <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
+                        <div class="errorMessagge"> <ERRORE_E_MAIL/> </div>
+
+                        <label for="message">Messaggio:</label>
+                        <textarea id="message" name="message" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
+                        <div class="errorMessagge"> <ERRORE_MESSAGGIO/> </div>
+
+                        <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
+                    </div>
+
+                  </fieldset>
+                </form>
+            </div>
+        
+        </div>
+    
+        <div class="turnBack"> <a class="turnBackLink" href="#header">Torna su</a> </div>
+    
+        <div id="footer">
+            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+            <ul id="footerlist">
+                <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
+                <li>049-267276 - Padova, Via Paolotti 5</li>
+                <li xml:lang="en">betweenthelines@gmail.com</li>
+                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+            </ul>
+        </div>
+              
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>
