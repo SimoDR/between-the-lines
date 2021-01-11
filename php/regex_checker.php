@@ -28,6 +28,8 @@ function check_pwd($password){
     return false;
 }
 
+//\p{L} means any kind of letter fromany language
+//TODO: it seems to accept no characters
 function check_nome($nome){
     if(preg_match('/^([\p{L}\s]*)$/u',$nome)==1){
         return true;

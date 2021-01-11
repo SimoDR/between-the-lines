@@ -58,8 +58,8 @@ $page = str_replace("<INFO_UTENTE/>", "$userInfo", $page);
 $buttons = '';
 if ($_SESSION['permesso'] == 1) {
     $buttons = "<ul class=\"newAuthorGenre\">
-        <li><a href=\"aggiungiAutore.php\">Aggiungi un nuovo autore</a></li>
-        <li><a href=\"aggiungiGenere.php\">Aggiungi un nuovo genere</a></li>
+        <li><a href=\"inserisciAutore.php\">Aggiungi un nuovo autore</a></li>
+        <li><a href=\"inserisciGenere.php\">Aggiungi un nuovo genere</a></li>
     </ul>
     <a id=\"addBook\" href=\" ../php/stepWizard\" > Aggiungi un nuovo libro </a>";
     $page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);

@@ -1,6 +1,6 @@
 <?php
 require_once('sessione.php');
-
+//TODO: se sei già loggato non è che puoi tornare qui come ti pare ooh
 /*Aggiunta header e menu*/
 $page = file_get_contents("../html/login.html");
 

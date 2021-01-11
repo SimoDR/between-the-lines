@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title xml:lang="en">Nuovo autore - Between the Lines</title>
+    <meta name="title" content="Nuovo autore - Between the Lines" />
+    <meta name="description" content="pagina per l'inserimento di un nuovo autore all'interno del sito Between the Lines" />
+
+    <meta name="keywords" content="autore,inserimento, nuovo, Between the Lines, libri" />
+    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
+    <meta name="language" content="italian it" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />
+</head>
+
+<body>
+<div id="header">
+    <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
+    <h1 xml:lang="en">Between the Lines</h1>
+    <h2 xml:lang="en">A world of books for young and old people</h2>
+    <HEADER/>
+</div>
+
+<div id="breadcrumb">
+    <p>Ti trovi in: <a href="utente.php">Utente</a> > Inserisci autore </p>
+</div>
+
+<div id="content">
+    <form method="post" action="../php/login.php" id="login_form" class="vertical_input_form">
+        <fieldset>
+            <legend>Inserimento di un nuovo autore</legend>
+            <ERROR/>
+            <label for="authorName" >Nome:</label>
+            <input type="text" name="authorName" id="authorName" maxlength="30" tabindex="1"/>
+
+            <label for="authorSurname" xml:lang="en">Cognome:</label>
+            <input type="text" name="authorSurname" id="authorSurname" maxlength="30" tabindex="2"/>
+
+            <label for="birthDate" xml:lang="en">Data di nascita:</label>
+            <input type="date" name="birthDate" id="birthDate" tabindex="3"/>
+
+            <label for="deathDate" xml:lang="en">Data di morte:</label>
+            <input type="date" name="deathDate" id="deathDate" tabindex="3"/>
+
+            <input type="submit" id="newAuthorbtn" class="button" name="addAuthor" value="Aggiungi" tabindex="5"/>
+        </fieldset>
+    </form>
+
+    <form action="../php/utente.php"
+          method="post"
+          class="formAnnulla">
+        <fieldset class="form">
+            <legend class="legend">Annulla le modifiche</legend>
+            <input class="submit"
+                   type="submit"
+                   name="rollBack"
+                   value="Annulla"/>
+        </fieldset>
+    </form>
+
+
+</div>
+<div class="turnBack"> <a class="turnBackLink" href="#header">Torna su</a> </div>
+
+<div id="footer">
+    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+    <ul id="footerlist">
+        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
+        <li>049-267276 - Padova, Via Paolotti 5</li>
+        <li xml:lang="en">betweenthelines@gmail.com</li>
+        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="../js/script.js"></script>
+</body>
+</html>
