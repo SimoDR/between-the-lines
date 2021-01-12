@@ -10,6 +10,7 @@
 	//TO DO: dividere i risultati per pagina
 	//TO DO: fissare un max di ricerche per pagina	
 
+	$results_per_page = 3;
 	if ($connectionSuccess == false) {
 		$pagHTML=str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>
 ", $pagHTML);
@@ -28,7 +29,12 @@
 			$pagHTML=str_replace("<GENERI/>", $genreList, $pagHTML);
 		}
 
-		$querySearch = "SELECT L.ID AS id, L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, COALESCE( AVG(R.valutazione),'Nessun voto') AS media, CO.path_img AS path_img, CO.alt_text AS alt_text FROM libri L LEFT JOIN recensioni R ON  R.id_libro=L.ID INNER JOIN autori A ON L.id_autore=A.ID INNER JOIN classificazioni C ON C.id_libro=L.ID INNER JOIN generi G ON G.ID=C.id_genere INNER JOIN copertine CO ON CO.id_libro=L.ID AND ";
+		$querySearch = "SELECT L.ID AS id, L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, COALESCE( AVG(R.valutazione),'Nessun voto') AS media, C.path_img AS path_img, C.alt_text AS alt_text 
+		FROM libri L 
+		LEFT JOIN recensioni R ON  R.id_libro=L.ID 
+		INNER JOIN autori A ON L.id_autore=A.ID 
+		INNER JOIN generi G ON G.ID=L.id_genere 
+		INNER JOIN copertine C ON C.id_libro=L.ID AND ";
 
 		$titleOrAuthor=$_GET['filter'];
 		$genre=$_GET['genre'];
@@ -46,16 +52,19 @@
 
         $querySearch .="GROUP BY L.id";
 
-
-
         $resultSearch=$dbAccess->queryDB($querySearch);
+        $rowCount=count($resultSearch);
         $dbAccess->closeDBConnection();
         $bookList = "";
 
         if ($resultSearch != null) {
 			//stampo la ricerca
 
-			$bookList = '<dl id="book_list">';
+			//TODO: SE 1 un risultato
+
+			$bookList = "<p>La ricerca ha prodotto " . $rowCount . " risultati</p>";
+
+			$bookList .= '<dl id="book_list">';
 			foreach ($resultSearch as $book) {
 				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
 				$bookList .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>' ;
