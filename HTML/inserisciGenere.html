@@ -29,12 +29,12 @@
 </div>
 
 <div id="content">
-    <form method="post" action="../php/login.php" id="login_form" class="vertical_input_form">
+    <form method="post" action="../php/inserisciGenere.php" id="login_form" class="vertical_input_form">
         <fieldset>
             <legend>Inserimento di un nuovo genere</legend>
             <ERROR/>
             <label for="genreName" >Genere:</label>
-            <input type="text" name="genreName" id="genreName" maxlength="30" tabindex="1"/>
+            <input type="text" name="genreName" id="genreName" required="required" value="<GENERE/>" maxlength="30" tabindex="1"/>
             <input type="submit" id="newGenrebtn" class="button" name="addGenre" value="Aggiungi" tabindex="2"/>
         </fieldset>
     </form>

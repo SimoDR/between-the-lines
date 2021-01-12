@@ -110,7 +110,7 @@ else{
 $page = str_replace("<EMAIL/>", $mail, $page);
 $page = str_replace("<USERNAME/>", $username, $page);
 $page = str_replace("<PWD/>", $pwd, $page);
-$page = str_replace("<PWD_CONFIRMATION/>", $pwd2, $page);
+$page = str_replace("<PWD_CONFERMA/>", $pwd2, $page);
 $page = str_replace("<ERROR/>", $error, $page);
 $page=str_replace("<FOTO_PROFILO/>", $pictures, $page);
 echo $page;

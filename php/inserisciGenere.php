@@ -4,18 +4,27 @@ require_once('DBConnection.php');
 
 $page=file_get_contents("../html/inserisciGenere.html");
 $error="";
-if(isset($_POST["addAuthor"]))
+$genre="";
+if(isset($_POST["addGenre"]))
 {
-    if(isset($_POST["genre"])){
-        $genre=$_POST["genre"];
+    if(isset($_POST["genreName"])){
+        $genre=$_POST["genreName"];
         //check with the name regex checker: can be more than a word
         if(check_nome($genre)) {
-            if ($obj_connection = new DBAccess()) {
-                $genre=strtoupper($genre);
-                $queryresult=$obj_connection->queryDB("SELECT * FROM generi WHERE upper()");
-                if (doesntexist) {
-
-
+            $obj_connection = new DBAccess();
+            if ($obj_connection->openDBConnection()) {
+                $genreUpper=strtoupper($genre);
+                //non case sensitive research
+                $queryResult=$obj_connection->queryDB("SELECT * FROM generi WHERE upper(nome)=\"$genreUpper\"");
+                if (!$queryResult) {
+                    $queryInsert=$obj_connection->insertDB("INSERT INTO generi VALUES (NULL, \"$genre\")");
+                    if($queryInsert){
+                        header('location: index.php');
+                        exit;
+                    }
+                    else{
+                        $error = $error . "<div class=\"msg_box error_box\">L'inserimento del genere non è andato a buon fine</div>";
+                    }
                 } else {
                     $error = $error . "<div class=\"msg_box error_box\">Il genere che vuoi inserire esiste già</div>";
                 }
@@ -29,10 +38,11 @@ if(isset($_POST["addAuthor"]))
         }
     }
     else {
-        $error=$error."<div class=\"msg_box error_box\"> Inserire il nome del genere da inserire</div>";
+        $error=$error."<div class=\"msg_box error_box\"> Inserisci il nome del genere da inserire</div>";
     }
 }
-
+$page = str_replace("<GENERE/>", "$genre", $page);
+$page = str_replace("<ERROR/>", "$error", $page);
 echo($page);
 
 ?>

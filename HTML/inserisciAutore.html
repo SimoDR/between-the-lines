@@ -29,21 +29,21 @@
 </div>
 
 <div id="content">
-    <form method="post" action="../php/login.php" id="login_form" class="vertical_input_form">
+    <form method="post" action="../php/inserisciAutore.php" id="login_form" class="vertical_input_form">
         <fieldset>
             <legend>Inserimento di un nuovo autore</legend>
             <ERROR/>
             <label for="authorName" >Nome:</label>
-            <input type="text" name="authorName" id="authorName" maxlength="30" tabindex="1"/>
+            <input type="text" name="authorName" id="authorName" required="required" value="<NOME/>" maxlength="30" tabindex="1"/>
 
             <label for="authorSurname" xml:lang="en">Cognome:</label>
-            <input type="text" name="authorSurname" id="authorSurname" maxlength="30" tabindex="2"/>
+            <input type="text" name="authorSurname" id="authorSurname" required="required" value="<COGNOME/>" maxlength="30" tabindex="2"/>
 
             <label for="birthDate" xml:lang="en">Data di nascita:</label>
-            <input type="date" name="birthDate" id="birthDate" tabindex="3"/>
+            <input type="date" name="birthDate" id="birthDate" required="required" value="<DATA_NASCITA/>" tabindex="3"/>
 
             <label for="deathDate" xml:lang="en">Data di morte:</label>
-            <input type="date" name="deathDate" id="deathDate" tabindex="3"/>
+            <input type="date" name="deathDate" id="deathDate" value="<DATA_MORTE/>" tabindex="3"/>
 
             <input type="submit" id="newAuthorbtn" class="button" name="addAuthor" value="Aggiungi" tabindex="5"/>
         </fieldset>
