@@ -15,6 +15,7 @@ require_once('DBConnection.php');
 		// menù a tendina con generi
 		$genreList="";
 		$queryGenre=$dbAccess->queryDB("SELECT nome FROM generi");
+		$dbAccess->closeDBConnection();
         if ($queryGenre != null) {
 
 			foreach ($queryGenre as $genre) {
