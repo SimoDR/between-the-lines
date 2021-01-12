@@ -7,22 +7,16 @@
 	$dbAccess = new DbAccess();
 	$connectionSuccess = $dbAccess->openDBConnection();
 
-	//TO DO: dividere i risultati per pagina
-	//TO DO: fissare un max di ricerche per pagina	
-
-	$results_per_page = 3;
 	if ($connectionSuccess == false) {
-		$pagHTML=str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>
-", $pagHTML);
-		echo $pagHTML;
+		$pagHTML=str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>", $pagHTML);
 	}
 	else{
 
-		// creo menù a tendina con generi
+		// menù a tendina con generi
 		$genreList="";
 		$queryGenre=$dbAccess->queryDB("SELECT nome FROM generi");
         if ($queryGenre != null) {
-			//stampo la ricerca
+
 			foreach ($queryGenre as $genre) {
 				$genreList.= '<option value='. '"' . $genre['nome'] . '">' . $genre['nome'] . '</option>';
 			}
@@ -35,6 +29,7 @@
 		INNER JOIN autori A ON L.id_autore=A.ID 
 		INNER JOIN generi G ON G.ID=L.id_genere 
 		INNER JOIN copertine C ON C.id_libro=L.ID AND ";
+
 
 		$titleOrAuthor=$_GET['filter'];
 		$genre=$_GET['genre'];
@@ -50,19 +45,45 @@
                 $querySearch .= "AND G.nome='$genre' ";
         }
 
-        $querySearch .="GROUP BY L.id";
+        
+        $querySearch.= "GROUP BY L.id ORDER BY L.ID ASC";
+        $resultCount=count($dbAccess->queryDB($querySearch));
 
+        // risultati per pagina
+        $rowsPerPage = 3;
+
+        $totalPages = ceil($resultCount / $rowsPerPage);
+
+
+        if (isset($_GET['currentPage']) && is_numeric($_GET['currentPage'])) {
+           $currentPage = (int) $_GET['currentPage'];
+        } else {
+           $currentPage = 1;
+        }
+
+        if ($currentPage > $totalPages) {
+           $currentPage = $totalPages;
+        } 
+        if ($currentPage < 1) {
+           $currentPage = 1;
+        } 
+
+        $offset = ($currentPage - 1) * $rowsPerPage;
+
+        $querySearch .=" LIMIT $offset, $rowsPerPage"; // limito la query
         $resultSearch=$dbAccess->queryDB($querySearch);
-        $rowCount=count($resultSearch);
+
         $dbAccess->closeDBConnection();
         $bookList = "";
 
         if ($resultSearch != null) {
-			//stampo la ricerca
-
-			//TODO: SE 1 un risultato
-
-			$bookList = "<p>La ricerca ha prodotto " . $rowCount . " risultati</p>";
+			
+			$bookList = "<p> La ricerca ha prodotto " . $resultCount . " risultat";
+			if ($resultCount == 1)
+				$bookList .= "o</p>";
+			else{
+				$bookList .= "i</p>";
+			}
 
 			$bookList .= '<dl id="book_list">';
 			foreach ($resultSearch as $book) {
@@ -79,13 +100,44 @@
 			}
 			$bookList .= '</dl>';
 		} else {
-		// messaggio che dice che non ci sono risultati del DB
 		$bookList = "<p>Nessun risultato corrispondente ai criteri di ricerca</p>";
 		}
 
-		// sostituisco il segnaposto
+			$i=1;
+            $pagesList=" <div class=\"center\"> <div class=\"pagination\">";
+            $ind=$_SERVER['REQUEST_URI'];
+            if($currentPage>1){
+                $prec=$currentPage-1;$ind=clearInd($ind,$totalPages);
+                $pagesList= $pagesList."\n<a href=\"$ind&currentPage=$prec\">&laquo;Precedente</a>";
+            }
+            while($i<=$totalPages){                
+            	$ind=clearInd($ind,$totalPages);
+                if($i!=$currentPage){
+                    $pagesList= $pagesList."\n<a href=\"$ind&currentPage=$i\">$i</a>";
+                }
+                else{
+                    $pagesList= $pagesList."<span class=\"active\">$i</span>";
+                }
+                $i++;
+            }
+            if($currentPage<$totalPages){
+                $succ=$currentPage+1;
+                $pagesList= $pagesList."\n<a href=\"$ind&currentPage=$succ\">Successiva&raquo</a>";
+            }
+             $pagesList= $pagesList."</div></div>";
+
 		$pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
-		echo $pagHTML;
+		$pagHTML= str_replace("<NUMERO_PAGINA/>", $pagesList, $pagHTML);
 	}
+
+	echo $pagHTML;
+
+	//clean url
+	function clearInd($ind,$totalPages){
+        for($z=1;$z<=$totalPages;$z++){
+            $ind=str_replace("&currentPage=$z","",$ind);
+         }
+        return $ind;
+    }
 
 ?>
