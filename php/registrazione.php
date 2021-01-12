@@ -35,7 +35,7 @@ if (isset($_POST['registrati'])) {
     if (isset($_POST['propic'])) {
         $propic = $_POST['propic'];
     }
-    //TODO: usare streplace per snellire i messggi di errore
+
     //db connection
     $obj_connection = new DBAccess();
     if (!$obj_connection->openDBConnection()) {
@@ -61,13 +61,13 @@ if (isset($_POST['registrati'])) {
     if (!check_pwd($pwd)) {
         $error = $error . "<div class=\"msg_box error_box\">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
     }
-    //insert new user (hashed pwd)
+    //insert new user
     if ($error == "") {
         $mail = $obj_connection->escape_string(trim(htmlentities($mail)));
         $username = $obj_connection->escape_string(trim(htmlentities($username)));
-        $hashed_pwd = hash("sha256", $obj_connection->escape_string(trim($pwd)));
+        $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
 
-        $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$hashed_pwd\", $propic , \"$mail\", 0)";
+        $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$pwd\", $propic , \"$mail\", 0)";
         $queryResult =$obj_connection->insertDB($query);
         $obj_connection->closeDBConnection();
 
@@ -87,14 +87,19 @@ if(!$obj_connection->openDBConnection()){
     $error=$error."<div class=\"msg_box error_box\">Errore di connessione al database</div>";
 }
 else{
-    //TODO: nothing is checked by default. Is it a probem?
+    //TODO: nothing is checked by default. Find a way to default check a radiob
     $result=$obj_connection->queryDB("SELECT * FROM foto_profilo");
     for ($i = 0; $i < count($result); $i++){
+        $checked="";
         $path=$result[$i]['path_foto'];
         $alt=$result[$i]['alt_text'];
         $id=$result[$i]['ID'];
+        if(i==0)
+        {
+            $checked="checked=\"checked\"";
+        }
         $pictures=$pictures."<div>
-                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\">
+                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" \>
                             <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
                         </div>";
 
@@ -105,7 +110,7 @@ else{
 $page = str_replace("<EMAIL/>", $mail, $page);
 $page = str_replace("<USERNAME/>", $username, $page);
 $page = str_replace("<PWD/>", $pwd, $page);
-$page = str_replace("<PWD_CONFIRMATION/>", $pwd2, $page);
+$page = str_replace("<PWD_CONFERMA/>", $pwd2, $page);
 $page = str_replace("<ERROR/>", $error, $page);
 $page=str_replace("<FOTO_PROFILO/>", $pictures, $page);
 echo $page;
