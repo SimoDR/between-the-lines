@@ -85,8 +85,10 @@ DROP TABLE IF EXISTS classificazioni;
 INSERT INTO autori
 VALUES (1, 'Jack', 'Kerouac', '1922-03-12', '1969-10-21');
 
+INSERT INTO generi VALUES(NULL, 'romanzo');
+
 INSERT INTO libri
-VALUES (1, 'Sulla Strada', 1,
+VALUES (NULL, 'Sulla Strada', 1, 1,
         'Narra una serie di viaggi dell''autore in automobile attraverso gli Stati Uniti, in parte con il suo amico Neal Cassady e in parte in autostop.');
 
 INSERT INTO foto_profilo
