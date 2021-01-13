@@ -12,7 +12,7 @@ require_once('star.php');
 $page = add("../html/dettagliLibro.html");
 
 if (isset($_GET['ID']) && check_num($_GET['ID'])) {
-    $ID_libro = $_GET['id'];
+    $ID_libro = $_GET['ID'];
 
     $DBconnection = new DBAccess();
 
@@ -20,34 +20,26 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
         if ($queryResult = $DBconnection->queryDB(" 
                     SELECT l.ID as ID, l.titolo AS titolo, l.trama AS trama, g.nome AS genere, a.nome AS nomeAutore, a.cognome AS cognomeAutore, a.data_nascita AS nascitaAutore, a.data_morte AS morteAutore
                     FROM libri AS l,classificazioni AS c,autori AS a, generi AS g
-W                   HERE ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro AND c.id_genere=g.ID"
+                    WHERE ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro AND c.id_genere=g.ID"
                 )) {
             // libro presente          
             if (count($queryResult) != 0) {
 
-                //eliminazione recensione
-                $msg = '';
-                if (isset($_POST['eliminaRec'])) {
-                    if ($DBconnection->connessione->query("DELETE FROM recensione WHERE ID=" . $_POST['ID_Recensione'])) {
-                        $msg = '<p class="msg_box success_box">Recensione eliminata</p>';
-                    } else {
-                        $msg = '<p class="msg_box error_box">Eliminazione fallita</p>';
-                    }
-                }
-                $page = str_replace('%MESSAGGIO%', $msg, $page);
+            
 
                 $libro = $queryResult[0];
 
-                //Breadcrumb
+                // BREADCRUMBS
+                
                 $breadcrumb = 'Home &raquo; ' . $libro['titolo'];
-                $page = str_replace('%PATH%', $breadcrumb, $page);
+                $page = str_replace('<PATH/>', $breadcrumb, $page);
 
-                // il path e descrizione vanno cercate nel db
+                // COPERTINA 
 
                 if ($queryCopertina = $DBconnection->queryDB("
                             SELECT copertine.path_img AS path_img, copertine.alt_text AS alt_text
                             FROM libri, copertine
-                            WHERE libri.ID=copertine.id_libro")) {
+                            WHERE libri.ID=copertine.id_libro AND libri.ID = $ID_libro")) {
 
 
                     if (count($queryCopertina) != 0) {
@@ -59,9 +51,8 @@ W                   HERE ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro A
                         $page = str_replace('<LIBRO_COPERTINA_ALT/>', "Errore: alt non trovato", $page);
                     }
                 } else {
-                    echo 'Errore: impossibile connettersi al database';
+                    echo 'Errore: impossibile eseguire query al database';
                 }
-
 
                 $page = str_replace('<LIBRO_TITOLO/>', $libro['titolo'], $page);
                 $page = str_replace('<GENERE/>', $libro['genere'], $page);
@@ -69,26 +60,27 @@ W                   HERE ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro A
 
 
 
-                //stelle
+                // STELLE
+                
                 if ($queryNumRecensioni = $DBconnection->queryDB("
                             SELECT AVG(valutazione) AS avg_stars, COUNT(valutazione) AS num_recensioni
                             FROM recensioni
                             WHERE $ID_libro=id_libro ")) {
-
-                    if (count($array_star_avg) != 0) {
-                        $drawStars = printStars($queryNumRecensioni['avg_stars']);
-                    }
+                    
+                } else {
+                    echo 'Errore: impossibile eseguire query al database';
                 }
-                $page = str_replace('<NUMERO_STELLE/>', round($queryNumRecensioni['avg_stars'], 1), $page);
-                $page = str_replace('<NUMERO_RECENSIONI/>', $queryNumRecensioni['num_recensioni'], $page);
+                $drawStars = printStars($queryNumRecensioni[0]['avg_stars']);
+                $page = str_replace('<NUMERO_STELLE/>', round($queryNumRecensioni[0]['avg_stars'], 1), $page);
+                $page = str_replace('<NUMERO_RECENSIONI/>', $queryNumRecensioni[0]['num_recensioni'], $page);
                 $page = str_replace('<DISEGNO_STELLE/>', $drawStars, $page);
 
 
-                // recensioni
+                // RECENSIONI
 
                 $resultsInPage = 5;
-                $totalRecensioni = $queryNumRecensioni['num_recensioni'];
-                $totalPages = 1;
+                $totalRecensioni = $queryNumRecensioni[0]['num_recensioni'];  
+                $totalPages = ceil($totalRecensioni / $resultsInPage);
                 $pagesList = "";
 
                 if ($queryRecensioni = $DBconnection->queryDB("
@@ -97,137 +89,125 @@ W                   HERE ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro A
                             WHERE r.id_libro = $ID_libro AND u.id_propic = f.ID
                             ")) {
                     
-                    $totalPages = ceil($totalRecensioni / $resultsInPage);
-
-                    if (isset($_GET['pagen']) && (!check_number($_GET['pagen']) || $_GET['pagen'] < 1 || $_GET['pagen'] > $totalPages)) {
+                    // controllo se non sono fuori dai limiti
+                    if (isset($_GET['pageN']) && (!check_number($_GET['pageN']) || $_GET['pageN'] < 1 || $_GET['pageN'] > $totalPages)) {
                         header('location: 404.php');
                         exit;
-                    }    
+                    }
                     
-                     //recupero lista recensioni
-                    if (isset($_GET["pagen"])) {
-                        $pagen = $_GET["pagen"];
-                    } 
-                    else {
-                        $pagen = 1;
-                    };   
-                        
-                    $startIndex = ($pagen - 1) * $resultsInPage;                  
-                    $endIndex = $startIndex + $totalRecensioni - ($pagen - 1) * $resultsInPage;
-                                          
+                    //recupero lista recensioni
+                    if (isset($_GET["pageN"])) {
+                        $pageN = $_GET["pageN"];
+                    } else {
+                        $pageN = 1;
+                    }
+
+                    $startIndex = ($pageN - 1) * $resultsInPage; // indice della recensioni iniziale nella pagina
+                    $endIndex = $startIndex + $totalRecensioni - ($pageN - 1) * $resultsInPage; // indice della recensione finale nella pagina
+
                     $listaRecensioni = "";
-                    if($startIndex == $endIndex) {
+                    if ($startIndex == $endIndex) {
                         $listaRecensioni = "Nessuna recensione presente per questo libro";
-                    }
-                    else {
-                    for($i = $startIndex; $i<$endIndex; $i++)
-                    {
-                        
-                        
-                        $listaRecensioni = $listaRecensioni . '
-                        
-                        <dl class="review_list">
-                            <dt>
-                                <div class="user_details">
-                                    <img src=' . $queryRecensioni[i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[i]['alt_foto_profilo'] . ' />
-                                    <span>' . $queryRecensioni[i]['username'] .'</span>
-                                </div>
-                                <span class="review_datetime">' . $queryRecensioni[i]['rec_dataora'] . '</span> 
-                            </dt>
-                            <dd>
-                                <div class="review_details">
-                                    <p class="review_text">' . $queryRecensioni[i]['rec_testo'] . '</p>
-                                    <span class="stelle_item">Stelle ' .  $queryRecensioni[i]['rec_valutazione'] . '/5
-                                        <span class="stelle_counter">' . printStar($queryRecensioni[i]['rec_valutazione']) . '</span>
-                                    </span>
-                                        
-                                </div>
-                            </dd>
+                    } else {
+                        for ($i = $startIndex; $i < $endIndex; $i++) {
+
+                            $listaRecensioni = $listaRecensioni . '
+
+                            <dl class="review_list">
+                                <dt>
+                                    <div class="user_details">
+                                        <img src=' . $queryRecensioni[i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[i]['alt_foto_profilo'] . ' />
+                                        <span>' . $queryRecensioni[i]['username'] . '</span>
+                                    </div>
+                                    <span class="review_datetime">' . $queryRecensioni[i]['rec_dataora'] . '</span> 
+                                </dt>
+                                <dd>
+                                    <div class="review_details">
+                                        <p class="review_text">' . $queryRecensioni[i]['rec_testo'] . '</p>
+                                        <span class="stelle_item">Stelle ' . $queryRecensioni[i]['rec_valutazione'] . '/5
+                                            <span class="stelle_counter">' . printStar($queryRecensioni[i]['rec_valutazione']) . '</span>
+                                        </span>
+
+                                    </div>
+                                </dd>
                             </dl>
-                        
-                        ';
-                    }       
+
+                            ';
+                        }
                     }
-                    
+
                     $page = str_replace('<LISTA_RECENSIONI/>', $listaRecensioni, $page); // perchè da problemi questa variabile?
-                    
-                    
+
+
                     $pagineRecensioni = '<div class="center">';
-                    
-                    
+
+
                     $address = $_SERVER['REQUEST_URI'];
-                    if($pagen > 1)
-                    {
-                        $prec = $pagen - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pagen=' . $prec .'>Precedente</a>';
+                    if ($pageN > 1) {
+                        $prec = $pageN - 1;
+                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pagen=' . $prec . '>Precedente</a>';
                     }
-                    $pagineRecensioni = $pagineRecensioni . '<span class="review_page_number">' . $pagen . '</span>';
-                    if($pagen < $totalPages)
-                    {
-                        $prec = $pagen - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pagen=' . $succ .'>Successivo</a>';
+                    $pagineRecensioni = $pagineRecensioni . '<span class="review_page_number">' . $pageN . '</span>';
+                    if ($pageN < $totalPages) {
+                        $prec = $pageN - 1;
+                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pagen=' . $succ . '>Successivo</a>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '</div>';
-                    
-                    $page = str_replace('<PAGINE_RECENSIONI/>', $pagineRecensioni, $page);
 
-                    
-                 
-                        
-                    
+                    $page = str_replace('<PAGINE_RECENSIONI/>', $pagineRecensioni, $page);
                 } else {
                     // errore db query recensioni
+                    echo "Errore db query recensioni";
                 }
 
 
-                
-                
-                
-                //form inserimento recensione
-                $ins_rec_form = '';
-                if ($_SESSION['permesso'] == 'Utente') {
-                    $ins_rec_form = '<form action="ins_recensione.php" method="post">
-                                    <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
-                                    <input type="submit" value="Inserisci recensione" class="btn"/>
-                                    </form>';
-                } else {
-                    if ($_SESSION['permesso'] == 'Visitatore')
-                        $ins_rec_form = '<p><a href="login.php">Effettua il login per inserire una recensione</a></p>';
-                }
-                $page = str_replace('%FORM_INSERIMENTO_RECENSIONE%', $ins_rec_form, $page);
 
-                //form inserimento foto
-                $ins_foto_form = '';
-                if ($_SESSION['permesso'] == 'Ristoratore' && $_SESSION['ID'] == $libro['ID_Proprietario']) {
-                    $ins_foto_form = '<form action="ins_new_photo.php" method="post">
-                                            <fieldset>
-                                            <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
-                                            <input type="submit" value="Inserisci nuova foto" class="btn" id="new_photo_button" />
-                                            </fieldset>
+                // FORM INSERIMENTO RECENSIONE
+                
+                $inserimentoForm = '';
+                if (isset($_SESSION['logged']) && $_SESSION['logged']) { // se loggato
+                    if ($_SESSION['permesso'] == 0) { // se visitatore
+                        $inserimentoForm = '<form action="inserisciRecensione.php" method="post">
+                                        <input type="hidden" name="ID_libro" value =' . $ID_libro . '/>
+                                        <input type="submit" value="Inserisci recensione" class="btn"/>
                                         </form>';
+                    } else { // se admin
+                        $inserimentoForm = "<p>Spiacente, l'admin non può effettuare recensioni</p>";
+                    }
+                } else { // non loggato
+                    $inserimentoForm = '<p><a href="login.php">Effettua il login per inserire una recensione</a></p>';
                 }
-                $page = str_replace('%FORM_INSERIMENTO_FOTO%', $ins_foto_form, $page);
 
-                $page = str_replace('%ID_RIST%', $id_ristorante, $page);
-            } else {
-                //ristorante non presente
+                $page = str_replace('<FORM_INSERIMENTO_RECENSIONE/>', $inserimentoForm, $page);
+                
+            } 
+            
+            
+            
+            
+            else { // libro non presente
                 header('location: 404.php');
                 exit;
             }
-        } else {
-            //errore query DB
-            $page = (new addItems)->add("../html/base.html");
-            $page = str_replace('%PATH%', 'Ricerca', $page);
-            $page = str_replace('%MESSAGGIO%', (new errore('query'))->printHTMLerror(), $page);
+        } 
+        
+        
+        else {
+            echo "Errore query";
         }
-    } else {
-        //connessione fallita
-        $page = (new addItems)->add("../html/base.html");
-        $page = str_replace('%PATH%', 'Ricerca', $page);
-        $page = str_replace('%MESSAGGIO%', (new errore('DBConnection'))->printHTMLerror(), $page);
     }
-    $$DBconnection->close_connection();
-} else {
+    
+    
+    
+    else { // non si connette al db
+        echo "Errore di connessione al database";
+    }
+
+} 
+
+
+
+else { // se non GET[ID] not set
     header('location: 404.php');
     exit;
 }
