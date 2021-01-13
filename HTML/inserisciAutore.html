@@ -28,6 +28,8 @@
     <p>Ti trovi in: <a href="utente.php">Utente</a> > Inserisci autore </p>
 </div>
 
+<SUCCESSO/>
+
 <div id="content">
     <form method="post" action="../php/inserisciAutore.php" id="login_form" class="vertical_input_form">
         <fieldset>
@@ -42,8 +44,8 @@
             <label for="birthDate" xml:lang="en">Data di nascita:</label>
             <input type="date" name="birthDate" id="birthDate" required="required" value="<DATA_NASCITA/>" tabindex="3"/>
 
-            <label for="deathDate" xml:lang="en">Data di morte:</label>
-            <input type="date" name="deathDate" id="deathDate" value="<DATA_MORTE/>" tabindex="3"/>
+            <label for="deathDate" xml:lang="en">Data di morte (solo se necessaria:'( ):</label>
+            <input type="date" name="deathDate" id="deathDate" value="<DATA_MORTE/>" max="<MAX_DATA/>" tabindex="3"/>
 
             <input type="submit" id="newAuthorbtn" class="button" name="addAuthor" value="Aggiungi" tabindex="5"/>
         </fieldset>

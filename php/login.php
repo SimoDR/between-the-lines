@@ -1,6 +1,6 @@
 <?php
 require_once('sessione.php');
-//TODO: se sei già loggato non è che puoi tornare qui come ti pare ooh
+//TODO: se sei già loggato non è che puoi tornare qui come ti pare ooh: errore o reindirizzamento in home?
 /*Aggiunta header e menu*/
 $page = file_get_contents("../html/login.html");
 
@@ -19,7 +19,7 @@ if (isset($_POST['email'])) {
     require_once('DBConnection.php');
     $obj_connection = new DBAccess();
     if ($obj_connection->openDBConnection()) {
-        //TODO: capire se altri controlli debbano essere fatti backend per sanificare l'input
+        //TODO: capire se altri controlli debbano essere fatti backend per sanificare l'input (cntrollato e non credo)
         $email = $obj_connection->escape_string(trim(htmlentities($email)));
         $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
 

@@ -28,10 +28,13 @@
     <p>Ti trovi in: <a href="utente.php">Utente</a> > Aggiungi genere </p>
 </div>
 
+<SUCCESSO/>
+
 <div id="content">
     <form method="post" action="../php/inserisciGenere.php" id="login_form" class="vertical_input_form">
         <fieldset>
             <legend>Inserimento di un nuovo genere</legend>
+
             <ERROR/>
             <label for="genreName" >Genere:</label>
             <input type="text" name="genreName" id="genreName" required="required" value="<GENERE/>" maxlength="30" tabindex="1"/>
