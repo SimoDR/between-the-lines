@@ -79,20 +79,5 @@ CREATE TABLE recensioni
 ) ENGINE = InnoDB;
 
 
+-- TO DO Elimina drop table classificazioni
 DROP TABLE IF EXISTS classificazioni;
-
--- insert some values
-INSERT INTO autori
-VALUES (1, 'Jack', 'Kerouac', '1922-03-12', '1969-10-21');
-
-INSERT INTO generi VALUES(NULL, 'romanzo');
-
-INSERT INTO libri
-VALUES (NULL, 'Sulla Strada', 1, 1,
-        'Narra una serie di viaggi dell''autore in automobile attraverso gli Stati Uniti, in parte con il suo amico Neal Cassady e in parte in autostop.');
-
-INSERT INTO foto_profilo
-VALUES (NULL, '../img/icona_libro_rosso.png', 'libro rosso'),
-       (NULL, '../img/icona_libro_verde.png', 'libro verde'),
-       (NULL, '../img/icona_libro_blu.png', 'libro blu'),
-       (NULL, '../img/icona_libro_giallo.png', 'libro giallo');
