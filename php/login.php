@@ -1,6 +1,6 @@
 <?php
 require_once('sessione.php');
-
+//TODO: se sei già loggato non è che puoi tornare qui come ti pare ooh
 /*Aggiunta header e menu*/
 $page = file_get_contents("../html/login.html");
 
@@ -20,21 +20,23 @@ if (isset($_POST['email'])) {
     $$DBconnection = new DBAccess();
     if ($$DBconnection->openDBConnection()) {
         //TODO: capire se altri controlli debbano essere fatti backend per sanificare l'input
-        $email = $$DBconnection->escape_string(trim($email));
-        $hashed_pwd = $$DBconnection->escape_string(hash("sha256", trim($pwd)));
+
+        $email = $obj_connection->escape_string(trim(htmlentities($email)));
+        $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
 
         //check to the db
-        $queryResult = $$DBconnection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$hashed_pwd\"");
+        $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND password=\"$pwd\"");
+
         if (!isset($queryResult)) {
-            $error = "[La query non è andata a buon fine]";
+            $error = "<div class=\"msg_box error_box\"> La query non è andata a buon fine</div>";
         } else {
             if (empty($queryResult)) {
-                $error = "[Le credenziali inserite non sono corrette]";
+                $error = "<div class=\"msg_box error_box\"> Le credenziali inserite non sono corrette</div>";
             } else {
                 $_SESSION['logged'] = true;
                 $_SESSION['email'] = $email;
                 $_SESSION['ID'] = $queryResult[0]['ID'];
-                //TODO: refactor in db
+                //permesso is bool: 0 user, 1 admin
                 $_SESSION['permesso'] = $queryResult[0]['is_admin'];
                 header('location: index.php');
                 exit;
@@ -42,13 +44,9 @@ if (isset($_POST['email'])) {
         }
         $$DBconnection->closeDBConnection();
     } else {
-        //TODO: gestire in modo diverso l'errore di connessione al db
-        $error = "[La query non è andata a buon fine]";
+        $error = "<div class=\"msg_box error_box\"> Impossibile connettersi al database </div>";
     }
 }
-//TODO: riguardare le 2 righe successive
-$error = str_replace("[", '<p class="msg_box error_box">', $error);
-$error = str_replace("]", "</p>", $error);
 
 $page = str_replace("<ERROR/>", $error, $page);
 $page = str_replace("<EMAIL/>", $email, $page);

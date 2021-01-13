@@ -39,6 +39,7 @@ class DBAccess
                     array_push($result, $row);
                 }
             }
+            //TODO: CHECK IF THIS IS USEFUL
             $queryResult->close();
         }
         return $result;

@@ -12,3 +12,7 @@ Repository per l'organizzazione e la gestione del progetto (assignment) del cors
 ### PHP
 - Nomi di variabili e metodi camelCase;
 - Nomi di classi PascalCase;
+
+### FILES
+- Nomi file camelCase;
+- Nome file .html == nome file .php iff si riferiscono alla stessa pagina

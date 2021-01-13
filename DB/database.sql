@@ -1,6 +1,3 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS autori;
@@ -14,14 +11,24 @@ CREATE TABLE autori
     CONSTRAINT nominativo_univoco UNIQUE (nome, cognome)
 ) ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS generi;
+CREATE TABLE generi
+(
+    ID   INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(127) NOT NULL
+) ENGINE = InnoDB;
+
+
 DROP TABLE IF EXISTS libri;
 CREATE TABLE libri
 (
     ID        INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     titolo    TEXT             NOT NULL,
     id_autore INTEGER UNSIGNED NOT NULL,
+    id_genere INTEGER UNSIGNED NOT NULL,
     trama     TEXT             NOT NULL,
-    FOREIGN KEY (id_autore) REFERENCES autori (ID) ON DELETE CASCADE
+    FOREIGN KEY (id_autore) REFERENCES autori (ID) ON DELETE CASCADE,
+    FOREIGN KEY (id_genere) REFERENCES generi (ID) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS copertine;
@@ -33,6 +40,8 @@ CREATE TABLE copertine
     alt_text VARCHAR(255)     NOT NULL,
     FOREIGN KEY (id_libro) REFERENCES libri (ID) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+
 
 DROP TABLE IF EXISTS foto_profilo;
 CREATE TABLE foto_profilo
@@ -69,29 +78,17 @@ CREATE TABLE recensioni
     FOREIGN KEY (id_utente) REFERENCES utenti (ID) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS generi;
-CREATE TABLE generi
-(
-    ID   INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(127) NOT NULL
-) ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS classificazioni;
-CREATE TABLE classificazioni
-(
-    id_libro  INTEGER UNSIGNED NOT NULL,
-    id_genere INTEGER UNSIGNED NOT NULL,
-    PRIMARY KEY (id_libro, id_genere),
-    FOREIGN KEY (id_libro) REFERENCES libri (ID) ON DELETE CASCADE,
-    FOREIGN KEY (id_genere) REFERENCES generi (ID) ON DELETE CASCADE
-) ENGINE = InnoDB;
 
 -- insert some values
 INSERT INTO autori
 VALUES (1, 'Jack', 'Kerouac', '1922-03-12', '1969-10-21');
 
+INSERT INTO generi VALUES(NULL, 'romanzo');
+
 INSERT INTO libri
-VALUES (1, 'Sulla Strada', 1,
+VALUES (NULL, 'Sulla Strada', 1, 1,
         'Narra una serie di viaggi dell''autore in automobile attraverso gli Stati Uniti, in parte con il suo amico Neal Cassady e in parte in autostop.');
 
 INSERT INTO foto_profilo
