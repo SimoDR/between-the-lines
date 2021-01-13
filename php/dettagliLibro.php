@@ -1,31 +1,35 @@
 <?php
 
 require_once('sessione.php');
-require_once('connessione.php');
-require_once("setup_page.php");
+require_once('DBConnection.php');
+require_once("setupPage.php");
 //require_once('errore.php');
-require_once('regex_page.php');
+require_once('regex_checker.php');
 require_once('star.php');
 
 
 
 $page = add("../html/dettagliLibro.html");
 
-if (isset($_GET['ID']) && check_num($_GET['ID'])) {
-    $ID_libro = $_GET['ID'];
+if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
+    
+    
+    
+    $ID_libro = $_GET['id_libro'];
 
     $DBconnection = new DBAccess();
+    
 
     if ($DBconnection->openDBConnection()) {
         if ($queryResult = $DBconnection->queryDB(" 
                     SELECT l.ID as ID, l.titolo AS titolo, l.trama AS trama, g.nome AS genere, a.nome AS nomeAutore, a.cognome AS cognomeAutore, a.data_nascita AS nascitaAutore, a.data_morte AS morteAutore
-                    FROM libri AS l,classificazioni AS c,autori AS a, generi AS g
-                    WHERE ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro AND c.id_genere=g.ID"
+                    FROM libri AS l,autori AS a, generi AS g
+                    WHERE l.ID=$ID_libro AND l.id_autore=a.ID AND l.id_genere=g.ID "
                 )) {
             // libro presente          
             if (count($queryResult) != 0) {
 
-            
+
 
                 $libro = $queryResult[0];
 
@@ -37,7 +41,7 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
                 // COPERTINA 
 
                 if ($queryCopertina = $DBconnection->queryDB("
-                            SELECT copertine.path_img AS path_img, copertine.alt_text AS alt_text
+                            SELECT copertine.path_img AS path_img, copertine.alt_text AS alt_img
                             FROM libri, copertine
                             WHERE libri.ID=copertine.id_libro AND libri.ID = $ID_libro")) {
 
@@ -45,7 +49,7 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
                     if (count($queryCopertina) != 0) {
                         $copertina = $queryCopertina[0];
                         $page = str_replace('<LIBRO_COPERTINA/>', $copertina['path_img'], $page);
-                        $page = str_replace('<LIBRO_COPERTINA_ALT/>', $copertina['alt_text'], $page);
+                        $page = str_replace('<LIBRO_COPERTINA_ALT/>', $copertina['alt_img'], $page);
                     } else {
                         $page = str_replace('<LIBRO_COPERTINA/>', "Errore: immagine non trovata", $page);
                         $page = str_replace('<LIBRO_COPERTINA_ALT/>', "Errore: alt non trovato", $page);
@@ -56,9 +60,11 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
 
                 $page = str_replace('<LIBRO_TITOLO/>', $libro['titolo'], $page);
                 $page = str_replace('<GENERE/>', $libro['genere'], $page);
+                $page = str_replace('<NOME_AUTORE/>', $libro['nomeAutore'], $page);
+                $page = str_replace('<COGNOME_AUTORE/>', $libro['cognomeAutore'], $page);               
+                $page = str_replace('<NASCITA_AUTORE/>', $libro['nascitaAutore'], $page);
+                $page = str_replace('<MORTE_AUTORE/>', $libro['morteAutore'], $page);
                 $page = str_replace('<RIASSUNTO/>', $libro['trama'], $page);
-
-
 
                 // STELLE
                 
@@ -71,7 +77,7 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
                     echo 'Errore: impossibile eseguire query al database';
                 }
                 $drawStars = printStars($queryNumRecensioni[0]['avg_stars']);
-                $page = str_replace('<NUMERO_STELLE/>', round($queryNumRecensioni[0]['avg_stars'], 1), $page);
+                $page = str_replace('<NUMERO_STELLE/>', $queryNumRecensioni[0]['avg_stars'], 1, $page);
                 $page = str_replace('<NUMERO_RECENSIONI/>', $queryNumRecensioni[0]['num_recensioni'], $page);
                 $page = str_replace('<DISEGNO_STELLE/>', $drawStars, $page);
 
@@ -82,11 +88,14 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
                 $totalRecensioni = $queryNumRecensioni[0]['num_recensioni'];  
                 $totalPages = ceil($totalRecensioni / $resultsInPage);
                 $pagesList = "";
-
+                    
+                // TODO: QUERY NON FUNZIONA
+                
                 if ($queryRecensioni = $DBconnection->queryDB("
                             SELECT u.username as username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
                             FROM recensioni AS r, utenti AS u, foto_profilo AS f
                             WHERE r.id_libro = $ID_libro AND u.id_propic = f.ID
+                            ORDER BY rec_dataora DESC
                             ")) {
                     
                     // controllo se non sono fuori dai limiti
@@ -208,7 +217,7 @@ if (isset($_GET['ID']) && check_num($_GET['ID'])) {
 
 
 else { // se non GET[ID] not set
-    header('location: 404.php');
+    // header('location: 404.php');
     exit;
 }
 

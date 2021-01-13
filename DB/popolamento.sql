@@ -37,3 +37,12 @@ INSERT INTO copertine VALUES
 (2,2,'../img/copertina_2.jpg','Sherlock Holmes guarda una scritta enigmatica ''RACHE'' con la lente di ingrandimento e fumando una pipa'),
 (3,3,'../img/copertina_3.jpg','un gatto con un collare osserva un gabbiano volare con le ali spiegate'),
 (4,4,'../img/copertina_4.jpg','insegna di un motel che si staglia nel deserto');
+
+INSERT INTO foto_profilo VALUES
+(1,'pathFoto','alt foto profilo di pippo');
+
+INSERT INTO utenti VALUES
+(1,'pipinoIlBreve','dwni32423r9wejfioc32nx',1,'pippo@breve.it',0);
+
+INSERT INTO recensioni VALUES
+(1,'2021-01-10 10:15:30',3,1,1,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.');

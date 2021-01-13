@@ -54,30 +54,25 @@
                 <fieldset>
                     <legend>Inserimento nuova recensione</legend>
 					
-                    <fieldset> 
-			<legend>Gradimento del libro:</legend>
-                            <div><label for="one_stars">1 stella</label>
-                                <input type="radio" name="stars" id="one_stars" value="one_stars" tabindex="1" /></div>
-                            <div><label for="two_stars">2 stelle</label>
-				<input type="radio" name="stars" id="two_stars" value="two_stars" tabindex="2" /></div>
-                            <div><label for="three_stars">3 stelle</label> 
-				<input type="radio" name="stars" id="three_stars" value="three_stars" tabindex="3" /></div>	
-                            <div><label for="four_stars">4 stelle</label>
-				<input type="radio" name="stars" id="four_stars" value="four_stars" tabindex="4" /></div>
-                            <div><label for="five_stars">5 stelle</label>
-				<input type="radio" name="stars" id="five_stars" value="five_stars" tabindex="5" /></div>						
-                    </fieldset>					
+                    <label for="n_stars">Su una scala da 1 a 5, dove 1 corrisponde a "pessimo" e 5 corrisponde a "magnifico", come valuti il libro?</label>
+                    <select id="n_stars" name="n_stelle" tabindex="1">
+                        <option value="1" <ONE> >1</option>
+                        <option value="2" <TWO> >2</option>
+                        <option value="3" <THREE> >3</option>
+                        <option value="4" <FOUR> >4</option>
+                        <option value="5" <FIVE> >5</option>
+                    </select>			
                     
                     <ERRORE_CONTENUTO/>
 					
-                    <label for="form_ins_review_text">La tua recensione: </label>
-                    <textarea id="form_ins_review_textarea" rows="50" cols="50" name="form_ins_review_textarea"  class="full_width_input" tabindex=6>					
+                    <label for="form_ins_review_content">La tua recensione: </label>
+                    <textarea id="review_content" rows="50" cols="50" name="review_content"  class="full_width_input" tabindex=2>					
 					<CONTENUTO_RECENSIONE/>					
-					</textarea>
+                    </textarea>
                     
                     <input type="hidden" name="id_book" value="<ID_LIBRO/>" />
 					
-                    <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="6" />
+                    <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="3" />
 					
                 </fieldset>
             </form>
