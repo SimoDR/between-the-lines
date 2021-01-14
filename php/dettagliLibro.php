@@ -5,9 +5,16 @@ require_once('DBConnection.php');
 require_once("setupPage.php");
 //require_once('errore.php');
 require_once('regex_checker.php');
-require_once('star.php');
 
 
+    function printStars($num) {
+    $rounded = round($num);
+    $stelle = '';
+    for ($i = 0; $i < $rounded; $i++) {
+        $stelle = $stelle . '&#9733;';
+    }
+    return $stelle;
+}
 
 $page = add("../html/dettagliLibro.html");
 
@@ -76,8 +83,14 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 } else {
                     echo 'Errore: impossibile eseguire query al database';
                 }
+                
+
                 $drawStars = printStars($queryNumRecensioni[0]['avg_stars']);
-                $page = str_replace('<NUMERO_STELLE/>', $queryNumRecensioni[0]['avg_stars'], 1, $page);
+                
+                echo $drawStars;
+                
+                $page = str_replace('<NUMERO_STELLE/>', (int) $queryNumRecensioni[0]['avg_stars'], $page);
+
                 $page = str_replace('<NUMERO_RECENSIONI/>', $queryNumRecensioni[0]['num_recensioni'], $page);
                 $page = str_replace('<DISEGNO_STELLE/>', $drawStars, $page);
 
@@ -94,7 +107,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 if ($queryRecensioni = $DBconnection->queryDB("
                             SELECT u.username as username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
                             FROM recensioni AS r, utenti AS u, foto_profilo AS f
-                            WHERE r.id_libro = $ID_libro AND u.id_propic = f.ID
+                            WHERE r.id_libro = 1 AND u.id_propic = f.ID AND r.id_utente = u.ID
                             ORDER BY rec_dataora DESC
                             ")) {
                     
@@ -120,21 +133,22 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     } else {
                         for ($i = $startIndex; $i < $endIndex; $i++) {
 
+                            $drawStarsUtente = printStars($queryRecensioni[$i]['rec_valutazione']);
+                                    
                             $listaRecensioni = $listaRecensioni . '
-
                             <dl class="review_list">
                                 <dt>
                                     <div class="user_details">
-                                        <img src=' . $queryRecensioni[i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[i]['alt_foto_profilo'] . ' />
-                                        <span>' . $queryRecensioni[i]['username'] . '</span>
+                                        <img src=' . $queryRecensioni[$i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[$i]['alt_foto_profilo'] . ' />
+                                        <span>' . $queryRecensioni[$i]['username'] . '</span>
                                     </div>
-                                    <span class="review_datetime">' . $queryRecensioni[i]['rec_dataora'] . '</span> 
+                                    <span class="review_datetime">' . $queryRecensioni[$i]['rec_dataora'] . '</span> 
                                 </dt>
                                 <dd>
                                     <div class="review_details">
-                                        <p class="review_text">' . $queryRecensioni[i]['rec_testo'] . '</p>
-                                        <span class="stelle_item">Stelle ' . $queryRecensioni[i]['rec_valutazione'] . '/5
-                                            <span class="stelle_counter">' . printStar($queryRecensioni[i]['rec_valutazione']) . '</span>
+                                        <p class="review_text">' . $queryRecensioni[$i]['rec_testo'] . '</p>
+                                        <span class="stelle_item">Stelle ' . $queryRecensioni[$i]['rec_valutazione'] . '/5
+                                            <span class="stelle_counter">' . $drawStarsUtente . '</span>
                                         </span>
 
                                     </div>
@@ -217,7 +231,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
 
 else { // se non GET[ID] not set
-    // header('location: 404.php');
+    header('location: 404.php');
     exit;
 }
 
