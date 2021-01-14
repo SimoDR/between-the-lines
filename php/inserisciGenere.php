@@ -33,7 +33,7 @@ if(isset($_POST["addGenre"]))
                 $obj_connection->closeDBConnection();
             }
             else{
-                $error = $error . "<div class=\"msg_box error_box\">Impossibile stabilire la connessione con il database</div>";
+                $error = $error . "<div class=\"msg_box error_box\">Impossibile stabilire la connessione con il <span xml:lang=\"en\" lang=\"en\">database</span></div>";
             }
         }
         else{

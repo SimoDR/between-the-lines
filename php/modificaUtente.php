@@ -25,7 +25,7 @@ $pwdOld = "";
 
 $obj_connection = new DBAccess();
 if (!$obj_connection->openDBConnection()) {
-    $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al database</div>";
+    $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
 } else {
     $id = $_SESSION["ID"];
     $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE ID=\"$id\"");
@@ -42,11 +42,12 @@ if (!$obj_connection->openDBConnection()) {
         $checked = "";
         $path = $result[$i]['path_foto'];
         $alt = $result[$i]['alt_text'];
-        if ($result[$i]['ID'] == $idPropic)
+        $idPhoto=$result[$i]['ID'];
+        if ($idPhoto == $idPropic)
             $checked = "checked=\"checked\"";
         //TODO: help needed! control id name & value
-        $pictures = $pictures . "<div>
-                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" $checked />
+        $pictures = $pictures . "<div class='proPic'>
+                            <input type=\"radio\" id=\"$idPhoto\" name=\"propic\" value=\"$id\" $checked />
                             <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
                         </div>";
 

@@ -1,7 +1,6 @@
 <?php
 require_once("regex_checker.php");
 require_once('DBConnection.php');
-//TODO: mettere a posto la data: 2 query
 $page = file_get_contents("../html/inserisciAutore.html");
 $message = "";
 $error = "";
@@ -66,7 +65,7 @@ if (isset($_POST["addAuthor"])) {
             }
             $obj_connection->closeDBConnection();
         } else {
-            $error = $error . "<div class=\"msg_box error_box\">Impossibile stabilire la connessione con il database</div>";
+            $error = $error . "<div class=\"msg_box error_box\">Impossibile stabilire la connessione con il <span xml:lang=\"en\" lang=\"en\">database</span></div>";
         }
     }
 }
