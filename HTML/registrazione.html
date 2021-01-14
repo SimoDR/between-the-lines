@@ -1,85 +1,115 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-        <title xml:lang="en">Registrazione - Between the Lines</title>
-            <meta name="title" content="Registrazione - Between the Lines" />
-            <meta name="description" content="Pagina per la registrazione dell'utente al sito Between the Lines." />
+    <title xml:lang="en">Registrazione - Between the Lines</title>
+    <meta name="title" content="Registrazione - Between the Lines"/>
+    <meta name="description" content="Pagina per la registrazione dell'utente al sito Between the Lines."/>
 
-            <meta name="keywords"
-                content="Between the Lines, registrazione, email, password, utente, libri, recensioni, opinioni" />
-            <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
-            <meta name="language" content="italian it" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords"
+          content="Between the Lines, registrazione, email, password, utente, libri, recensioni, opinioni"/>
+    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+    <meta name="language" content="italian it"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-            <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
-            <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />
-    </head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+</head>
 
-    <body>
-        <div id="header">
-            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
-            <h1 xml:lang="en">Between the Lines</h1>
-            <h2 xml:lang="en">A world of books for young and old people</h2>
-            <HEADER/>
-        </div>
+<body>
+<div id="header">
+    <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
+    <h1 xml:lang="en">Between the Lines</h1>
+    <h2 xml:lang="en">A world of books for young and old people</h2>
+    <HEADER/>
+</div>
 
-        <div id="breadcrumb">
-            <p>Ti trovi in: <BREADCRUMBS/> </p>
-        </div>
+<div id="breadcrumb">
+    <p>Ti trovi in:
+        <BREADCRUMBS/>
+    </p>
+</div>
 
-        <div id="menu">
-                <MENU/>
-        </div>
+<div id="menu">
+    <MENU/>
+</div>
 
-        <div id="content">
-            <form method="post" action="registrazione.php" enctype="multipart/form-data" id="form_registrazione"
-                class="vertical_input_form">
-                <!--multipart/form-data	Non vengono codificati i caratteri,
-                è necessario per i form che fanno file upload.
-                (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
-                <fieldset>
-                    <legend>Registrazione</legend>
-                    <ERROR/>
+<div id="content">
+    <form method="post" action="registrazione.php" id="form_registrazione"
+          class="vertical_input_form">
+        <!--multipart/form-data	Non vengono codificati i caratteri,
+        è necessario per i form che fanno file upload.
+        (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
+        <fieldset>
+            <legend>Registrazione</legend>
+            <ERROR/>
 
+            <div class="row">
+                <div class="col-25">
                     <label for="email" lang="en">Email:</label>
-                    <input type="email" name="email" id="email" required="required" tabindex="1"
-                        class="full_width_input" value="<EMAIL/>" />
+                </div>
+                <div class="col-75">
+                    <input type="email" name="email" id="email" required="required" value="<EMAIL/>"/>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-25">
                     <label for="username" lang="en">Nome utente:</label>
-                    <input type="text" name="username" id="username" required="required" tabindex="2"
-                           class="full_width_input" value="<USERNAME/>" />
+                </div>
+                <div class="col-75">
+                    <input type="text" name="username" id="username" required="required" value="<USERNAME/>"/>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-25">
                     <label for="password" lang="en">Password:</label>
+                </div>
+                <div class="col-75">
                     <input type="password" name="password" id="password" required="required" tabindex="3"
-                        class="full_width_input" value="<PWD/>" />
+                           class="full_width_input" value="<PWD/>"/>
+                </div>
+            </div>
 
-                    <label for="repeatpassword">Ripeti <span lang="en">password</span>:</label>
+            <div class="row">
+                <div class="col-25">
+                    <label for="repeatpassword">Ripeti <span xml:lang=\"en\" lang="en">password</span>:</label>
+                </div>
+                <div class="col-75">
                     <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="4"
-                        class="full_width_input" value="<PWD_CONFERMA/>" />
+                           class="full_width_input" value="<PWD_CONFERMA/>"/>
+                </div>
+            </div>
+            <div class="row">
+                <p>Seleziona un'immagine profilo:</p>
+                <FOTO_PROFILO/>
+            </div>
 
-                    <p>Seleziona un'immagine profilo:</p>
-                    <FOTO_PROFILO/>
-                    <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12" />
-                </fieldset>
-            </form>
-        </div>
-        <div id="footer">
-            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
-            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
-            <ul id="footerlist">
-                <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-                <li>049-267276 - Padova, Via Paolotti 5</li>
-                <li xml:lang="en">betweenthelines@gmail.com</li>
-                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-            </ul>
+            <div class="row">
+                <input id="reg_btn" type="submit" value="Registrati" class="button" name="registrati"/>
+            </div>
 
-            <a id="turnBack" class="hidden" href="#header">Torna su</a>
-        </div>
+        </fieldset>
+    </form>
+</div>
 
-        <script type="text/javascript" src="../js/script.js"></script>
-    </body>
+<div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
+
+<div id="footer">
+    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+    <ul id="footerlist">
+        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
+        <li>049-267276 - Padova, Via Paolotti 5</li>
+        <li xml:lang="en">betweenthelines@gmail.com</li>
+        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="../js/script.js"></script>
+</body>
 
 </html>

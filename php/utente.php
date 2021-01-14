@@ -9,14 +9,15 @@ $page = file_get_contents("../html/utente.html");
 
 /* crea connessione al DB */
 if ($_SESSION['logged'] == true) {
-    $email = $_SESSION['email'];
+    $id = $_SESSION['ID'];
     $obj_connection = new DBAccess();
     if ($obj_connection->openDBConnection()) {
-        $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" ");
+        $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE ID=$id");
         if (!isset($queryResult)) {
             $error = "[La query non è andata a buon fine]";
         } else {
             $username = $queryResult[0]["username"];
+            $email=$queryResult[0]["mail"];
             $idPic = $queryResult[0]["id_propic"];
             $proPic = $obj_connection->queryDB("SELECT * FROM foto_profilo WHERE ID=\"$idPic\" ");
             $pathPic = $proPic[0]["path_foto"];
