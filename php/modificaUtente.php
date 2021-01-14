@@ -48,7 +48,7 @@ if (!$obj_connection->openDBConnection()) {
         //TODO: help needed! control id name & value
         $pictures = $pictures . "<div class='proPic'>
                             <input type=\"radio\" id=\"$idPhoto\" name=\"propic\" value=\"$id\" $checked />
-                            <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
+                            <label for=\"$id\"><img src=\"$path\" id=\"proPic\" alt=\"$alt\"></label>
                         </div>";
 
     }

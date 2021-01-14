@@ -104,7 +104,7 @@ if (!$obj_connection->openDBConnection()) {
         }
         $pictures = $pictures . "<div class='proPic'>
                             <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" \>
-                            <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
+                            <label for=\"$id\"><img src=\"$path\" id=\"proPic\" alt=\"$alt\"></label>
                         </div>";
 
     }
