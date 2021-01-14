@@ -7,7 +7,8 @@ require_once("setupPage.php");
 require_once('regex_checker.php');
 
 
-    function printStars($num) {
+function printStars($num) 
+{
     $rounded = round($num);
     $stelle = '';
     for ($i = 0; $i < $rounded; $i++) {
@@ -83,31 +84,31 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 } else {
                     echo 'Errore: impossibile eseguire query al database';
                 }
+                $numeroStelle = 'Ancora nessuna stella per questo libro!';
+                echo count($queryNumRecensioni);
+                if($queryNumRecensioni[0]['avg_stars'] != 0) {
+                    $numeroStelle = round($queryNumRecensioni[0]['avg_stars'],1);
+                }
                 
-
                 $drawStars = printStars($queryNumRecensioni[0]['avg_stars']);
-                
-                echo $drawStars;
-                
-                $page = str_replace('<NUMERO_STELLE/>', (int) $queryNumRecensioni[0]['avg_stars'], $page);
-
-                $page = str_replace('<NUMERO_RECENSIONI/>', $queryNumRecensioni[0]['num_recensioni'], $page);
+                                
+                $page = str_replace('<NUMERO_STELLE/>', $numeroStelle, $page);
+                $page = str_replace('<NUMERO_RECENSIONI/>', $queryNumRecensioni[0]['num_recensioni'] . '/5', $page);
                 $page = str_replace('<DISEGNO_STELLE/>', $drawStars, $page);
 
 
                 // RECENSIONI
 
                 $resultsInPage = 5;
-                $totalRecensioni = $queryNumRecensioni[0]['num_recensioni'];  
+                $totalRecensioni = $queryNumRecensioni[0]['num_recensioni'];
                 $totalPages = ceil($totalRecensioni / $resultsInPage);
                 $pagesList = "";
-                    
-                // TODO: QUERY NON FUNZIONA
                 
+                //TODO: controllare qudno non restituisce risultato
                 if ($queryRecensioni = $DBconnection->queryDB("
                             SELECT u.username as username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
                             FROM recensioni AS r, utenti AS u, foto_profilo AS f
-                            WHERE r.id_libro = 1 AND u.id_propic = f.ID AND r.id_utente = u.ID
+                            WHERE r.id_libro = $ID_libro AND u.id_propic = f.ID AND r.id_utente = u.ID
                             ORDER BY rec_dataora DESC
                             ")) {
                     
@@ -117,17 +118,33 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         exit;
                     }
                     
+                    
                     //recupero lista recensioni
                     if (isset($_GET["pageN"])) {
                         $pageN = $_GET["pageN"];
                     } else {
                         $pageN = 1;
                     }
-
-                    $startIndex = ($pageN - 1) * $resultsInPage; // indice della recensioni iniziale nella pagina
-                    $endIndex = $startIndex + $totalRecensioni - ($pageN - 1) * $resultsInPage; // indice della recensione finale nella pagina
-
+                    
                     $listaRecensioni = "";
+                    if(count($queryRecensioni) == 0)
+                    {
+                        $listaRecensioni .=  ' 
+                            <div>
+                                <span class ="no_item">Ancora nessuna recensione: sii tu il primo a recensire questo libro!</span>
+                            </div>';                                
+                    } else {
+                    
+                    $startIndex = ($pageN - 1) * $resultsInPage; // indice della recensioni iniziale nella pagina
+                    $endIndex = 0; // indice della recensione finale nella pagina
+                    if($pageN == $totalPages) {
+                        $endIndex = $totalRecensioni;                        
+                    }
+                    else {
+                        $endIndex = $pageN * $resultsInPage;
+                    }
+
+                    
                     if ($startIndex == $endIndex) {
                         $listaRecensioni = "Nessuna recensione presente per questo libro";
                     } else {
@@ -158,7 +175,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                             ';
                         }
                     }
-
+                    }
                     $page = str_replace('<LISTA_RECENSIONI/>', $listaRecensioni, $page); // perchè da problemi questa variabile?
 
 
@@ -166,14 +183,15 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
 
                     $address = $_SERVER['REQUEST_URI'];
+                    $address = preg_replace("/\&pageN=\d/","",$address);
                     if ($pageN > 1) {
                         $prec = $pageN - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pagen=' . $prec . '>Precedente</a>';
+                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pageN=' . $prec . '>Precedente</a>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '<span class="review_page_number">' . $pageN . '</span>';
                     if ($pageN < $totalPages) {
-                        $prec = $pageN - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pagen=' . $succ . '>Successivo</a>';
+                        $succ = $pageN + 1;
+                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pageN=' . $succ . '>Successivo</a>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '</div>';
 
@@ -189,10 +207,10 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 
                 $inserimentoForm = '';
                 if (isset($_SESSION['logged']) && $_SESSION['logged']) { // se loggato
-                    if ($_SESSION['permesso'] == 0) { // se visitatore
+                    if ($_SESSION['permesso'] == 0) { // se non admin
                         $inserimentoForm = '<form action="inserisciRecensione.php" method="post">
                                         <input type="hidden" name="ID_libro" value =' . $ID_libro . '/>
-                                        <input type="submit" value="Inserisci recensione" class="btn"/>
+                                        <input type="submit" value="Inserisci recensione" class="button"/>
                                         </form>';
                     } else { // se admin
                         $inserimentoForm = "<p>Spiacente, l'admin non può effettuare recensioni</p>";

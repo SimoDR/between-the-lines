@@ -39,10 +39,45 @@ INSERT INTO copertine VALUES
 (4,4,'../img/copertina_4.jpg','insegna di un motel che si staglia nel deserto');
 
 INSERT INTO foto_profilo VALUES
-(1,'pathFoto','alt foto profilo di pippo');
+(1,'pathFoto','alt foto profilo di pippo'),
+(2,'pathFoto','alt foto profilo di pippo'),
+(3,'pathFoto','alt foto profilo di pippo'),
+(4,'pathFoto','alt foto profilo di pippo'),
+(5,'pathFoto','alt foto profilo di pippo'),
+(6,'pathFoto','alt foto profilo di pippo'),
+(7,'pathFoto','alt foto profilo di pippo'),
+(8,'pathFoto','alt foto profilo di pippo'),
+(9,'pathFoto','alt foto profilo di pippo'),
+(10,'pathFoto','alt foto profilo di pippo'),
+(11,'pathFoto','alt foto profilo di pippo'),
+(12,'pathFoto','alt foto profilo di pippo');
+
 
 INSERT INTO utenti VALUES
-(1,'pipinoIlBreve','dwni32423r9wejfioc32nx',1,'pippo@breve.it',0);
+(1,'pipinoIlBreve','dwni32423r9wejfioc32nx',1,'pippo.breve@gmail.com',0),
+(2,'mammaInformata','dwni32423r9wejfioc32nx',2,'mamma.forno@virgilio.it',0),
+(3,'giovanna97','dwni32423r9wejfioc32nx',3,'giovanna97@hotmail.it',0),
+(4,'pablo89','dwni32423r9wejfioc32nx',4,'pablo89@drugs.co',0),
+(5,'carletto_the_best','dwni32423r9wejfioc32nx',5,'carlo.franco@virgilio.it',0),
+(6,'giovanniReader','dwni32423r9wejfioc32nx',6,'giovanni.storti@msn.it',0),
+(7,'divoratore_di_libri','dwni32423r9wejfioc32nx',7,'francesco.barocco@gmail.com',0),
+(8,'francescaM99','dwni32423r9wejfioc32nx',8,'francy.emme@virgilio.it',0),
+(9,'antoBaddio','dwni32423r9wejfioc32nx',9,'antonello.baldino@cafoscari.it',0),
+(10,'troloFre','dwni32423r9wejfioc32nx',10,'federico.trolesio@gmail.com',0),
+(11,'kaiser_lillo38','dwni32423r9wejfioc32nx',11,'luca.falsonese@virgilio.it',0),
+(12,'simo99DR','dwni32423r9wejfioc32nx',12,'simone.dr.dre@gmail.com',0);
+
 
 INSERT INTO recensioni VALUES
-(1,'2021-01-10 10:15:30',3,1,1,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.');
+(1,'2021-01-10 10:15:30',3,1,1,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(2,'2021-01-09 10:15:30',4,1,2,'libro molto bello. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(3,'2021-01-05 10:15:30',2,1,3,'libro bruttino. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(4,'2021-01-06 10:15:30',1,1,4,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(5,'2021-01-06 10:15:30',5,1,5,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(6,'2021-01-01 10:15:30',1,1,6,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(7,'2021-01-15 10:15:30',2,1,7,'libro bruttino. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(8,'2021-01-20 10:15:30',4,1,8,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(9,'2021-01-25 10:15:30',3,1,9,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(10,'2021-01-30 10:15:45',3,1,10,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(11,'2021-01-30 10:10:30',2,1,11,'libro bruttino. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.'),
+(12,'2021-01-30 08:15:30',3,1,12,'libro bello ma non ci vivrei. Recensione libro. Recensione libro.Recensione libro. Recensione libro. Recensione libro. Recensione libro.');
