@@ -99,12 +99,12 @@ if (!$obj_connection->openDBConnection()) {
         $path = $result[$i]['path_foto'];
         $alt = $result[$i]['alt_text'];
         $id = $result[$i]['ID'];
-        if (i == 0) {
+        if ($id == 0) {
             $checked = "checked=\"checked\"";
         }
         $pictures = $pictures . "<div class='proPic'>
                             <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" \>
-                            <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
+                            <label for=\"$id\"><img src=\"$path\" id =\"proPic\" alt=\"$alt\"></label>
                         </div>";
 
     }
