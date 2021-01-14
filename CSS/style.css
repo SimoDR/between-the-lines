@@ -1,4 +1,43 @@
- /* Style inputs, select elements and textareas */
+/*general rules*/
+* {
+  padding: 0em;
+  margin: 0em;
+}
+
+html, body {
+  max-width: 1024px;
+  min-height: 100vh;
+  margin: 0em auto;
+  padding: 0em
+}
+#content{
+  background-color: burlywood;
+  padding:1em;
+}
+#footer {
+
+  background-color: brown;
+  color: white;
+  text-align: center;
+  padding:1em;
+}
+#footerlist{
+  list-style: none;
+}
+
+#header {
+  background-color: brown;
+  text-align: center;
+  margin:0em;
+  padding:1em;
+}
+#breadcrumb{
+  padding:1em;
+  margin: 0em;
+  background-color: #724e1c;
+}
+
+/* Style inputs, select elements and textareas */
 input[type=text], select, textarea {
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -213,9 +252,18 @@ button:hover {
 .hidden {
   display: none;
 }
-
-#proPic {
+/* profile pictures in forms */
+ul.proPic  img {
   height: 3em;
+}
+
+.proPic {
+  display:flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.proPic > li {
+  flex: 1 1 200px;
 }
 
 
