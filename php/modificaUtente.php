@@ -46,10 +46,10 @@ if (!$obj_connection->openDBConnection()) {
         if ($idPhoto == $idPropic)
             $checked = "checked=\"checked\"";
         //TODO: help needed! control id name & value
-        $pictures = $pictures . "<div class='proPic'>
+        $pictures = $pictures . "<li>
                             <input type=\"radio\" id=\"$idPhoto\" name=\"propic\" value=\"$id\" $checked />
-                            <label for=\"$id\"><img src=\"$path\" id=\"proPic\" alt=\"$alt\"></label>
-                        </div>";
+                            <label for=\"$id\"><img src=\"$path\" id=\"$id\" alt=\"$alt\"></label>
+                        </li>";
 
     }
 }
