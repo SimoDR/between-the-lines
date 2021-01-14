@@ -48,21 +48,37 @@
             </noscript>
 
             <ERROR/>
-            <label for="email" xml:lang="en">Email:</label>
-            <input type="text" name="email" id="email" value="<EMAIL/>" maxlength="30" tabindex="1"
-                   class="full_width_input"/>
+            <div class="row">
+                <div class="col-25">
+                <label for="username" xml:lang="en">Username:</label>
+                </div>
+                <div class="col-75">
+                <input type="text" name="username" id="username" value="<USERNAME/>" maxlength="30"/>
+                </div>
+            </div>
 
-            <label for="password" xml:lang="en">Password:</label>
-            <input type="password" name="password" id="password" value="<PASSWORD/>" maxlength="15"
-                   tabindex="2" class="full_width_input"/>
+            <div class="row">
+                <div class="col-25">
+                <label for="password" xml:lang="en">Password:</label>
+                </div>
+                <div class="col-75">
+                <input type="password" name="password" id="password" value="<PASSWORD/>" maxlength="15"/>
+                </div>
+            </div>
 
+            <div class="row">
+            <input type="submit" id="loginButton" class="button" name="login" value="Accedi" />
+            </div>
 
-            <input type="submit" id="login_btn" class="btn" name="accedi" value="Accedi" tabindex="3"/>
+            <div class="row">
+            <a href="../php/registrazione.php">Non sei ancora registrato? CLICCA QUI</a>
+            </div>
 
-            <a href="registrazione.php" tabindex="3">Non sei ancora registrato? CLICCA QUI</a>
         </fieldset>
     </form>
 </div>
+
+<div class="turnBack"> <a class="turnBackLink" href="#header">Torna su</a> </div>
 
 <div id="footer">
     <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
@@ -73,8 +89,6 @@
         <li xml:lang="en">betweenthelines@gmail.com</li>
         <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
     </ul>
-
-    <a id="turnBack" class="hidden" href="#header">Torna su</a>
 </div>
 
 <script type="text/javascript" src="../js/script.js"></script>
