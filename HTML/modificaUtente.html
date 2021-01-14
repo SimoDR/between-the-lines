@@ -40,63 +40,104 @@
           enctype="multipart/form-data">
         <ERRORI/>
         <!-- change profile picture -->
-        <fieldset class="form-fieldset">
+        <fieldset class="formFieldset">
             <legend class="legend">Cambio foto profilo</legend>
-            <FOTO_PROFILO/>
+            <div class="row">
+                <FOTO_PROFILO/>
+            </div>
         </fieldset>
         <!-- change username -->
-        <fieldset class="form-fieldset">
+        <fieldset class="formFieldset">
             <legend class="legend">Cambio <span xml:lang="en" lang="en">username</span></legend>
             <ERRORI_USERNAME/>
-            <label for="username">Nuovo <span xml:lang="en" lang="en">username</span>:</label>
-            <input class="barra-input"
-                   id="username"
-                   type="text"
-                   name="username"
-                   value="<USERNAME/>"/>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="username">Nuovo <span xml:lang="en" lang="en">username</span>:</label>
+                </div>
+
+                <input class="barra-input"
+                       id="username"
+                       type="text"
+                       name="username"
+                       value="<USERNAME/>"/>
+            </div>
+
         </fieldset>
 
         <!-- change email-->
-        <fieldset class="form-fieldset">
+        <fieldset class="formFieldset">
             <legend class="legend">Cambio <span xml:lang="en" lang="en">e-mail</span></legend>
             <ERRORI_EMAIL/>
-            <label for="user-email">Nuova <span xml:lang="en" lang="en">email</span>:</label>
-            <input class="barra-input"
-                   id="user-email"
-                   type="text"
-                   name="user-email"
-                   value="<EMAIL/>"/>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="user-email">Nuova <span xml:lang="en" lang="en">email</span>:</label>
+                </div>
+                <input class="barra-input"
+                       id="user-email"
+                       type="text"
+                       name="user-email"
+                       value="<EMAIL/>"/>
+            </div>
         </fieldset>
 
         <!--    change password-->
-        <fieldset class="form-fieldset">
+        <fieldset class="formFieldset">
             <legend class="legend">Cambio <span xml:lang="en" lang="en">password</span></legend>
             <ERRORI_PASSWORD/>
-            <label for="newPassword1">Nuova <span xml:lang="en" lang="en">password</span>:</label>
-            <input class="barra-input"
-                   id="newPassword1"
-                   type="password"
-                   name="newPassword1"/>
-            <label for="newPassword2">Conferma nuova <span xml:lang="en" lang="en">password</span>:</label>
-            <input class="barra-input"
-                   id="newPassword2"
-                   type="password"
-                   name="newPassword2"
-                   maxlength="30"/>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="newPassword1">Nuova <span xml:lang="en" lang="en">password</span>:</label>
+                </div>
+                <div class="col-75">
+                    <input class="barra-input"
+                           id="newPassword1"
+                           type="password"
+                           name="newPassword1"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="newPassword2">Conferma nuova <span xml:lang="en" lang="en">password</span>:</label>
+                </div>
+                <div class="col-75">
+                    <input class="barra-input"
+                           id="newPassword2"
+                           type="password"
+                           name="newPassword2"
+                           maxlength="30"/>
+                </div>
+            </div>
+
         </fieldset>
-        <fieldset class="form-fieldset">
-            <label for="oldPassword">Inserisci la tua <span xml:lang="en" lang="en">password</span> per confermare
-                le modifiche:</label>
-            <input class="barra-input"
-                   id="oldPassword"
-                   type="password"
-                   name="oldPassword"
-                   maxlength="15"/>
+        <fieldset class="formFieldset">
             <legend class="legend">Conferma le modifiche</legend>
-            <input class="submitModifiche"
-                   type="submit"
-                   name="submitModifiche"
-                   value="Salva modifiche"/>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="oldPassword">Inserisci la tua <span xml:lang="en" lang="en">password</span> per
+                        confermare
+                        le modifiche:</label>
+                </div>
+                <div class="col-75">
+                    <input class="barra-input"
+                           id="oldPassword"
+                           type="password"
+                           name="oldPassword"
+                           maxlength="15"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <input class="submitModifiche"
+                       type="submit"
+                       name="submitModifiche"
+                       value="Salva modifiche"/>
+            </div>
+
         </fieldset>
 
 
@@ -104,15 +145,21 @@
     <form action="../php/utente.php"
           method="post"
           class="formAnnulla">
-        <fieldset class="form-fieldset add-edit-ricetta-annulla">
+        <fieldset class="formFieldset">
             <legend class="legend">Annulla le modifiche</legend>
-            <input class="submit"
-                   type="submit"
-                   name="deleteModifiche"
-                   value="Annulla"/>
+
+            <div class="row">
+                <input class="submit"
+                       type="submit"
+                       name="deleteModifiche"
+                       value="Annulla"/>
+            </div>
+
         </fieldset>
     </form>
 </div>
+
+<div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
 
 <div id="footer">
     <img id="imgValidCode" src="../img/valid-xhtml10.png"
@@ -124,8 +171,6 @@
         <li xml:lang="en">betweenthelines@gmail.com</li>
         <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
     </ul>
-
-    <a id="turnBack" class="hidden" href="#header">Torna su</a>
 </div>
 
 <script type="text/javascript" src="../js/script.js"></script>
