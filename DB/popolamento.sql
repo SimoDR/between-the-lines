@@ -43,19 +43,19 @@ INSERT INTO copertine VALUES
 # Popolamento Tabella foto_profilo
 #
 INSERT INTO foto_profilo VALUES 
-(1, '../img/icona_libro_rosso.png', 'libro rosso'),
-(2, '../img/icona_libro_verde.png', 'libro verde'),
-(3, '../img/icona_libro_blu.png', 'libro blu'),
-(4, '../img/icona_libro_giallo.png', 'libro giallo');
+(1, '../img/icona_libro_rosso.png', 'foto profilo utente rappresentante un libro rosso'),
+(2, '../img/icona_libro_verde.png', 'foto profilo utente rappresentante un libro verde'),
+(3, '../img/icona_libro_blu.png', 'foto profilo utente rappresentante un libro blu'),
+(4, '../img/icona_libro_giallo.png', 'foto profilo admin rappresentante un libro giallo');
 
 #
 # Popolamento Tabella utenti
 #
 INSERT INTO utenti VALUES 
-(1, 'admin', 'admin',1,'admin@admin.it','1'),
+(1, 'admin', 'admin',4,'admin@admin.it','1'),
 (2, 'utente', 'utente',2,'utente@utente.it','0'),
 (3, 'francy99', 'francy99',3,'francy99@gmail.com','0'),
-(4, 'antobaddo', 'antobaddo',4,'antobaddo@gmail.com','0'),
+(4, 'antobaddo', 'antobaddo',1,'antobaddo@gmail.com','0'),
 (5, 'kayser', 'kayser',1,'kayser@unipd.it','0'),
 (6, 'simonetta', 'simonetta',2,'simonetta@yahoo.it','0');
 
