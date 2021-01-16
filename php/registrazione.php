@@ -99,7 +99,7 @@ if (!$obj_connection->openDBConnection()) {
         $path = $result[$i]['path_foto'];
         $alt = $result[$i]['alt_text'];
         $id = $result[$i]['ID'];
-        if (i == 0) {
+        if ($id == 0) {
             $checked = "checked=\"checked\"";
         }
         $pictures = $pictures . "<li>
