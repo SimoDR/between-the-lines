@@ -1,269 +1,308 @@
 /*general rules*/
 * {
-  padding: 0em;
-  margin: 0em;
+    padding: 0em;
+    margin: 0em;
 }
 
 html, body {
-  max-width: 1024px;
-  min-height: 100vh;
-  margin: 0em auto;
-  padding: 0em
+    max-width: 1024px;
+    min-height: 100vh;
+    margin: 0em auto;
+    padding: 0em
 }
-#content{
-  background-color: burlywood;
-  padding:1em;
+
+
+html {
+    background-image: url("../img/background/background.jpg");
+    background-position: center;
+    background-repeat: repeat;
+    background-size: auto;
+    background-attachment: fixed;
 }
+
+/* font */
+body {
+    background-color: burlywood;
+    font-family: Geneva, Tahoma, sans-serif;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#content {
+    background-color: burlywood;
+    padding: 1em;
+}
+
+/*footer*/
 #footer {
 
-  background-color: brown;
-  color: white;
-  text-align: center;
-  padding:1em;
+    background-color: peru;
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 1em;
 }
-#footerlist{
-  list-style: none;
+
+#footerlist {
+    list-style: none;
 }
 
 #header {
-  background-color: brown;
-  text-align: center;
-  margin:0em;
-  padding:1em;
+    background-color: peru;
+    text-align: center;
+    color: #010151;
+    margin: 0em;
+    padding: 1em;
 }
-#breadcrumb{
-  padding:1em;
-  margin: 0em;
-  background-color: #724e1c;
+
+#logo {
+    width: 15em;
+}
+
+#breadcrumb {
+    padding: 1em;
+    margin: 0em;
+    color: yellow;
+    background-color: sienna;
 }
 
 /* Style inputs, select elements and textareas */
 input[type=text], select, textarea {
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  padding: 12px;
-  resize: vertical;
-  width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 12px;
+    resize: vertical;
+    width: 100%;
 }
 
 /* Style the label to display next to the inputs */
 label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
 }
 
 /* Style the submit button */
 input[type=submit] {
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    padding: 12px 20px;
 }
 
 /* Style the container */
 .container {
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 20px;
 }
 
 /* Floating column for labels: 25% width */
 .col-25 {
-  float: left;
-  margin-top: 6px;
-  width: 25%;
+    float: left;
+    margin-top: 6px;
+    width: 25%;
 }
 
 /* Floating column for inputs: 75% width */
 .col-75 {
-  float: left;
-  margin-top: 6px;
-  width: 75%;
+    float: left;
+    margin-top: 6px;
+    width: 75%;
 }
 
 /* Clear floats after the columns */
 .row:after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .containerPrevNextBtn {
-  overflow:auto;
+    overflow: auto;
 }
+
 input.invalid {
-  background-color: #ffdddd;
+    background-color: #ffdddd;
 }
+
 .tab {
-  display: block;
+    display: block;
 }
-.btn{
-  /*  display: block;
-*/  background-color: #4CAF50;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-family: Raleway;
+
+.btn {
+    /*  display: block;
+  */
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
 }
 
 button {
-  background-color: #4CAF50;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-family: Raleway;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
 }
+
 button:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 #prevBtn {
-  background-color: #bbbbbb;
+    background-color: #bbbbbb;
 }
 
 
-.insertForm{
-  display: block;            
+.insertForm {
+    display: block;
 }
 
-.sr-only{
-    display: none; 
+.sr-only {
+    display: none;
 }
 
 
 @media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-} 
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
 
 
- /* The container must be positioned relative: */
+/* The container must be positioned relative: */
 .custom-select {
-  position: relative;
-  font-family: Arial;
+    position: relative;
+    font-family: Arial;
 }
 
 .custom-select select {
-  display: none; /*hide original SELECT element: */
+    display: none; /*hide original SELECT element: */
 }
 
 
-
-.show {display: block;}
-
-
+.show {
+    display: block;
+}
 
 
 .listbox-area {
-  padding: 20px;
-  background: #eee;
-  border: 1px solid #aaa;
-  font-size: 0;
+    padding: 20px;
+    background: #eee;
+    border: 1px solid #aaa;
+    font-size: 0;
 }
 
 .left-area,
 .right-area {
-  box-sizing: border-box;
-  display: inline-block;
-  font-size: 14px;
-  vertical-align: top;
-  width: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: top;
+    width: 50%;
 }
 
 .left-area {
-  padding-right: 10px;
+    padding-right: 10px;
 }
 
 .right-area {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 [role="listbox"] {
-  min-height: 18em;
-  padding: 0;
-  background: white;
-  border: 1px solid #aaa;
+    min-height: 18em;
+    padding: 0;
+    background: white;
+    border: 1px solid #aaa;
 }
 
 [role="option"] {
-  display: block;
-  padding: 0 1em 0 1.5em;
-  position: relative;
-  line-height: 1.8em;
+    display: block;
+    padding: 0 1em 0 1.5em;
+    position: relative;
+    line-height: 1.8em;
 }
 
 [role="option"].focused {
-  background: #bde4ff;
+    background: #bde4ff;
 }
 
 [role="option"][aria-selected="true"]::before {
-  content: 'âœ“';
-  position: absolute;
-  left: 0.5em;
+    content: 'âœ“';
+    position: absolute;
+    left: 0.5em;
 }
 
 
 .move-right-btn {
-  padding-right: 20px;
-  position: relative;
+    padding-right: 20px;
+    position: relative;
 }
 
 .move-right-btn::after {
-  content: ' ';
-  height: 10px;
-  width: 12px;
-  background-image: url('../imgs/Arrows-Right-icon.png');
-  background-position: center right;
-  position: absolute;
-  right: 2px;
-  top: 6px;
+    content: ' ';
+    height: 10px;
+    width: 12px;
+    background-image: url('../imgs/Arrows-Right-icon.png');
+    background-position: center right;
+    position: absolute;
+    right: 2px;
+    top: 6px;
 }
 
 .move-left-btn {
-  padding-left: 20px;
-  position: relative;
+    padding-left: 20px;
+    position: relative;
 }
 
 .move-left-btn::after {
-  content: ' ';
-  height: 10px;
-  width: 12px;
-  background-image: url('../imgs/Arrows-Left-icon.png');
-  background-position: center left;
-  position: absolute;
-  left: 2px;
-  top: 6px;
+    content: ' ';
+    height: 10px;
+    width: 12px;
+    background-image: url('../imgs/Arrows-Left-icon.png');
+    background-position: center left;
+    position: absolute;
+    left: 2px;
+    top: 6px;
 }
 
 #ss_elem_list {
-  max-height: 18em;
-  overflow-y: auto;
-  position: relative;
+    max-height: 18em;
+    overflow-y: auto;
+    position: relative;
 }
-
 
 
 .hidden {
-  display: none;
+    display: none;
 }
+
 /* profile pictures in forms */
-ul.proPic  img {
-  height: 3em;
+ul.proPic img {
+    height: 3em;
 }
 
 .proPic {
-  display:flex;
-  flex-wrap: wrap;
-  list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
 }
+
 .proPic > li {
-  flex: 1 1 200px;
+    flex: 1 1 200px;
 }
 
 

@@ -1,84 +1,86 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-        <title xml:lang="en">Between the Lines</title>
-        <meta name="title" content="Between the Lines - Opinioni sui libri" />
-        <meta name="description" content="Sito di cultura letteraria, per leggere e condividere Opinioni sui libri." />
+    <title xml:lang="en">Between the Lines</title>
+    <meta name="title" content="Between the Lines - Opinioni sui libri"/>
+    <meta name="description" content="Sito di cultura letteraria, per leggere e condividere Opinioni sui libri."/>
 
-        <meta name="keywords" content="Between the Lines, libri, recensioni, opinioni" />
-        <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
-        <meta name="language" content="italian it" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-         
-        <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
-        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
-    </head>
+    <meta name="keywords" content="Between the Lines, libri, recensioni, opinioni"/>
+    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+    <meta name="language" content="italian it"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <body>
-        <div id="header">
-            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
-            <h1 xml:lang="en">Between the Lines</h1>
-            <h2 xml:lang="en">A world of books for young and old people</h2>
-            <HEADER/>
-        </div>
-    
-        <div id="breadcrumb">
-            <p>Ti trovi in: <span xml:lang="en">Home</span> </p>
-        </div>
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+</head>
 
-        <div id="menu">
-            <MENU/>
-        </div>  
+<body>
+<div id="header">
+    <img id="logo" src="../img/btllogo.png" alt="Libro aperto stilizzato"/>
+    <h1 xml:lang="en">Between the Lines</h1>
+    <h2 xml:lang="en">A world of books for young and old people</h2>
+    <a class="toContent" href="#content">Vai al contenuto</a>
+    <HEADER/>
+</div>
 
-        <div id="content">
-            <h2> Informazioni e scopo del sito</h2>
-            <h2> Ricerca</h2>
+<div id="breadcrumb">
+    <p>Ti trovi in: <span xml:lang="en">Home</span></p>
+</div>
 
-            <form id="search_form" method="get" action="../php/ricerca.php">
-                <fieldset>
-                    <legend>Form di ricerca: </legend>
-                    
-                    <div class="element_form">
-                        <label for="search_bar"></label>
-                        <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
-                        
-                        <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
-                        <label for="filter_title">Cerca per TITOLO</label>
-                          
-                        <input id="filter_author" name="filter" type="radio" value="11"/>
-                        <label for="filter_author">Cerca per AUTORE</label> 
-                    </div>
+<div id="menu">
+    <MENU/>
+</div>
 
-                    <div class="element_form">
-                        <label for="genre">GENERE:</label>
-                        <select id="genre" name="genre" tabindex="3" >
-                            <option value="Qualsiasi">Qualsiasi</option>
-                            <GENERI/>
-                        </select>
-                    </div>
-                    
-                    <input id="search_button" tabindex="4" name="search_button" class="button" type="submit" value="Avvia Ricerca!"/>  
-                </fieldset>
-            </form>
+<div id="content">
+    <h2> Informazioni e scopo del sito</h2>
+    <h2> Ricerca</h2>
 
-            <RISULTATI/>
+    <form id="search_form" method="get" action="../php/ricerca.php">
+        <fieldset>
+            <legend>Form di ricerca:</legend>
 
-        <div class="turnBack"> <a class="turnBackLink" href="#header">Torna su</a> </div>
-    
-        <div id="footer">
-            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
-            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
-            <ul id="footerlist">
-                <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-                <li>049-267276 - Padova, Via Paolotti 5</li>
-                <li xml:lang="en">betweenthelines@gmail.com</li>
-                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-            </ul>
+            <div class="element_form">
+                <label for="search_bar"></label>
+                <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
 
-        </div>
-              
-        <script type="text/javascript" src="../js/script.js"></script>
-    </body>
+                <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
+                <label for="filter_title">Cerca per TITOLO</label>
+
+                <input id="filter_author" name="filter" type="radio" value="11"/>
+                <label for="filter_author">Cerca per AUTORE</label>
+            </div>
+
+            <div class="element_form">
+                <label for="genre">GENERE:</label>
+                <select id="genre" name="genre" tabindex="3">
+                    <option value="Qualsiasi">Qualsiasi</option>
+                    <GENERI/>
+                </select>
+            </div>
+
+            <input id="search_button" tabindex="4" name="search_button" class="button" type="submit"
+                   value="Avvia Ricerca!"/>
+        </fieldset>
+    </form>
+
+    <RISULTATI/>
+
+    <div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
+</div>
+
+<div id="footer">
+    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
+    <ul id="footerlist">
+        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
+        <li>049-267276 - Padova, Via Paolotti 5</li>
+        <li xml:lang="en">betweenthelines@gmail.com</li>
+        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="../js/script.js"></script>
+</body>
 </html>
