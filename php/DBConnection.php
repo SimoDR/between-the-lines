@@ -6,7 +6,7 @@ class DBAccess
     // TODO: definire username, password, database_name
     private const HOST_DB = "localhost";
     private const USERNAME = "root";
-    private const PASSWORD = "root";
+    private const PASSWORD = "";
     private const DATABASE_NAME = "betweenthelines";
 
     private $connection = null;

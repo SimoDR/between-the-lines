@@ -102,10 +102,10 @@ if (!$obj_connection->openDBConnection()) {
         if (i == 0) {
             $checked = "checked=\"checked\"";
         }
-        $pictures = $pictures . "<div class='proPic'>
+        $pictures = $pictures . "<li>
                             <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" \>
-                            <label for=\"$id\"><img src=\"$path\" alt=\"$alt\"></label>
-                        </div>";
+                            <label for=\"$id\"><img src=\"$path\" id=\"$id\" alt=\"$alt\"></label>
+                        </li>";
 
     }
     $obj_connection->closeDBConnection();;
