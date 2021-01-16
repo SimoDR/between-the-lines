@@ -38,15 +38,14 @@ if (isset($_POST['registrati'])) {
 
     //db connection
     $obj_connection = new DBAccess();
-    //input sanification
-    $mail = $obj_connection->escape_string(trim(htmlentities($mail)));
-    $username = $obj_connection->escape_string(trim(htmlentities($username)));
-    $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
 
     if (!$obj_connection->openDBConnection()) {
         $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
-    }
-    else {
+    } else {
+        //input sanification
+        $mail = $obj_connection->escape_string(trim(htmlentities($mail)));
+        $username = $obj_connection->escape_string(trim(htmlentities($username)));
+        $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
         //check mail
         if (!check_email($mail)) {
             $error = $error . "<div class=\"msg_box error_box\">'L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
@@ -62,26 +61,30 @@ if (isset($_POST['registrati'])) {
         //check username existance
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\"")) {
             $error = $error . "<div class=\"msg_box error_box\">Esiste già un utente con questo <span xml:lang=\"en\" lang=\"en\">username</span>.</div>";
-            //check password equality
-            if ($pwd != $pwd2) {
-                $error = $error . "<div class=\"msg_box error_box\">Le <span xml:lang=\"en\" lang=\"en\">password</span> non coincidono.</div>";
-            }
-            //check password
-            if (!check_pwd($pwd)) {
-                $error = $error . "<div class=\"msg_box error_box\">La <span xml:lang=\"en\" lang=\"en\">password</span> deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
-            }
-            //insert new user
-            if ($error == "") {
-                $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$pwd\", $propic , \"$mail\", 0)";
-                $queryResult = $obj_connection->insertDB($query);
+        }
+        //check password equality
+        if ($pwd != $pwd2) {
+            $error = $error . "<div class=\"msg_box error_box\">Le <span xml:lang=\"en\" lang=\"en\">password</span> non coincidono.</div>";
+        }
+        //check password
+        if (!check_pwd($pwd)) {
+            $error = $error . "<div class=\"msg_box error_box\">La <span xml:lang=\"en\" lang=\"en\">password</span> deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
+        }
+        //insert new user
+        if ($error == "") {
+            $query = "INSERT INTO utenti(ID,username, password, id_propic, mail, is_admin) VALUES (NULL, \"$username\",\"$pwd\", $propic , \"$mail\", 0)";
+            $queryResult = $obj_connection->insertDB($query);
 
-                //check dati inseriti
-                if (!$queryResult) {
-                    $error = "<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
-                } else {
-                    header('location: login.php');
-                    exit;
-                }
+            //check dati inseriti
+            if (!$queryResult) {
+                $error = "<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
+            } else {
+                $user=$obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\"");
+                $_SESSION['logged'] = true;
+                $_SESSION['ID'] = $user[0]['ID'];
+                $_SESSION['permesso'] = 0;
+                header('location: index.php');
+                exit;
             }
         }
         $obj_connection->closeDBConnection();
@@ -99,11 +102,11 @@ if (!$obj_connection->openDBConnection()) {
         $path = $result[$i]['path_foto'];
         $alt = $result[$i]['alt_text'];
         $id = $result[$i]['ID'];
-        if ($id == 0) {
+        if ($id == 1) {
             $checked = "checked=\"checked\"";
         }
         $pictures = $pictures . "<li>
-                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" \>
+                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" $checked \>
                             <label for=\"$id\"><img src=\"$path\" id=\"$id\" alt=\"$alt\"></label>
                         </li>";
 
