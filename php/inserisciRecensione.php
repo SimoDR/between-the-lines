@@ -1,7 +1,8 @@
 <?php 
-    require_once('sessione.php');
-    require_once('setupPage.php');
-    require_once('connessione.php');
+require_once('sessione.php');
+require_once('DBConnection.php');
+require_once("setupPage.php");
+
     
     $page=add("../html/inserisciRecensione.html");   
 
@@ -14,7 +15,8 @@
                 // RECUPERO DATI SUL LIBRO
                 
                 $libro = "";
-                $ID_libro = "";
+                $ID_libro = 1;
+                // $_POST['ID_libro']; TOFIX
                 $nomeLibro = "";
                 $nomeAutore = "";
                 $erroreTesto = "";
@@ -22,15 +24,18 @@
                 $ID_utente = $_SESSION['ID'];
                 
                 if ($queryResult = $DBconnection->queryDB(" 
-                    SELECT l.ID as ID, l.titolo AS titolo, a.nome AS nomeAutore, c.path_img AS path_img, c.alt_text AS alt_img
+                    SELECT l.titolo AS titolo, a.nome AS nomeAutore, a.cognome AS cognomeAutore, c.path_img AS path_img, c.alt_text AS alt_img
                     FROM libri AS l,autori AS a, copertine AS c
-                    WHERE l.ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro"
+                    WHERE l.ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro "
                 )) {
                     
                     $libro = $queryResult[0];
-                    $ID_libro = $queryResult[0]['ID'];
-                    $nomeLibro = $queryResult[0]['titolo'];
-                    $nomeAutore = $queryResult[0]['nomeAutore'];
+                    $nomeLibro = $libro['titolo'];
+                    $nomeAutore = $libro['nomeAutore'];
+                    $cognomeAutore = $libro['cognomeAutore'];
+                    $path_img = $libro['path_img'];
+                    $alt_img = $libro['alt_img'];
+
                     
                     //BREADCRUMBS
                     
@@ -58,10 +63,10 @@
                             
                             if ($queryResult = $DBconnection->insertDB( " 
                                     INSERT INTO recensioni(ID, dataora, valutazione, id_libro, id_utente, testo)
-                                    VALUES (NULL, $id_recensione??, \"$data\", $stelle, $ID_libro, $ID_utente, \"$contenuto\")                
+                                    VALUES (NULL, \"$data\", $stelle, $ID_libro, $ID_utente, \"$contenuto\")                
                                     ")) { //TODO: check ID autoincrement
                             
-                                header('location: dettagliLibro.php?id='.$_POST['ID_libro']); //TODO: messaggio di successo
+                                header('location: dettagliLibro.php?id_libro='. $ID_libro); //TODO: messaggio di successo
                                 exit;                      
                             
                             }
@@ -83,18 +88,22 @@
                         }
                         
                          
-                        $page=str_replace('<NOME_LIBRO/>',$nomeLibro,$page);
-                        $page=str_replace('<AUTORE/>',$nomeAutore,$page);
-
-                        $page=str_replace('<ERRORE_CONTENUTO/>',$erroreTesto,$page);
-
-                        $page=str_replace('<CONTENUTO_RECENSIONE/>',$contenuto,$page);                  
+                                        
                         
                     }
                     else {
-                        // non è settato il POST recensione
-                        echo 'post non settato';
+                        
+                        $contenuto = '';
                     }
+                    $page=str_replace('<LIBRO_COPERTINA/>',$path_img,$page);
+                    $page=str_replace('<LIBRO_COPERTINA_ALT/>',$alt_img,$page);
+                    $page=str_replace('<NOME_LIBRO/>',$nomeLibro,$page);
+                    $page=str_replace('<AUTORE_NOME/>',$nomeAutore,$page);
+                    $page=str_replace('<AUTORE_COGNOME/>',$cognomeAutore,$page);
+
+                    $page=str_replace('<ERRORE_CONTENUTO/>',$erroreTesto,$page);
+
+                    $page=str_replace('<CONTENUTO_RECENSIONE/>',$contenuto,$page);  
                
                     
                 }

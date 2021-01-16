@@ -118,24 +118,24 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 
                 //TODO: controllare qudno non restituisce risultato
                 if (!is_null($queryRecensioni = $DBconnection->queryDB("
-                            SELECT u.username as username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
+                            SELECT r.ID AS id_recensione, u.username AS username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
                             FROM recensioni AS r, utenti AS u, foto_profilo AS f
                             WHERE r.id_libro = $ID_libro AND u.id_propic = f.ID AND r.id_utente = u.ID
                             ORDER BY rec_dataora DESC
                             "))) {
                     
                     // controllo se non sono fuori dai limiti
-                    if (isset($_GET['pageN']) && (!check_number($_GET['pageN']) || $_GET['pageN'] < 1 || $_GET['pageN'] > $totalPages)) {
+                    if (isset($_GET['npage']) && (!check_number($_GET['npage']) || $_GET['npage'] < 1 || $_GET['npage'] > $totalPages)) {
                         header('location: 404.php');
                         exit;
                     }
                     
                     
                     //recupero lista recensioni
-                    if (isset($_GET["pageN"])) {
-                        $pageN = $_GET["pageN"];
+                    if (isset($_GET["npage"])) {
+                        $npage = $_GET["npage"];
                     } else {
-                        $pageN = 1;
+                        $npage = 1;
                     }
                     
                     $listaRecensioni = "";
@@ -147,13 +147,13 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                             </div>';                                
                     } else {
                     
-                    $startIndex = ($pageN - 1) * $resultsInPage; // indice della recensioni iniziale nella pagina
+                    $startIndex = ($npage - 1) * $resultsInPage; // indice della recensioni iniziale nella pagina
                     $endIndex = 0; // indice della recensione finale nella pagina
-                    if($pageN == $totalPages) {
+                    if($npage == $totalPages) {
                         $endIndex = $totalRecensioni;                        
                     }
                     else {
-                        $endIndex = $pageN * $resultsInPage;
+                        $endIndex = $npage * $resultsInPage;
                     }
 
                     
@@ -163,11 +163,21 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         for ($i = $startIndex; $i < $endIndex; $i++) {
 
                             $drawStarsUtente = printStars($queryRecensioni[$i]['rec_valutazione']);
-                                    
+                            
+                            $eliminazioneRecensione = '';
+                            if($_SESSION['ID'] == $ID_utente) {
+                                $eliminazioneRecensione = '<form action="inserisciRecensione.php" method="post">
+                                            <input type="hidden" name="ID_recensione" value="' . $queryRecensioni[$i]['id_recensione'] .'"/>
+                                            <input type="submit" value="Inserisci recensione" class="button"/>
+                                            </form>';
+                            }
+                            
+                            
                             $listaRecensioni = $listaRecensioni . '
                             <dl class="review_list">
                                 <dt>
                                     <div class="user_details">
+                                        <p>' . $eliminazioneRecensione . ' 
                                         <img src=' . $queryRecensioni[$i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[$i]['alt_foto_profilo'] . ' />
                                         <span>' . $queryRecensioni[$i]['username'] . '</span>
                                     </div>
@@ -195,15 +205,15 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
 
                     $address = $_SERVER['REQUEST_URI'];
-                    $address = preg_replace("/\&pageN=\d/","",$address);
-                    if ($pageN > 1) {
-                        $prec = $pageN - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pageN=' . $prec . '>Precedente</a>';
+                    $address = preg_replace("/\&npage=\d/","",$address);
+                    if ($npage > 1) {
+                        $prec = $npage - 1;
+                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&npage=' . $prec . '>Precedente</a>';
                     }
-                    $pagineRecensioni = $pagineRecensioni . '<span class="review_page_number">' . $pageN . '</span>';
-                    if ($pageN < $totalPages) {
-                        $succ = $pageN + 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&pageN=' . $succ . '>Successivo</a>';
+                    $pagineRecensioni = $pagineRecensioni . '<span class="review_page_number">' . $npage . '</span>';
+                    if ($npage < $totalPages) {
+                        $succ = $npage + 1;
+                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&npage=' . $succ . '>Successivo</a>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '</div>';
 
@@ -221,9 +231,9 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 if (isset($_SESSION['logged']) && $_SESSION['logged']) { // se loggato
                     if ($_SESSION['permesso'] == 0) { // se non admin
                         $inserimentoForm = '<form action="inserisciRecensione.php" method="post">
-                                        <input type="hidden" name="ID_libro" value =' . $ID_libro . '/>
-                                        <input type="submit" value="Inserisci recensione" class="button"/>
-                                        </form>';
+                                            <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
+                                            <input type="submit" value="Inserisci recensione" class="button"/>
+                                            </form>';
                     } else { // se admin
                         $inserimentoForm = "<p>Spiacente, l'admin non può effettuare recensioni</p>";
                     }
@@ -232,6 +242,28 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 }
 
                 $page = str_replace('<FORM_INSERIMENTO_RECENSIONE/>', $inserimentoForm, $page);
+                
+                $eliminazioneLibro = '';
+                if ($_SESSION['permesso'] == 1) {
+                    $eliminazioneLibro .= ' <form action="inserisciRecensione.php" method="post">
+                                            <input type="hidden" name="ID_libro_eliminazione" value="' . $ID_libro .'"/>
+                                            <input type="submit" value="Elimina libro" class="button"/>
+                                            </form>';
+                }    
+                $page = str_replace('<ELIMINA_LIBRO/>', $eliminazioneLibro, $page);
+                
+                if(isset($_POST['ID_libro_eliminazione'])) {
+                    
+                    //query
+                    header('location: index.php' . $ID_libro); //TODO: messaggio di successo
+                    
+                    exit;
+                }
+                if(isset($_POST['ID_recensione'])) {
+                    //query
+                    header('location: dettagliLibro.php?id_libro='. $ID_libro); //TODO: messaggio di successo
+                    exit;                      
+                }
                 
             } 
             

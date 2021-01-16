@@ -18,7 +18,7 @@
 
     <body>
         <div id="header">
-            <img id="logo" src="../images/btllogo.jpg" alt="Libro aperto stilizzato" />
+            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
             <h1 xml:lang="en">Between the Lines</h1>
             <h2 xml:lang="en">A world of books for young and old</h2>
             <HEADER/>
@@ -47,8 +47,7 @@
             <h1>Recensisci questo libro</h1>
             
             <img src="<LIBRO_COPERTINA/>" id="ins_review_img" alt="<LIBRO_COPERTINA_ALT/>"/>
-            <span id="ins_review_title"><NOME_LIBRO/></span>
-            <span><AUTORE/></span>
+            <span id="ins_review_title"><NOME_LIBRO/> (<AUTORE_NOME/> <AUTORE_COGNOME/>) </span>
             
             <h2>
                 Condividi un pensiero su questo libro per aiutare gli altri utenti a scegliere le migliori letture!
@@ -68,9 +67,9 @@
                     </select>			
                     
                     <ERRORE_CONTENUTO/>
-					
                     <label for="form_ins_review_content">La tua recensione: </label>
-                    <textarea id="review_content" rows="50" cols="50" name="review_content"  class="full_width_input" tabindex=2>					
+                    <textarea id="review_content" rows="50" cols="50" name="review					
+_content"  class="full_width_input" tabindex=2>					
 					<CONTENUTO_RECENSIONE/>					
                     </textarea>
                     
