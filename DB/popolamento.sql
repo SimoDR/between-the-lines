@@ -54,18 +54,18 @@ INSERT INTO foto_profilo VALUES
 
 
 INSERT INTO utenti VALUES
-(1,'pipinoIlBreve','dwni32423r9wejfioc32nx',1,'pippo.breve@gmail.com',0),
-(2,'mammaInformata','dwni32423r9wejfioc32nx',2,'mamma.forno@virgilio.it',0),
-(3,'giovanna97','dwni32423r9wejfioc32nx',3,'giovanna97@hotmail.it',0),
-(4,'pablo89','dwni32423r9wejfioc32nx',4,'pablo89@drugs.co',0),
-(5,'carletto_the_best','dwni32423r9wejfioc32nx',5,'carlo.franco@virgilio.it',0),
-(6,'giovanniReader','dwni32423r9wejfioc32nx',6,'giovanni.storti@msn.it',0),
-(7,'divoratore_di_libri','dwni32423r9wejfioc32nx',7,'francesco.barocco@gmail.com',0),
-(8,'francescaM99','dwni32423r9wejfioc32nx',8,'francy.emme@virgilio.it',0),
-(9,'antoBaddio','dwni32423r9wejfioc32nx',9,'antonello.baldino@cafoscari.it',0),
-(10,'troloFre','dwni32423r9wejfioc32nx',10,'federico.trolesio@gmail.com',0),
-(11,'kaiser_lillo38','dwni32423r9wejfioc32nx',11,'luca.falsonese@virgilio.it',0),
-(12,'simo99DR','dwni32423r9wejfioc32nx',12,'simone.dr.dre@gmail.com',0);
+(1,'pipinoIlBreve','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',1,'pippo.breve@gmail.com',0),
+(2,'mammaInformata','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',2,'mamma.forno@virgilio.it',0),
+(3,'giovanna97','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',3,'giovanna97@hotmail.it',0),
+(4,'pablo89','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',4,'pablo89@drugs.co',0),
+(5,'carletto_the_best','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',5,'carlo.franco@virgilio.it',0),
+(6,'giovanniReader','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',6,'giovanni.storti@msn.it',0),
+(7,'divoratore_di_libri','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',7,'francesco.barocco@gmail.com',0),
+(8,'francescaM99','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',8,'francy.emme@virgilio.it',0),
+(9,'antoBaddio','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',9,'antonello.baldino@cafoscari.it',0),
+(10,'troloFre','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',10,'federico.trolesio@gmail.com',0),
+(11,'kaiser_lillo38','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',11,'luca.falsonese@virgilio.it',0),
+(12,'simo99DR','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',12,'simone.dr.dre@gmail.com',0);
 
 
 INSERT INTO recensioni VALUES
