@@ -306,19 +306,29 @@ ul.proPic img {
 }
 
 /*pagina utente*/
+
+.imgWrapper{
+    width:9em;
+    height: 9em;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 0.2em solid black;
+}
+
 .userPic {
-    width: 5em;
+    margin-top: 1em;
+    width: 7em;
+}
+.userInfo {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding:1em;
-    border-radius: 50%;
-    border: 3px solid black;
-}
-.userInfo {
 text-align: center;
-    margin: 5em;
 }
+
 
 
 
