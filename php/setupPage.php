@@ -7,6 +7,7 @@ function add($htmlPath) {
     disableMagicQuotes();
     addHeader($pageContent);
     addMenu($pageContent);
+    addFooter($pageContent);
     return $pageContent;
 }
 
@@ -101,6 +102,14 @@ function addMenu(&$page) {
     $menu = file_get_contents("../HTML/template/menu.html");
 
     $page = str_replace("<MENU/>", $menu, $page);
+}
+
+function addFooter(&$page) {
+    
+    // header con tutto
+    $footer = file_get_contents("../HTML/template/footer.html");
+
+    $page = str_replace("<FOOTER/>", $footer, $page);
 }
 
 
