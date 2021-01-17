@@ -8,6 +8,13 @@ $error = '';
 $username = '';
 $pwd = '';
 
+$formLibro = '';
+ if(isset($_GET['id_libro'])) {
+    $formLibro = '<input type="hidden" name="id_libro" value = "' . $_GET['id_libro'] . '"/> ';
+}
+
+
+
 /* se ci sono valori in _POST cerca di fare il login o stampa errore */
 if(isset($_POST['login'])) {
     if (isset($_POST['username'])) {
@@ -16,6 +23,8 @@ if(isset($_POST['login'])) {
     if (isset($_POST['password'])) {
         $pwd = $_POST['password'];
     }
+    
+    
 
     /* crea connessione al DB */
     require_once('DBConnection.php');
@@ -35,8 +44,16 @@ if(isset($_POST['login'])) {
                 $_SESSION['ID'] = $queryResult[0]['ID'];
                 //permesso is bool: 0 user, 1 admin
                 $_SESSION['permesso'] = $queryResult[0]['is_admin'];
-                header('location: index.php');
-                exit;
+                
+                if(isset($_POST['id_libro'])) {
+                    $destinazione = $_POST['id_libro'];
+                    header('location: dettagliLibro.php?id_libro='. $destinazione);
+                    exit;
+                }
+                else {
+                    header('location: index.php');
+                    exit;
+                }
             }
         $obj_connection->closeDBConnection();
     } else {
@@ -44,6 +61,8 @@ if(isset($_POST['login'])) {
     }
 }
 
+
+$page = str_replace("<FORM_LIBRO/>", $formLibro, $page);
 $page = str_replace("<ERROR/>", $error, $page);
 $page = str_replace("<USERNAME/>", $username, $page);
 $page = str_replace("<PASSWORD/>", $pwd, $page);
