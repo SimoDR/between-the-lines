@@ -22,7 +22,7 @@ if ($_SESSION['logged'] == true) {
             $proPic = $obj_connection->queryDB("SELECT * FROM foto_profilo WHERE ID=\"$idPic\" ");
             $pathPic = $proPic[0]["path_foto"];
             $altPic = $proPic[0]["alt_text"];
-            $userInfo = "<img class=\"userPic\" src=\"$pathPic\" alt=\"$altPic\" \>
+            $userInfo = "<div class=\"imgWrapper\"><img class=\"userPic\" src=\"$pathPic\" alt=\"$altPic\" /></div>
         <h2 class=\"userName\"> $username </h2>
         <p class=\"email\"> La tua <span xml:lang=\"en\" lang=\"en\">E-mail</span>: $email </p>";
         }

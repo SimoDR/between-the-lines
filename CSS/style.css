@@ -305,6 +305,31 @@ ul.proPic img {
     flex: 1 1 200px;
 }
 
+/*pagina utente*/
+
+.imgWrapper{
+    width:9em;
+    height: 9em;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 0.2em solid black;
+}
+
+.userPic {
+    margin-top: 1em;
+    width: 7em;
+}
+.userInfo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+text-align: center;
+}
+
+
 
 
 
