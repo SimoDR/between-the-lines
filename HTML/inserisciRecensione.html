@@ -57,23 +57,16 @@
                 <fieldset>
                     <legend>Inserimento nuova recensione</legend>
 					
-                    <label for="n_stars">Su una scala da 1 a 5, dove 1 corrisponde a "pessimo" e 5 corrisponde a "magnifico", come valuti il libro?</label>
-                    <select id="n_stars" name="n_stelle" tabindex="1">
-                        <option value="1" <ONE> >1</option>
-                        <option value="2" <TWO> >2</option>
-                        <option value="3" <THREE> >3</option>
-                        <option value="4" <FOUR> >4</option>
-                        <option value="5" <FIVE> >5</option>
+                    <label for="n_stars">Su una scala da 1 a 5, come valuti il libro?</label>
+                    <select id="n_stars" name="n_stars" tabindex="1">
+                        <SELEZIONE_STELLE/>                  
                     </select>			
                     
                     <ERRORE_CONTENUTO/>
                     <label for="form_ins_review_content">La tua recensione: </label>
-                    <textarea id="review_content" rows="50" cols="50" name="review					
-_content"  class="full_width_input" tabindex=2>					
-					<CONTENUTO_RECENSIONE/>					
-                    </textarea>
+                    <textarea id="review_content" rows="10" cols="50" name="review_content"  class="full_width_input" tabindex=2><CONTENUTO_RECENSIONE/></textarea>
                     
-                    <input type="hidden" name="id_book" value="<ID_LIBRO/>" />
+                    <input type="hidden" name="ID_libro" value="<ID_LIBRO/>" />
 					
                     <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="3" />
 					
@@ -83,8 +76,8 @@ _content"  class="full_width_input" tabindex=2>
 			
 			
         <div id="footer">
-            <img id="imgValidCode" src="../images/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
-            <img id="imgValidCSS" src="../images/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
+            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
             <ul id="footerlist">
                 <li><span xml:lang="en"> Beetween the Lines</span> - Opinioni sui libri</li>
                 <li>049-267276 - Padova, Via Paolotti 5</li>

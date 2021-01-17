@@ -94,7 +94,7 @@
 				$bookList .= '<dd>' . $book['media']. '</dd>';
 				$bookList .= 
 
-				'<dd><form action="dettagli_libro.php " method="get"> 
+				'<dd><form action="dettagliLibro.php " method="get"> 
 					<input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
 					<input type="submit" value="Dettagli" class="button"/>
  				</form></dd>';

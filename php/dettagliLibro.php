@@ -30,6 +30,7 @@ function printStars($num)
 
 $page = add("../html/dettagliLibro.html");
 
+$erroriPagina = '';
 if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
     
     
@@ -38,6 +39,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
     $DBconnection = new DBAccess();
     
+    
 
     if ($DBconnection->openDBConnection()) {
         if (!is_null($queryResult = $DBconnection->queryDB(" 
@@ -45,10 +47,9 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     FROM libri AS l,autori AS a, generi AS g
                     WHERE l.ID=$ID_libro AND l.id_autore=a.ID AND l.id_genere=g.ID "
                 ))) {
-            // libro presente          
+            // libro presente 
+            
             if (!empty($queryResult)) {
-
-
 
                 $libro = $queryResult[0];
 
@@ -74,7 +75,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         $page = str_replace('<LIBRO_COPERTINA_ALT/>', "Errore: alt non trovato", $page);
                     }
                 } else {
-                    echo 'Errore: impossibile eseguire query al database';
+                    $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> di raccolta dei dati del libro</div>";
                 }
 
                 $page = str_replace('<LIBRO_TITOLO/>', $libro['titolo'], $page);
@@ -87,13 +88,13 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
                 // STELLE
                 
-                if (!empty($queryNumRecensioni = $DBconnection->queryDB("
+                if (!is_null($queryNumRecensioni = $DBconnection->queryDB("
                             SELECT AVG(valutazione) AS avg_stars, COUNT(valutazione) AS num_recensioni
                             FROM recensioni
                             WHERE $ID_libro=id_libro "))) {
                     
                 } else {
-                    echo 'Errore: impossibile eseguire query al database';
+                    $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sull'apprezzamento del libro</div>";
                 }
                 $numeroStelle = 'Ancora nessuna stella per questo libro!';
                 $drawStars = '';
@@ -116,9 +117,9 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 $totalPages = ceil($totalRecensioni / $resultsInPage);
                 $pagesList = "";
                 
-                //TODO: controllare qudno non restituisce risultato
+
                 if (!is_null($queryRecensioni = $DBconnection->queryDB("
-                            SELECT r.ID AS id_recensione, u.username AS username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
+                            SELECT r.ID AS id_recensione, u.ID AS ID_utente, u.username AS username, f.path_foto AS path_foto_profilo, f.alt_text AS alt_foto_profilo, r.dataora as rec_dataora, r.valutazione as rec_valutazione, r.testo as rec_testo
                             FROM recensioni AS r, utenti AS u, foto_profilo AS f
                             WHERE r.id_libro = $ID_libro AND u.id_propic = f.ID AND r.id_utente = u.ID
                             ORDER BY rec_dataora DESC
@@ -141,10 +142,12 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     $listaRecensioni = "";
                     if(empty($queryRecensioni))
                     {
-                        $listaRecensioni .=  ' 
+                        if($_SESSION['permesso'] == 0) {
+                            $listaRecensioni .=  ' 
                             <div>
                                 <span class ="no_item">Ancora nessuna recensione: sii tu il primo a recensire questo libro!</span>
-                            </div>';                                
+                            </div>';     
+                        }
                     } else {
                     
                     $startIndex = ($npage - 1) * $resultsInPage; // indice della recensioni iniziale nella pagina
@@ -156,6 +159,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         $endIndex = $npage * $resultsInPage;
                     }
 
+                    // STAMPA DELLE RECENSIONI
                     
                     if ($startIndex == $endIndex) {
                         $listaRecensioni = "Nessuna recensione presente per questo libro";
@@ -164,14 +168,17 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
                             $drawStarsUtente = printStars($queryRecensioni[$i]['rec_valutazione']);
                             
+                            // eliminazione recensione 
+                            
                             $eliminazioneRecensione = '';
-                            if($_SESSION['ID'] == $ID_utente) {
-                                $eliminazioneRecensione = '<form action="inserisciRecensione.php" method="post">
+                            if($_SESSION['ID'] == $queryRecensioni[$i]['ID_utente'] || $_SESSION['permesso'] == 1) {
+                                $eliminazioneRecensione = '<form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post"> 
                                             <input type="hidden" name="ID_recensione" value="' . $queryRecensioni[$i]['id_recensione'] .'"/>
-                                            <input type="submit" value="Inserisci recensione" class="button"/>
+                                            <input type="submit" value="Elimina recensione" class="button"/>
                                             </form>';
                             }
                             
+                            //stampa recensione
                             
                             $listaRecensioni = $listaRecensioni . '
                             <dl class="review_list">
@@ -181,7 +188,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                                         <img src=' . $queryRecensioni[$i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[$i]['alt_foto_profilo'] . ' />
                                         <span>' . $queryRecensioni[$i]['username'] . '</span>
                                     </div>
-                                    <span class="review_datetime">' . $queryRecensioni[$i]['rec_dataora'] . '</span> 
+                                    <span class="review_datetime">' . substr($queryRecensioni[$i]['rec_dataora'],0,16) . '</span> 
                                 </dt>
                                 <dd>
                                     <div class="review_details">
@@ -203,9 +210,11 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
                     $pagineRecensioni = '<div class="center">';
 
-
+                    // pulizia dell'imput
                     $address = $_SERVER['REQUEST_URI'];
                     $address = preg_replace("/\&npage=\d/","",$address);
+                    
+                    // pagine precedenti e successive 
                     if ($npage > 1) {
                         $prec = $npage - 1;
                         $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&npage=' . $prec . '>Precedente</a>';
@@ -220,7 +229,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     $page = str_replace('<PAGINE_RECENSIONI/>', $pagineRecensioni, $page);
                 } else {
                     // errore db query recensioni
-                    echo "Errore db query recensioni";
+                    $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> di raccolta delle recensioni</div>";
                 }
 
 
@@ -238,39 +247,70 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         $inserimentoForm = "<p>Spiacente, l'admin non può effettuare recensioni</p>";
                     }
                 } else { // non loggato
-                    $inserimentoForm = '<p><a href="login.php">Effettua il login per inserire una recensione</a></p>';
+                    
+                    $inserimentoForm = '<p><form action="login.php " method="get"> 
+					<input type="hidden" name="id_libro" value ="' . $ID_libro . '"/>
+					<input type="submit" value="Effettua il login per inserire una recensione" class="button"/>
+                                        </form></p>';
                 }
 
                 $page = str_replace('<FORM_INSERIMENTO_RECENSIONE/>', $inserimentoForm, $page);
                 
+                
+                // ELIMINAZIONE LIBRO
+                
                 $eliminazioneLibro = '';
                 if ($_SESSION['permesso'] == 1) {
-                    $eliminazioneLibro .= ' <form action="inserisciRecensione.php" method="post">
+                    $eliminazioneLibro .= ' <form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post"> 
                                             <input type="hidden" name="ID_libro_eliminazione" value="' . $ID_libro .'"/>
                                             <input type="submit" value="Elimina libro" class="button"/>
                                             </form>';
                 }    
                 $page = str_replace('<ELIMINA_LIBRO/>', $eliminazioneLibro, $page);
                 
+                
+                // SE LIBRO ELIMINATO
+                
                 if(isset($_POST['ID_libro_eliminazione'])) {
                     
-                    //query
-                    header('location: index.php' . $ID_libro); //TODO: messaggio di successo
+                    $libroDaEliminare = $_POST['ID_libro_eliminazione'];
+                    if(!is_null($queryResult = $DBconnection->insertDB(" 
+                        DELETE 
+                        FROM libri
+                        WHERE ID = $libroDaEliminare "
+                        ))) {
                     
-                    exit;
-                }
-                if(isset($_POST['ID_recensione'])) {
-                    //query
-                    header('location: dettagliLibro.php?id_libro='. $ID_libro); //TODO: messaggio di successo
-                    exit;                      
+                            header('location: index.php'); //TODO: messaggio di successo                            
+                            exit;                      
+                        }
+                        else {
+                            $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> di eliminazione del libro</div>";
+                        }  
+                    
                 }
                 
-            } 
-            
-            
-            
-            
+                // SE RECENSIONE ELIMINATA
+                
+                if(isset($_POST['ID_recensione'])) {
+                    $recensioneDaEliminare = $_POST['ID_recensione'];
+                    if(!is_null($queryResult = $DBconnection->insertDB(" 
+                        DELETE 
+                        FROM recensioni
+                        WHERE ID = $recensioneDaEliminare "
+                        ))) {
+                            header('location: dettagliLibro.php?id_libro='. $ID_libro); //TODO: messaggio di successo
+                            exit;                      
+                        }
+                        else {
+                            $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> di eliminazione della recensione</div>";
+                        }
+                }
+                
+                
+
+            }          
             else { // libro non presente
+
                 header('location: 404.php');
                 exit;
             }
@@ -278,14 +318,14 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
         
         
         else {
-            echo "Errore query";
+            $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sul libro</div>";
         }
     }
     
     
     
     else { // non si connette al db
-        echo "Errore di connessione al database";
+        $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
     }
 
 } 
@@ -295,7 +335,11 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 else { // se non GET[ID] not set
     header('location: 404.php');
     exit;
+
 }
+
+$page = str_replace('<ERRORI_PAGINA/>', $erroriPagina, $page);
+
 
 echo $page;
 ?>

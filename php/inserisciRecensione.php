@@ -15,19 +15,18 @@ require_once("setupPage.php");
                 // RECUPERO DATI SUL LIBRO
                 
                 $libro = "";
-                $ID_libro = 1;
-                // $_POST['ID_libro']; TOFIX
+                $ID_libro = $_POST['ID_libro'];
                 $nomeLibro = "";
                 $nomeAutore = "";
                 $erroreTesto = "";
                 $messaggioSuccesso = "";
                 $ID_utente = $_SESSION['ID'];
                 
-                if ($queryResult = $DBconnection->queryDB(" 
+                if (!is_null($queryResult = $DBconnection->queryDB(" 
                     SELECT l.titolo AS titolo, a.nome AS nomeAutore, a.cognome AS cognomeAutore, c.path_img AS path_img, c.alt_text AS alt_img
                     FROM libri AS l,autori AS a, copertine AS c
                     WHERE l.ID=$ID_libro AND l.id_autore=a.ID AND l.ID=c.id_libro "
-                )) {
+                    ))) {
                     
                     $libro = $queryResult[0];
                     $nomeLibro = $libro['titolo'];
@@ -35,37 +34,37 @@ require_once("setupPage.php");
                     $cognomeAutore = $libro['cognomeAutore'];
                     $path_img = $libro['path_img'];
                     $alt_img = $libro['alt_img'];
-
+                    
                     
                     //BREADCRUMBS
                     
                     $breadcrumb = 'Home &raquo; ' . $libro['titolo'] . '&raquo; Inserisci recensione' ;
                    
                     // RECUPERO DATI FORM
-                    
-                    $contenuto = "";
+                                            
+
+                    $contenuto = '';
                     $stelle = 1;
                     $data = "";
                     if(isset($_POST['review_content'])){
                         
                         $contenuto=$_POST['review_content'];
-
+                        
                         if(isset($_POST['n_stars'])){
                             $stelle=$_POST['n_stars'];
                         }
                         
                         date_default_timezone_set("Europe/Rome");
-                        $data=date("Y-m-d H");
+                        $data=date("Y-m-d H:i");
+                        
 
                         // CONTROLLO DATI RECENSIONE
-                        
-                        if($contenuto != '' && strlen($contenuto) > 50 && strlen($contenuto) > 500) { //TODO: necessari controlli per sanificare?
+                        if($contenuto != '' && strlen($contenuto) > 50 && strlen($contenuto) < 500) { //TODO: necessari controlli per sanificare?
                             
-                            if ($queryResult = $DBconnection->insertDB( " 
+                            if (!is_null($queryResult = $DBconnection->insertDB( " 
                                     INSERT INTO recensioni(ID, dataora, valutazione, id_libro, id_utente, testo)
                                     VALUES (NULL, \"$data\", $stelle, $ID_libro, $ID_utente, \"$contenuto\")                
-                                    ")) { //TODO: check ID autoincrement
-                            
+                                    "))) { //TODO: check ID autoincrement
                                 header('location: dettagliLibro.php?id_libro='. $ID_libro); //TODO: messaggio di successo
                                 exit;                      
                             
@@ -97,24 +96,42 @@ require_once("setupPage.php");
                     }
                     $page=str_replace('<LIBRO_COPERTINA/>',$path_img,$page);
                     $page=str_replace('<LIBRO_COPERTINA_ALT/>',$alt_img,$page);
+                    $page=str_replace('<ID_LIBRO/>',$ID_libro,$page);
                     $page=str_replace('<NOME_LIBRO/>',$nomeLibro,$page);
                     $page=str_replace('<AUTORE_NOME/>',$nomeAutore,$page);
                     $page=str_replace('<AUTORE_COGNOME/>',$cognomeAutore,$page);
-
+                    
                     $page=str_replace('<ERRORE_CONTENUTO/>',$erroreTesto,$page);
 
                     $page=str_replace('<CONTENUTO_RECENSIONE/>',$contenuto,$page);  
-               
+                    
+                    
+                    $selezioneStelle = '';
+                    for($i = 1; $i<6; $i++)
+                    {
+                        $singolarePlurale = $i > 1 ? 'e' : 'a';
+                        if($i == $stelle) {
+                            
+                            $selezioneStelle .= ' <option selected="selected" value="'. $i . '">' . $i . ' stell'. $singolarePlurale . '</option>';
+                        }
+                        else {
+                            $selezioneStelle .= ' <option value="'. $i . '">' . $i . ' stell'. $singolarePlurale . '</option>';
+                        }
+    
+                    }
+                    
+                    $page=str_replace('<SELEZIONE_STELLE/>',$selezioneStelle,$page);  
+                    
                     
                 }
                 else {
                     //errore query
-                    echo 'errore query';
+                    $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sul libro</div>";
                 }
                 
             } else {
                 //errore connessione a db
-                echo 'errore connessione a db';
+                $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
             }
             
         } else {
