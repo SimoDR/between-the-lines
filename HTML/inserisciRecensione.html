@@ -18,7 +18,7 @@
 
     <body>
         <div id="header">
-            <img id="logo" src="../images/btllogo.jpg" alt="Libro aperto stilizzato" />
+            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
             <h1 xml:lang="en">Between the Lines</h1>
             <h2 xml:lang="en">A world of books for young and old</h2>
             <HEADER/>
@@ -29,8 +29,12 @@
         </div>
 
         <div id="menu">
-            <MENU/>
-        </div>  
+            <ul class="menu-list"> 
+                <li xml:lang="en"><a href="index.php">Home</a></li>
+                <li><a href="chisiamo.php">Chi Siamo</a></li>
+                <li><a href="contattaci.php">Contattaci</a></li>
+            </ul>
+        </div>    
 
         <div id="content">
 						
@@ -43,8 +47,7 @@
             <h1>Recensisci questo libro</h1>
             
             <img src="<LIBRO_COPERTINA/>" id="ins_review_img" alt="<LIBRO_COPERTINA_ALT/>"/>
-            <span id="ins_review_title"><NOME_LIBRO/></span>
-            <span><AUTORE/></span>
+            <span id="ins_review_title"><NOME_LIBRO/> (<AUTORE_NOME/> <AUTORE_COGNOME/>) </span>
             
             <h2>
                 Condividi un pensiero su questo libro per aiutare gli altri utenti a scegliere le migliori letture!
@@ -54,30 +57,18 @@
                 <fieldset>
                     <legend>Inserimento nuova recensione</legend>
 					
-					<fieldset> 
-						<legend>Gradimento del libro:</legend>
-							<div><label for="one_stars">1 stella</label>
-								<input type="radio" name="stars" id="one_stars" value="one_stars" tabindex="1" /></div>
-							<div><label for="two_stars">2 stelle</label>
-								<input type="radio" name="stars" id="two_stars" value="two_stars" tabindex="2" /></div>
-							<div><label for="three_stars">3 stelle</label> 
-								<input type="radio" name="stars" id="three_stars" value="three_stars" tabindex="3" /></div>	
-							<div><label for="four_stars">4 stelle</label>
-								<input type="radio" name="stars" id="four_stars" value="four_stars" tabindex="4" /></div>
-							<div><label for="five_stars">5 stelle</label>
-								<input type="radio" name="stars" id="five_stars" value="five_stars" tabindex="5" /></div>						
-                    </fieldset>					
+                    <label for="n_stars">Su una scala da 1 a 5, come valuti il libro?</label>
+                    <select id="n_stars" name="n_stars" tabindex="1">
+                        <SELEZIONE_STELLE/>                  
+                    </select>			
                     
                     <ERRORE_CONTENUTO/>
-					
-                    <label for="form_ins_review_text">La tua recensione: </label>
-                    <textarea id="form_ins_review_textarea" rows="50" cols="50" name="form_ins_review_textarea"  class="full_width_input" tabindex=6>					
-					<CONTENUTO_RECENSIONE/>					
-					</textarea>
+                    <label for="form_ins_review_content">La tua recensione: </label>
+                    <textarea id="review_content" rows="10" cols="50" name="review_content"  class="full_width_input" tabindex=2><CONTENUTO_RECENSIONE/></textarea>
                     
-                    <input type="hidden" name="id_book" value="<ID_LIBRO/>" />
+                    <input type="hidden" name="ID_libro" value="<ID_LIBRO/>" />
 					
-                    <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="6" />
+                    <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="3" />
 					
                 </fieldset>
             </form>
@@ -85,8 +76,8 @@
 			
 			
         <div id="footer">
-            <img id="imgValidCode" src="../images/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido" />
-            <img id="imgValidCSS" src="../images/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido" />
+            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
+            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
             <ul id="footerlist">
                 <li><span xml:lang="en"> Beetween the Lines</span> - Opinioni sui libri</li>
                 <li>049-267276 - Padova, Via Paolotti 5</li>

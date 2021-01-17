@@ -25,24 +25,32 @@
         </div>
     
         <div id="breadcrumb">
-            <p>Ti trovi in: <a href="ricerca.html">Ricerca</a> >> Dettagli</p>
+            <p>Ti trovi in: <PATH/> </p>
         </div>
 
         <div id="menu">
-            <MENU/>
+            <ul class="menu-list"> 
+                <li xml:lang="en"><a href="index.php">Home</a></li>
+                <li><a href="chisiamo.php">Chi Siamo</a></li>
+                <li><a href="contattaci.php">Contattaci</a></li>
+            </ul>
         </div>    
 
         <div id="content">
-			<h1 id="book_title"><NOME_LIBRO/></h1>
+                        <div class="error">
+                            <ERRORI_PAGINA/>
+                        </div>
+			<h1 id="book_title"><LIBRO_TITOLO/></h1>
 			
 			<div id="book_frontpage">
 				<img src="<LIBRO_COPERTINA/>" alt="<LIBRO_COPERTINA_ALT/>" />
+                                <p><ELIMINA_LIBRO/></p>
 			</div>
 			
 				<div id="details">
 					<dl id="book_details">
 						<dt>Autore:</dt>
-						<dd><AUTORE/></dd>
+						<dd><AUTORE/>(<AUTORE_NASCITA/>-<AUTORE_MORTE/>)</dd>
 						<dt>Genere: </dt>
 						<dd><GENERE/></dd>
 						<dt>Riassunto: </dt>
@@ -52,26 +60,21 @@
 			
 			<div>	
 				<h2 id="reviews">Recensioni: </h2>
-				<span class="reviews_average">Stelle <NUMERO_STELLE/>/5 
+                                <span class="reviews_average">Stelle: <NUMERO_STELLE/></span> 
 					<span class="review_average_stars"><DISEGNO_STELLE/></span>
-				</span>
 				<h3 class="review_info_title">Numero di recensioni totali: <NUMERO_RECENSIONI/></h3>
 				
 				<h3 class="review_info_title">Recensioni degli utenti: </h3>
 				
-				<a id="help_write_review" href="#review_box">Inserisci recensione<\a>
+                                <FORM_INSERIMENTO_RECENSIONE/> 
+                                  
+				<LISTA_RECENSIONI/> 
 				
-				<LISTA_RECENSIONI/> <!-- lista delle recensioni del libro -->
-				
-				<PAGINE_RECENSIONI/> <!-- pagine di recensioni -->
-				
-				<div>
-					<span id="review_box">
-					
-					<FORM_INSERIMENTO_RECENSIONE/> <!-- TODO -->
-					
-					<a id="goBack" href="#reviews">Torna alle recensioni</a>
-				</div>
+                                
+                                <PAGINE_RECENSIONI/>
+                                
+                                
+                                
 				
 			</div>
     			
