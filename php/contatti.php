@@ -13,41 +13,38 @@
 
 	
 
-	// tutti i campi non sono stati settati oppure sono ""
+	// arrivo la prima volta sulla pagina
 	if (empty($_POST['first_name']) && empty($_POST['last_name']) && empty($_POST['e_mail']) && empty($_POST['messagge']) ) {
 		$correctMessage=false;
 	}
 	else{
+		// se l'input non è nel formato corretto il messaggio non può essere inviato
 
-		//TO DO: specificare qual è il formato corretto per non commettere errori (nome, cognome, e-mail)
-		// TO DO: fare in modo che sia check_nome a valutare l'empty... 
-		// il campo è ""  o non è nel formato corretto
-
-		if (empty(($_POST['first_name'])) || !check_nome($_POST['first_name']) ) {
+		if (!check_nome($_POST['first_name']) ) {
 			$correctMessage=false;
-			$pagHTML = str_replace("<ERRORE_NOME/>", "Il nome deve essere ...", $pagHTML);
+			$pagHTML = str_replace("<ERRORE_NOME/>", "Il nome deve essere lungo tra i 2 e i 30 caratteri. Deve contenere solo lettere ed eventualmente spazi", $pagHTML);
 		}
 		else {
 			$firstName=$_POST['first_name'];
 		}
 
-		if (empty(($_POST['last_name'])) || !check_nome($_POST['last_name'])) {
+		if (!check_nome($_POST['last_name'])) {
 			$correctMessage=false;
-			$pagHTML = str_replace("<ERRORE_COGNOME/>", "Il nome deve essere ...", $pagHTML);
+			$pagHTML = str_replace("<ERRORE_COGNOME/>", "Il cognome deve essere lungo tra i 2 e i 30 caratteri. Deve contenere solo lettere ed eventualmente spazi", $pagHTML);
 		}
 		else{
 			$lastName=$_POST['last_name'];
 		}
 
-		if (empty(($_POST['e_mail'])) || !check_email($_POST['e_mail'])) {
+		if (!check_email($_POST['e_mail'])) {
 			$correctMessage=false;
-			$pagHTML = str_replace("<ERRORE_E_MAIL/>", "e-mail deve essere...", $pagHTML);
+			$pagHTML = str_replace("<ERRORE_E_MAIL/>", "e-mail non valida", $pagHTML);
 		}
 		else {
 			$email=$_POST['e_mail'];		
 		}
 
-		if (empty(($_POST['messagge'])) || strlen($_POST['message']) < 15) {
+		if (strlen($_POST['message']) < 15) {
 			$correctMessage=false;
 			$pagHTML = str_replace("<ERRORE_MESSAGGIO/>", "Il messaggio deve essere lungo almeno 15 caratteri", $pagHTML);
 		}
@@ -65,7 +62,7 @@
 		}
 	}
 
-	// se ci sono errori salvo solo i campi corretti; altrimenti (prima volta che finisco nella pagina oppure ho inviato il messaggio correttamente) pulisco tutti i campi
+	// se il messaggio contiene errori salvo solo i campi corretti; altrimenti pulisco tutti i campi
 
 	$pagHTML = str_replace("<NOME/>", $firstName, $pagHTML);
 	$pagHTML = str_replace("<COGNOME/>", $lastName, $pagHTML);

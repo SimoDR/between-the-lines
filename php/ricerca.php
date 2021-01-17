@@ -91,7 +91,7 @@
 				$bookList .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>' ;
 				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
 				$bookList .= '<dd>' . $book['genere']. '</dd>';
-				$bookList .= '<dd>' . $book['media']. '</dd>';
+				$bookList .= '<dd>' . $book['media']. ' voti</dd>';
 				$bookList .= 
 				'<dd><form action="dettagli_libro.php " method="get"> 
 					<input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
