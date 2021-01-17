@@ -48,7 +48,7 @@ if (isset($_POST['registrati'])) {
         $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
         //check mail
         if (!check_email($mail)) {
-            $error = $error . "<div class=\"msg_box error_box\">'L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
+            $error = $error . "<div class=\"msg_box error_box\">L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
         }
         //check email existence
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$mail\"")) {
@@ -79,7 +79,10 @@ if (isset($_POST['registrati'])) {
             if (!$queryResult) {
                 $error = "<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
             } else {
-
+                $user=$obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\"");
+                $_SESSION['logged'] = true;
+                $_SESSION['ID'] = $user[0]['ID'];
+                $_SESSION['permesso'] = 0;
                 header('location: index.php');
                 exit;
             }

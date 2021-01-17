@@ -53,7 +53,7 @@
                 <label for="username" xml:lang="en">Username:</label>
                 </div>
                 <div class="col-75">
-                <input type="text" name="username" id="username" value="<USERNAME/>" maxlength="30"/>
+                <input type="text" name="username" id="username" value="<USERNAME/>" required="required" maxlength="30"/>
                 </div>
             </div>
 
@@ -62,14 +62,17 @@
                 <label for="password" xml:lang="en">Password:</label>
                 </div>
                 <div class="col-75">
-                <input type="password" name="password" id="password" value="<PASSWORD/>" maxlength="15"/>
+                <input type="password" name="password" id="password" required="required" value="<PASSWORD/>" maxlength="15"/>
                 </div>
             </div>
 
             <div class="row">
+            <FORM_LIBRO/>
             <input type="submit" id="loginButton" class="button" name="login" value="Accedi" />
             </div>
-
+            
+            <FORM_LIBRO/>
+            
             <div class="row">
             <a href="../php/registrazione.php">Non sei ancora registrato? CLICCA QUI</a>
             </div>

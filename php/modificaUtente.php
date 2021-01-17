@@ -20,8 +20,10 @@ $pwd1 = "";
 $pwd2 = "";
 //the old pwd from user
 $pwd = "";
-//the old pwd from db
+//the old data from db
 $pwdOld = "";
+$usernameOld="";
+$emailOld="";
 
 $obj_connection = new DBAccess();
 if (!$obj_connection->openDBConnection()) {
@@ -31,6 +33,8 @@ if (!$obj_connection->openDBConnection()) {
     $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE ID=\"$id\"");
     $username = $queryResult[0]["username"];
     $email = $queryResult[0]["mail"];
+    $usernameOld = $queryResult[0]["username"];
+    $emailOld = $queryResult[0]["mail"];
     $idPropic = $queryResult[0]["id_propic"];
     $pwdOld = $queryResult[0]["password"];
     $id=$queryResult[0]["ID"];
@@ -90,7 +94,7 @@ if (isset($_POST["submitModifiche"])) {
             $errorEmail = $errorEmail . "<div class=\"msg_box error_box\">'L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
         }
         //check mail existence
-        if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\"")) {
+        if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND mail<>\"$emailOld\"")) {
             $errorEmail = $errorEmail . "<div class=\"msg_box error_box\">Esiste già un utente con questa <span xml:lang=\"en\" lang=\"en\">e-mail</span>.</div>";
         }
         //check username
@@ -98,7 +102,7 @@ if (isset($_POST["submitModifiche"])) {
             $errorUsername = $errorUsername . "<div class=\"msg_box error_box\">Il nome utente deve essere lungo tra i 5 e i 30 caratteri e deve contenere solo lettere e numeri.</div>";
         }
         //check username existance
-        if ($obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\"")) {
+        if ($obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\" AND username<>\"$usernameOld\"")) {
             $errorUsername = $errorUsername . "<div class=\"msg_box error_box\">Esiste già un utente con questo <span xml:lang=\"en\" lang=\"en\">username</span>.</div>";
             //check password equality
             if ($pwd1 != $pwd2) {
@@ -110,6 +114,9 @@ if (isset($_POST["submitModifiche"])) {
             }
         }
         if(empty($error) && empty($errorUsername) && empty($errorPassword)){
+            if($pwd1==""){
+                $pwd1=$pwdOld;
+            }
             $insertResult=$obj_connection->insertDB("UPDATE utenti SET username=\"$username\", password=\"$pwd1\", mail=\"$email\"  WHERE ID=$id");
             if($insertResult){
                 header('location: utente.php');
