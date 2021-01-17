@@ -48,7 +48,7 @@ if (isset($_POST['registrati'])) {
         $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
         //check mail
         if (!check_email($mail)) {
-            $error = $error . "<div class=\"msg_box error_box\">'L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
+            $error = $error . "<div class=\"msg_box error_box\">L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
         }
         //check email existence
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$mail\"")) {

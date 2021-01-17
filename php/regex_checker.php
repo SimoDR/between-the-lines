@@ -28,10 +28,10 @@ function check_pwd($password){
     return false;
 }
 
-//\p{L} means any kind of letter from any language
-//name between 2 and 30 chars, blanks accepted
+//  \p{L} means any kind of letter from any language (no control on first capital letter)
+//  name between 2 and 30 chars, blanks accepted if more than a word is provided
 function check_nome($nome){
-    if(preg_match('/^[\p{L}\s]{2,30}$/u',$nome)==1){
+    if(preg_match('/^([\p{L}]{2,30}[\s]?)+$/u',$nome)==1){
         return true;
     }
     return false;
