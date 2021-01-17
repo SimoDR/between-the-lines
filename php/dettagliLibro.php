@@ -185,7 +185,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                                 <dt>
                                     <div class="user_details">
                                         <p>' . $eliminazioneRecensione . ' 
-                                        <img src=' . $queryRecensioni[$i]['path_foto_profilo'] . 'alt=' . $queryRecensioni[$i]['alt_foto_profilo'] . ' />
+                                        <img src="' . $queryRecensioni[$i]['path_foto_profilo'] . '" alt="' . $queryRecensioni[$i]['alt_foto_profilo'] . '" />
                                         <span>' . $queryRecensioni[$i]['username'] . '</span>
                                     </div>
                                     <span class="review_datetime">' . substr($queryRecensioni[$i]['rec_dataora'],0,16) . '</span> 
