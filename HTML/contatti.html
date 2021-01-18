@@ -3,11 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title xml:lang="en">Between the Lines</title>
-        <meta name="title" content="Between the Lines - Opinioni sui libri" />
-        <meta name="description" content="Sito di cultura letteraria, per leggere e condividere Opinioni sui libri." />
+        <title xml:lang="en">Contatti - Between the Lines</title>
+        <meta name="title" content="Contatti - Between the Lines" />
+        <meta name="description" content="Pagina per contattare la squadra di Between the Lines tramite e-mail, messaggio o telefono." />
 
-        <meta name="keywords" content="Between the Lines, libri, recensioni, opinioni" />
+        <meta name="keywords" content="Between the Lines, contatti, telefono, e-mail, messaggio, nome, cognome, libri, recensioni, opinioni" />
         <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
         <meta name="language" content="italian it" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
@@ -51,24 +51,50 @@
                     <fieldset>
                         <legend>Form di messaggio: </legend>
                         <CONFERMA_INVIO/>
-                    <div class="element-form">
-                        <label for="first_name">Nome:</label>
-                        <input id="first_name" name="first_name" type="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
-                        <div class="errorMessagge"> <ERRORE_NOME/> </div>
 
-                        <label for="last_name">Cognome:</label>
-                        <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
-                        <div class="errorMessagge"> <ERRORE_COGNOME/> </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="first_name">Nome:</label>
+                            </div>
+                            <div class="col-75">
+                                <input id="first_name" name="first_name" type="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
+                            </div>
+                        </div>
+                        <ERRORE_NOME/>
 
-                        <label for="e_mail">e-mail:</label>
-                        <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
-                        <div class="errorMessagge"> <ERRORE_E_MAIL/> </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="last_name">Cognome:</label>
+                            </div>
+                            <div class="col-75">
+                                <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
+                            </div>
+                        </div>
+                        <ERRORE_COGNOME/>
 
-                        <label for="message">Messaggio:</label>
-                        <textarea id="message" name="message" rows="50" cols="50" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
-                        <div class="errorMessagge"> <ERRORE_MESSAGGIO/> </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="e_mail">e-mail:</label>
+                            </div>
+                            <div class="col-75">
+                                <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
+                            </div>
+                        </div>
+                        <ERRORE_E_MAIL/>
 
-                        <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="message">Messaggio:</label>
+                            </div>
+                            <div class="col-75">
+                                <textarea id="message" name="message" rows="50" cols="50" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
+                            </div>
+                        </div>
+                        <ERRORE_MESSAGGIO/>
+
+                        <div class="row">
+                            <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
+                        </div>
                     </div>
 
                   </fieldset>

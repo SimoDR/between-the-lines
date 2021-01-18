@@ -43,34 +43,45 @@
     <h2> Ricerca</h2>
 
     <form id="search_form" method="get" action="../php/ricerca.php">
-        <fieldset>
-            <legend>Form di ricerca:</legend>
+                <fieldset>
+                    <legend>Form di ricerca: </legend>
+                    <ERRORE/>
+                    
+                    <div class="searchBar">
+                            <label for="search_bar"></label>
+                        <div>
+                            <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
+                        </div>
+                    </div>
 
-            <div class="element_form">
-                <label for="search_bar"></label>
-                <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
+                    <div class="row">
+                            <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
+                            <label for="filter_title">Cerca per TITOLO</label>
+                    </div>
 
-                <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
-                <label for="filter_title">Cerca per TITOLO</label>
 
-                <input id="filter_author" name="filter" type="radio" value="11"/>
-                <label for="filter_author">Cerca per AUTORE</label>
-            </div>
+                    <div class="row">
+                            <input id="filter_author" name="filter" type="radio" value="11"/>
+                            <label for="filter_author">Cerca per AUTORE</label> 
+                    </div>
 
-            <div class="element_form">
-                <label for="genre">GENERE:</label>
-                <select id="genre" name="genre" tabindex="3">
-                    <option value="Qualsiasi">Qualsiasi</option>
-                    <GENERI/>
-                </select>
-            </div>
-
-            <input id="search_button" tabindex="4" name="search_button" class="button" type="submit"
-                   value="Avvia Ricerca!"/>
-        </fieldset>
+                    <div class="row">
+                        <div class="col-25"> 
+                            <label for="genre">GENERE:</label>
+                        </div>
+                        <div class="col-75">
+                            <select id="genre" name="genre" tabindex="3" >
+                                <option value="Qualsiasi">Qualsiasi</option>
+                                <GENERI/>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <input class=button id="search_button" tabindex="4" name="search_button" type="submit" value="Avvia Ricerca!"/> 
+                    </div>
+                </fieldset>
     </form>
-
-    <RISULTATI/>
 
     <h2> I libri più recensiti </h2>
     <TOP3_RECENSITI/>

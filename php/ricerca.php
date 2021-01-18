@@ -8,7 +8,7 @@
 	$connectionSuccess = $dbAccess->openDBConnection();
 
 	if ($connectionSuccess == false) {
-		$pagHTML=str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>", $pagHTML);
+		$pagHTML=str_replace("<ERRORE/>", "<div class=\"errorMessage\">Errore d'accesso al <span xml:lang=\"en\">database</span></div>", $pagHTML);
 	}
 	else{
 
@@ -78,11 +78,11 @@
 
         if ($resultSearch != null) {
 			
-			$bookList = "<p> La ricerca ha prodotto " . $resultCount . " risultat";
+			$bookList = "<div class=confirmationMessage> La ricerca ha prodotto " . $resultCount . " risultat";
 			if ($resultCount == 1)
-				$bookList .= "o</p>";
+				$bookList .= "o</div>";
 			else{
-				$bookList .= "i</p>";
+				$bookList .= "i</div>";
 			}
 
 			$bookList .= '<dl id="book_list">';
@@ -94,15 +94,21 @@
 				$bookList .= '<dd>' . $book['media']. ' voti</dd>';
 				$bookList .= 
 
-				'<dd><form action="dettagliLibro.php " method="get"> 
-					<input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-					<input type="submit" value="Dettagli" class="button"/>
- 				</form></dd>';
+				'<dd>
+					<form action="dettagliLibro.php " method="get">
+						<div>
+							<input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
+						</div>
+						<div>
+							<input type="submit" value="Dettagli" class="button"/>
+						</div>
+ 					</form>
+ 				</dd>';
                                 
 			}
 			$bookList .= '</dl>';
 		} else {
-		$bookList = "<p>Nessun risultato corrispondente ai criteri di ricerca</p>";
+		$bookList = "<div class=confirmationMessage>Nessun risultato corrispondente ai criteri di ricerca</div>";
 		}
 
 			$i=1;
