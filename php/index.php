@@ -1,33 +1,34 @@
 <?php
 
 require_once('DBConnection.php');
+require_once('setupPage.php');
 
-	$pagHTML = file_get_contents("../HTML/index.html");
+$page = file_get_contents("../HTML/index.html");
+$page = add("../html/index.html");
 
-	$dbAccess = new DbAccess();
-	$connectionSuccess = $dbAccess->openDBConnection();
+$dbAccess = new DbAccess();
+$connectionSuccess = $dbAccess->openDBConnection();
 
-	if ($connectionSuccess == false) {
-		$pagHTML=str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>", $pagHTML);
-	}
-	else{
+if ($connectionSuccess == false) {
+    $page = str_replace("<RISULTATI/>", "<div class=\"errorMessage\">Errore d'accesso al database</div>", $page);
+} else {
 
-		// menù a tendina con generi
-		$genreList="";
-		$topReview="";
-		$lastReview="";
+    // menù a tendina con generi
+    $genreList = "";
+    $topReview = "";
+    $lastReview = "";
 
-		$queryGenre=$dbAccess->queryDB("SELECT nome FROM generi");
-		$queryTopReview=$dbAccess->queryDB(
-			"SELECT L.titolo AS titolo, COALESCE(AVG(R.valutazione),'Nessun voto') AS media, C.path_img AS path_img, C.alt_text AS alt_text, COUNT(*) AS nrecensioni
+    $queryGenre = $dbAccess->queryDB("SELECT nome FROM generi");
+    $queryTopReview = $dbAccess->queryDB(
+        "SELECT L.titolo AS titolo, COALESCE(AVG(R.valutazione),'Nessun voto') AS media, C.path_img AS path_img, C.alt_text AS alt_text, COUNT(*) AS nrecensioni
 			FROM libri L, recensioni R, copertine C
 			WHERE L.ID=R.id_libro AND C.id_libro=L.ID
 			GROUP BY L.ID
 			ORDER BY nrecensioni DESC
 			LIMIT 3");
 
-		$queryLastReview=$dbAccess->queryDB(
-			"SELECT L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt
+    $queryLastReview = $dbAccess->queryDB(
+        "SELECT L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt
 			FROM libri L 
             INNER JOIN recensioni R ON R.id_libro=L.ID
             INNER JOIN utenti U ON R.id_utente=U.ID
@@ -35,44 +36,44 @@ require_once('DBConnection.php');
 			ORDER BY R.dataora DESC
 			LIMIT 3");
 
-		$dbAccess->closeDBConnection();
-        if ($queryGenre != null) {
+    $dbAccess->closeDBConnection();
+    if ($queryGenre != null) {
 
-			foreach ($queryGenre as $genre) {
-				$genreList.= '<option value='. '"' . $genre['nome'] . '">' . $genre['nome'] . '</option>';
-			}
-			$pagHTML=str_replace("<GENERI/>", $genreList, $pagHTML);
-		}
+        foreach ($queryGenre as $genre) {
+            $genreList .= '<option value=' . '"' . $genre['nome'] . '">' . $genre['nome'] . '</option>';
+        }
+        $page = str_replace("<GENERI/>", $genreList, $page);
+    }
 
-		if ($queryTopReview != null) {
-			$topReview='<ol id="ranking">';
-			foreach ($queryTopReview as $book) {
-				$topReview .= '<li><dl>';
-				$topReview .= '<dt>' . $book['titolo'] . '</dt>';
-				$topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>' ;
-				$topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dt>';
-				$topReview .= '</dl></li>';
-			}
-			$topReview .= '</ol>';
-			$pagHTML=str_replace("<TOP3_RECENSITI/>", $topReview, $pagHTML);
-		}
+    if ($queryTopReview != null) {
+        $topReview = '<ol id="ranking">';
+        foreach ($queryTopReview as $book) {
+            $topReview .= '<li><dl>';
+            $topReview .= '<dt>' . $book['titolo'] . '</dt>';
+            $topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>';
+            $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dt>';
+            $topReview .= '</dl></li>';
+        }
+        $topReview .= '</ol>';
+        $page = str_replace("<TOP3_RECENSITI/>", $topReview, $page);
+    }
 
-		if ($queryLastReview != null) {
-			$lastReview='<ol id="ranking">';
-			foreach ($queryLastReview as $book) {
-				$lastReview .= '<li><dl>';
-				$lastReview .= '<dt>' . $book['titolo'] . '</dt>';
-				$lastReview .= '<dd><img src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>' ;
-				$lastReview .= '<dd>' . $book['nome'] . '</dd>';
-				$lastReview .= '<dd>' . $book['testo'] . '</dd>';
-				$lastReview .= '<dd>' . $book['valutazione'] . '</dd';
-				$lastReview .= '</dl></li>';
-			}
-			$lastReview .= '</ol>';
-			$pagHTML=str_replace("<ULTIMI3_RECENSITI/>", $lastReview, $pagHTML);
-		}
-	}
+    if ($queryLastReview != null) {
+        $lastReview = '<ol id="ranking">';
+        foreach ($queryLastReview as $book) {
+            $lastReview .= '<li><dl>';
+            $lastReview .= '<dt>' . $book['titolo'] . '</dt>';
+            $lastReview .= '<dd><img src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
+            $lastReview .= '<dd>' . $book['nome'] . '</dd>';
+            $lastReview .= '<dd>' . $book['testo'] . '</dd>';
+            $lastReview .= '<dd>' . $book['valutazione'] . '</dd';
+            $lastReview .= '</dl></li>';
+        }
+        $lastReview .= '</ol>';
+        $page = str_replace("<ULTIMI3_RECENSITI/>", $lastReview, $page);
+    }
+}
 
-	echo $pagHTML;
+echo $page;
 
 ?>
