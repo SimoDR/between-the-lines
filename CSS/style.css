@@ -48,12 +48,31 @@ body {
     list-style-type: none;
 }
 
+/*header*/
 #header {
     background-color: peru;
     text-align: center;
     color: #010151;
-    margin: 0em;
-    padding: 1em;
+    padding:1em;
+}
+#header h2 {
+    padding-bottom: 1em;
+}
+
+#userButtons{
+    float:right;
+}
+
+#header .button{
+    background-color: brown;
+    color: #ffffff;
+    border-radius:1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border: 0.1em solid black;
+    padding: 0.6em 1.5em;
+    font-size: 1em;
+    margin: 0.2em 0.2em;
 }
 
 #logo {
