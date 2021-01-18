@@ -20,7 +20,7 @@ if ($connectionSuccess == false) {
 
     $queryGenre = $dbAccess->queryDB("SELECT nome FROM generi");
     $queryTopReview = $dbAccess->queryDB(
-        "SELECT L.titolo AS titolo, COALESCE(AVG(R.valutazione),'Nessun voto') AS media, C.path_img AS path_img, C.alt_text AS alt_text, COUNT(*) AS nrecensioni
+        "SELECT L.ID AS id, L.titolo AS titolo, COALESCE(AVG(R.valutazione),'Nessun voto') AS media, C.path_img AS path_img, C.alt_text AS alt_text, COUNT(*) AS nrecensioni
 			FROM libri L, recensioni R, copertine C
 			WHERE L.ID=R.id_libro AND C.id_libro=L.ID
 			GROUP BY L.ID
@@ -28,7 +28,7 @@ if ($connectionSuccess == false) {
 			LIMIT 3");
 
     $queryLastReview = $dbAccess->queryDB(
-        "SELECT L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt
+        "SELECT L.ID AS id, L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt
 			FROM libri L 
             INNER JOIN recensioni R ON R.id_libro=L.ID
             INNER JOIN utenti U ON R.id_utente=U.ID
@@ -46,29 +46,40 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryTopReview != null) {
-        $topReview = '<ol id="ranking">';
+        $topReview = '<ol id="rankingTopReview">';
         foreach ($queryTopReview as $book) {
             $topReview .= '<li><dl>';
             $topReview .= '<dt>' . $book['titolo'] . '</dt>';
             $topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>';
             $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dt>';
             $topReview .= '</dl></li>';
+            $topReview .=
+        '<dd><form action="dettagliLibro.php " method="get"> 
+                    <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
+                    <input type="submit" value="Dettagli" class="button"/>
+                </form></dd>';
         }
+        
         $topReview .= '</ol>';
         $page = str_replace("<TOP3_RECENSITI/>", $topReview, $page);
     }
 
     if ($queryLastReview != null) {
-        $lastReview = '<ol id="ranking">';
+        $lastReview = '<ol id="rankingLastReview">';
         foreach ($queryLastReview as $book) {
             $lastReview .= '<li><dl>';
             $lastReview .= '<dt>' . $book['titolo'] . '</dt>';
-            $lastReview .= '<dd><img src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
+            $lastReview .= '<dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
             $lastReview .= '<dd>' . $book['nome'] . '</dd>';
             $lastReview .= '<dd>' . $book['testo'] . '</dd>';
             $lastReview .= '<dd>' . $book['valutazione'] . '</dd';
+            $lastReview .= '<dd><form action="dettagliLibro.php " method="get"> 
+                    <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
+                    <input type="submit" value="Dettagli" class="button"/>
+                </form></dd>';
             $lastReview .= '</dl></li>';
         }
+
         $lastReview .= '</ol>';
         $page = str_replace("<ULTIMI3_RECENSITI/>", $lastReview, $page);
     }
