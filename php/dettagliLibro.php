@@ -28,7 +28,7 @@ function printStars($num)
 
 
 
-$page = add("../html/dettagliLibro.html");
+$page = add("../HTML/dettagliLibro.html");
 
 $erroriPagina = '';
 if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
@@ -112,7 +112,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
                 // RECENSIONI
 
-                $resultsInPage = 5;
+                $resultsInPage = 3;
                 $totalRecensioni = $queryNumRecensioni[0]['num_recensioni'];
                 $totalPages = ceil($totalRecensioni / $resultsInPage);
                 $pagesList = "";

@@ -1,7 +1,7 @@
 <?php
 require_once("regex_checker.php");
 require_once('DBConnection.php');
-$page = file_get_contents("../html/inserisciAutore.html");
+$page = file_get_contents("../HTML/inserisciAutore.html");
 $message = "";
 $error = "";
 $name = "";

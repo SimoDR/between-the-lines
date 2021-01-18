@@ -107,15 +107,16 @@
 
 			$i=1;
             $pagesList=" <div class=\"center\"> <div class=\"pagination\">";
-            $ind=$_SERVER['REQUEST_URI'];
+            $address=$_SERVER['REQUEST_URI'];
+            $address = preg_replace("/\&currentPage=\d/","",$address);
+
             if($currentPage>1){
-                $prec=$currentPage-1;$ind=clearInd($ind,$totalPages);
-                $pagesList= $pagesList."\n<a href=\"$ind&currentPage=$prec\">&laquo;Precedente</a>";
+                $prec=$currentPage-1;
+                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$prec\">&laquo;Precedente</a>";
             }
             while($i<=$totalPages){                
-            	$ind=clearInd($ind,$totalPages);
                 if($i!=$currentPage){
-                    $pagesList= $pagesList."\n<a href=\"$ind&currentPage=$i\">$i</a>";
+                    $pagesList= $pagesList."\n<a href=\"$address&currentPage=$i\">$i</a>";
                 }
                 else{
                     $pagesList= $pagesList."<span class=\"active\">$i</span>";
@@ -124,22 +125,14 @@
             }
             if($currentPage<$totalPages){
                 $succ=$currentPage+1;
-                $pagesList= $pagesList."\n<a href=\"$ind&currentPage=$succ\">Successiva&raquo</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$succ\">Successiva&raquo</a>";
             }
-             $pagesList= $pagesList."</div></div>";
 
-		$pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
-		$pagHTML= str_replace("<NUMERO_PAGINA/>", $pagesList, $pagHTML);
+             $pagesList= $pagesList."</div></div>";
+             $pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
+             $pagHTML= str_replace("<NUMERO_PAGINA/>", $pagesList, $pagHTML);
 	}
 
 	echo $pagHTML;
-
-	//clean url
-	function clearInd($ind,$totalPages){
-        for($z=1;$z<=$totalPages;$z++){
-            $ind=str_replace("&currentPage=$z","",$ind);
-         }
-        return $ind;
-    }
 
 ?>

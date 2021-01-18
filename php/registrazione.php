@@ -10,7 +10,7 @@ if ($_SESSION['logged'] == true) {
     exit();
 }
 
-$page = file_get_contents("../html/registrazione.html");
+$page = file_get_contents("../HTML/registrazione.html");
 
 $mail = '';
 $username = '';

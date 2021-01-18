@@ -2,7 +2,7 @@
 require_once("regex_checker.php");
 require_once('DBConnection.php');
 
-$page=file_get_contents("../html/inserisciGenere.html");
+$page=file_get_contents("../HTML/inserisciGenere.html");
 $message="";
 $error="";
 $genre="";
