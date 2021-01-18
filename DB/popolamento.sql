@@ -53,7 +53,7 @@ INSERT INTO foto_profilo VALUES
 #
 INSERT INTO utenti VALUES 
 (1, 'admin', 'admin',4,'admin@admin.it','1'),
-(2, 'utente', 'utente',2,'utente@utente.it','0'),
+(2, 'user', 'user',2,'user@user.it','0'),
 (3, 'francy99', 'francy99',3,'francy99@gmail.com','0'),
 (4, 'antobaddo', 'antobaddo',1,'antobaddo@gmail.com','0'),
 (5, 'kayser', 'kayser',1,'kayser@unipd.it','0'),
@@ -75,10 +75,4 @@ INSERT INTO recensioni VALUES
 (NULL, '2021-01-08 23:56:09', 4, 3, 2, 'Letto per la prima volta alle elementari e ho un ricordo bellissimo di questa storia stupenda. Fiumi di lacrime e una morale meravigliosa.'),
 (NULL, '2021-01-08 23:32:08', 3, 1, 6, 'Un classico della letteratura. Consigliatissimo, ma a parer mio in alcuni punti troppo lento e noioso'),
 (NULL, '2021-01-10 22:32:08', 5, 4, 3,'Uno dei libri più belli che abbia mai letto. Mi sembrava di essere in viaggio con Sal. Super consigliato ai pazzi, ai viaggiatori e ai sognatori!');
-
-# CONTROLLO
-# mattia pascal : 5 + 4 + 4 + 5 + 3 -> 4,2
-# studio in rosso 5 + 5 + 4 + 4 -> 4,5
-# gabbianella 4 + 4 -> 4
-# sulla strada 5 -> 5
 
