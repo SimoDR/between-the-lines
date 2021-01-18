@@ -76,7 +76,7 @@ body {
 }
 
 #logo {
-    width: 15em;
+    max-width: 15em;
 }
 
 #breadcrumb {
@@ -363,6 +363,31 @@ ul.proPic img {
 text-align: center;
 }
 
+/*----------------------------------*/
+
+/*mobile*/
+
+@media screen and (max-width: 768px) {
+    body {
+        width: 100%;
+    }
+    #header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #menu {
+        margin-top: 0em;
+        float: none;
+        width: 100%;
+        background-color: burlywood;
+    }
+}
 
 
 
