@@ -16,3 +16,10 @@ Repository per l'organizzazione e la gestione del progetto (assignment) del cors
 ### FILES
 - Nomi file camelCase;
 - Nome file .html == nome file .php iff si riferiscono alla stessa pagina
+
+### CLASSI
+- Messaggi errore `class=errorMessage`
+- Messaggi conferma `class=confirmationMessage`
+- Bottoni `class=button`
+- barre di ricerca `class=searchBar`
+- form: usare convenzioni https://www.w3schools.com/howto/howto_css_responsive_form.asp
