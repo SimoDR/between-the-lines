@@ -4,7 +4,7 @@ require_once('DBConnection.php');
 require_once('setupPage.php');
 
 $page = file_get_contents("../HTML/index.html");
-$page = add("../html/index.html");
+$page = add("../HTML/index.html");
 
 $dbAccess = new DbAccess();
 $connectionSuccess = $dbAccess->openDBConnection();

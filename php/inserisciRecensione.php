@@ -5,7 +5,7 @@ require_once('DBConnection.php');
 require_once("setupPage.php");
 
     
-    $page=add("../html/inserisciRecensione.html");   
+    $page=add("../HTML/inserisciRecensione.html");   
 
     if($_SESSION['logged']==true){
         if($_SESSION['permesso']==0){

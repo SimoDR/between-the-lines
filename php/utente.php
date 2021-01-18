@@ -3,7 +3,7 @@
 require_once("sessione.php");
 require_once('DBConnection.php');
 
-$page = file_get_contents("../html/utente.html");
+$page = file_get_contents("../HTML/utente.html");
 
 //TODO: error handling della pagina: se un utente non è loggato che succ? 404?
 
