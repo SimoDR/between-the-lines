@@ -1,8 +1,22 @@
-- name: Copy folder content recursively to remote
-        uses: garygrossgarten/github-action-scp@v0.7.1
+name: deploy to UNIPD server
+
+on:
+  push:
+   branches: 
+    - 'develop'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Copy html content recursively to remote
+        uses: ./
         with:
           local: test
           remote: scp/directory
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
+          privateKey: ${{ secrets.PRIVATE_KEY}}
