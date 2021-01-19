@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS autori;
 CREATE TABLE autori
 (
     ID           INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nome         VARCHAR(255) NOT NULL,
-    cognome      VARCHAR(255) NOT NULL,
+    nome         VARCHAR(100) NOT NULL,
+    cognome      VARCHAR(100) NOT NULL,
     data_nascita DATE         NOT NULL,
     data_morte   DATE,
     CONSTRAINT nominativo_univoco UNIQUE (nome, cognome)
