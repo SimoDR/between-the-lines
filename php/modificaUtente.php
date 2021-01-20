@@ -2,8 +2,11 @@
 require_once('DBConnection.php');
 require_once('sessione.php');
 require_once('regex_checker.php');
+require_once('setupPage.php');
+
+
 //TODO: se un utente non è loggato che errore?
-$page = file_get_contents("../HTML/modificaUtente.html");
+$page = setup("../HTML/modificaUtente.html");
 //connection errors
 $error = "";
 //other errors

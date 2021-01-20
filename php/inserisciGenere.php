@@ -1,8 +1,12 @@
 <?php
+
+require_once("sessione.php");
 require_once("regex_checker.php");
 require_once('DBConnection.php');
+require_once('setupPage.php');
 
-$page=file_get_contents("../HTML/inserisciGenere.html");
+$page=setup("../HTML/inserisciGenere.html");
+
 $message="";
 $error="";
 $genre="";
@@ -47,6 +51,7 @@ if(isset($_POST["addGenre"]))
 $page = str_replace("<SUCCESSO/>", "$message", $page);
 $page = str_replace("<GENERE/>", "$genre", $page);
 $page = str_replace("<ERROR/>", "$error", $page);
+
 echo($page);
 
 ?>

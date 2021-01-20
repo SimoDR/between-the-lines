@@ -28,7 +28,7 @@ function printStars($num)
 
 
 
-$page = add("../HTML/dettagliLibro.html");
+$page = setup("../HTML/dettagliLibro.html");
 
 $erroriPagina = '';
 if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {

@@ -3,7 +3,7 @@
 require_once('DBConnection.php');
 require_once('setupPage.php');
 require_once ('sessione.php');
-$page = add("../HTML/index.html");
+$page = setup("../HTML/index.html");
 
 $dbAccess = new DbAccess();
 $connectionSuccess = $dbAccess->openDBConnection();

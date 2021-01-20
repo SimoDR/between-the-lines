@@ -1,8 +1,10 @@
 <?php
 
 	require_once('regex_checker.php');
+        require_once('setupPage.php');
 
-	$pagHTML = file_get_contents('../HTML/contatti.html');
+
+        $pagHTML = setup("../HTML/contatti.html");
 	
 	$correctMessage=true;
 

@@ -1,7 +1,7 @@
 <?php
 
 // $htmlPath: pagina da fare il setup
-function add($htmlPath)
+function setup($htmlPath)
 {
 
     $pageContent = file_get_contents($htmlPath);
@@ -77,9 +77,19 @@ function addHeader(&$page)
 
 function addMenu(&$page)
 {
-
-    // header con tutto
+    // menù con tutto
     $menu = file_get_contents("../HTML/template/menu.html");
+    
+    // rimozione dei link circolari
+    if(basename($_SERVER["REQUEST_URI"]) == "index.php") {
+        $menu = str_replace('<a href="index.php">Home</a>','Home',$menu);
+    }
+    if(basename($_SERVER["REQUEST_URI"]) == "chisiamo.php") {
+        $menu = str_replace('<a href="chisiamo.php">Chi Siamo</a>','Chi Siamo',$menu);
+    } 
+    if(basename($_SERVER["REQUEST_URI"]) == "contatti.php") {
+        $menu = str_replace('<a href="contatti.php">Contattaci</a>','Contattaci',$menu);
+    } 
 
     $page = str_replace("<MENU/>", $menu, $page);
 }
@@ -87,7 +97,7 @@ function addMenu(&$page)
 function addFooter(&$page)
 {
 
-    // header con tutto
+    // footer con tutto
     $footer = file_get_contents("../HTML/template/footer.html");
 
     $page = str_replace("<FOOTER/>", $footer, $page);
