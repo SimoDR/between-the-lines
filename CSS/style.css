@@ -363,6 +363,143 @@ ul.proPic img {
     text-align: center;
 }
 
+
+/*dettagli libro*/
+.buttonDelete {
+    background-color: #822323;
+    color: white;
+}
+
+#bookArea {
+    /*border: 2px solid;*/
+    padding: 2em;
+    border-radius: 1em;
+    background-color: peru;
+    overflow: hidden;
+}
+
+#bookFrontpage img{
+  max-width: 40%;
+  width: 15em;
+  border-radius: 1em;
+  float:left;
+  margin: 3%;
+}
+
+#bookDetails dt:before {
+  content: "";
+  display: block;
+}
+
+#bookDetails {
+    margin: 3%;
+}
+
+#bookDetails dt, dd {
+    display: inline;
+}
+
+#bookDetails dt {
+    font-weight: bold;
+    
+}
+
+#bookDetails dt:first-of-type, dd:first-of-type {
+
+}
+#reviewArea {
+    padding-top: 2em;
+}
+
+#reviewArea h2 {
+    padding-bottom: 0.51em;
+}
+
+input.reviewButton {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    float:none;
+}
+
+.reviewDetails img {
+  max-width: 10%;
+  width: 3em;
+
+}
+
+li.review::marker{ /*TODO*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reviewDetails {
+    margin: 0.3em;
+    border-radius: 0.5em;
+    background-color: sienna;
+    color: white;
+}
+
+.review {
+    background-color: peru;
+    border-radius: 0.5em;
+}
+
+.reviewContent {
+    padding:0.3em 0.5em 0.8em 0.3em;
+}
+
+.stelle {
+    display: block;
+    margin: 0.3em 0 0 0.3em;
+    font-weight: bold;
+}
+
+.stelle {
+    
+}
+
+ .stelleCounter {
+    display: inline;
+}
+.reviewDetails .username {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.userDetails img,p{
+    display: inline;
+}
+
+.reviewDatetime {
+    font-family: monospace;
+}
+
+.userDetails p {
+    vertical-align: middle;
+}
+
+.reviewDetails .buttonDelete {
+    border: 1px solid white;
+}
+
+/*
+* {
+    display: none;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 /*----------------------------------*/
 
 /*mobile*/

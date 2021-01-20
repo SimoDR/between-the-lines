@@ -55,7 +55,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
                 // BREADCRUMBS
                 
-                $breadcrumb = 'Home &raquo; ' . $libro['titolo'];
+                $breadcrumb = $libro['titolo'];
                 $page = str_replace('<PATH/>', $breadcrumb, $page);
 
                 // COPERTINA 
@@ -164,6 +164,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     if ($startIndex == $endIndex) {
                         $listaRecensioni = "Nessuna recensione presente per questo libro";
                     } else {
+                        $listaRecensioni .= '<ol class="reviewList">';
                         for ($i = $startIndex; $i < $endIndex; $i++) {
 
                             $drawStarsUtente = printStars($queryRecensioni[$i]['rec_valutazione']);
@@ -172,37 +173,32 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                             
                             $eliminazioneRecensione = '';
                             if($_SESSION['ID'] == $queryRecensioni[$i]['ID_utente'] || $_SESSION['permesso'] == 1) {
-                                $eliminazioneRecensione = '<form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post"> 
-                                            <input type="hidden" name="ID_recensione" value="' . $queryRecensioni[$i]['id_recensione'] .'"/>
-                                            <input type="submit" value="Elimina recensione" class="button"/>
-                                            </form>';
+                                $eliminazioneRecensione = '<p><form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
+                                                        <div>
+                                                            <input type="hidden" name="ID_recensione" value="' . $queryRecensioni[$i]['id_recensione'] .'"/>
+                                                            <input type="submit" value="Elimina recensione" class="buttonDelete"/>
+                                                        </div>
+                                                        </form></p>';
                             }
                             
                             //stampa recensione
                             
                             $listaRecensioni = $listaRecensioni . '
-                            <dl class="review_list">
-                                <dt>
-                                    <div class="user_details">
-                                        <p>' . $eliminazioneRecensione . ' 
+                            <li class = "review">
+                                    <div class="reviewDetails">
+                                        ' . $eliminazioneRecensione . '
                                         <img src="' . $queryRecensioni[$i]['path_foto_profilo'] . '" alt="' . $queryRecensioni[$i]['alt_foto_profilo'] . '" />
-                                        <span>' . $queryRecensioni[$i]['username'] . '</span>
+                                        <p class="username">' . $queryRecensioni[$i]['username'] . '</p>
+                                        <p class="reviewDatetime">' . substr($queryRecensioni[$i]['rec_dataora'],0,16) . '</p> 
                                     </div>
-                                    <span class="review_datetime">' . substr($queryRecensioni[$i]['rec_dataora'],0,16) . '</span> 
-                                </dt>
-                                <dd>
-                                    <div class="review_details">
-                                        <p class="review_text">' . $queryRecensioni[$i]['rec_testo'] . '</p>
-                                        <span class="stelle_item">Stelle: ' . $queryRecensioni[$i]['rec_valutazione'] . '/5
-                                            <span class="stelle_counter">' . $drawStarsUtente . '</span>
-                                        </span>
-
-                                    </div>
-                                </dd>
-                            </dl>
-
+                                    <div class="reviewContent">
+                                        <p class="reviewText">' . $queryRecensioni[$i]['rec_testo'] . '</p>
+                                        <p class="stelle">Stelle: ' . $queryRecensioni[$i]['rec_valutazione'] . ' ' . $drawStarsUtente .  '</p>' ;
+                                    '</div>
+                            </li>
                             ';
                         }
+                        $listaRecensioni .= '</ol>';
                     }
                     }
                     $page = str_replace('<LISTA_RECENSIONI/>', $listaRecensioni, $page); // perchè da problemi questa variabile?
@@ -239,19 +235,23 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 $inserimentoForm = '';
                 if (isset($_SESSION['logged']) && $_SESSION['logged']) { // se loggato
                     if ($_SESSION['permesso'] == 0) { // se non admin
-                        $inserimentoForm = '<form action="inserisciRecensione.php" method="post">
-                                            <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
-                                            <input type="submit" value="Inserisci recensione" class="button"/>
-                                            </form>';
+                        $inserimentoForm = '<div id="insertReview"><form action="inserisciRecensione.php" method="post">
+                                            <div>
+                                                <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
+                                                <input type="submit" value="Inserisci recensione" class="reviewButton"/>
+                                            </div>
+                                            </form></div>';
                     } else { // se admin
                         $inserimentoForm = "<p>Spiacente, l'admin non può effettuare recensioni</p>";
                     }
                 } else { // non loggato
                     
-                    $inserimentoForm = '<p><form action="login.php " method="get"> 
-					<input type="hidden" name="id_libro" value ="' . $ID_libro . '"/>
-					<input type="submit" value="Effettua il login per inserire una recensione" class="button"/>
-                                        </form></p>';
+                    $inserimentoForm = '<div id="insertReview"><form><form action="login.php " method="get">
+                                        <div>
+                                            <input type="hidden" name="id_libro" value ="' . $ID_libro . '"/>
+                                            <input type="submit" value="Effettua il login per inserire una recensione" class="reviewButton"/>
+                                        </div>
+                                        </form></div>';
                 }
 
                 $page = str_replace('<FORM_INSERIMENTO_RECENSIONE/>', $inserimentoForm, $page);
@@ -261,10 +261,12 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 
                 $eliminazioneLibro = '';
                 if ($_SESSION['permesso'] == 1) {
-                    $eliminazioneLibro .= ' <form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post"> 
-                                            <input type="hidden" name="ID_libro_eliminazione" value="' . $ID_libro .'"/>
-                                            <input type="submit" value="Elimina libro" class="button"/>
-                                            </form>';
+                    $eliminazioneLibro .= ' <p><form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
+                                            <div>
+                                                <input type="hidden" name="ID_libro_eliminazione" value="' . $ID_libro .'"/>
+                                                <input type="submit" value="Elimina libro" class="buttonDelete"/>
+                                            </div>
+                                            </form></p>';
                 }    
                 $page = str_replace('<ELIMINA_LIBRO/>', $eliminazioneLibro, $page);
                 
