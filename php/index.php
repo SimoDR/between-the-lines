@@ -2,8 +2,7 @@
 
 require_once('DBConnection.php');
 require_once('setupPage.php');
-
-$page = file_get_contents("../HTML/index.html");
+require_once ('sessione.php');
 $page = add("../HTML/index.html");
 
 $dbAccess = new DbAccess();
