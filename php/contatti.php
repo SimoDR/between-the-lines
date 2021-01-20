@@ -2,7 +2,8 @@
 
 	require_once('regex_checker.php');
         require_once('setupPage.php');
-
+        require_once('sessione.php');
+        require_once('DBConnection.php');
 
         $pagHTML = setup("../HTML/contatti.html");
 	
