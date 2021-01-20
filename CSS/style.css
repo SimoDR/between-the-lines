@@ -378,8 +378,8 @@ ul.proPic img {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 1em;
-    width: 11em;
+    margin: 0.5em;
+    width: 14em;
     background-color: maroon;
     color: white;
     padding: 1em;
@@ -391,8 +391,8 @@ ul.proPic img {
 }
 
 #rankingTopReview dt{
-    font-size: 1.5em;
-    padding-bottom: 0.2em;
+    font-size: 1.3em;
+    padding-bottom: 1em;
 }
 /*----------------------------------*/
 
