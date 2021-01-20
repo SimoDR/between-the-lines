@@ -1,7 +1,12 @@
 <?php
+
+require_once("sessione.php");
 require_once("regex_checker.php");
 require_once('DBConnection.php');
-$page = file_get_contents("../HTML/inserisciAutore.html");
+require_once('setupPage.php');
+
+$page = setup("../HTML/inserisciAutore.html");
+
 $message = "";
 $error = "";
 $name = "";
@@ -77,6 +82,8 @@ $page = str_replace("<DATA_NASCITA/>", "$birthDate", $page);
 $page = str_replace("<COGNOME/>", "$surname", $page);
 $page = str_replace("<NOME/>", "$name", $page);
 $page = str_replace("<ERROR/>", "$error", $page);
+$page = str_replace("<PATH/>", '<a href="utente.php">Profilo utente</a>', $page);
+
 echo($page);
 
 ?>

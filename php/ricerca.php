@@ -1,8 +1,9 @@
 <?php
 	
 	require_once('DBConnection.php');
+        require_once('setupPage.php');
 
-	$pagHTML = file_get_contents("../HTML/ricerca.html");
+	$pagHTML = setup("../HTML/ricerca.html");
 
 	$dbAccess = new DbAccess();
 	$connectionSuccess = $dbAccess->openDBConnection();

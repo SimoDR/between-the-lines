@@ -3,6 +3,8 @@
 require_once("sessione.php");
 require_once('DBConnection.php');
 require_once("regex_checker.php");
+require_once('setupPage.php');
+
 
 //se l'utente è già loggato
 if ($_SESSION['logged'] == true) {
@@ -10,7 +12,7 @@ if ($_SESSION['logged'] == true) {
     exit();
 }
 
-$page = file_get_contents("../HTML/registrazione.html");
+$page = setup("../HTML/registrazione.html");
 
 $mail = '';
 $username = '';
