@@ -1,0 +1,43 @@
+name: deploy to UNIPD server
+
+on:
+  workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Copy html files to remote
+        uses: garygrossgarten/github-action-scp@v0.7.1
+        with:
+          local: HTML
+          remote: public_html/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
+      - name: Copy php files to remote
+        uses: garygrossgarten/github-action-scp@v0.7.1
+        with:
+          local: CSS
+          remote: public_html/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
+      - name: Copy css files to remote
+        uses: garygrossgarten/github-action-scp@v0.7.1
+        with:
+          local: php
+          remote: public_html/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
+      - name: Copy imgs to remote
+        uses: garygrossgarten/github-action-scp@v0.7.1
+        with:
+          local: img
+          remote: public_html/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
