@@ -51,12 +51,13 @@ if ($connectionSuccess == false) {
             $topReview .= '<dt>' . $book['titolo'] . '</dt>';
             $topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>';
             $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dt>';
-            $topReview .= '</dl></li>';
             $topReview .=
-        '<dd><form action="dettagliLibro.php " method="get"> 
+                '<dd><form action="dettagliLibro.php " method="get"> 
                     <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
                     <input type="submit" value="Dettagli" class="button"/>
                 </form></dd>';
+            $topReview .= '</dl></li>';
+
         }
         
         $topReview .= '</ol>';
