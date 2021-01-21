@@ -45,42 +45,33 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryTopReview != null) {
-        $topReview = '<ol id="rankingTopReview">';
+        $topReview = '<div id="rankingTopReview"><h2>I libri più recensiti </h2><ol>';
         foreach ($queryTopReview as $book) {
             $topReview .= '<li><dl>';
-            $topReview .= '<dt>' . $book['titolo'] . '</dt>';
+            $topReview .= '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
             $topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>';
-            $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dt>';
-            $topReview .=
-                '<dd><form action="dettagliLibro.php " method="get"> 
-                    <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-                    <input type="submit" value="Dettagli" class="button"/>
-                </form></dd>';
+            $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dd>';
             $topReview .= '</dl></li>';
 
         }
         
-        $topReview .= '</ol>';
+        $topReview .= '</ol></div>';
         $page = str_replace("<TOP3_RECENSITI/>", $topReview, $page);
     }
 
     if ($queryLastReview != null) {
-        $lastReview = '<ol id="rankingLastReview">';
+        $lastReview = '<div id="rankingLastReview"><h2>Le nuove recensioni</h2><ol>';
         foreach ($queryLastReview as $book) {
             $lastReview .= '<li><dl>';
-            $lastReview .= '<dt>' . $book['titolo'] . '</dt>';
+            $lastReview .=  '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
             $lastReview .= '<dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
             $lastReview .= '<dd>' . $book['nome'] . '</dd>';
             $lastReview .= '<dd>' . $book['testo'] . '</dd>';
-            $lastReview .= '<dd>' . $book['valutazione'] . '</dd';
-            $lastReview .= '<dd><form action="dettagliLibro.php " method="get"> 
-                    <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-                    <input type="submit" value="Dettagli" class="button"/>
-                </form></dd>';
+            $lastReview .= '<dd>' . $book['valutazione'] . '/5</dd>';
             $lastReview .= '</dl></li>';
         }
 
-        $lastReview .= '</ol>';
+        $lastReview .= '</ol></div>';
         $page = str_replace("<ULTIMI3_RECENSITI/>", $lastReview, $page);
     }
 }

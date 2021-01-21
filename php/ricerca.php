@@ -86,28 +86,17 @@
 				$bookList .= "i</div>";
 			}
 
-			$bookList .= '<dl id="book_list">';
+			$bookList .= '<div class=bookList><ul>';
+				
 			foreach ($resultSearch as $book) {
-				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
-				$bookList .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>' ;
-				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
-				$bookList .= '<dd>' . $book['genere']. '</dd>';
-				$bookList .= '<dd>' . $book['media']. ' voti</dd>';
-				$bookList .= 
-
-				'<dd>
-					<form action="dettagliLibro.php " method="get">
-						<div>
-							<input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-						</div>
-						<div>
-							<input type="submit" value="Dettagli" class="button"/>
-						</div>
- 					</form>
- 				</dd>';
+				$bookList .= '<li class="book"><h3><a href="dettagliLibro.php?id_libro='. $book['id'].'">'. $book['titolo'] .'</a></h3>';
+				$bookList .= '<img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /><dl>' ;
+				$bookList .= '<dt>Autore:</dt><dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
+				$bookList .= '<dt>Genere:</dt><dd>' . $book['genere']. '</dd>';
+				$bookList .= '<dt>Stelle:</dt><dd>' . $book['media']. '/5</dd></dl></li>';
                                 
 			}
-			$bookList .= '</dl>';
+			$bookList .= '</ul></div>';
 		} else {
 		$bookList = "<div class=confirmationMessage>Nessun risultato corrispondente ai criteri di ricerca</div>";
 		}
