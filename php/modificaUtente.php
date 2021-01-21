@@ -54,8 +54,8 @@ if (!$obj_connection->openDBConnection()) {
             $checked = "checked=\"checked\"";
         //TODO: help needed! control id name & value
         $pictures = $pictures . "<li>
-                            <input type=\"radio\" id=\"$idPhoto\" name=\"propic\" value=\"$id\" $checked />
-                            <label for=\"$id\"><img src=\"$path\" id=\"$id\" alt=\"$alt\"></label>
+                            <input type=\"radio\" id=\"$idPhoto\" name=\"propic\" value=\"$idPhoto\" $checked />
+                            <label for=\"$idPhoto\"><img src=\"$path\" id=\"$idPhoto\" alt=\"$alt\"></label>
                         </li>";
 
     }
@@ -120,13 +120,14 @@ if (isset($_POST["submitModifiche"])) {
             if($pwd1==""){
                 $pwd1=$pwdOld;
             }
-            $insertResult=$obj_connection->insertDB("UPDATE utenti SET username=\"$username\", password=\"$pwd1\", mail=\"$email\"  WHERE ID=$id");
+            $idPropic=(int)$idPropic;
+            $insertResult=$obj_connection->insertDB("UPDATE utenti SET username=\"$username\", password=\"$pwd1\", id_propic=$idPropic, mail=\"$email\"  WHERE ID=$id");
             if($insertResult){
                 header('location: utente.php');
                 exit;
             }
             else{
-                $error = $error . "<div class=\"msg_box error_box\">La <span xml:lang=\"en\" lang=\"en\">query</span> non è andata a buon fine.</div>";
+                $error = $error . "<div class=\"msg_box error_box\">Non hai effettuato nessuna modifica.</div>";
             }
         }
     }
