@@ -120,7 +120,7 @@ if (isset($_POST["submitModifiche"])) {
             if($pwd1==""){
                 $pwd1=$pwdOld;
             }
-            $insertResult=$obj_connection->insertDB("UPDATE utenti SET username=\"$username\", password=\"$pwd1\", mail=\"$email\"  WHERE ID=$id");
+            $insertResult=$obj_connection->insertDB("UPDATE utenti SET username=\"$username\", password=\"$pwd1\", mail=\"$email\", id_propic=\"$idPropic\"  WHERE ID=$id");
             if($insertResult){
                 header('location: utente.php');
                 exit;
