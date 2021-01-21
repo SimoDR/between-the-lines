@@ -11,79 +11,77 @@
         <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
         <meta name="language" content="italian it" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-         
+
         <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
         <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
     </head>
 
     <body>
-    <div id="header">
-        <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
-        <h1 xml:lang="en">Between the Lines</h1>
-        <h2 xml:lang="en">A world of books for young and old people</h2>
-        <a class="toContent" href="#content">Vai al contenuto</a>
-        <HEADER/>
-    </div>
-    
+        <div id="header">
+            <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
+            <h1 xml:lang="en">Between the Lines</h1>
+            <h2 xml:lang="en">A world of books for young and old people</h2>
+            <a class="toContent" href="#content">Vai al contenuto</a>
+            <HEADER/>
+        </div>
+
         <div id="breadcrumb">
-            <p>Ti trovi in: <PATH/> </p>
+            <p>Ti trovi in: <a href="index.php">Ricerca</a> &raquo <PATH/> </p>
         </div>
 
         <div id="menu">
             <MENU/>
         </div>    
-  
+
 
         <div id="content">
 
-                        <div class="error">
-                            <ERRORI_PAGINA/>
-                        </div>
-			<h1 id="book_title"><LIBRO_TITOLO/></h1>
-			
-			<div id="book_frontpage">
-				<img src="<LIBRO_COPERTINA/>" alt="<LIBRO_COPERTINA_ALT/>" />
-                                <p><ELIMINA_LIBRO/></p>
-			</div>
-			
-				<div id="details">
-					<dl id="book_details">
-						<dt>Autore:</dt>
-						<dd><NOME_AUTORE/> <COGNOME_AUTORE/> (<AUTORE_NASCITA/>-<AUTORE_MORTE/>)</dd>
-						<dt>Genere: </dt>
-						<dd><GENERE/></dd>
-						<dt>Riassunto: </dt>
-						<dd><RIASSUNTO/></dd>
-					</dl>
-				</div>
-			
-			<div>	
-				<h2 id="reviews">Recensioni: </h2>
-                                <span class="reviews_average">Stelle: <NUMERO_STELLE/></span> 
-					<span class="review_average_stars"><DISEGNO_STELLE/></span>
-				<h3 class="review_info_title">Numero di recensioni totali: <NUMERO_RECENSIONI/></h3>
-				
-				<h3 class="review_info_title">Recensioni degli utenti: </h3>
-				
-                                <FORM_INSERIMENTO_RECENSIONE/> 
-                                  
-				<LISTA_RECENSIONI/> 
-				
-                                
-                                <PAGINE_RECENSIONI/>
-                                
-                                
-                                
-				
-			</div>
-    			
-			
+            <div class="error">
+                <ERRORI_PAGINA/>
+            </div>
+            <div id="bookArea">
+                <div id="bookTitle">
+                    <h1><LIBRO_TITOLO/></h1>
+                    <ELIMINA_LIBRO/>
+                </div>
+                <div id="bookFrontpage">
+                    <img src="<LIBRO_COPERTINA/>" alt="<LIBRO_COPERTINA_ALT/>" />
+                </div>
+
+                <div>
+                    <dl id="bookDetails">
+                        <dt>Autore:</dt>
+                        <dd><NOME_AUTORE/> <COGNOME_AUTORE/> (<AUTORE_NASCITA/>-<AUTORE_MORTE/>)</dd>
+                        <dt>Genere: </dt>
+                        <dd><GENERE/></dd>
+                        <dt>Riassunto: </dt>
+                        <dd><RIASSUNTO/></dd>
+                    </dl>
+                </div>
+            </div>
+            <div id="reviewArea">	
+                <h2>Recensioni</h2>
+                <p id="reviewAverage">Stelle: <NUMERO_STELLE/> <DISEGNO_STELLE/></p> 
+                
+                <h3>Numero di recensioni totali: <NUMERO_RECENSIONI/></h3>
+                
+                <FORM_INSERIMENTO_RECENSIONE/> 
+                
+                <h3>Recensioni degli utenti: </h3>
+
+                <LISTA_RECENSIONI/> 
+
+                <PAGINE_RECENSIONI/>
+
+            </div>
+
+
         </div>
-    
+
         <div id="footer">
             <FOOTER/>
         </div>
 
-    <script type="text/javascript" src="../js/script.js"></script>
+        <script type="text/javascript" src="../js/script.js"></script>
     </body>
 </html>

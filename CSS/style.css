@@ -209,13 +209,6 @@ button:hover {
 }
 
 
-@media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-    }
-}
-
 
 /* The container must be positioned relative: */
 .custom-select {
@@ -426,7 +419,232 @@ ul.proPic img {
 
 .staffMember dt{
     font-weight: bolder;
+
+/*dettagli libro*/
+
+.buttonDelete {
+    background-color: #822323;
+    color: white;
 }
+
+/*area libro*/
+#bookArea {
+    /*border: 2px solid;*/
+    padding: 2em;
+    border-radius: 1em;
+    background-color: peru;
+    overflow: hidden;
+}
+
+#bookFrontpage img{
+  max-width: 40%;
+  width: 15em;
+  border-radius: 1em;
+  float:left;
+  margin: 3%;
+}
+
+#bookDetails dt:before {
+  content: "";
+  display: block;
+}
+
+#bookDetails {
+    margin: 3%;
+}
+
+#bookDetails dt, dd {
+    display: inline;
+}
+
+#bookDetails dt {
+    font-weight: bold;
+    
+}
+
+#bookDetails dt:first-of-type, dd:first-of-type {
+
+}
+
+/*area recensioni*/
+#reviewArea {
+    padding-top: 2em;
+}
+
+#reviewArea h2 {
+    padding-bottom: 0.51em;
+}
+
+#insertReviewButton {
+    margin: 0.5em 0 0.5em 0;
+}
+
+#reviewAverage {
+    margin-bottom: 0.3em;
+}
+
+input.reviewButton {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    float:none;
+}
+
+.reviewDetails img {
+  float: left;
+  max-width: 10%;
+  min-width: 2em;
+  width: 3em;
+
+}
+
+li.review::marker{ /*TODO*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reviewDetails {
+    margin: 0.3em;
+    padding: 0.2em;
+    overflow: hidden;
+    border-radius: 0.5em;
+    background-color: sienna;
+    color: white;
+}
+
+.review {
+    background-color: peru;
+    border-radius: 0.5em;
+}
+
+.reviewContent {
+    padding:0.5em 0.5em 0.8em 0.5em;
+}
+
+.stelle {
+    display: block;
+    margin: 0.3em 0 0 0.3em;
+    font-weight: bold;
+}
+
+.stelle {
+    
+}
+
+ .stelleCounter {
+    display: inline;
+}
+.reviewDetails .username {
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.reviewDatetime {
+    font-family: monospace;
+    display: block;
+}
+
+.userDetails p {
+    vertical-align: middle;
+}
+
+.reviewDetails .buttonDelete {
+    border: 1px solid white;
+}
+
+/*numeri pagine*/
+
+.pageNumbers {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.currentPage {
+    background-color: peru;
+    margin: 0.2em 0.2em 0.2em 0.2em;
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 2em;
+    height: 1.8em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.notCurrentPage {
+    background-color: brown;
+    color: white;
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 6em;
+    height: 1.8em;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.currentPage span, .notCurrentPage a {
+    position: relative;
+    top: 0.15em;
+}
+
+
+/*
+* {
+    display: none;
+}
+*/
+
+
+/*RECENSIONI*/
+
+#reviewTitlePhrase {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+
+#insertReview {
+    padding: 1em;
+    margin-bottom: 3em;
+    border-radius: 1em;
+    background-color: peru;
+    overflow: hidden;
+}
+
+#bookAreaReview img {
+    max-width: 50%;
+    width: 10em;
+    border-radius: 1em;
+    float:left;
+    margin: 1em 3em 0 0;
+}
+
+#formReview fieldset {
+    margin: 1em;
+}
+
+#formReview legend {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.formLabel{
+    background-color: sienna;
+    color: white;
+    border-radius: 1em;
+    margin: 0.2em 0.1em 0.3em 0.1em;
+    padding: 0.7em;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -445,7 +663,7 @@ ul.proPic img {
     body {
         width: 100%;
     }
-
+    
     #header {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -456,17 +674,49 @@ ul.proPic img {
         align-items: center;
         justify-content: space-between;
     }
-
+    
     #menu {
         margin-top: 0em;
         float: none;
         width: 100%;
         background-color: burlywood;
     }
+    
+    #bookAreaReview bookFrontpage {
+        margin-left: auto;
+    margin-right: auto;
+    }
+    
+    #bookAreaReview img {
+    max-width: 80%;
+    width: 15em;
+    float: none;
+    display: block;
+    margin: 1em auto 1em auto;
+}
+    
+    #formReview fieldset {
+        display: block;
+    }   
 
+    
+   
 }
 
 
 
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+    
+    .reviewDetails .buttonDelete {
+        width: 40%;
+        padding: 0.6em 0em 0.6em 0em;
+
+    }
+    
+}
 
 

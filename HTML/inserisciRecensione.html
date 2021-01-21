@@ -11,7 +11,7 @@
         <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
         <meta name="language" content="italian it" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-         
+
         <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
         <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
     </head>
@@ -23,60 +23,74 @@
             <h2 xml:lang="en">A world of books for young and old</h2>
             <HEADER/>
         </div>
-    
+
         <div id="breadcrumb">
-            <p>Ti trovi in: <PATH/> </p>
+            <p>Ti trovi in: <a href="index.php">Ricerca </a> &raquo <PATH/> </p>
         </div>
 
         <div id="menu">
             <MENU/>
         </div>    
-   
+
 
         <div id="content">
-						
-			<noscript>
+            <noscript>
                 <div class="msg_box warning_box">
                     <span xml:lang="en">JAVASCRIPT</span> NON ATTIVO, ALCUNE FUNZIONALITÀ POTREBBERO NON ESSERE DISPONIBILI
                 </div>
             </noscript>
-            
-            <h1>Recensisci questo libro</h1>
-            
-            <img src="<LIBRO_COPERTINA/>" id="ins_review_img" alt="<LIBRO_COPERTINA_ALT/>"/>
-            <span id="ins_review_title"><NOME_LIBRO/> (<AUTORE_NOME/> <AUTORE_COGNOME/>) </span>
-            
-            <h2>
-                Condividi un pensiero su questo libro per aiutare gli altri utenti a scegliere le migliori letture!
-            </h2>
-       
-            <form class="form" method="post" action="" id="form_ins_review"> 
-                <fieldset>
-                    <legend>Inserimento nuova recensione</legend>
-					
-                    <label for="n_stars">Su una scala da 1 a 5, come valuti il libro?</label>
-                    <select id="n_stars" name="n_stars" tabindex="1">
-                        <SELEZIONE_STELLE/>                  
-                    </select>			
-                    
-                    <ERRORE_CONTENUTO/>
-                    
-                    <label for="form_ins_review_content">La tua recensione: </label>
-                    <textarea id="review_content" rows="10" cols="50" name="review_content"  class="full_width_input" tabindex=2><CONTENUTO_RECENSIONE/></textarea>
-                    
-                    <input type="hidden" name="ID_libro" value="<ID_LIBRO/>" />
-					
-                    <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="3" />
-					
-                </fieldset>
-            </form>
-        </div>			
-			
-			
+
+            <h1 id="reviewTitlePhrase">Condividi un pensiero su questo libro per aiutare gli altri utenti a scegliere le migliori letture!</h1>
+
+            <div id="insertReview">
+
+                <div id="bookAreaReview">
+                    <div id="bookTitle">
+                        <h2><NOME_LIBRO/></h2>
+                        <h3><AUTORE_NOME/> <AUTORE_COGNOME/></h3>
+                    </div>
+                    <div id="bookFrontpage">
+                        <img src="<LIBRO_COPERTINA/>" alt="<LIBRO_COPERTINA_ALT/>" />
+                    </div>
+                </div>
+
+
+                <div id="formReview">
+                    <form class="form" method="post" action="" id="form_ins_review"> 
+                        <fieldset>
+                            <legend>Inserimento nuova recensione</legend>
+
+                            <div class="formLabel">
+                                <label for="nStars">Su una scala da 1 a 5, come valuti il libro?</label>
+                                <select id="n_stars" name="n_stars" tabindex="1">
+                                    <SELEZIONE_STELLE/>                  
+                                </select>			
+                            </div>
+
+                            <ERRORE_CONTENUTO/>
+
+                            <div class="formLabel">
+                                <label for="form_ins_review_content">La tua recensione: </label>
+                                <textarea id="review_content" rows="10" cols="50" name="review_content"  class="full_width_input" tabindex=2><CONTENUTO_RECENSIONE/></textarea>
+
+                                <input type="hidden" name="ID_libro" value="<ID_LIBRO/>" />
+                            </div>
+                            <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="3" />
+
+                        </fieldset>
+                    </form>
+                </div>	
+
+            </div>
+
+        </div>
+        
         <div id="footer">
             <FOOTER/>
         </div>
 
-    <script type="text/javascript" src="../js/script.js"></script>
+
+
+        <script type="text/javascript" src="../js/script.js"></script>
     </body>
 </html>
