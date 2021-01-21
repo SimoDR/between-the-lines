@@ -366,34 +366,77 @@ ul.proPic img {
 }
 
 /*elenchi libri*/
-#rankingTopReview {
+#rankingTopReview ol{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-#rankingTopReview >li{
-    text-align: center;
+    #rankingTopReview li{
+        text-align: center;
+        display: flex;
+        display: list-item;
+        list-style-type: upper-roman;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0.5em;
+        width: 14em;
+        background-color: maroon;
+        color: black;
+        padding: 1em;
+        border-radius: 2em;
+    }
+    #rankingTopReview img{
+        width:7em;
+        border-radius: 0.5em;
+    }
+
+    #rankingTopReview dt{
+        font-size: 1.3em;
+        padding-bottom: 1em;
+    }
+
+/*chi siamo - staff*/
+
+#staff > dl{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 0.5em;
-    width: 14em;
-    background-color: maroon;
-    color: white;
-    padding: 1em;
-    border-radius: 2em;
-}
-#rankingTopReview img{
-    width:7em;
-    border-radius: 0.5em;
+    justify-content: center;
 }
 
-#rankingTopReview dt{
-    font-size: 1.3em;
-    padding-bottom: 1em;
+
+
+.staffMember {
+    width: 15em;
+    border-color: 0.2em;
+    border-style: dashed ;
+    border-color: sienna;
+    padding: 1em;
+    margin:1em;
+    border-radius: 2em;
+    text-align: center;
 }
+
+.staffMember > dt {
+    margin-bottom: 1em;
+    font-size: 1.3em;
+}
+
+.staffMember dt{
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+
 /*----------------------------------*/
 
 /*mobile*/
@@ -420,8 +463,8 @@ ul.proPic img {
         width: 100%;
         background-color: burlywood;
     }
-}
 
+}
 
 
 
