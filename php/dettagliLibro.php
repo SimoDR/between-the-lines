@@ -188,8 +188,8 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                                     <div class="reviewDetails">
                                         ' . $eliminazioneRecensione . '
                                         <img src="' . $queryRecensioni[$i]['path_foto_profilo'] . '" alt="' . $queryRecensioni[$i]['alt_foto_profilo'] . '" />
-                                        <p class="username">' . $queryRecensioni[$i]['username'] . '</p>
-                                        <p class="reviewDatetime">' . substr($queryRecensioni[$i]['rec_dataora'],0,16) . '</p> 
+                                        <span class="username">' . $queryRecensioni[$i]['username'] . '</span>
+                                        <span class="reviewDatetime">' . substr($queryRecensioni[$i]['rec_dataora'],0,16) . '</span> 
                                     </div>
                                     <div class="reviewContent">
                                         <p class="reviewText">' . $queryRecensioni[$i]['rec_testo'] . '</p>
@@ -204,7 +204,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     $page = str_replace('<LISTA_RECENSIONI/>', $listaRecensioni, $page); // perchè da problemi questa variabile?
 
 
-                    $pagineRecensioni = '<div class="center">';
+                    $pagineRecensioni = '<div class="pageNumbers">';
 
                     // pulizia dell'imput
                     $address = $_SERVER['REQUEST_URI'];
@@ -213,12 +213,12 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     // pagine precedenti e successive 
                     if ($npage > 1) {
                         $prec = $npage - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&npage=' . $prec . '>Precedente</a>';
+                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $prec . '>Precedente</a></div>';
                     }
-                    $pagineRecensioni = $pagineRecensioni . '<span class="review_page_number">' . $npage . '</span>';
+                    $pagineRecensioni = $pagineRecensioni . '<div class="currentPage"><span>' . $npage . '</span></div>';
                     if ($npage < $totalPages) {
                         $succ = $npage + 1;
-                        $pagineRecensioni = $pagineRecensioni . '<a href=' . $address . '&npage=' . $succ . '>Successivo</a>';
+                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $succ . '>Successivo</a></div>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '</div>';
 
@@ -235,23 +235,19 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 $inserimentoForm = '';
                 if (isset($_SESSION['logged']) && $_SESSION['logged']) { // se loggato
                     if ($_SESSION['permesso'] == 0) { // se non admin
-                        $inserimentoForm = '<div id="insertReview"><form action="inserisciRecensione.php" method="post">
-                                            <div>
+                        $inserimentoForm = '<div id="insertReviewButton"><form action="inserisciRecensione.php" method="post">
                                                 <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
                                                 <input type="submit" value="Inserisci recensione" class="reviewButton"/>
-                                            </div>
                                             </form></div>';
                     } else { // se admin
-                        $inserimentoForm = "<p>Spiacente, l'admin non può effettuare recensioni</p>";
+                        $inserimentoForm = "<p id=\"insertReviewButton\">Spiacente, l'admin non può effettuare recensioni</p>";
                     }
                 } else { // non loggato
                     
-                    $inserimentoForm = '<div id="insertReview"><form><form action="login.php " method="get">
-                                        <div>
+                    $inserimentoForm = '<form action="login.php" method="get">
                                             <input type="hidden" name="id_libro" value ="' . $ID_libro . '"/>
                                             <input type="submit" value="Effettua il login per inserire una recensione" class="reviewButton"/>
-                                        </div>
-                                        </form></div>';
+                                        </form>';
                 }
 
                 $page = str_replace('<FORM_INSERIMENTO_RECENSIONE/>', $inserimentoForm, $page);
