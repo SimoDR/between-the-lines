@@ -10,6 +10,7 @@ function createMessage(element, msg) {
     //insert the div before the element as a child of element.parentNode
     element.parentNode.insertBefore(error, element);
 }
+
 // remove error messages if there is any
 function removePreviousBox(element) {
     var prevElement = element.previousElementSibling;
@@ -87,16 +88,21 @@ function isNotEmpty(str) {
     return str && str.trim().length > 0;
 }
 
+function isEqual(str1, str2) {
+    return str1.trim() == str2.trim();
+}
+
 /*      ------------ link checks to forms ----------- */
 
 function loginChecker() {
+    //the id of the form
     if (document.getElementById("loginForm")) {
         //loginControls is a map
         var loginControls = {};
         // every key can have more than a value:
         // loginControls[elementid]=[[check1, message1], [check2, message2],...]
         // ATTENTION: the id attribute of the input tag in the form have to match the map key
-        loginControls["username"] = [[isNotEmpty, "Inserire un nome utente"],[checkUsername, "Inserire un nome utente valido. "]];
+        loginControls["username"] = [[isNotEmpty, "Inserire un nome utente"], [checkUsername, "Inserire un nome utente valido. "]];
         loginControls["password"] = [[isNotEmpty, "Inserire una password."]];
         // link the controls to the event "focusOut"
         addFocusOutEvent(loginControls);
@@ -118,12 +124,26 @@ function reviewChecker() {
         // ATTENTION: the id attribute of the input tag in the form have to match the map key
         loginControls["username"] = [[isNotEmpty, "Inserire un nome utente"],[checkUsername, "Inserire un nome utente valido. "]];
         loginControls["password"] = [[isNotEmpty, "Inserire una password."]];
+    }
+}
+function registrazioneChecker() {
+    if (document.getElementById("registrazioneForm")) {
+        var regControls = {};
+        regControls["email"] = [[checkEmail, "Inserire una e-mail valida"]];
+        regControls["username"] = [[checkUsername, "Inserire un nome utente valido."]];
+        regControls["password"] = [[checkPassword, "Inserire una password valida."], []];
         // link the controls to the event "focusOut"
-        addFocusOutEvent(loginControls);
+        addFocusOutEvent(regControls);
         //link the controls to the event "click" of the form submit button
-        var loginButton = document.getElementById("loginButton");
-        loginButton.addEventListener("click", (event) => {
-            if (!clickController(loginControls)) event.preventDefault();
+        var regButton = document.getElementById("regButton");
+        regButton.addEventListener("click", (event) => {
+            if (!clickController(regControls)) event.preventDefault();
+        });
+        var pwd2 = document.getElementById("repeatpassword");
+        pwd2.addEventListener("focusout", function (event) {
+            removePreviousBox(event.target);
+            if (!isEqual(event.target.value, document.getElementById("password").value))
+                createMessage(event.target, "Le due password non coincidono.");
         });
     }
 }
@@ -133,4 +153,5 @@ function reviewChecker() {
 window.onload = function () {
     loginChecker();
     reviewChecker();
+    registrazioneChecker();
 };
