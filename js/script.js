@@ -198,6 +198,19 @@ function newAutoreChecker(){
     }
 }
 
+function newGenereChecker() {
+    if (document.getElementById("genereForm")) {
+        var genereControls = {};
+        genereControls["genreName"] = [[isNotEmpty, "Impossibile lasciare questo campo vuoto."],[checkNome, "Il genere deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        addFocusOutEvent(genereControls);
+        //link the controls to the event "click" of the form submit button
+        var genereButton = document.getElementById("genereButton");
+        genereButton.addEventListener("click", (event) => {
+            if (!clickController(genereControls)) event.preventDefault();
+        });
+    }
+}
+
 /* --------- add checks on page load ---------- */
 
 window.onload = function () {
@@ -205,4 +218,5 @@ window.onload = function () {
     reviewChecker();
     registrazioneChecker();
     newAutoreChecker();
+    newGenereChecker();
 };
