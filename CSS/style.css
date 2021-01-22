@@ -270,10 +270,10 @@ ul.proPic img {
         display: block;
 }
 
-#rankingLastReview li{
+#rankingLastReview ol{
     list-style-type: none;
-    padding-top: 1em;
 }
+
 
 #rankingLastReview .stelle:before {
     content: "Stelle: ";
@@ -299,8 +299,9 @@ ul.proPic img {
 .staffMember {
     width: 17em;
     border: 0.2em;
-    border-style: dashed ;
+    border-style: solid ;
     border-color: sienna;
+    background-color: peru;
     padding: 1em;
     margin:1em;
     border-radius: 2em;
