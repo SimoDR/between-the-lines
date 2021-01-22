@@ -50,6 +50,7 @@
 
         
         $querySearch.= "GROUP BY L.id ORDER BY L.ID ASC";
+        $querySearch=$dbAccess->escape_string(trim(htmlentities($querySearch));
         $resultCount=count($dbAccess->queryDB($querySearch));
 
         // risultati per pagina
@@ -74,6 +75,7 @@
         $offset = ($currentPage - 1) * $rowsPerPage;
 
         $querySearch .=" LIMIT $offset, $rowsPerPage"; // limito la query
+        $querySearch=$dbAccess->escape_string(trim(htmlentities($querySearch));
         $resultSearch=$dbAccess->queryDB($querySearch);
 
         $dbAccess->closeDBConnection();
