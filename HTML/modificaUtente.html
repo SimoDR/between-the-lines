@@ -21,11 +21,14 @@
     <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
     <h1 xml:lang="en">Between the Lines</h1>
     <h2 xml:lang="en">A world of books for young and old people</h2>
+    <div id="userButtons">
     <HEADER/>
+    </div>
+    <a class="toContent" href="#content">Vai al contenuto</a>
 </div>
 
 <div id="breadcrumb">
-    <p>Ti trovi in: <a href="utente.php">Utente</a> > Modifica dati personali </p>
+    <p>Ti trovi in: <a href="utente.php">Utente</a> &raquo Modifica dati personali </p>
 </div>
 
 <div id="menu">
@@ -35,9 +38,7 @@
 <div id="content">
     <form action="../php/modificaUtente.php"
           method="post"
-          id="changeInfoForm"
-          class="changeInfo"
-          enctype="multipart/form-data">
+          id="changeInfoForm">
         <ERRORI/>
         <!-- change profile picture -->
         <fieldset class="formFieldset">
@@ -58,8 +59,7 @@
                     <label for="username">Nuovo <span xml:lang="en" lang="en">username</span>:</label>
                 </div>
 
-                <input class="barra-input"
-                       id="username"
+                <input id="username"
                        type="text"
                        name="username"
                        value="<USERNAME/>"/>
@@ -76,18 +76,16 @@
                 <div class="col-25">
                     <label for="user-email">Nuova <span xml:lang="en" lang="en">email</span>:</label>
                 </div>
-                <input class="barra-input"
-                       id="user-email"
+                <input id="user-email"
                        type="text"
                        name="user-email"
-                       required="required"
                        value="<EMAIL/>"/>
             </div>
         </fieldset>
 
         <!--    change password-->
         <fieldset class="formFieldset">
-            <legend class="legend">Cambio <span xml:lang="en" lang="en">password</span></legend>
+            <legend class="legend">Cambio <span xml:lang="en" lang="en">password</span> (lasciare vuoti i campi se non si desidera cambiarla)</legend>
             <ERRORI_PASSWORD/>
 
             <div class="row">
@@ -95,8 +93,7 @@
                     <label for="newPassword1">Nuova <span xml:lang="en" lang="en">password</span>:</label>
                 </div>
                 <div class="col-75">
-                    <input class="barra-input"
-                           id="newPassword1"
+                    <input id="newPassword1"
                            type="password"
                            name="newPassword1"/>
                 </div>
@@ -107,11 +104,9 @@
                     <label for="newPassword2">Conferma nuova <span xml:lang="en" lang="en">password</span>:</label>
                 </div>
                 <div class="col-75">
-                    <input class="barra-input"
-                           id="newPassword2"
+                    <input id="newPassword2"
                            type="password"
-                           name="newPassword2"
-                           maxlength="30"/>
+                           name="newPassword2"/>
                 </div>
             </div>
 
@@ -121,22 +116,18 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="oldPassword">Inserisci la tua <span xml:lang="en" lang="en">password</span> per
-                        confermare
-                        le modifiche:</label>
+                    <label for="oldPassword">Inserisci la tua <span xml:lang="en" lang="en">password</span>attuale per confermare le modifiche:</label>
                 </div>
                 <div class="col-75">
-                    <input class="barra-input"
-                           id="oldPassword"
+                    <input id="oldPassword"
                            type="password"
-                           name="oldPassword"
-                           maxlength="15"
-                           required="required"/>
+                           name="oldPassword"/>
                 </div>
             </div>
 
             <div class="row">
-                <input class="submitModifiche"
+                <input id="modificaButton"
+                       class="button"
                        type="submit"
                        name="submitModifiche"
                        value="Salva modifiche"/>
@@ -153,7 +144,7 @@
             <legend class="legend">Annulla le modifiche</legend>
 
             <div class="row">
-                <input class="submit"
+                <input class="button"
                        type="submit"
                        name="deleteModifiche"
                        value="Annulla"/>
@@ -161,20 +152,11 @@
 
         </fieldset>
     </form>
+    <div class="turnBack"><a class="turnBackLink" href="#">Torna su</a></div>
 </div>
 
-<div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
-
 <div id="footer">
-    <img id="imgValidCode" src="../img/valid-xhtml10.png"
-         alt="Simbolo che certifica uso di Html valido"/>
-    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
-    <ul id="footerlist">
-        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-        <li>049-267276 - Padova, Via Paolotti 5</li>
-        <li xml:lang="en">betweenthelines@gmail.com</li>
-        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-    </ul>
+    <FOOTER/>
 </div>
 
 <script type="text/javascript" src="../js/script.js"></script>

@@ -23,7 +23,10 @@
     <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
     <h1 xml:lang="en">Between the Lines</h1>
     <h2 xml:lang="en">A world of books for young and old people</h2>
+    <div id="userButtons">
     <HEADER/>
+    </div>
+    <a class="toContent" href="#content">Vai al contenuto</a>
 </div>
 
 <div id="breadcrumb">
@@ -35,8 +38,8 @@
 </div>
 
 <div id="content">
-    <form method="post" action="registrazione.php" id="form"
-          class="vertical_input_form">
+    <form method="post" action="../php/registrazione.php" id="registrazioneForm"
+          class="form">
         <!--multipart/form-data	Non vengono codificati i caratteri,
         è necessario per i form che fanno file upload.
         (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
@@ -49,7 +52,7 @@
                     <label for="email" lang="en">Email:</label>
                 </div>
                 <div class="col-75">
-                    <input type="email" name="email" id="email" required="required" value="<EMAIL/>"/>
+                    <input type="email" name="email" id="email" value="<EMAIL/>"/>
                 </div>
             </div>
 
@@ -58,7 +61,7 @@
                     <label for="username" lang="en">Nome utente:</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" name="username" id="username" required="required" value="<USERNAME/>"/>
+                    <input type="text" name="username" id="username" value="<USERNAME/>"/>
                 </div>
             </div>
 
@@ -67,8 +70,7 @@
                     <label for="password" lang="en">Password:</label>
                 </div>
                 <div class="col-75">
-                    <input type="password" name="password" id="password" required="required"
-                           class="full_width_input" value="<PWD/>"/>
+                    <input type="password" name="password" id="password" value="<PWD/>"/>
                 </div>
             </div>
 
@@ -77,8 +79,7 @@
                     <label for="repeatpassword">Ripeti <span xml:lang=\"en\" lang="en">password</span>:</label>
                 </div>
                 <div class="col-75">
-                    <input type="password" name="repeatpassword" id="repeatpassword" required="required"
-                           class="full_width_input" value="<PWD_CONFERMA/>"/>
+                    <input type="password" name="repeatpassword" id="repeatpassword" value="<PWD_CONFERMA/>"/>
                 </div>
             </div>
             <div class="row">
@@ -94,19 +95,11 @@
 
         </fieldset>
     </form>
+    <div class="turnBack"> <a class="turnBackLink" href="#">Torna su</a> </div>
 </div>
 
-<div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
-
 <div id="footer">
-    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
-    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
-    <ul id="footerlist">
-        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-        <li>049-267276 - Padova, Via Paolotti 5</li>
-        <li xml:lang="en">betweenthelines@gmail.com</li>
-        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-    </ul>
+    <FOOTER/>
 </div>
 
 <script type="text/javascript" src="../js/script.js"></script>

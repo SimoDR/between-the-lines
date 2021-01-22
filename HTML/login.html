@@ -23,7 +23,10 @@
     <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
     <h1 xml:lang="en">Between the Lines</h1>
     <h2 xml:lang="en">A world of books for young and old people</h2>
+    <div id="userButtons">
     <HEADER/>
+    </div>
+    <a class="toContent" href="#content">Vai al contenuto</a>
 </div>
 
 <div id="breadcrumb">
@@ -40,7 +43,7 @@
             <legend xml:lang="en">Login</legend>
 
             <noscript>
-                <div class="msg_box warning_box">
+                <div class="errorMessage">
                     ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA'
                     POTREBBERO
                     NON ESSERE DISPONIBILI
@@ -53,7 +56,7 @@
                 <label for="username" xml:lang="en">Username:</label>
                 </div>
                 <div class="col-75">
-                <input type="text" name="username" id="username" value="<USERNAME/>" required="required" maxlength="30"/>
+                <input type="text" name="username" id="username" value="<USERNAME/>"/>
                 </div>
             </div>
 
@@ -62,7 +65,7 @@
                 <label for="password" xml:lang="en">Password:</label>
                 </div>
                 <div class="col-75">
-                <input type="password" name="password" id="password" required="required" value="<PASSWORD/>" maxlength="15"/>
+                <input type="password" name="password" id="password" value="<PASSWORD/>"/>
                 </div>
             </div>
 
@@ -79,20 +82,15 @@
 
         </fieldset>
     </form>
+    <div class="turnBack"> <a class="turnBackLink" href="#">Torna su</a> </div>
 </div>
 
-<div class="turnBack"> <a class="turnBackLink" href="#header">Torna su</a> </div>
+
 
 <div id="footer">
-    <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
-    <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
-    <ul id="footerlist">
-        <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-        <li>049-267276 - Padova, Via Paolotti 5</li>
-        <li xml:lang="en">betweenthelines@gmail.com</li>
-        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-    </ul>
+    <FOOTER/>
 </div>
+
 
 <script type="text/javascript" src="../js/script.js"></script>
 </body>

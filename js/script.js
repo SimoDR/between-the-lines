@@ -158,7 +158,7 @@ function registrazioneChecker() {
         var regControls = {};
         regControls["email"] = [[checkEmail, "Inserire una e-mail valida"]];
         regControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
-        regControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."], []];
+        regControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
         // link the controls to the event "focusOut"
         addFocusOutEvent(regControls);
         //control on the passwords match
@@ -211,6 +211,29 @@ function newGenereChecker() {
     }
 }
 
+function modificaUtenteChecker() {
+    if (document.getElementById("changeInfoForm")) {
+        var userControls = {};
+        userControls["user-email"] = [[checkEmail, "Inserire una e-mail valida"]];
+        userControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
+        userControls["newPassword1"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
+        addFocusOutEvent(userControls);
+        //control on the passwords match
+        var pwd2 = document.getElementById("newPassword2");
+        pwd2.addEventListener("focusout", function (event) {
+            removePreviousBox(event.target);
+            if (!isEqual(event.target.value, document.getElementById("newPassword1").value))
+                createMessage(event.target, "Le due password non coincidono.");
+        });
+        //link the controls to the event "click" of the form submit button
+        var modifyButton = document.getElementById("modificaButton");
+        modifyButton.addEventListener("click", (event) => {
+            if (!clickController(userControls)) event.preventDefault();
+        });
+
+    }
+}
+
 /* --------- add checks on page load ---------- */
 
 window.onload = function () {
@@ -219,4 +242,5 @@ window.onload = function () {
     registrazioneChecker();
     newAutoreChecker();
     newGenereChecker();
+    modificaUtenteChecker();
 };
