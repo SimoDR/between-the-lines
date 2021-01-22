@@ -419,7 +419,7 @@ ul.proPic img {
 
 .staffMember dt{
     font-weight: bolder;
-
+}
 /*dettagli libro*/
 
 .buttonDelete {
@@ -498,9 +498,12 @@ input.reviewButton {
 }
 
 li.review::marker{ /*TODO*/
-  list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+li.review {
+    list-style-type: none;
 }
 
 .reviewDetails {
@@ -639,27 +642,12 @@ li.review::marker{ /*TODO*/
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*----------------------------------*/
 
 /*mobile*/
 
 @media screen and (max-width: 768px) {
+    
     body {
         width: 100%;
     }
@@ -693,7 +681,7 @@ li.review::marker{ /*TODO*/
     float: none;
     display: block;
     margin: 1em auto 1em auto;
-}
+    }
     
     #formReview fieldset {
         display: block;

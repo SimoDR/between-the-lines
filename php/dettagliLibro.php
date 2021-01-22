@@ -5,25 +5,7 @@ require_once('DBConnection.php');
 require_once("setupPage.php");
 //require_once('errore.php');
 require_once('regex_checker.php');
-
-
-function printStars($num) 
-{
-    $rounded = round($num);
-    $stelle = '';
-    $i = 0;
-    while($i<$rounded) {
-        // stelle piene
-        $stelle = $stelle . '&#9733;'; 
-        $i++;
-    }
-    while($i<5) {
-        // stelle vuote
-        $stelle = $stelle . '&#9734;';
-        $i++;
-    }
-    return $stelle;
-}
+require_once("stelle.php");
 
 
 
@@ -127,7 +109,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     
                     // controllo se non sono fuori dai limiti
                     if (isset($_GET['npage']) && (!check_number($_GET['npage']) || $_GET['npage'] < 1 || $_GET['npage'] > $totalPages)) {
-                        header('location: 404.php');
+                        header('location: 400.php'); //bad request
                         exit;
                     }
                     
@@ -213,12 +195,12 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     // pagine precedenti e successive 
                     if ($npage > 1) {
                         $prec = $npage - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $prec . '>Precedente</a></div>';
+                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $prec . '#recensioni>Precedente</a></div>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '<div class="currentPage"><span>' . $npage . '</span></div>';
                     if ($npage < $totalPages) {
                         $succ = $npage + 1;
-                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $succ . '>Successivo</a></div>';
+                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $succ . '#recensioni>Successivo</a></div>';
                     }
                     $pagineRecensioni = $pagineRecensioni . '</div>';
 
@@ -331,7 +313,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
 
 else { // se non GET[ID] not set
-    header('location: 404.php');
+    header('location: 400.php');
     exit;
 
 }
