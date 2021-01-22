@@ -604,6 +604,29 @@ li.review {
     margin-top: 1em;
 }
 
+/*error e success message*/
+.errorMessage {
+    margin:0.2em;
+    padding: 0.2em;
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: #fce4e4;
+    border: 1px solid #ff0307;
+    border-radius: 0.2em;
+    color: #cc0033;
+}
+
+.successMessage {
+    margin:0.2em;
+    padding: 0.2em;
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: #fce4e4;
+    border: 1px solid #ff0307;
+    border-radius: 0.2em;
+    color: #cc0033;
+}
+
 /*----------------------------------*/
 
 /*mobile*/
