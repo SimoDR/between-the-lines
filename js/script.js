@@ -180,7 +180,7 @@ function newAutoreChecker(){
     if (document.getElementById("autoreForm")) {
         var autoreControls = {};
         autoreControls["authorName"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-        autoreControls["authorSurname"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        autoreControls["authorSurname"] = [[isNotEmpty, "Il cognome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
         autoreControls["birthDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
         autoreControls["deathDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
         addFocusOutEvent(autoreControls);
