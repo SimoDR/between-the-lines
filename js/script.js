@@ -99,6 +99,14 @@ function reviewContentUpperBound(str) {
 function isEqual(str1, str2) {
     return str1.trim() == str2.trim();
 }
+function isDatePast(date) {
+    var today = new Date();
+    return date < today;
+}
+
+function isMinor(arg1, arg2) {
+    return arg1<arg2;
+}
 
 /*      ------------ link checks to forms ----------- */
 
@@ -110,8 +118,8 @@ function loginChecker() {
         // every key can have more than a value:
         // loginControls[elementid]=[[check1, message1], [check2, message2],...]
         // ATTENTION: the id attribute of the input tag in the form have to match the map key
-        loginControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
-        loginControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
+        loginControls["username"] = [[isNotEmpty, "Impossibile lasciare questo campo vuoto."]];
+        loginControls["password"] = [[isNotEmpty, "Impossibile lasciare questo campo vuoto."]];
         // link the controls to the event "focusOut"
         addFocusOutEvent(loginControls);
         //link the controls to the event "click" of the form submit button
@@ -150,7 +158,7 @@ function registrazioneChecker() {
         var regControls = {};
         regControls["email"] = [[checkEmail, "Inserire una e-mail valida"]];
         regControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
-        regControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."], []];
+        regControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
         // link the controls to the event "focusOut"
         addFocusOutEvent(regControls);
         //control on the passwords match
@@ -168,6 +176,63 @@ function registrazioneChecker() {
 
     }
 }
+function newAutoreChecker(){
+    if (document.getElementById("autoreForm")) {
+        var autoreControls = {};
+        autoreControls["authorName"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        autoreControls["authorSurname"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        autoreControls["birthDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
+        autoreControls["deathDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
+        addFocusOutEvent(autoreControls);
+        //death is later than birth
+        var death = document.getElementById("deathDate");
+        death.addEventListener("focusout", function (event) {
+            removePreviousBox(event.target);
+            if (!isMinor(document.getElementById("birthDate").value, event.target.value))
+                createMessage(event.target, "La data di nascita deve essere precedente a quella di morte.");
+        });
+        var autoreButton = document.getElementById("autoreButton");
+        autoreButton.addEventListener("click", (event) => {
+            if (!clickController(autoreControls)) event.preventDefault();
+        });
+    }
+}
+
+function newGenereChecker() {
+    if (document.getElementById("genereForm")) {
+        var genereControls = {};
+        genereControls["genreName"] = [[isNotEmpty, "Impossibile lasciare questo campo vuoto."],[checkNome, "Il genere deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        addFocusOutEvent(genereControls);
+        //link the controls to the event "click" of the form submit button
+        var genereButton = document.getElementById("genereButton");
+        genereButton.addEventListener("click", (event) => {
+            if (!clickController(genereControls)) event.preventDefault();
+        });
+    }
+}
+
+function modificaUtenteChecker() {
+    if (document.getElementById("changeInfoForm")) {
+        var userControls = {};
+        userControls["user-email"] = [[checkEmail, "Inserire una e-mail valida"]];
+        userControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
+        userControls["newPassword1"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
+        addFocusOutEvent(userControls);
+        //control on the passwords match
+        var pwd2 = document.getElementById("newPassword2");
+        pwd2.addEventListener("focusout", function (event) {
+            removePreviousBox(event.target);
+            if (!isEqual(event.target.value, document.getElementById("newPassword1").value))
+                createMessage(event.target, "Le due password non coincidono.");
+        });
+        //link the controls to the event "click" of the form submit button
+        var modifyButton = document.getElementById("modificaButton");
+        modifyButton.addEventListener("click", (event) => {
+            if (!clickController(userControls)) event.preventDefault();
+        });
+
+    }
+}
 
 /* --------- add checks on page load ---------- */
 
@@ -175,4 +240,7 @@ window.onload = function () {
     loginChecker();
     reviewChecker();
     registrazioneChecker();
+    newAutoreChecker();
+    newGenereChecker();
+    modificaUtenteChecker();
 };

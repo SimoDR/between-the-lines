@@ -34,9 +34,9 @@
 		INNER JOIN copertine C ON C.id_libro=L.ID AND ";
 
 
-		$titleOrAuthor=$_GET['filter'];
-		$genre=$_GET['genre'];
-		$search=$_GET['search_bar'];
+		$titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
+		$genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
+		$search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
 
 		if($titleOrAuthor == 0){ // ricerca per titolo
 			$querySearch .= "L.titolo LIKE '%$search%' ";
