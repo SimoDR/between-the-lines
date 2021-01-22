@@ -110,8 +110,8 @@ function loginChecker() {
         // every key can have more than a value:
         // loginControls[elementid]=[[check1, message1], [check2, message2],...]
         // ATTENTION: the id attribute of the input tag in the form have to match the map key
-        loginControls["username"] = [[isNotEmpty, "Inserire un nome utente"], [checkUsername, "Inserire un nome utente valido. "]];
-        loginControls["password"] = [[isNotEmpty, "Inserire una password."]];
+        loginControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
+        loginControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
         // link the controls to the event "focusOut"
         addFocusOutEvent(loginControls);
         //link the controls to the event "click" of the form submit button
@@ -149,21 +149,23 @@ function registrazioneChecker() {
     if (document.getElementById("registrazioneForm")) {
         var regControls = {};
         regControls["email"] = [[checkEmail, "Inserire una e-mail valida"]];
-        regControls["username"] = [[checkUsername, "Inserire un nome utente valido."]];
-        regControls["password"] = [[checkPassword, "Inserire una password valida."], []];
+        regControls["username"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
+        regControls["password"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."], []];
         // link the controls to the event "focusOut"
         addFocusOutEvent(regControls);
-        //link the controls to the event "click" of the form submit button
-        var regButton = document.getElementById("regButton");
-        regButton.addEventListener("click", (event) => {
-            if (!clickController(regControls)) event.preventDefault();
-        });
+        //control on the passwords match
         var pwd2 = document.getElementById("repeatpassword");
         pwd2.addEventListener("focusout", function (event) {
             removePreviousBox(event.target);
             if (!isEqual(event.target.value, document.getElementById("password").value))
                 createMessage(event.target, "Le due password non coincidono.");
         });
+        //link the controls to the event "click" of the form submit button
+        var regButton = document.getElementById("regButton");
+        regButton.addEventListener("click", (event) => {
+            if (!clickController(regControls)) event.preventDefault();
+        });
+
     }
 }
 
