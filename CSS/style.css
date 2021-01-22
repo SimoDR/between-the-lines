@@ -4,6 +4,14 @@
     margin: 0em;
 }
 
+a:link {
+    color: yellow;
+}
+
+a:visited {
+    color: aquamarine;
+}
+
 html, body {
     max-width: 1024px;
     min-height: 100vh;
@@ -64,7 +72,7 @@ body {
     float: right;
 }
 
-#header .button {
+.hdrButton {
     background-color: brown;
     color: #ffffff;
     border-radius: 1em;
@@ -83,7 +91,7 @@ body {
 #breadcrumb {
     padding: 1em;
     margin: 0em;
-    color: yellow;
+    color: white;
     background-color: sienna;
 }
 
@@ -92,6 +100,7 @@ body {
     margin-top: 10em;
     float: left;
     width: 15%;
+    
     border-bottom: none;
 }
 
@@ -102,7 +111,10 @@ body {
 }
 
 .menu-list li {
-    padding: 1em;
+    background-color: sienna;
+    border-radius: 0.5em;
+    padding: 0.2em;
+    margin: 1em;
 }
 
 
@@ -587,6 +599,10 @@ li.review {
     
     body {
         width: 100%;
+    }
+    
+    #content {
+        margin-left: 0;
     }
     
     #header {
