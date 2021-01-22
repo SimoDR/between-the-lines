@@ -87,6 +87,14 @@ function isNotEmpty(str) {
     return str && str.trim().length > 0;
 }
 
+function reviewContentLowerBound(str) {
+    return str.trim().length>50;
+}
+
+function reviewContentUpperBound(str) {
+    return str.trim().length<500;
+}
+
 /*      ------------ link checks to forms ----------- */
 
 function loginChecker() {
@@ -110,20 +118,23 @@ function loginChecker() {
 
 
 function reviewChecker() {
-    if (document.getElementById("loginForm")) {
+    
+    if (document.getElementById("reviewForm")) {
+       
         //loginControls is a map
-        var loginControls = {};
+        var reviewControls = {};
         // every key can have more than a value:
         // loginControls[elementid]=[[check1, message1], [check2, message2],...]
         // ATTENTION: the id attribute of the input tag in the form have to match the map key
-        loginControls["username"] = [[isNotEmpty, "Inserire un nome utente"],[checkUsername, "Inserire un nome utente valido. "]];
-        loginControls["password"] = [[isNotEmpty, "Inserire una password."]];
+        reviewControls["reviewContent"] = [[isNotEmpty, "La recensione non può essere vuota."],
+                                          [reviewContentLowerBound,"La recensione deve contenere almeno 50 caratteri."],
+                                          [reviewContentUpperBound,"La recensione deve contenere al massimo 500 caratteri."]];
         // link the controls to the event "focusOut"
-        addFocusOutEvent(loginControls);
+        addFocusOutEvent(reviewControls);
         //link the controls to the event "click" of the form submit button
-        var loginButton = document.getElementById("loginButton");
-        loginButton.addEventListener("click", (event) => {
-            if (!clickController(loginControls)) event.preventDefault();
+        var reviewButton = document.getElementById("reviewButton");
+        reviewButton.addEventListener("click", (event) => {
+            if (!clickController(reviewControls)) event.preventDefault();
         });
     }
 }

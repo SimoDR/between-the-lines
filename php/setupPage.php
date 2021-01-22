@@ -58,7 +58,7 @@ function addHeader(&$page)
             "", $header);
 
         // se si è nella pagina di login
-        if (preg_match("/^login\.php\?id_libro=\d+$/", basename($_SERVER["REQUEST_URI"]))) {
+        if (preg_match("/^login\.php\?id_libro=\d+$|^login\.php$/", basename($_SERVER["REQUEST_URI"]))) {
             //rimuovi login
             $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',"", $header);
         }

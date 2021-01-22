@@ -48,12 +48,12 @@ require_once("setupPage.php");
                     $contenuto = '';
                     $stelle = 1;
                     $data = "";
-                    if(isset($_POST['review_content'])){
+                    if(isset($_POST['reviewContent'])){
                         
-                        $contenuto=$_POST['review_content'];
+                        $contenuto=$_POST['reviewContent'];
                         
-                        if(isset($_POST['n_stars'])){
-                            $stelle=$_POST['n_stars'];
+                        if(isset($_POST['nStars'])){
+                            $stelle=$_POST['nStars'];
                         }
                         
                         date_default_timezone_set("Europe/Rome");
@@ -61,7 +61,7 @@ require_once("setupPage.php");
                         
 
                         // CONTROLLO DATI RECENSIONE
-                        if($contenuto != '' && strlen($contenuto) > 50 && strlen($contenuto) < 500) { //TODO: necessari controlli per sanificare?
+                        if($contenuto != '' && strlen($contenuto) > 50 && strlen($contenuto) < 500) { 
                             
                             if (!is_null($queryResult = $DBconnection->insertDB( " 
                                     INSERT INTO recensioni(ID, dataora, valutazione, id_libro, id_utente, testo)
