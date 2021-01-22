@@ -75,6 +75,14 @@ function checkUsername(username) {
     return new RegExp(/^[a-zA-Z0-9]{5,30}$/).test(username);
 }
 
+function checkNome(name) {
+    return true;
+}
+
+function checkPassword(password) {
+    return new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).test(password);
+}
+
 function isNotEmpty(str) {
     return str && str.trim().length > 0;
 }
