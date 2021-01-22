@@ -1,7 +1,9 @@
 <?php
 	
 	require_once('DBConnection.php');
-        require_once('setupPage.php');
+    require_once('setupPage.php');
+    require_once("stelle.php");
+
 
 	$pagHTML = setup("../HTML/ricerca.html");
 
@@ -93,7 +95,14 @@
 				$bookList .= '<img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /><dl>' ;
 				$bookList .= '<dt>Autore:</dt><dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
 				$bookList .= '<dt>Genere:</dt><dd>' . $book['genere']. '</dd>';
-				$bookList .= '<dt>Stelle:</dt><dd>' . $book['media']. '/5</dd></dl></li>';
+
+                $stelle = 'Ancora nessuna stella per questo libro!';
+
+                if($book['media'] != null) {
+                    $stelle = round($book['media'],1) . '/5 ' . printStars($book['media']);
+                }
+
+				$bookList .= '<dt>Stelle:</dt><dd>' . $stelle . '</dd></dl></li>';
                                 
 			}
 			$bookList .= '</ul></div>';
@@ -102,29 +111,26 @@
 		}
 
 			$i=1;
-            $pagesList=" <div class=\"center\"> <div class=\"pagination\">";
+            $pagesList="<div class=\"pageNumbers\">";
             $address=$_SERVER['REQUEST_URI'];
             $address = preg_replace("/\&currentPage=\d/","",$address);
 
             if($currentPage>1){
                 $prec=$currentPage-1;
-                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$prec\">&laquo;Precedente</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$prec\" class=\"notCurrentPage\">Precedente</a>";
             }
             while($i<=$totalPages){                
-                if($i!=$currentPage){
-                    $pagesList= $pagesList."\n<a href=\"$address&currentPage=$i\">$i</a>";
-                }
-                else{
-                    $pagesList= $pagesList."<span class=\"active\">$i</span>";
+                if($i==$currentPage){
+                    $pagesList= $pagesList."<span class=\"currentPage\">$i</span>";
                 }
                 $i++;
             }
             if($currentPage<$totalPages){
                 $succ=$currentPage+1;
-                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$succ\">Successiva&raquo</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$succ\" class=\"notCurrentPage\">Successivo</a>";
             }
 
-             $pagesList= $pagesList."</div></div>";
+             $pagesList= $pagesList."</div>";
              $pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
              $pagHTML= str_replace("<NUMERO_PAGINA/>", $pagesList, $pagHTML);
 	}

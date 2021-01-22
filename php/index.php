@@ -3,6 +3,8 @@
 require_once('DBConnection.php');
 require_once('setupPage.php');
 require_once ('sessione.php');
+require_once('stelle.php');
+
 $page = setup("../HTML/index.html");
 
 $dbAccess = new DbAccess();
@@ -27,7 +29,7 @@ if ($connectionSuccess == false) {
 			LIMIT 3");
 
     $queryLastReview = $dbAccess->queryDB(
-        "SELECT L.ID AS id, L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt
+        "SELECT L.ID AS id, L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt, R.dataora AS dataora
 			FROM libri L 
             INNER JOIN recensioni R ON R.id_libro=L.ID
             INNER JOIN utenti U ON R.id_utente=U.ID
@@ -64,10 +66,11 @@ if ($connectionSuccess == false) {
         foreach ($queryLastReview as $book) {
             $lastReview .= '<li><dl>';
             $lastReview .=  '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
-            $lastReview .= '<dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
-            $lastReview .= '<dd>' . $book['nome'] . '</dd>';
-            $lastReview .= '<dd>' . $book['testo'] . '</dd>';
-            $lastReview .= '<dd>' . $book['valutazione'] . '/5</dd>';
+            $lastReview .= '<div class = "review"><div class="reviewDetails"><dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
+            $lastReview .= '<dd class="username">' . $book['nome'] . '</dd>';
+            $lastReview .= '<dd class="reviewDatetime">' . $book['dataora'] . '</dd></div>';
+            $lastReview .= '<div class="reviewContent"><dd>' . $book['testo'] . '</dd>';
+            $lastReview .= '<dd class="stelle">' . round($book['valutazione'],1) . " " .printStars($book['valutazione']) . '</dd></div';
             $lastReview .= '</dl></li>';
         }
 

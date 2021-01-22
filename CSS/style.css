@@ -358,37 +358,56 @@ ul.proPic img {
     text-align: center;
 }
 
-/*elenchi libri*/
+/*classifiche - homepage*/
+
 #rankingTopReview ol{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items:flex-end;
 }
 
-    #rankingTopReview li{
+#rankingTopReview li{
         text-align: center;
         display: flex;
-        display: list-item;
-        list-style-type: upper-roman;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: 0.5em;
-        width: 14em;
-        background-color: maroon;
-        color: black;
-        padding: 1em;
-        border-radius: 2em;
-    }
-    #rankingTopReview img{
-        width:7em;
-        border-radius: 0.5em;
-    }
+        width: 17em;
+}
 
-    #rankingTopReview dt{
-        font-size: 1.3em;
-        padding-bottom: 1em;
-    }
+#rankingTopReview li
+{
+    font-weight:bold; 
+}
+
+#rankingTopReview img{
+        width:70%;
+        border-radius: 1em;
+}
+
+#rankingTopReview dt{
+    padding: 1em;
+}
+
+#rankingTopReview dd{
+        display: block;
+}
+
+#rankingLastReview li{
+    list-style-type: none;
+    padding-top: 1em;
+}
+
+#rankingLastReview .stelle:before {
+    content: "Stelle: ";
+}
+
+#rankingLastReview img{
+    margin: auto;
+}
+
+#rankingLastReview dt{
+    font-weight:bold;
+}
 
 /*chi siamo - staff*/
 
@@ -399,11 +418,9 @@ ul.proPic img {
     justify-content: center;
 }
 
-
-
 .staffMember {
-    width: 15em;
-    border-color: 0.2em;
+    width: 17em;
+    border: 0.2em;
     border-style: dashed ;
     border-color: sienna;
     padding: 1em;
@@ -417,8 +434,19 @@ ul.proPic img {
     font-size: 1.3em;
 }
 
+.staffMember > dd:before {
+    content: "";
+    display:block;
+}
+
 .staffMember dt{
     font-weight: bolder;
+    display: inline-block;
+}
+
+.staffMember dd:after{
+    content: "";
+    display: block;
 }
 /*dettagli libro*/
 
@@ -641,6 +669,42 @@ li.review {
     padding: 0.7em;
 }
 
+/*RICERCA*/
+
+.book img{
+    max-width: 50%;
+    width: 10em;
+    border-radius: 1em;
+    margin: 1em 3em 0.5em 0;
+    float:left;
+}
+
+.book {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.book dl {
+    margin: 2em 3em 0.5em 0;
+}
+
+.book dt {
+    font-weight: bold;
+    display: inline;
+}
+
+.book dt:before {
+    content: "   ";
+    display: block;
+}
+
+.book dd:before {
+    content: " ";
+}
+
+.book {
+    margin-top: 1em;
+}
 
 /*----------------------------------*/
 
