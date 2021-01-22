@@ -64,7 +64,7 @@ body {
     float: right;
 }
 
-#header .button {
+.hdrButton {
     background-color: brown;
     color: #ffffff;
     border-radius: 1em;
