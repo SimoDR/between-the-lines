@@ -179,17 +179,17 @@ function registrazioneChecker() {
 function newAutoreChecker(){
     if (document.getElementById("autoreForm")) {
         var autoreControls = {};
-        autoreControls["authorName"] = [[checkUsername, "Il nome utente deve avere tra i 5 e i 30 caratteri ed essere composto da lettere e numeri."]];
-        autoreControls["authorSurname"] = [[checkPassword, "La password deve essere di almeno 8 caratteri e deve contenere lettere maiuscole, minuscole e numeri."]];
-        autoreControls["birthDate"]=[[isDatePast, "La data non può essere futura"]];
-        autoreControls["deathDate"]=[[isDatePast, "La data non può essere futura"]];
+        autoreControls["authorName"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        autoreControls["authorSurname"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        autoreControls["birthDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
+        autoreControls["deathDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
         addFocusOutEvent(autoreControls);
         //death is later than birth
         var death = document.getElementById("deathDate");
         death.addEventListener("focusout", function (event) {
             removePreviousBox(event.target);
             if (!isMinor(document.getElementById("birthDate").value, event.target.value))
-                createMessage(event.target, "Le due password non coincidono.");
+                createMessage(event.target, "La data di nascita deve essere precedente a quella di morte.");
         });
         var autoreButton = document.getElementById("autoreButton");
         autoreButton.addEventListener("click", (event) => {

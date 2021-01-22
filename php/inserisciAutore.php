@@ -74,8 +74,6 @@ if (isset($_POST["addAuthor"])) {
         }
     }
 }
-$maxDate = date("Y-m-d");
-$page = str_replace("<MAX_DATA/>", "$maxDate", $page);
 $page = str_replace("<SUCCESSO/>", "$message", $page);
 $page = str_replace("<DATA_MORTE/>", "$deathDate", $page);
 $page = str_replace("<DATA_NASCITA/>", "$birthDate", $page);
