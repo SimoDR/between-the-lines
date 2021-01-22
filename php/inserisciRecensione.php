@@ -56,6 +56,9 @@ require_once("setupPage.php");
                             $stelle=$_POST['nStars'];
                         }
                         
+                        $stelle = $DBconnection->escape_string(trim(htmlentities($stelle)));
+                        $contenuto = $DBconnection->escape_string(trim(htmlentities($contenuto)));
+                        
                         date_default_timezone_set("Europe/Rome");
                         $data=date("Y-m-d H:i");
                         
@@ -128,12 +131,14 @@ require_once("setupPage.php");
                 }
                 else {
                     //errore query
-                    $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sul libro</div>";
+                    $erroriPagina .= "<div class=\"errorMessage\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sul libro</div>";
                 }
                 
+            $DBconnection->closeDBConnection();
+            
             } else {
                 //errore connessione a db
-                $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+                $erroriPagina .= "<div class=\"errorMessage\"> Errore durante la connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
             }
             
         } else {
