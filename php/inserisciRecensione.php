@@ -13,11 +13,6 @@ require_once("setupPage.php");
             $DBconnection = new DBAccess();
             if($DBconnection->openDBConnection()) {
                 
-                
-                
-
-                
-                
                 // RECUPERO DATI SUL LIBRO
                 
                 $libro = "";
@@ -44,7 +39,7 @@ require_once("setupPage.php");
                     
                     //BREADCRUMBS
                     
-                    $breadcrumb = 'Home &raquo; ' . $libro['titolo'] . ' &raquo; Inserisci recensione' ;
+                    $breadcrumb = '<a href="dettagliLibro.php?id_libro=' . $ID_libro . '">' . $libro['titolo'] . '</a>' . ' &raquo; Inserisci recensione' ;
                     $page = str_replace('<PATH/>', $breadcrumb, $page);
                     
                     // RECUPERO DATI FORM

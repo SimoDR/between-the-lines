@@ -1,7 +1,9 @@
 <?php
 	
 	require_once('DBConnection.php');
-        require_once('setupPage.php');
+    require_once('setupPage.php');
+    require_once("stelle.php");
+
 
 	$pagHTML = setup("../HTML/ricerca.html");
 
@@ -86,56 +88,49 @@
 				$bookList .= "i</div>";
 			}
 
-			$bookList .= '<dl id="book_list">';
+			$bookList .= '<div class=bookList><ul>';
+				
 			foreach ($resultSearch as $book) {
-				$bookList .= '<dt>' . $book['titolo'] . '</dt>';
-				$bookList .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>' ;
-				$bookList .= '<dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
-				$bookList .= '<dd>' . $book['genere']. '</dd>';
-				$bookList .= '<dd>' . $book['media']. ' voti</dd>';
-				$bookList .= 
+				$bookList .= '<li class="book"><h3><a href="dettagliLibro.php?id_libro='. $book['id'].'">'. $book['titolo'] .'</a></h3>';
+				$bookList .= '<img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /><dl>' ;
+				$bookList .= '<dt>Autore:</dt><dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
+				$bookList .= '<dt>Genere:</dt><dd>' . $book['genere']. '</dd>';
 
-				'<dd>
-					<form action="dettagliLibro.php " method="get">
-						<div>
-							<input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-						</div>
-						<div>
-							<input type="submit" value="Dettagli" class="button"/>
-						</div>
- 					</form>
- 				</dd>';
+                $stelle = 'Ancora nessuna stella per questo libro!';
+
+                if($book['media'] != null) {
+                    $stelle = round($book['media'],1) . '/5 ' . printStars($book['media']);
+                }
+
+				$bookList .= '<dt>Stelle:</dt><dd>' . $stelle . '</dd></dl></li>';
                                 
 			}
-			$bookList .= '</dl>';
+			$bookList .= '</ul></div>';
 		} else {
 		$bookList = "<div class=confirmationMessage>Nessun risultato corrispondente ai criteri di ricerca</div>";
 		}
 
 			$i=1;
-            $pagesList=" <div class=\"center\"> <div class=\"pagination\">";
+            $pagesList="<div class=\"pageNumbers\">";
             $address=$_SERVER['REQUEST_URI'];
             $address = preg_replace("/\&currentPage=\d/","",$address);
 
             if($currentPage>1){
                 $prec=$currentPage-1;
-                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$prec\">&laquo;Precedente</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$prec\" class=\"notCurrentPage\">Precedente</a>";
             }
             while($i<=$totalPages){                
-                if($i!=$currentPage){
-                    $pagesList= $pagesList."\n<a href=\"$address&currentPage=$i\">$i</a>";
-                }
-                else{
-                    $pagesList= $pagesList."<span class=\"active\">$i</span>";
+                if($i==$currentPage){
+                    $pagesList= $pagesList."<span class=\"currentPage\">$i</span>";
                 }
                 $i++;
             }
             if($currentPage<$totalPages){
                 $succ=$currentPage+1;
-                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$succ\">Successiva&raquo</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$succ\" class=\"notCurrentPage\">Successivo</a>";
             }
 
-             $pagesList= $pagesList."</div></div>";
+             $pagesList= $pagesList."</div>";
              $pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
              $pagHTML= str_replace("<NUMERO_PAGINA/>", $pagesList, $pagHTML);
 	}

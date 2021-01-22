@@ -3,6 +3,8 @@
 require_once('DBConnection.php');
 require_once('setupPage.php');
 require_once ('sessione.php');
+require_once('stelle.php');
+
 $page = setup("../HTML/index.html");
 
 $dbAccess = new DbAccess();
@@ -27,7 +29,7 @@ if ($connectionSuccess == false) {
 			LIMIT 3");
 
     $queryLastReview = $dbAccess->queryDB(
-        "SELECT L.ID AS id, L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt
+        "SELECT L.ID AS id, L.titolo AS titolo, U.username AS nome, R.testo AS testo, R.valutazione AS valutazione, F.path_foto AS foto, F.alt_text AS alt, R.dataora AS dataora
 			FROM libri L 
             INNER JOIN recensioni R ON R.id_libro=L.ID
             INNER JOIN utenti U ON R.id_utente=U.ID
@@ -45,41 +47,34 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryTopReview != null) {
-        $topReview = '<ol id="rankingTopReview">';
+        $topReview = '<div id="rankingTopReview"><h2>I libri più recensiti </h2><ol>';
         foreach ($queryTopReview as $book) {
             $topReview .= '<li><dl>';
-            $topReview .= '<dt>' . $book['titolo'] . '</dt>';
+            $topReview .= '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
             $topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>';
-            $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dt>';
+            $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dd>';
             $topReview .= '</dl></li>';
-            $topReview .=
-        '<dd><form action="dettagliLibro.php " method="get"> 
-                    <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-                    <input type="submit" value="Dettagli" class="button"/>
-                </form></dd>';
+
         }
         
-        $topReview .= '</ol>';
+        $topReview .= '</ol></div>';
         $page = str_replace("<TOP3_RECENSITI/>", $topReview, $page);
     }
 
     if ($queryLastReview != null) {
-        $lastReview = '<ol id="rankingLastReview">';
+        $lastReview = '<div id="rankingLastReview"><h2>Le nuove recensioni</h2><ol>';
         foreach ($queryLastReview as $book) {
             $lastReview .= '<li><dl>';
-            $lastReview .= '<dt>' . $book['titolo'] . '</dt>';
-            $lastReview .= '<dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
-            $lastReview .= '<dd>' . $book['nome'] . '</dd>';
-            $lastReview .= '<dd>' . $book['testo'] . '</dd>';
-            $lastReview .= '<dd>' . $book['valutazione'] . '</dd';
-            $lastReview .= '<dd><form action="dettagliLibro.php " method="get"> 
-                    <input type="hidden" name="id_libro" value ="' . $book['id'] . '"/>
-                    <input type="submit" value="Dettagli" class="button"/>
-                </form></dd>';
+            $lastReview .=  '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
+            $lastReview .= '<div class = "review"><div class="reviewDetails"><dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
+            $lastReview .= '<dd class="username">' . $book['nome'] . '</dd>';
+            $lastReview .= '<dd class="reviewDatetime">' . $book['dataora'] . '</dd></div>';
+            $lastReview .= '<div class="reviewContent"><dd>' . $book['testo'] . '</dd>';
+            $lastReview .= '<dd class="stelle">' . round($book['valutazione'],1) . " " .printStars($book['valutazione']) . '</dd></div';
             $lastReview .= '</dl></li>';
         }
 
-        $lastReview .= '</ol>';
+        $lastReview .= '</ol></div>';
         $page = str_replace("<ULTIMI3_RECENSITI/>", $lastReview, $page);
     }
 }

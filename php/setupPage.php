@@ -30,18 +30,18 @@ function addHeader(&$page)
                 if ($_SESSION['permesso'] == 0) { //se utente
 
                     // metto area utente al posto del login
-                    $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
-                        '<a href="../php/utente.php" class="button">Benvenuto,' . $username . '! Ecco la tua area utente </a>'
+                    $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',
+                        '<a href="../php/utente.php" class="hdrButton">Benvenuto,' . $username . '! Ecco la tua area utente </a>'
                         , $header);
 
                 } else if ($_SESSION['permesso'] == 1) { //se admin
-                    $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
-                        '<a href="../php/utente.php" class="button">Benvenuto, admin! Ecco il pannello di amministrazione </a>'
+                    $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',
+                        '<a href="../php/utente.php" class="hdrButton">Benvenuto, admin! Ecco il pannello di amministrazione </a>'
                         , $header);
                 }
 
                 //tolgo registrazione
-                $header = str_replace('<a href="../php/registrazione.php" class="button">REGISTRAZIONE</a>',
+                $header = str_replace('<a href="../php/registrazione.php" class="hdrButton">REGISTRAZIONE</a>',
                     "", $header);
             } else {
                 //errore connessione db
@@ -54,19 +54,18 @@ function addHeader(&$page)
     else {
 
         // rimuovi logout
-        $header = str_replace('<a href="../php/logout.php" class="button">LOGOUT</a> ',
+        $header = str_replace('<a href="../php/logout.php" class="hdrButton">LOGOUT</a> ',
             "", $header);
 
         // se si è nella pagina di login
-        if (basename($_SERVER["REQUEST_URI"]) == "login.php") {
+        if (preg_match("/^login\.php\?id_libro=\d+$/", basename($_SERVER["REQUEST_URI"]))) {
             //rimuovi login
-            $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
-                "", $header);
+            $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',"", $header);
         }
         // se si è nella pagina di registrazione
         if (basename($_SERVER["REQUEST_URI"]) == "registrazione.php") {
             //rimuovi registrazione
-            $header = str_replace('<a href="../php/registrazione.php" class="button">REGISTRAZIONE</a>',
+            $header = str_replace('<a href="../php/registrazione.php" class="hdrButton">REGISTRAZIONE</a>',
                 "", $header);
         }
     }
