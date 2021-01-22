@@ -34,9 +34,9 @@
 		INNER JOIN copertine C ON C.id_libro=L.ID AND ";
 
 
-		$titleOrAuthor=$_GET['filter'];
-		$genre=$_GET['genre'];
-		$search=$_GET['search_bar'];
+		$titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
+		$genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
+		$search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
 
 		if($titleOrAuthor == 0){ // ricerca per titolo
 			$querySearch .= "L.titolo LIKE '%$search%' ";
@@ -50,7 +50,6 @@
 
         
         $querySearch.= "GROUP BY L.id ORDER BY L.ID ASC";
-        $querySearch=$dbAccess->escape_string(trim(htmlentities($querySearch));
         $resultCount=count($dbAccess->queryDB($querySearch));
 
         // risultati per pagina
@@ -75,7 +74,6 @@
         $offset = ($currentPage - 1) * $rowsPerPage;
 
         $querySearch .=" LIMIT $offset, $rowsPerPage"; // limito la query
-        $querySearch=$dbAccess->escape_string(trim(htmlentities($querySearch));
         $resultSearch=$dbAccess->queryDB($querySearch);
 
         $dbAccess->closeDBConnection();
