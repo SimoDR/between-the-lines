@@ -34,9 +34,12 @@
 
 
         <div id="content">
+
             <noscript>
                 <div class="msg_box warning_box">
-                    <span xml:lang="en">JAVASCRIPT</span> NON ATTIVO, ALCUNE FUNZIONALITÀ POTREBBERO NON ESSERE DISPONIBILI
+                    ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA'
+                    POTREBBERO
+                    NON ESSERE DISPONIBILI
                 </div>
             </noscript>
 
@@ -56,13 +59,13 @@
 
 
                 <div id="formReview">
-                    <form class="form" method="post" action="" id="form_ins_review"> 
+                    <form class="form" method="post" action="" id="reviewForm"> 
                         <fieldset>
                             <legend>Inserimento nuova recensione</legend>
 
                             <div class="formLabel">
                                 <label for="nStars">Su una scala da 1 a 5, come valuti il libro?</label>
-                                <select id="n_stars" name="n_stars" tabindex="1">
+                                <select id="nStars" name="nStars" tabindex="1">
                                     <SELEZIONE_STELLE/>                  
                                 </select>			
                             </div>
@@ -70,12 +73,12 @@
                             <ERRORE_CONTENUTO/>
 
                             <div class="formLabel">
-                                <label for="form_ins_review_content">La tua recensione: </label>
-                                <textarea id="review_content" rows="10" cols="50" name="review_content"  class="full_width_input" tabindex=2><CONTENUTO_RECENSIONE/></textarea>
+                                <label for="reviewContent">La tua recensione: </label>
+                                <textarea id="reviewContent" rows="10" cols="50" name="reviewContent"  tabindex=2><CONTENUTO_RECENSIONE/></textarea>
 
                                 <input type="hidden" name="ID_libro" value="<ID_LIBRO/>" />
                             </div>
-                            <input type="submit" class="button_okay" value="Invia recensione!"  id="send_review" tabindex="3" />
+                            <input type="submit" class="button_okay" value="Invia recensione!"  id="reviewButton" tabindex="3" />
 
                         </fieldset>
                     </form>
@@ -84,6 +87,9 @@
             </div>
 
         </div>
+        
+        <div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
+
         
         <div id="footer">
             <FOOTER/>

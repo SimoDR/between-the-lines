@@ -48,20 +48,23 @@ require_once("setupPage.php");
                     $contenuto = '';
                     $stelle = 1;
                     $data = "";
-                    if(isset($_POST['review_content'])){
+                    if(isset($_POST['reviewContent'])){
                         
-                        $contenuto=$_POST['review_content'];
+                        $contenuto=$_POST['reviewContent'];
                         
-                        if(isset($_POST['n_stars'])){
-                            $stelle=$_POST['n_stars'];
+                        if(isset($_POST['nStars'])){
+                            $stelle=$_POST['nStars'];
                         }
+                        
+                        $stelle = $DBconnection->escape_string(trim(htmlentities($stelle)));
+                        $contenuto = $DBconnection->escape_string(trim(htmlentities($contenuto)));
                         
                         date_default_timezone_set("Europe/Rome");
                         $data=date("Y-m-d H:i");
                         
 
                         // CONTROLLO DATI RECENSIONE
-                        if($contenuto != '' && strlen($contenuto) > 50 && strlen($contenuto) < 500) { //TODO: necessari controlli per sanificare?
+                        if($contenuto != '' && strlen($contenuto) > 50 && strlen($contenuto) < 500) { 
                             
                             if (!is_null($queryResult = $DBconnection->insertDB( " 
                                     INSERT INTO recensioni(ID, dataora, valutazione, id_libro, id_utente, testo)
@@ -128,12 +131,14 @@ require_once("setupPage.php");
                 }
                 else {
                     //errore query
-                    $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sul libro</div>";
+                    $erroriPagina .= "<div class=\"errorMessage\"> Errore durante la <span xml:lang=\"en\" lang=\"en\">query</span> sul libro</div>";
                 }
                 
+            $DBconnection->closeDBConnection();
+            
             } else {
                 //errore connessione a db
-                $erroriPagina .= "<div class=\"msg_box error_box\"> Errore durante la connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+                $erroriPagina .= "<div class=\"errorMessage\"> Errore durante la connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
             }
             
         } else {
