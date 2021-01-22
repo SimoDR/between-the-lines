@@ -108,8 +108,29 @@ function loginChecker() {
     }
 }
 
+
+function reviewChecker() {
+    if (document.getElementById("loginForm")) {
+        //loginControls is a map
+        var loginControls = {};
+        // every key can have more than a value:
+        // loginControls[elementid]=[[check1, message1], [check2, message2],...]
+        // ATTENTION: the id attribute of the input tag in the form have to match the map key
+        loginControls["username"] = [[isNotEmpty, "Inserire un nome utente"],[checkUsername, "Inserire un nome utente valido. "]];
+        loginControls["password"] = [[isNotEmpty, "Inserire una password."]];
+        // link the controls to the event "focusOut"
+        addFocusOutEvent(loginControls);
+        //link the controls to the event "click" of the form submit button
+        var loginButton = document.getElementById("loginButton");
+        loginButton.addEventListener("click", (event) => {
+            if (!clickController(loginControls)) event.preventDefault();
+        });
+    }
+}
+
 /* --------- add checks on page load ---------- */
 
 window.onload = function () {
     loginChecker();
+    reviewChecker();
 };
