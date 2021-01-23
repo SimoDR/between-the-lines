@@ -583,9 +583,15 @@ li.review {
 
 /*RICERCA*/
 
+.book{
+    padding: 1em;
+    border-radius: 1em;
+    background-color: peru;
+    overflow: hidden;
+}
+
 .book img{
-    max-width: 50%;
-    width: 10em;
+    width: 5em;
     border-radius: 1em;
     margin: 1em 3em 0.5em 0;
     float:left;
@@ -593,11 +599,10 @@ li.review {
 
 .book {
     list-style-type: none;
-    overflow: hidden;
 }
 
 .book dl {
-    margin: 2em 3em 0.5em 0;
+    margin: 3em 0.5em 0 0;
 }
 
 .book dt {
@@ -606,7 +611,7 @@ li.review {
 }
 
 .book dt:before {
-    content: "   ";
+    content: "";
     display: block;
 }
 
