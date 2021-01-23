@@ -36,8 +36,8 @@
         <div id="content">
 
             <div id="contact_e-mail">
-                <h2><span lang="en">e-mail</span></h2>
-                <p> Puoi mandarci una <span lang="en">e-mail</span>: betweenthelines@gmail.com</p>
+                <h2><span xml:lang="en">e-mail</span></h2>
+                <p> Puoi mandarci una <span xml:lang="en">e-mail</span>: betweenthelines@gmail.com</p>
             </div>
             
             <div id="contact_phone">
@@ -52,6 +52,7 @@
                         <legend>Form di messaggio: </legend>
                         <CONFERMA_INVIO/>
 
+                        <ERRORE_NOME/>
                         <div class="row">
                             <div class="col-25">
                                 <label for="first_name">Nome:</label>
@@ -60,8 +61,8 @@
                                 <input id="first_name" name="first_name" type="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
                             </div>
                         </div>
-                        <ERRORE_NOME/>
 
+                        <ERRORE_COGNOME/>
                         <div class="row">
                             <div class="col-25">
                                 <label for="last_name">Cognome:</label>
@@ -70,8 +71,8 @@
                                 <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
                             </div>
                         </div>
-                        <ERRORE_COGNOME/>
 
+                        <ERRORE_E_MAIL/>
                         <div class="row">
                             <div class="col-25">
                                 <label for="e_mail">e-mail:</label>
@@ -80,8 +81,8 @@
                                 <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
                             </div>
                         </div>
-                        <ERRORE_E_MAIL/>
 
+                        <ERRORE_MESSAGGIO/>
                         <div class="row">
                             <div class="col-25">
                                 <label for="message">Messaggio:</label>
@@ -90,7 +91,6 @@
                                 <textarea id="message" name="message" rows="50" cols="50" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
                             </div>
                         </div>
-                        <ERRORE_MESSAGGIO/>
 
                         <div class="row">
                             <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
