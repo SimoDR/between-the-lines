@@ -43,7 +43,7 @@
 
             <div id="contact_message">  
                 <h2>Oppure puoi scriverci direttamente qui...</h2>
-                <form id="message-form" class="form" method="POST" action="../php/contatti.php">
+                <form id="message-form" class="form" method="post" action="../php/contatti.php">
                     <fieldset>
                         <legend>Form di messaggio: </legend>
 
@@ -63,7 +63,7 @@
                                 <label for="first_name">Nome:</label>
                             </div>
                             <div class="col-75">
-                                <input id="first_name" name="first_name" classtype="text" placeholder="Inserisci il tuo nome..." value="<NOME/>" >
+                                <input id="first_name" name="first_name" type="text" value="<NOME/>" />
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                                 <label for="last_name">Cognome:</label>
                             </div>
                             <div class="col-75">
-                                <input id="last_name" type="text" name="last_name" placeholder="Inserisci il tuo cognome..." value="<COGNOME/>">
+                                <input id="last_name" type="text" name="last_name" value="<COGNOME/>"/>
                             </div>
                         </div>
 
@@ -83,7 +83,7 @@
                                 <label for="e_mail">e-mail:</label>
                             </div>
                             <div class="col-75">
-                                <input id="e_mail" type="text" name="e_mail" placeholder="Inserisci la tua e-mail..." value="<E_MAIL/>">
+                                <input id="e_mail" type="text" name="e_mail" value="<E_MAIL/>"/>
                             </div>
                         </div>
 
@@ -93,13 +93,12 @@
                                 <label for="message">Messaggio:</label>
                             </div>
                             <div class="col-75">
-                                <textarea id="message" name="message" rows="50" cols="50" placeholder="Inserisci il tuo messaggio..."><MESSAGGIO/></textarea>
+                                <textarea id="message" name="message" rows="50" cols="50"><MESSAGGIO/></textarea>
                             </div>
                         </div>
 
                         <div class="row">
-                            <input id="msgButton" name="msgButton" class="button" type="submit" value="Invia">
-                        </div>
+                            <input id="msgButton" class="button" type="submit" value="Invia"/>
                         </div>
 
                     </fieldset>

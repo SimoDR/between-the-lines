@@ -79,22 +79,11 @@ if ($connectionSuccess == false) {
              . '<div class="reviewContent"><span>' . $book['testo'] . '</span>' .
              '<span class="stelle">' . round($book['valutazione'],1) . " " .printStars($book['valutazione']) . '</span></div>';
             $lastReview .= '</div></li>';
-            /*
-
-            $lastReview .=  '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
-
-            $lastReview .= '<div class = "review"><div class="reviewDetails"><dd><img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" /> </dd>';
-
-            $lastReview .= '<dd class="username">' . $book['nome'] . '</dd>';
-            $lastReview .= '<dd class="reviewDatetime">' . $book['dataora'] . '</dd></div>';
-            $lastReview .= '<div class="reviewContent"><dd>' . $book['testo'] . '</dd>';
-            $lastReview .= '<dd class="stelle">' . round($book['valutazione'],1) . " " .printStars($book['valutazione']) . '</dd></div';
-            $lastReview .= '</dl></li>';
-            */
         }
 
         $lastReview .= '</ol></div>';
         $page = str_replace("<ULTIMI3_RECENSITI/>", $lastReview, $page);
+        $page = str_replace("<ERRORE/>", "", $page);
     }
 }
 
