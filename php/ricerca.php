@@ -81,21 +81,17 @@
 
         if ($resultSearch != null) {
 			
-			$bookList = "<div class=confirmationMessage> La ricerca ha prodotto " . $resultCount . " risultat";
+			$bookList = "<div class=\"confirmationMessage\"> La ricerca ha prodotto " . $resultCount . " risultat";
 			if ($resultCount == 1)
 				$bookList .= "o</div>";
 			else{
 				$bookList .= "i</div>";
 			}
 
-			$bookList .= '<div class=bookList><ul>';
-			
-
-            /*<a href="dettagliLibro.php?id_libro='. $book['id'].'">*/
-
+			$bookList .= '<div class="bookList"><ul>';
 
 			foreach ($resultSearch as $book) {
-				$bookList .= '<li class="book"><h3>'. $book['titolo'] .'</a></h3>';
+				$bookList .= '<li class="book"><h3>'. $book['titolo'] .'</h3>';
 				$bookList .= '<img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /><dl>' ;
 				$bookList .= '<dt>Autore:</dt><dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
 				$bookList .= '<dt>Genere:</dt><dd>' . $book['genere']. '</dd>';
@@ -107,10 +103,10 @@
                 }
 
 				$bookList .= '<dt>Stelle:</dt><dd>' . $stelle . '</dd></dl>
-                    <form class="form" id="dettagliForm" method="get" action="dettagliLibro.php">
+                    <form class="form" method="get" action="dettagliLibro.php">
                         <div class="row">
                         <input type="hidden" value="' . $book['id'] . '" name="id_libro"/>
-                        <input class=button id="dettagliButton" type="submit" value="Dettagli del libro"/>
+                        <input class="button" type="submit" value="Dettagli del libro"/>
                         </div>
                     </form>
             </li>';
@@ -144,6 +140,7 @@
              $pagesList= $pagesList."</div>";
              $pagHTML= str_replace("<RISULTATI/>", $bookList, $pagHTML);
              $pagHTML= str_replace("<NUMERO_PAGINA/>", $pagesList, $pagHTML);
+             $pagHTML=str_replace("<ERRORE/>", "", $pagHTML);
 	}
 
 	echo $pagHTML;

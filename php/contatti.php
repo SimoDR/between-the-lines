@@ -19,6 +19,11 @@
 	// arrivo la prima volta sulla pagina
 	if (empty($_POST['first_name']) && empty($_POST['last_name']) && empty($_POST['e_mail']) && empty($_POST['messagge']) ) {
 		$correctMessage=false;
+		$pagHTML = str_replace("<ERRORE_NOME/>", "", $pagHTML);
+		$pagHTML = str_replace("<ERRORE_COGNOME/>", "", $pagHTML);
+		$pagHTML = str_replace("<ERRORE_E_MAIL/>", "", $pagHTML);
+		$pagHTML = str_replace("<ERRORE_MESSAGGIO/>","", $pagHTML);
+		$pagHTML = str_replace("<CONFERMA_INVIO/>", "", $pagHTML);
 	}
 	else{
 		// se l'input non è nel formato corretto il messaggio non può essere inviato
@@ -29,6 +34,7 @@
 		}
 		else {
 			$firstName=$_POST['first_name'];
+			$pagHTML = str_replace("<ERRORE_NOME/>", "", $pagHTML);
 		}
 
 		if (!check_nome($_POST['last_name'])) {
@@ -37,6 +43,7 @@
 		}
 		else{
 			$lastName=$_POST['last_name'];
+			$pagHTML = str_replace("<ERRORE_COGNOME/>", "", $pagHTML);
 		}
 
 		if (!check_email($_POST['e_mail'])) {
@@ -44,7 +51,8 @@
 			$pagHTML = str_replace("<ERRORE_E_MAIL/>", "<div class=\"errorMessage\">e-mail non valida</div>", $pagHTML);
 		}
 		else {
-			$email=$_POST['e_mail'];		
+			$email=$_POST['e_mail'];
+			$pagHTML = str_replace("<ERRORE_E_MAIL/>", "", $pagHTML);		
 		}
 
 		if (strlen($_POST['message']) < 15) {
@@ -53,6 +61,7 @@
 		}
 		else{
 			$message=$_POST['message'];
+			$pagHTML = str_replace("<ERRORE_MESSAGGIO/>","", $pagHTML);
 		}
 
 		// se tutto giusto "invio" il messaggio
@@ -62,6 +71,9 @@
 			$lastName="";
 			$email="";
 			$message="";
+		}
+		else{
+			$pagHTML = str_replace("<CONFERMA_INVIO/>", "", $pagHTML);
 		}
 	}
 

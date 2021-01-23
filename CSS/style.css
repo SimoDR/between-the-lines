@@ -381,44 +381,63 @@ ul.proPic img {
 
 /*chi siamo - staff*/
 
-#staff > dl{
+#staff ul{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.staffMember {
-    width: 17em;
-    border: 0.2em;
-    border-style: solid ;
-    border-color: sienna;
-    background-color: peru;
+#staff h3{
+    padding: 0.5em;
+}
+
+#staff img{
+    display: block;
+    margin:auto;
+}
+
+#staff li{
+    list-style: none;
+    width: 16.5em;
+    margin:0.5em;
     padding: 1em;
     margin:1em;
     border-radius: 2em;
+    background-color: peru;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
     text-align: center;
 }
 
-.staffMember > dt {
-    margin-bottom: 1em;
-    font-size: 1.3em;
-}
-
-.staffMember > dd:before {
-    content: "";
-    display:block;
-}
-
-.staffMember dt{
-    font-weight: bolder;
-    display: inline-block;
-}
-
-.staffMember dd:after{
-    content: "";
+#staff dd{
     display: block;
+    float: left; 
 }
+
+#staff dt{
+    display: block;
+    float: left; 
+}
+
+#staff dt{
+    clear: left;
+    font-weight: bold;
+}
+
+#staff dd:before{
+    content:": ";
+
+}
+
+#staff dl{
+    padding-top: 0.5em;
+}
+
+
+
+
 /*dettagli libro*/
 
 .buttonDelete {
