@@ -429,8 +429,9 @@ ul.proPic img {
     justify-content: space-around;
 }
 
-#staff h3{
+#staff h4{
     padding: 0.5em;
+    font-size: 150%;
 }
 
 #staff img{
@@ -699,6 +700,7 @@ li.review {
     border-radius: 1em;
     margin: 1em 3em 0.5em 0;
     float:left;
+    border: 0.1em solid white;
 }
 
 .book {

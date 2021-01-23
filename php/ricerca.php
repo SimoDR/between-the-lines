@@ -129,11 +129,11 @@
 			$i=1;
             $pagesList="<div class=\"pageNumbers\">";
             $address=$_SERVER['REQUEST_URI'];
-            $address = preg_replace("/\&currentPage=\d/","",$address);
+            $address = preg_replace("/&amp;currentPage=\d/","",$address);
 
             if($currentPage>1){
                 $prec=$currentPage-1;
-                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$prec\" class=\"notCurrentPage\">Precedente</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&amp;currentPage=$prec\" class=\"notCurrentPage\">Precedente</a>";
             }
             while($i<=$totalPages){                
                 if($i==$currentPage){
@@ -143,7 +143,7 @@
             }
             if($currentPage<$totalPages){
                 $succ=$currentPage+1;
-                $pagesList= $pagesList."\n<a href=\"$address&currentPage=$succ\" class=\"notCurrentPage\">Successivo</a>";
+                $pagesList= $pagesList."\n<a href=\"$address&amp;currentPage=$succ\" class=\"notCurrentPage\">Successivo</a>";
             }
 
              $pagesList= $pagesList."</div>";
