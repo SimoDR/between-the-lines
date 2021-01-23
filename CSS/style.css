@@ -20,11 +20,12 @@ html, body {
 }
 
 #content h2 {
-    margin-top: 1.5em;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
 }
 
 #content h2:first-child {
-    margin-top: 0em;
+    margin-top: 0;
 }
 
 
@@ -148,8 +149,8 @@ body {
     
 }
 
-.menu-list li {
-    color: white;
+.menu-list li .hdrButton{
+    display: block;
     background-color: brown;
     border-radius: 0.5em;
     border: 1px solid black;
@@ -632,9 +633,10 @@ li.review {
 
 /*RECENSIONI*/
 
-#reviewTitlePhrase {
+#content #reviewTitlePhrase {
     font-size: 1.3em;
-    margin-bottom: 1em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
 }
 
 
