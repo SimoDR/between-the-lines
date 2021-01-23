@@ -19,6 +19,14 @@ html, body {
     padding: 0em
 }
 
+#content h2 {
+    margin-top: 1.5em;
+}
+
+#content h2:first-child {
+    margin-top: 0em;
+}
+
 
 html {
     background-image: url("../img/background/background.jpg");
@@ -71,20 +79,36 @@ body {
 /*header*/
 #header {
     background-color: peru;
-    text-align: center;
     color: #010151;
     padding: 1em;
+    overflow: hidden;
+}
+
+#header h1 {
+    padding-top: 5%;
 }
 
 #header h2 {
-    padding-bottom: 1em;
+    margin-bottom: 10%;
 }
+
+
+
+
+#header img {
+    max-width: 25%;
+    padding-left: 15%;
+    float: left;
+}
+
+
 
 #userButtons {
     float: right;
 }
 
 .hdrButton {
+    display: inline-block;
     background-color: brown;
     color: #ffffff;
     border-radius: 1em;
@@ -313,9 +337,6 @@ ul.proPic img {
     text-align: center;
 }
 
-#indexRicerca {
-    margin-top: 1.3em;
-}
 
 #rankingLastReview, #rankingTopReview {
     margin-top: 1.5em;
@@ -434,9 +455,6 @@ ul.proPic img {
     padding-top: 2em;
 }
 
-#reviewArea h2 {
-    padding-bottom: 0.51em;
-}
 
 #insertReviewButton {
     margin: 0.5em 0 0.5em 0;
@@ -672,6 +690,8 @@ li.review {
     color: #00ae08;
 }
 
+
+
 /*----------------------------------*/
 
 /*mobile*/
@@ -686,16 +706,27 @@ li.review {
         margin-left: 0;
     }
     
-    #header {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
+    #logout {
+        display: block;
+        width: 4em;
     }
+    
+        #header {
+            overflow: hidden;
+        }
+
+        #header h1 {
+            padding-top: 5%;
+        }
+
+
+        #header img {
+            min-width: 30%;
+            padding-left: 0;
+        }
+
+
+
     
     #menu {
         margin-top: 0em;
@@ -705,7 +736,7 @@ li.review {
     
     #bookAreaReview bookFrontpage {
         margin-left: auto;
-    margin-right: auto;
+        margin-right: auto;
     }
     
     #bookAreaReview img {
@@ -726,6 +757,8 @@ li.review {
         width: 100%;
         margin-top: 0;
     }
+    
+    
     
     .reviewDetails .buttonDelete {
         width: 40%;

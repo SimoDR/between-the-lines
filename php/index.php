@@ -47,7 +47,7 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryTopReview != null) {
-        $topReview = '<div id="rankingTopReview"><h2>I libri più recensiti </h2><ol>';
+        $topReview = '<h2>I libri più recensiti </h2><div id="rankingTopReview"><ol>';
         foreach ($queryTopReview as $book) {
             $topReview .= '<li><dl>';
             $topReview .= '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
@@ -62,7 +62,7 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryLastReview != null) {
-        $lastReview = '<div id="rankingLastReview"><h2>Le nuove recensioni</h2><ol class="reviewList">';
+        $lastReview = '<h2>Le nuove recensioni</h2><div id="rankingLastReview"><ol class="reviewList">';
         foreach ($queryLastReview as $book) {
 
             $lastReview .= '<li>

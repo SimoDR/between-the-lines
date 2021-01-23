@@ -1,143 +1,131 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title xml:lang="en">Inserisci Libro - Between the Lines</title>
-    <meta name="title" content="Inserisci Libro - Between the Lines"/>
-    <meta name="description" content="Pagina per l'inserimento di un libro nell'archivio del sito Between the Lines."/>
+        <title xml:lang="en">Inserisci Libro - Between the Lines</title>
+        <meta name="title" content="Inserisci Libro - Between the Lines"/>
+        <meta name="description" content="Pagina per l'inserimento di un libro nell'archivio del sito Between the Lines."/>
 
-    <meta name="keywords"
-          content="Between the Lines, registrazione, email, password, utente, libri, recensioni, opinioni"/>
-    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
-    <meta name="language" content="italian it"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords"
+              content="Between the Lines, registrazione, email, password, utente, libri, recensioni, opinioni"/>
+        <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+        <meta name="language" content="italian it"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
-    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
-  <body>
-      
-    <HEADER/>
+        <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+        <body>
 
-    <div id="breadcrumb">
-      <p>Ti trovi in: 
-        <a href="utente.php">Utente
-        </a> &raquo Aggiungi libro
-      </p>
-    </div>
-    <div id="menu">
-      <MENU/>
-    </div>
-<!--     <SUCCESSO/>
- -->    <div id="content">
-      <form method="post" action="inserisciLibro.php" enctype="multipart/form-data" id="form_libro" class="vertical_input_form">
-        <noscript>
-          <div class="errorMessage">
-            ATTENZIONE: 
-            <span xml:lang="en">JAVASCRIPT
-            </span> NON È ATTIVO, ALCUNE FUNZIONALITÀ POTREBBERO NON ESSERE DISPONIBILI
-          </div>
-        </noscript>
-        <h2>
-          Inserisci i dati nel nuovo libro:
-        </h2>
-        <div class="row"> 
-          <div class="col-25">
-            <label for="author">Seleziona autore:
-            </label>
-          </div>
-          <div class="col-50">
-            <select id="author" name="author" >
-              <AUTORI/>
-            </select>
-          </div>
-        </div>
-        <div class="row"> 
-          <div class="col-25">
-            <label for="genre">Seleziona genere:
-            </label>
-          </div>
-          <div class="col-50">
-            <select id="genre" name="genre">
-              <GENERI/>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="titolo">Titolo:
-            </label>
-          </div>
-          <div class="col-75">
-            <input type="text" name="titolo" id="titolo" class="full_width_input" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="trama">Trama:
-            </label>
-          </div>
-          <div class="col-75">
-            <textarea name="trama" id="trama" class="full_width_input" rows="5">
-            </textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="img_cover_preview">Copertina:
-            </label>
-          </div>
-          <div class="col-75">
-            <div class="row">
-              <label for="fileToUpload"> Carica un file: 
-              </label>
-              <input type="file" name="fileToUpload" id="fileToUpload" />
+            <HEADER/>
+
+            <div id="breadcrumb">
+                <p>Ti trovi in: 
+                    <a href="utente.php">Utente
+                    </a> &raquo Aggiungi libro
+                </p>
             </div>
-            <div class="col-50">
-              <img id="img_cover_preview" src="../img/defaultuser.png" alt="foto della copertina" />
+            <div id="menu">
+                <MENU/>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="alt_text">Testo alternativo 
-              <span class="sr-only">(all'immmagine)
-              </span>:
-            </label>
-          </div>
-          <div class="col-75">
-            <textarea name="alt_text" id="alt_text" class="full_width_input" rows="5">
-            </textarea>
-          </div>
-        </div>
-        <div class="row" >
-          <input type="reset" class="button" name="reset" id="libroResetButton" /> 
-          <button type="submit" class="button" name="addBook" id="libroButton">Invia
-          </button>
-        </div>
-      </form> 
-      <div class="turnBack">
-        <a class="turnBackLink" href="#header">Torna su
-        </a>
-      </div>
-    </div>
-    <div id="footer">
-      <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
-      <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
-      <ul id="footerlist">
-        <li>
-          <span xml:lang="en"> Between the Lines
-          </span> - Opinioni sui libri
-        </li>
-        <li>049-267276 - Padova, Via Paolotti 5
-        </li>
-        <li xml:lang="en">betweenthelines@gmail.com
-        </li>
-        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved
-        </li>
-      </ul>
-    </div>
-    <script type="text/javascript" src="../js/script.js">
-    </script>
-  </body>
+            <!--     <SUCCESSO/>
+            -->    <div id="content">
+                <form method="post" action="inserisciLibro.php" enctype="multipart/form-data" id="form_libro" class="vertical_input_form">
+                    <noscript>
+                        <div class="errorMessage">
+                            ATTENZIONE: 
+                            <span xml:lang="en">JAVASCRIPT
+                            </span> NON È ATTIVO, ALCUNE FUNZIONALITÀ POTREBBERO NON ESSERE DISPONIBILI
+                        </div>
+                    </noscript>
+                    <h2>
+                        Inserisci i dati nel nuovo libro:
+                    </h2>
+                    <div class="row"> 
+                        <div class="col-25">
+                            <label for="author">Seleziona autore:
+                            </label>
+                        </div>
+                        <div class="col-50">
+                            <select id="author" name="author" >
+                                <AUTORI/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-25">
+                            <label for="genre">Seleziona genere:
+                            </label>
+                        </div>
+                        <div class="col-50">
+                            <select id="genre" name="genre">
+                                <GENERI/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="titolo">Titolo:
+                            </label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="titolo" id="titolo" class="full_width_input" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="trama">Trama:
+                            </label>
+                        </div>
+                        <div class="col-75">
+                            <textarea name="trama" id="trama" class="full_width_input" rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="img_cover_preview">Copertina:
+                            </label>
+                        </div>
+                        <div class="col-75">
+                            <div class="row">
+                                <label for="fileToUpload"> Carica un file: 
+                                </label>
+                                <input type="file" name="fileToUpload" id="fileToUpload" />
+                            </div>
+                            <div class="col-50">
+                                <img id="img_cover_preview" src="../img/defaultuser.png" alt="foto della copertina" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="alt_text">Testo alternativo 
+                                <span class="sr-only">(all'immmagine)
+                                </span>:
+                            </label>
+                        </div>
+                        <div class="col-75">
+                            <textarea name="alt_text" id="alt_text" class="full_width_input" rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <input type="reset" class="button" name="reset" id="libroResetButton" /> 
+                        <button type="submit" class="button" name="addBook" id="libroButton">Invia
+                        </button>
+                    </div>
+                </form> 
+                
+                <div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
+
+
+            </div>
+
+            <div id="footer">
+                <FOOTER/>
+            </div>
+            <script type="text/javascript" src="../js/script.js">
+            </script>
+        </body>
 </html>

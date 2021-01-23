@@ -11,13 +11,13 @@
         <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
         <meta name="language" content="italian it" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-         
+
         <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
         <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
     </head>
 
     <body>
-        
+
         <HEADER/>
 
         <div id="breadcrumb">
@@ -29,13 +29,13 @@
         </div>  
 
         <div id="content">
-            <h2> Ricerca</h2>
+            <h2>Ricerca</h2>
 
             <form id="search_form" method="get" action="../php/ricerca.php" class="form">
                 <fieldset>
                     <legend>Form di ricerca: </legend>
                     <ERRORE/>
-                    
+
                     <div class="row">
                         <div class="col-25"> 
                             <label for="search_bar">Cerca il libro</label>
@@ -46,14 +46,14 @@
                     </div>
 
                     <div class="row">
-                            <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
-                            <label for="filter_title">Cerca per TITOLO</label>
+                        <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
+                        <label for="filter_title">Cerca per TITOLO</label>
                     </div>
 
 
                     <div class="row">
-                            <input id="filter_author" name="filter" type="radio" value="11"/>
-                            <label for="filter_author">Cerca per AUTORE</label> 
+                        <input id="filter_author" name="filter" type="radio" value="11"/>
+                        <label for="filter_author">Cerca per AUTORE</label> 
                     </div>
 
                     <div class="row">
@@ -67,7 +67,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <input class=button id="search_button" name="search_button" type="submit" value="Avvia Ricerca!"/> 
                     </div>
@@ -85,17 +85,9 @@
         </div>
 
         <div id="footer">
-            <img id="imgValidCode" src="../img/valid-xhtml10.png" alt="Simbolo che certifica uso di Html valido"/>
-            <img id="imgValidCSS" src="../img/vcss-blue.gif" alt="Simbolo che certifica uso di CSS valido"/>
-            <ul id="footerlist">
-                <li><span xml:lang="en"> Between the Lines</span> - Opinioni sui libri</li>
-                <li>049-267276 - Padova, Via Paolotti 5</li>
-                <li xml:lang="en">betweenthelines@gmail.com</li>
-                <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
-            </ul>
-
+            <FOOTER/>
         </div>
-              
+
         <script type="text/javascript" src="../js/script.js"></script>
     </body>
 </html>

@@ -32,12 +32,21 @@
 		INNER JOIN autori A ON L.id_autore=A.ID 
 		INNER JOIN generi G ON G.ID=L.id_genere 
 		INNER JOIN copertine C ON C.id_libro=L.ID AND ";
+                
+                $titleOrAuthor='';
+                $genre='';
+                $search ='';       
+                if(isset($_GET['filter'])) {
+                    $titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
+                }
+                if(isset($_GET['genre'])) {
+                    $genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
+                }
+                if(isset($_GET['search_bar'])) {
+                    $search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
+                }
 
-
-		$titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
-		$genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
-		$search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
-
+                
 		if($titleOrAuthor == 0){ // ricerca per titolo
 			$querySearch .= "L.titolo LIKE '%$search%' ";
         }
