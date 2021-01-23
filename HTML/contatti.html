@@ -50,6 +50,15 @@
                 <form id="message-form" method="POST" action="../php/contatti.php">
                     <fieldset>
                         <legend>Form di messaggio: </legend>
+
+                        <noscript>
+                            <div class="errorMessage">
+                                ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA'
+                                POTREBBERO
+                                NON ESSERE DISPONIBILI
+                            </div>
+                        </noscript>
+
                         <CONFERMA_INVIO/>
 
                         <div class="row">
@@ -93,7 +102,7 @@
                         <ERRORE_MESSAGGIO/>
 
                         <div class="row">
-                            <input id="submit_button" name="messagge" class="button" type="submit" value="Invia">
+                            <input id="msgButton" name="msgButton" class="button" type="submit" value="Invia">
                         </div>
                     </div>
 
