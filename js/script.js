@@ -249,26 +249,25 @@ function modificaUtenteChecker() {
 
     }
 }
-// function contattiChecker() {
-//     if (document.getElementById("message-form")) {
-//         var contattiControls = {};
-//         contattiControls["e_mail"] = [[checkEmail, "Inserire una e-mail valida"]];
-//         contattiControls["messagge"] = [[isNotEmpty, "La recensione non può essere vuota."],
-//                                      [reviewContentLowerBound,"La recensione deve contenere almeno 50 caratteri."];
-//         contattiControls["first_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-//         contattiControls["last_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-//         // link the controls to the event "focusOut"
-//         addFocusOutEvent(contattiControls);
-//         //control on the passwords match
+function contattiChecker() {
+    if (document.getElementById("message-form")) {
+        var contattiControls = {};
+        contattiControls["e_mail"] = [[checkEmail, "Inserire una e-mail valida"]];
+        contattiControls["message"] = [[isNotEmpty, "La recensione non può essere vuota"],
+                                     [reviewContentLowerBound,"La recensione deve contenere almeno 50 caratteri."]];
+        contattiControls["first_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        contattiControls["last_name"] = [[isNotEmpty, "Il cognome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+        // link the controls to the event "focusOut"
+        addFocusOutEvent(contattiControls);
 
-//         //link the controls to the event "click" of the form submit button
-//         var msgButton = document.getElementById("msgButton");
-//         msgButton.addEventListener("click", (event) => {
-//             if (!clickController(contattiControls)) event.preventDefault();
-//         });
+        //link the controls to the event "click" of the form submit button
+        var msgButton = document.getElementById("msgButton");
+        msgButton.addEventListener("click", (event) => {
+            if (!clickController(contattiControls)) event.preventDefault();
+        });
 
-//     }
-// }
+    }
+}
 
  function hasClass(element, className) {
     return element.classList.contains(className);
@@ -373,4 +372,5 @@ window.onload = function () {
     newGenereChecker();
     modificaUtenteChecker();
     newLibroChecker();
+    contattiChecker();
 };
