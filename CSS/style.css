@@ -242,6 +242,7 @@ ul.proPic img {
 /*pagina utente*/
 
 .imgWrapper {
+    margin-top: 1em;
     width: 9em;
     height: 9em;
     margin-left: auto;
@@ -249,6 +250,7 @@ ul.proPic img {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
+    background-color: white;
     border: 0.2em solid black;
 }
 
@@ -259,9 +261,48 @@ ul.proPic img {
 
 .userInfo {
     display: block;
+    margin:1em;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    margin-bottom: 3em;
+}
+#editUser {
+    margin:2em;
+}
+
+#editLink{
+    background-color: brown;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    padding: 0.3em;
+    margin: 1em;
+}
+
+.newAuthorGenre {
+    list-style-type: none;
+    padding:1em;
+}
+.newAuthorGenre > li{
+    margin: 2em 2em 0em;
+}
+.newAuthorGenre a{
+    background-color: brown;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    padding: 0.3em;
+    margin: 2em;
+}
+
+#addBook {
+    text-align: center;
+    font-size: 1.2em;
+    display: block;
+    background-color: brown;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    padding: 0.8em;
+    margin: 2em;
 }
 
 /*classifiche - homepage*/
@@ -671,6 +712,7 @@ li.review {
     border-radius: 0.2em;
     color: #00ae08;
 }
+
 
 /*----------------------------------*/
 
