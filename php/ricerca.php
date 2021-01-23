@@ -89,9 +89,13 @@
 			}
 
 			$bookList .= '<div class=bookList><ul>';
-				
+			
+
+            /*<a href="dettagliLibro.php?id_libro='. $book['id'].'">*/
+
+
 			foreach ($resultSearch as $book) {
-				$bookList .= '<li class="book"><h3><a href="dettagliLibro.php?id_libro='. $book['id'].'">'. $book['titolo'] .'</a></h3>';
+				$bookList .= '<li class="book"><h3>'. $book['titolo'] .'</a></h3>';
 				$bookList .= '<img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /><dl>' ;
 				$bookList .= '<dt>Autore:</dt><dd>' . $book['nome'] . ' ' . $book['cognome'] . '</dd>' ;
 				$bookList .= '<dt>Genere:</dt><dd>' . $book['genere']. '</dd>';
@@ -102,7 +106,14 @@
                     $stelle = round($book['media'],1) . '/5 ' . printStars($book['media']);
                 }
 
-				$bookList .= '<dt>Stelle:</dt><dd>' . $stelle . '</dd></dl></li>';
+				$bookList .= '<dt>Stelle:</dt><dd>' . $stelle . '</dd></dl>
+                    <form class="form" id="dettagliForm" method="get" action="dettagliLibro.php">
+                        <div class="row">
+                        <input type="hidden" value="' . $book['id'] . '" name="id_libro"/>
+                        <input class=button id="dettagliButton" type="submit" value="Dettagli del libro"/>
+                        </div>
+                    </form>
+            </li>';
                                 
 			}
 			$bookList .= '</ul></div>';

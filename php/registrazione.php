@@ -109,8 +109,8 @@ if (!$obj_connection->openDBConnection()) {
             $checked = "checked=\"checked\"";
         }
         $pictures = $pictures . "<li>
-                            <input type=\"radio\" id=\"img$id\" name=\"propic\" value=\"$id\" $checked \>
-                            <label for=\"img$id\"><img src=\"$path\" alt=\"$alt\"></label>
+                            <input type=\"radio\" id=\"img$id\" name=\"propic\" value=\"$id\" $checked />
+                            <label for=\"img$id\"><img src=\"$path\" alt=\"$alt\"/></label>
                         </li>";
 
     }
