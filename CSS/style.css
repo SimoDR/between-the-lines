@@ -68,9 +68,6 @@ body {
     border-radius: 0.5em;
 }
 
-/*error*/
-
-
 /*header*/
 #header {
     background-color: peru;
@@ -271,13 +268,19 @@ ul.proPic img {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items:flex-end;
+
 }
 
 #rankingTopReview li{
-        text-align: center;
-        display: flex;
-        width: 17em;
+        list-style: none;
+        width: 14em;
+        height: 22em;
+        margin:0.5em;
+        padding: 1em;
+        background-color: peru;
+        border-radius: 1em;
+        -webkit-border-radius: 1em;
+        -moz-border-radius: 1em;
 }
 
 #rankingTopReview li
@@ -287,15 +290,24 @@ ul.proPic img {
 
 #rankingTopReview img{
     border-radius: 1em;
-    height: 17em;
+    height: 15em;
+    border: 0.2em solid white;
 }
 
 #rankingTopReview dt{
-    padding: 1em;
+    vertical-align: middle;
+    background-color: sienna;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    text-align: center;
+    padding-bottom: 1em;
+    height: 3em;
 }
 
 #rankingTopReview dd{
     display: block;
+    text-align: center;
 }
 
 #rankingLastReview ol{
