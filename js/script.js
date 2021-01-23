@@ -95,6 +95,22 @@ function reviewContentLowerBound(str) {
 function reviewContentUpperBound(str) {
     return str.trim().length<500;
 }
+
+function checkTitle(str) {
+    return str && str.trim().length>4;
+}
+
+function checkAltText(str) {
+    return str && str.trim().length>4;
+}
+
+function plotLowerBound(str) {
+    return str.trim().length>50;
+}
+
+function plotUpperBound(str) {
+    return str.trim().length<500;
+}
     
 function isEqual(str1, str2) {
     return str1.trim() == str2.trim();
@@ -233,27 +249,119 @@ function modificaUtenteChecker() {
 
     }
 }
+// function contattiChecker() {
+//     if (document.getElementById("message-form")) {
+//         var contattiControls = {};
+//         contattiControls["e_mail"] = [[checkEmail, "Inserire una e-mail valida"]];
+//         contattiControls["messagge"] = [[isNotEmpty, "La recensione non può essere vuota."],
+//                                      [reviewContentLowerBound,"La recensione deve contenere almeno 50 caratteri."];
+//         contattiControls["first_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+//         contattiControls["last_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
+//         // link the controls to the event "focusOut"
+//         addFocusOutEvent(contattiControls);
+//         //control on the passwords match
 
-function contattiChecker() {
-    if (document.getElementById("message-form")) {
-        var contattiControls = {};
-        contattiControls["e_mail"] = [[checkEmail, "Inserire una e-mail valida"]];
-        contattiControls["messagge"] = [[isNotEmpty, "La recensione non può essere vuota."],
-                                     [reviewContentLowerBound,"La recensione deve contenere almeno 50 caratteri."];
-        contattiControls["first_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-        contattiControls["last_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-        // link the controls to the event "focusOut"
-        addFocusOutEvent(contattiControls);
-        //control on the passwords match
+//         //link the controls to the event "click" of the form submit button
+//         var msgButton = document.getElementById("msgButton");
+//         msgButton.addEventListener("click", (event) => {
+//             if (!clickController(contattiControls)) event.preventDefault();
+//         });
 
-        //link the controls to the event "click" of the form submit button
-        var msgButton = document.getElementById("msgButton");
-        msgButton.addEventListener("click", (event) => {
-            if (!clickController(contattiControls)) event.preventDefault();
+//     }
+// }
+
+ function hasClass(element, className) {
+    return element.classList.contains(className);
+  }
+  MSG_TYPES = {
+    ERROR: -1, 
+    WARNING: 0, 
+    SUCCESS: 1
+  };
+  function createHTMLBox(msg, type) {
+    var box = document.createElement("div");
+    box.classList.add("msg_box");
+    var msgClass = "success_box";
+    if(type == MSG_TYPES.ERROR)
+      msgClass = "error_box";
+    else if(type == MSG_TYPES.WARNING)
+      msgClass = "warning_box";
+    box.classList.add(msgClass);
+    box.innerHTML = msg;
+    return box;
+  }
+  function showAlertBox(element, message) {
+    var alertBox = createHTMLBox(message, MSG_TYPES.ERROR);
+    element.parentNode.insertBefore(alertBox, element);
+  }
+
+  function changeImg(sourceElement, previewElement) {
+    if(sourceElement.files && sourceElement.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(ee) {
+        previewElement.src = ee.target.result;
+      }
+      reader.readAsDataURL(sourceElement.files[0]);
+    }
+  }
+  function extensionAccepted(path) {
+    var extensions = ['png','jpg','jpeg','gif'];
+    return extensions.includes(path.split('.').pop());
+  }
+  function sizeAccepted(size) {
+    return size < 3000000;
+  }
+  function checkPhoto(image) {
+    if(isNotEmpty(image.value)) {
+      removePreviousBox(image);
+      if(!extensionAccepted(image.value)) {
+        showAlertBox(image, "Il formato non è supportato. Sono supportati i formati jpg, jpeg, gif, png");
+        return false;
+      }
+      else if(!sizeAccepted(image.files[0].size)) {
+        showAlertBox(image, "Il file è troppo grande. Sono accettati file fino a 3MB");
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+    return false;
+  }
+  function changeImg(sourceElement, previewElement) {
+    if(sourceElement.files && sourceElement.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(ee) {
+        previewElement.src = ee.target.result;
+      }
+      reader.readAsDataURL(sourceElement.files[0]);
+    }
+  }
+
+function newLibroChecker(){
+    if (document.getElementById("form_libro")) {
+        var libroControls = {};
+        // libroControls["author"] = [[isNotEmpty, "L'autore deve essere selezionato"]];
+        // libroControls["genre"] = [[isNotEmpty, "Il genere deve essere selezionato"]];
+        libroControls["titolo"]=[[checkTitle,"Il titolo non può essere vuoto e deve contenere almeno 5 caratteri."]];
+        libroControls["trama"]=[[isNotEmpty,"La trama non può essere vuota"],
+                                [plotLowerBound,"La trama deve contenere almeno 50 caratteri."],
+                                [plotUpperBound,"La trama deve contenere al massimo 500 caratteri."]];
+        libroControls["alt_text"]=[[checkAltText,"Il testo alternativo non può essere vuoto e deve contenere almeno 5 caratteri"]];
+        addFocusOutEvent(libroControls);
+
+        var libroButton = document.getElementById("libroButton");
+        libroButton.addEventListener("click", (event) => {
+            if (!clickController(libroControls)) event.preventDefault();
         });
-
+        var newImg = document.getElementById("fileToUpload");
+        newImg.addEventListener("change", function(e) {
+        if(checkPhoto(e.target))
+            changeImg(newImg, document.getElementById("img_cover_preview"));
+        });
     }
 }
+
 
 /* --------- add checks on page load ---------- */
 
@@ -264,4 +372,5 @@ window.onload = function () {
     newAutoreChecker();
     newGenereChecker();
     modificaUtenteChecker();
+    newLibroChecker();
 };

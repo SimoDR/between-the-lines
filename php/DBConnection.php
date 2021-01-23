@@ -73,6 +73,17 @@ class DBAccess
     {
         return $this->connection->real_escape_string($string);
     }
+
+
+    public function insert_and_get_id($query)
+    {
+        if (mysqli_query($this->connection, $query)) {
+          $last_id = mysqli_insert_id($this->connection);
+          return $last_id;
+        } else {
+          return -1;
+        }
+    }
 }
 
 ?>
