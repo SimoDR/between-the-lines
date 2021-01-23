@@ -288,21 +288,21 @@ ul.proPic img {
     font-weight:bold; 
 }
 
-#rankingTopReview img{
+#rankingTopReview img {
     border-radius: 1em;
     height: 15em;
     border: 0.2em solid white;
+    margin-top: 1em;
 }
 
-#rankingTopReview dt{
-    vertical-align: middle;
+#rankingTopReview dt {
     background-color: sienna;
     border-radius: 1em;
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     text-align: center;
-    padding-bottom: 1em;
-    height: 3em;
+    padding: 0.2em;
+    height: 4em;
 }
 
 #rankingTopReview dd{
