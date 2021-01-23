@@ -18,22 +18,20 @@ if ($_SESSION['logged'] == true) {
             $error = "[La query non è andata a buon fine]";
         } else {
             $username = $queryResult[0]["username"];
-            $email=$queryResult[0]["mail"];
+            $email = $queryResult[0]["mail"];
             $idPic = $queryResult[0]["id_propic"];
             $proPic = $obj_connection->queryDB("SELECT * FROM foto_profilo WHERE ID=\"$idPic\" ");
             $pathPic = $proPic[0]["path_foto"];
             $altPic = $proPic[0]["alt_text"];
             $userInfo = "<div class=\"imgWrapper\"><img class=\"userPic\" src=\"$pathPic\" alt=\"$altPic\" /></div>
         <h2 class=\"userName\"> $username </h2>
-        <p class=\"email\"> La tua <span xml:lang=\"en\" lang=\"en\">E-mail</span>: $email </p>";
+        <p class=\"email\"> La tua <span xml:lang=\"en\">E-mail</span>: $email </p>";
         }
         $obj_connection->closeDBConnection();
-    }
-    else{
+    } else {
         //no db connection
     }
-}
-else {
+} else {
     //404?
 }
 
@@ -47,10 +45,10 @@ if (isset($_POST["deleteUser"])) {
             header('location: logout.php'); //handle logout
             exit();
         } else {
-            $error = $error . "<div class=\"msg_box error_box\"> la password inserita è errata </div>";
+            $error = $error . "<div class=\"errorMessage\"> la password inserita è errata </div>";
         }
     } else {
-         //NO db connection
+        //NO db connection
     }
 }
 $page = str_replace("<ERRORI/>", "$error", $page);
@@ -74,21 +72,15 @@ if ($_SESSION['permesso'] == 0) {
           method=\"post\"
           action=\"../php/utente.php\">
         <fieldset class=\"form-fieldset fieldset-elimina-account\">
-            <legend class=\"legend\">Eliminazione <span xml:lang=\"en\" lang=\"en\">account</span></legend>
+            <legend class=\"legend\">Eliminazione <span xml:lang=\"en\">account</span></legend>
             <ERRORI/>
-            <label for=\"userPwd\">Per confermare inserisci la tua <span xml:lang=\"en\" lang=\"en\">password</span>:</label>
-            <input type=\"password\"
-                   id=\"userPwd\"
-                   name=\"userPwd\"
-                   class=\"barra-input\" />
-            <input type=\"submit\"
-                   name=\"deleteUser\"
-                   value=\"Elimina\"
-                   class=\"deleteUserBtn\" />
+            <label for=\"userPwd\">Per confermare inserisci la tua <span xml:lang=\"en\">password</span>:</label>
+            <input type=\"password\" id=\"userPwd\" name=\"userPwd\"                 />
+            <input type=\"submit\" name=\"deleteUser\" value=\"Elimina\" class=\"button\" />
         </fieldset>
         <p id=\"WarningMessage\">
             <strong>Attenzione!</strong> L&apos;eliminazione
-            dell&apos;<span xml:lang=\"en\" lang=\"en\">account</span> &egrave; irreversibile e comporta
+            dell&apos;<span xml:lang=\"en\">account</span> &egrave; irreversibile e comporta
             la rimozione di tutte le recensioni associate ad esso.
         </p>
     </form>";
