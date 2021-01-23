@@ -25,7 +25,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
 
     if ($DBconnection->openDBConnection()) {
         if (!is_null($queryResult = $DBconnection->queryDB(" 
-                    SELECT l.ID as ID, l.titolo AS titolo, l.trama AS trama, g.nome AS genere, a.nome AS nomeAutore, a.cognome AS cognomeAutore, YEAR(a.data_nascita) AS nascitaAutore, YEAR(a.data_morte) AS morteAutore
+                    SELECT l.ID as ID, l.titolo AS titolo, l.trama AS trama, g.nome AS genere, a.nome AS nomeAutore, a.cognome AS cognomeAutore, anno_nascita AS nascitaAutore, anno_morte AS morteAutore
                     FROM libri AS l,autori AS a, generi AS g
                     WHERE l.ID=$ID_libro AND l.id_autore=a.ID AND l.id_genere=g.ID "
                 ))) {
