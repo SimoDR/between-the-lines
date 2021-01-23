@@ -42,7 +42,7 @@ if (isset($_POST['registrati'])) {
     $obj_connection = new DBAccess();
 
     if (!$obj_connection->openDBConnection()) {
-        $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+        $error = $error . "<div class=\"errorMessage\">Errore di connessione al <span xml:lang=\"en\">database</span></div>";
     } else {
         //input sanification
         $mail = $obj_connection->escape_string(trim(htmlentities($mail)));
@@ -50,27 +50,27 @@ if (isset($_POST['registrati'])) {
         $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
         //check mail
         if (!check_email($mail)) {
-            $error = $error . "<div class=\"msg_box error_box\">L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
+            $error = $error . "<div class=\"errorMessage\">L'<span xml:lang=\"en\">e-mail</span> inserita non è valida.</div>";
         }
         //check email existence
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$mail\"")) {
-            $error = $error . "<div class=\"msg_box error_box\">Esiste già un utente con questa <span xml:lang=\"en\" lang=\"en\">e-mail</span>.</div>";
+            $error = $error . "<div class=\"errorMessage\">Esiste già un utente con questa <span xml:lang=\"en\">e-mail</span>.</div>";
         }
         //check username
         if (!check_username($username)) {
-            $error = $error . "<div class=\"msg_box error_box\">Il nome utente deve essere lungo tra i 5 e i 30 caratteri e deve contenere solo lettere e numeri</div>";
+            $error = $error . "<div class=\"errorMessage\">Il nome utente deve essere lungo tra i 5 e i 30 caratteri e deve contenere solo lettere e numeri</div>";
         }
         //check username existance
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\"")) {
-            $error = $error . "<div class=\"msg_box error_box\">Esiste già un utente con questo <span xml:lang=\"en\" lang=\"en\">username</span>.</div>";
+            $error = $error . "<div class=\"errorMessage\">Esiste già un utente con questo <span xml:lang=\"en\">username</span>.</div>";
         }
         //check password equality
         if ($pwd != $pwd2) {
-            $error = $error . "<div class=\"msg_box error_box\">Le <span xml:lang=\"en\" lang=\"en\">password</span> non coincidono.</div>";
+            $error = $error . "<div class=\"errorMessage\">Le <span xml:lang=\"en\">password</span> non coincidono.</div>";
         }
         //check password
         if (!check_pwd($pwd)) {
-            $error = $error . "<div class=\"msg_box error_box\">La <span xml:lang=\"en\" lang=\"en\">password</span> deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
+            $error = $error . "<div class=\"errorMessage\">La <span xml:lang=\"en\">password</span> deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
         }
         //insert new user
         if ($error == "") {
@@ -79,7 +79,7 @@ if (isset($_POST['registrati'])) {
 
             //check dati inseriti
             if (!$queryResult) {
-                $error = "<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
+                $error = "<div class=\"errorMessage\">Errore nell'inserimento dei dati</div>";
             } else {
                 $user=$obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\"");
                 $_SESSION['logged'] = true;
@@ -92,11 +92,12 @@ if (isset($_POST['registrati'])) {
         $obj_connection->closeDBConnection();
     }
 }
+
 //profile picture search and rendering
 $pictures = '';
 $obj_connection = new DBAccess();
 if (!$obj_connection->openDBConnection()) {
-    $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+    $error = $error . "<div class=\"errorMessage\">Errore di connessione al <span xml:lang=\"en\">database</span></div>";
 } else {
     $result = $obj_connection->queryDB("SELECT * FROM foto_profilo");
     for ($i = 0; $i < count($result); $i++) {
@@ -108,8 +109,8 @@ if (!$obj_connection->openDBConnection()) {
             $checked = "checked=\"checked\"";
         }
         $pictures = $pictures . "<li>
-                            <input type=\"radio\" id=\"$id\" name=\"propic\" value=\"$id\" $checked \>
-                            <label for=\"$id\"><img src=\"$path\" id=\"$id\" alt=\"$alt\"></label>
+                            <input type=\"radio\" id=\"img$id\" name=\"propic\" value=\"$id\" $checked \>
+                            <label for=\"img$id\"><img src=\"$path\" alt=\"$alt\"></label>
                         </li>";
 
     }

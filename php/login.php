@@ -1,7 +1,12 @@
 <?php
 require_once('sessione.php');
 require_once('setupPage.php');
-//TODO: se sei già loggato non è che puoi tornare qui come ti pare ooh: errore o reindirizzamento in home?
+//if the user is already logged redirection to index
+if ($_SESSION['logged'] == true) {
+    header('location:index.php');
+    exit();
+}
+
 /*Aggiunta header e menu*/
 $page = setup("../HTML/login.html");
 
@@ -37,9 +42,9 @@ if(isset($_POST['login'])) {
         //check to the db
         $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\" AND password=\"$pwd\"");
         if (!isset($queryResult)) {
-            $error = "<div class=\"msg_box error_box\"> La <span xml:lang=\"en\" lang=\"en\">query</span> non è andata a buon fine</div>";
+            $error = "<div class=\"errorMessage\"> La <span xml:lang=\"en\">query</span> non è andata a buon fine</div>";
         } else if (empty($queryResult)) {
-                $error = "<div class=\"msg_box error_box\"> Le credenziali inserite non sono corrette</div>";
+                $error = "<div class=\"errorMessage\"> Le credenziali inserite non sono corrette</div>";
             } else {
                 $_SESSION['logged'] = true;
                 $_SESSION['ID'] = $queryResult[0]['ID'];
@@ -58,7 +63,7 @@ if(isset($_POST['login'])) {
             }
         $obj_connection->closeDBConnection();
     } else {
-        $error = "<div class=\"msg_box error_box\"> Impossibile connettersi al <span xml:lang=\"en\" lang=\"en\">database</span> </div>";
+        $error = "<div class=\"errorMessage\"> Impossibile connettersi al <span xml:lang=\"en\">database</span> </div>";
     }
 }
 

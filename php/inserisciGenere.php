@@ -29,23 +29,23 @@ if(isset($_POST["addGenre"]))
                         $message="<div class=\"successMessage\">Inserimento avvenuto con successo.</div>";
                     }
                     else{
-                        $error = $error . "<div class=\"msg_box error_box\">L'inserimento del genere non è andato a buon fine</div>";
+                        $error = $error . "<div class=\"errorMessage\">L'inserimento del genere non è andato a buon fine</div>";
                     }
                 } else {
-                    $error = $error . "<div class=\"msg_box error_box\">Il genere che vuoi inserire esiste già</div>";
+                    $error = $error . "<div class=\"errorMessage\">Il genere che vuoi inserire esiste già</div>";
                 }
                 $obj_connection->closeDBConnection();
             }
             else{
-                $error = $error . "<div class=\"msg_box error_box\">Impossibile stabilire la connessione con il <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+                $error = $error . "<div class=\"errorMessage\">Impossibile stabilire la connessione con il <span xml:lang=\"en\">database</span></div>";
             }
         }
         else{
-            $error=$error."<div class=\"msg_box error_box\">Il nome del genere deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
+            $error=$error."<div class=\"errorMessage\">Il nome del genere deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
         }
     }
     else {
-        $error=$error."<div class=\"msg_box error_box\"> Inserisci il nome del genere da inserire</div>";
+        $error=$error."<div class=\"errorMessage\"> Inserisci il nome del genere da inserire</div>";
     }
 }
 $page = str_replace("<SUCCESSO/>", "$message", $page);
