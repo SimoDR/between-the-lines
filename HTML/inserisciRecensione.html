@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
 
         <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
-        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" />  
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css" />  
     </head>
 
     <body>
@@ -65,7 +65,7 @@
 
                             <div class="formLabel">
                                 <label for="nStars">Su una scala da 1 a 5, come valuti il libro?</label>
-                                <select id="nStars" name="nStars" tabindex="1">
+                                <select id="nStars" name="nStars">
                                     <SELEZIONE_STELLE/>                  
                                 </select>			
                             </div>
@@ -74,11 +74,11 @@
 
                             <div class="formLabel">
                                 <label for="reviewContent">La tua recensione: </label>
-                                <textarea id="reviewContent" rows="10" cols="50" name="reviewContent"  tabindex=2><CONTENUTO_RECENSIONE/></textarea>
+                                <textarea id="reviewContent" rows="10" cols="50" name="reviewContent"><CONTENUTO_RECENSIONE/></textarea>
 
                                 <input type="hidden" name="ID_libro" value="<ID_LIBRO/>" />
                             </div>
-                            <input type="submit" class="button_okay" value="Invia recensione!"  id="reviewButton" tabindex="3" />
+                            <input type="submit" class="button_okay" value="Invia recensione!"  id="reviewButton" />
 
                         </fieldset>
                     </form>
