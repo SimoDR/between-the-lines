@@ -17,16 +17,11 @@
     </head>
 
     <body>
-        <div id="header">
-            <img id="logo" src="../img/btllogo.png" alt="Libro aperto stilizzato" />
-            <h1 xml:lang="en">Between the Lines</h1>
-            <h2 xml:lang="en">A world of books for young and old people</h2>
-            <a class="toContent" href="#content">Vai al contenuto</a>
-            <HEADER/>
-        </div>
-    
+        
+        <HEADER/>
+
         <div id="breadcrumb">
-            <p>Ti trovi in: <a href="index.php"><span xml:lang="en">Home</span></a> &gt;&gt; Ricerca </p>
+            <p>Ti trovi in: <a href="index.php"><span xml:lang="en">Home</span></a> &raquo Ricerca </p>
         </div>
 
         <div id="menu">
@@ -36,20 +31,22 @@
         <div id="content">
             <h2> Ricerca</h2>
 
-            <form id="search_form" method="get" action="../php/ricerca.php">
+            <form id="search_form" method="get" action="../php/ricerca.php" class="form">
                 <fieldset>
                     <legend>Form di ricerca: </legend>
                     <ERRORE/>
                     
-                    <div class="searchBar">
-                            <label for="search_bar"></label>
-                        <div>
-                            <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
+                    <div class="row">
+                        <div class="col-25"> 
+                            <label for="search_bar">Cerca il libro</label>
+                        </div>
+                        <div class="col-75">
+                            <input id="search_bar" name="search_bar" type="text"/>
                         </div>
                     </div>
 
                     <div class="row">
-                            <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
+                            <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
                             <label for="filter_title">Cerca per TITOLO</label>
                     </div>
 
@@ -64,7 +61,7 @@
                             <label for="genre">GENERE:</label>
                         </div>
                         <div class="col-75">
-                            <select id="genre" name="genre" tabindex="3" >
+                            <select id="genre" name="genre" >
                                 <option value="Qualsiasi">Qualsiasi</option>
                                 <GENERI/>
                             </select>
@@ -72,7 +69,7 @@
                     </div>
                     
                     <div class="row">
-                        <input class=button id="search_button" tabindex="4" name="search_button" type="submit" value="Avvia Ricerca!"/> 
+                        <input class=button id="search_button" name="search_button" type="submit" value="Avvia Ricerca!"/> 
                     </div>
                 </fieldset>
             </form>

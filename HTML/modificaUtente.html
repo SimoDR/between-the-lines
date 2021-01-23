@@ -13,19 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
-    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
 </head>
 
 <body>
-<div id="header">
-    <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
-    <h1 xml:lang="en">Between the Lines</h1>
-    <h2 xml:lang="en">A world of books for young and old people</h2>
-    <div id="userButtons">
+        
     <HEADER/>
-    </div>
-    <a class="toContent" href="#content">Vai al contenuto</a>
-</div>
 
 <div id="breadcrumb">
     <p>Ti trovi in: <a href="utente.php">Utente</a> &raquo Modifica dati personali </p>
@@ -36,9 +29,13 @@
 </div>
 
 <div id="content">
-    <form action="../php/modificaUtente.php"
-          method="post"
-          id="changeInfoForm">
+    <form action="../php/modificaUtente.php" method="post" id="changeInfoForm">
+        <noscript>
+            <div class="errorMessage">ATTENZIONE: <span xml:lang="en">javascript</span> non è attivo: alcune
+                funzionalità potrebbero non essere disponibili
+            </div>
+        </noscript>
+
         <ERRORI/>
         <!-- change profile picture -->
         <fieldset class="formFieldset">

@@ -15,19 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
-    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
 </head>
 
 <body>
-<div id="header">
-    <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato"/>
-    <h1 xml:lang="en">Between the Lines</h1>
-    <h2 xml:lang="en">A world of books for young and old people</h2>
-    <div id="userButtons">
-    <HEADER/>
-    </div>
-    <a class="toContent" href="#content">Vai al contenuto</a>
-</div>
+
+<HEADER/>
 
 <div id="breadcrumb">
     <p>Ti trovi in: Login</p>
@@ -39,52 +32,49 @@
 
 <div id="content">
     <form method="post" action="../php/login.php" id="loginForm" class="form">
+        <noscript>
+            <div class="errorMessage">ATTENZIONE: <span xml:lang="en">javascript</span> non è attivo: alcune
+                funzionalità potrebbero non essere disponibili
+            </div>
+        </noscript>
         <fieldset>
             <legend xml:lang="en">Login</legend>
 
-            <noscript>
-                <div class="errorMessage">
-                    ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA'
-                    POTREBBERO
-                    NON ESSERE DISPONIBILI
-                </div>
-            </noscript>
 
             <ERROR/>
             <div class="row">
                 <div class="col-25">
-                <label for="username" xml:lang="en">Username:</label>
+                    <label for="username" xml:lang="en">Username:</label>
                 </div>
                 <div class="col-75">
-                <input type="text" name="username" id="username" value="<USERNAME/>"/>
+                    <input type="text" name="username" id="username" value="<USERNAME/>"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-25">
-                <label for="password" xml:lang="en">Password:</label>
+                    <label for="password" xml:lang="en">Password:</label>
                 </div>
                 <div class="col-75">
-                <input type="password" name="password" id="password" value="<PASSWORD/>"/>
+                    <input type="password" name="password" id="password" value="<PASSWORD/>"/>
                 </div>
             </div>
 
             <div class="row">
-            <FORM_LIBRO/>
-            <input type="submit" id="loginButton" class="button" name="login" value="Accedi" />
+                <FORM_LIBRO/>
+                <input type="submit" id="loginButton" class="button" name="login" value="Accedi"/>
             </div>
-            
+
             <FORM_LIBRO/>
-            
+
             <div class="row">
-            <a href="../php/registrazione.php">Non sei ancora registrato? CLICCA QUI</a>
+                <a href="../php/registrazione.php" class="linkRegistrazione">Non sei ancora registrato? CLICCA QUI</a>
             </div>
 
         </fieldset>
     </form>
-    <div class="turnBack"> <a class="turnBackLink" href="#">Torna su</a> </div>
+    <div class="turnBack"><a class="turnBackLink" href="#">Torna su</a></div>
 </div>
-
 
 
 <div id="footer">
