@@ -26,7 +26,7 @@ if(isset($_POST["addGenre"]))
                     $queryInsert=$obj_connection->insertDB("INSERT INTO generi VALUES (NULL, \"$genre\")");
                     if($queryInsert){
                         $genre="";
-                        $message="<div class=\"msg_box success_box\">Inserimento avvenuto con successo.</div>";
+                        $message="<div class=\"successMessage\">Inserimento avvenuto con successo.</div>";
                     }
                     else{
                         $error = $error . "<div class=\"msg_box error_box\">L'inserimento del genere non è andato a buon fine</div>";

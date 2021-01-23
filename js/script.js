@@ -101,7 +101,7 @@ function isEqual(str1, str2) {
 }
 function isDatePast(date) {
     var today = new Date();
-    return date < today;
+    return date.setHours(0,0,0,0) < today.setHours(0,0,0,0);
 }
 
 function isMinor(arg1, arg2) {

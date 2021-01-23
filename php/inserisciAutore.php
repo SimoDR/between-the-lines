@@ -61,7 +61,7 @@ if (isset($_POST["addAuthor"])) {
                     $surname = "";
                     $birthDate = "";
                     $deathDate = "";
-                    $message = "<div class=\"msg_box success_box\">Inserimento avvenuto con successo.</div>";
+                    $message = "<div class=\"successMessage\">Inserimento avvenuto con successo.</div>";
                 } else {
                     $error = $error . "<div class=\"msg_box error_box\">l'inserimento non è andato a buon fine</div>";
                 }
