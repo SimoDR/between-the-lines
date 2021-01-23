@@ -31,14 +31,13 @@ html {
 
 /* font */
 body {
-    background-color: burlywood;
+    background-color: antiquewhite;
     font-family: Geneva, Tahoma, sans-serif;
     width: 100%;
 }
 
 #content {
     margin-left: 15%;
-    background-color: burlywood;
     padding: 1em;
 }
 
@@ -46,7 +45,7 @@ body {
 #footer {
 
     background-color: peru;
-    color: white;
+    color: #ffffff;
     font-size: 0.8em;
     text-align: center;
     padding: 1em;
@@ -672,7 +671,6 @@ li.review {
         margin-top: 0em;
         float: none;
         width: 100%;
-        background-color: burlywood;
     }
     
     #bookAreaReview bookFrontpage {
