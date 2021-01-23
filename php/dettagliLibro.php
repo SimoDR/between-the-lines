@@ -156,12 +156,12 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                             
                             $eliminazioneRecensione = '';
                             if($_SESSION['ID'] == $queryRecensioni[$i]['ID_utente'] || $_SESSION['permesso'] == 1) {
-                                $eliminazioneRecensione = '<p><form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
+                                $eliminazioneRecensione = '<form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
                                                         <div>
                                                             <input type="hidden" name="ID_recensione" value="' . $queryRecensioni[$i]['id_recensione'] .'"/>
                                                             <input type="submit" value="Elimina recensione" class="buttonDelete"/>
                                                         </div>
-                                                        </form></p>';
+                                                        </form>';
                             }
                             
                             //stampa recensione
@@ -176,8 +176,8 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                                     </div>
                                     <div class="reviewContent">
                                         <p class="reviewText">' . $queryRecensioni[$i]['rec_testo'] . '</p>
-                                        <p class="stelle">Stelle: ' . $queryRecensioni[$i]['rec_valutazione'] . ' ' . $drawStarsUtente .  '</p>' ;
-                                    '</div>
+                                        <p class="stelle">Stelle: ' . $queryRecensioni[$i]['rec_valutazione'] . ' ' . $drawStarsUtente .  '</p>
+                                    </div>
                             </li>
                             ';
                         }
@@ -196,12 +196,14 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     // pagine precedenti e successive 
                     if ($npage > 1) {
                         $prec = $npage - 1;
-                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $prec . '#recensioni>Precedente</a></div>';
+                        $address .= '&amp;npage=' . $prec . '#recensioni';
+                        $pagineRecensioni = $pagineRecensioni . "<div class=\"notCurrentPage\"><a href= \"$address\">Precedente</a></div>";
                     }
                     $pagineRecensioni = $pagineRecensioni . '<div class="currentPage"><span>' . $npage . '</span></div>';
                     if ($npage < $totalPages) {
                         $succ = $npage + 1;
-                        $pagineRecensioni = $pagineRecensioni . '<div class="notCurrentPage"><a href=' . $address . '&npage=' . $succ . '#recensioni>Successivo</a></div>';
+                        $address .= '&amp;npage=' . $succ . '#recensioni';
+                        $pagineRecensioni = $pagineRecensioni . "<div class=\"notCurrentPage\"><a href= \"$address\">Successivo</a></div>";
                     }
                     $pagineRecensioni = $pagineRecensioni . '</div>';
 
@@ -219,8 +221,10 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 if (isset($_SESSION['logged']) && $_SESSION['logged']) { // se loggato
                     if ($_SESSION['permesso'] == 0) { // se non admin
                         $inserimentoForm = '<div id="insertReviewButton"><form action="inserisciRecensione.php" method="post">
+                                            <div>
                                                 <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
                                                 <input type="submit" value="Inserisci recensione" class="reviewButton"/>
+                                            </div>
                                             </form></div>';
                     } else { // se admin
                         $inserimentoForm = "<p id=\"insertReviewButton\">Spiacente, l'admin non può effettuare recensioni</p>";
@@ -228,8 +232,10 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 } else { // non loggato
                     
                     $inserimentoForm = '<form action="login.php" method="get">
+                                        <div>
                                             <input type="hidden" name="id_libro" value ="' . $ID_libro . '"/>
                                             <input type="submit" value="Effettua il login per inserire una recensione" class="reviewButton"/>
+                                        </div>
                                         </form>';
                 }
 
@@ -240,12 +246,12 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                 
                 $eliminazioneLibro = '';
                 if ($_SESSION['permesso'] == 1) {
-                    $eliminazioneLibro .= ' <p><form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
+                    $eliminazioneLibro .= ' <form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
                                             <div>
                                                 <input type="hidden" name="ID_libro_eliminazione" value="' . $ID_libro .'"/>
                                                 <input type="submit" value="Elimina libro" class="buttonDelete"/>
                                             </div>
-                                            </form></p>';
+                                            </form>';
                 }    
                 $page = str_replace('<ELIMINA_LIBRO/>', $eliminazioneLibro, $page);
                 
