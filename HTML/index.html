@@ -46,15 +46,17 @@
                     <legend>Form di ricerca: </legend>
                     <ERRORE/>
                     
-                    <div class="searchBar">
-                            <label for="search_bar"></label>
-                        <div>
-                            <input id="search_bar" tabindex="1" name="search_bar" type="text"/>
+                    <div class="row">
+                        <div class="col-25"> 
+                            <label for="search_bar">Cerca il libro</label>
+                        </div>
+                        <div class="col-75">
+                            <input id="search_bar" name="search_bar" type="text"/>
                         </div>
                     </div>
 
                     <div class="row">
-                            <input id="filter_title" tabindex="2" name="filter" type="radio" checked="checked" value="0"/>
+                            <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
                             <label for="filter_title">Cerca per TITOLO</label>
                     </div>
 
@@ -69,7 +71,7 @@
                             <label for="genre">GENERE:</label>
                         </div>
                         <div class="col-75">
-                            <select id="genre" name="genre" tabindex="3" >
+                            <select id="genre" name="genre" >
                                 <option value="Qualsiasi">Qualsiasi</option>
                                 <GENERI/>
                             </select>
@@ -77,10 +79,10 @@
                     </div>
                     
                     <div class="row">
-                        <input class=button id="search_button" tabindex="4" name="search_button" type="submit" value="Avvia Ricerca!"/> 
+                        <input class=button id="search_button" name="search_button" type="submit" value="Avvia Ricerca!"/> 
                     </div>
                 </fieldset>
-    </form>
+            </form>
 
     
     <TOP3_RECENSITI/>
