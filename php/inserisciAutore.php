@@ -35,17 +35,19 @@ if (isset($_POST["addAuthor"])) {
     }
     // check on the dates
     $today=new DateTime();
-    if($birthDate=="") {
-        $error = $error . "<div class=\"errorMessage\">La data di nascita dell'autore non può essere nulla</div>";
+    $today=$today->format('Y');
+    if(!check_year($birthDate)) {
+        $error = $error . "<div class=\"errorMessage\">L'anno di nascita dell'autore deve essere composto da 1-4 numeri</div>";
     }
     else if($birthDate>$today) {
-        $error = $error . "<div class=\"errorMessage\">La data di nascita dell'autore deve essere passata</div>";
+        $error = $error . "<div class=\"errorMessage\">L'anno di nascita dell'autore deve essere passato</div>";
     }
     if ($deathDate != NULL) {
-        if ($birthDate > $deathDate) {
+        if (!check_year($deathDate)) {
+            $error = $error . "<div class=\"errorMessage\">L'anno di morte dell'autore deve essere composto da 1-4 numeri</div>";
+        } else if ($birthDate > $deathDate) {
             $error = $error . "<div class=\"errorMessage\">La data di nascita deve essere precedente alla data di morte.</div>";
-        }
-        else if($deathDate>$today) {
+        } else if ($deathDate > $today) {
             $error = $error . "<div class=\"errorMessage\">La data di morte dell'autore deve essere passata</div>";
         }
     }
@@ -59,11 +61,13 @@ if (isset($_POST["addAuthor"])) {
             $surnameUpper=strtoupper($surname);
             $queryResult = $obj_connection->queryDB("SELECT * FROM autori WHERE upper(nome)=\"$nameUpper\" AND upper(cognome)=\"$surnameUpper\"");
             if (empty($queryResult)) {
-                //still in life :)
+                $birthDate=(int)$birthDate;
+                //dead author :(
                 if($deathDate!=NULL) {
+                    $deathDate=(int)$deathDate;
                     $queryInsert = $obj_connection->insertDB("INSERT INTO autori VALUES(NULL, \"$name\", \"$surname\", \"$birthDate\", \"$deathDate\")");
                 }
-                //dead author :(
+                //still in life :)
                 else{
                     $queryInsert = $obj_connection->insertDB("INSERT INTO autori VALUES(NULL, \"$name\", \"$surname\", \"$birthDate\", NULL)");
                 }

@@ -16,10 +16,10 @@ INSERT INTO generi VALUES
 # Popolamento Tabella autori
 #
 INSERT INTO autori VALUES 
-(1, 'Luigi','Pirandello','1867-06-28','1936-12-10'),
-(2, 'Arthur Conan','Doyle','1859-05-22','1930-07-07'),
-(3, 'Luis','Sepúlveda','1949-10-04','2020-04-16'),
-(4, 'Jack', 'Kerouac', '1922-03-12', '1969-10-21');
+(1, 'Luigi','Pirandello','1867','1936'),
+(2, 'Arthur Conan','Doyle','1859','1930'),
+(3, 'Luis','Sepúlveda','1949','2020'),
+(4, 'Jack', 'Kerouac', '1922', '1969');
 
 #
 # Popolamento Tabella libri

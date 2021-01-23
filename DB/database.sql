@@ -4,10 +4,10 @@ DROP TABLE IF EXISTS autori;
 CREATE TABLE autori
 (
     ID           INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nome         VARCHAR(100) NOT NULL,
-    cognome      VARCHAR(100) NOT NULL,
-    data_nascita DATE         NOT NULL,
-    data_morte   DATE,
+    nome         VARCHAR(100)        NOT NULL,
+    cognome      VARCHAR(100)        NOT NULL,
+    anno_nascita INTEGER(4) UNSIGNED NOT NULL,
+    anno_morte   INTEGER(4) UNSIGNED,
     CONSTRAINT nominativo_univoco UNIQUE (nome, cognome)
 ) ENGINE = InnoDB;
 
@@ -56,7 +56,7 @@ CREATE TABLE utenti
 (
     ID        INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username  VARCHAR(31)  NOT NULL,
-    password  VARCHAR(200)  NOT NULL, -- high limit because it's the hashed password
+    password  VARCHAR(200) NOT NULL, -- high limit because it's the hashed password
     id_propic SMALLINT UNSIGNED,
     mail      VARCHAR(127) NOT NULL,
     is_admin  TINYINT(1)   NOT NULL,

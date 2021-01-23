@@ -116,8 +116,8 @@ function isEqual(str1, str2) {
     return str1.trim() == str2.trim();
 }
 function isDatePast(date) {
-    var today = new Date();
-    return date.setHours(0,0,0,0) < today.setHours(0,0,0,0);
+    var today = new Date().getFullYear();
+    return date < today;
 }
 
 function isMinor(arg1, arg2) {
@@ -197,16 +197,17 @@ function newAutoreChecker(){
         var autoreControls = {};
         autoreControls["authorName"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
         autoreControls["authorSurname"] = [[isNotEmpty, "Il cognome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-        autoreControls["birthDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
-        autoreControls["deathDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data non può essere futura"]];
+        autoreControls["birthDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data di nascita non può essere futura"]];
+        autoreControls["deathDate"]=[[isDatePast, "La data di morte non può essere futura"]];
         addFocusOutEvent(autoreControls);
         //death is later than birth
         var death = document.getElementById("deathDate");
         death.addEventListener("focusout", function (event) {
-            removePreviousBox(event.target);
-            if (!isMinor(document.getElementById("birthDate").value, event.target.value))
+
+            if (!isMinor(document.getElementById("birthDate").value, event.target.value)) {
                 createMessage(event.target, "La data di nascita deve essere precedente a quella di morte.");
-        });
+                removePreviousBox(event.target);}
+            });
         var autoreButton = document.getElementById("autoreButton");
         autoreButton.addEventListener("click", (event) => {
             if (!clickController(autoreControls)) event.preventDefault();
