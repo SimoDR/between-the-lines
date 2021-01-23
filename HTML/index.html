@@ -29,19 +29,20 @@
 </div>
 
 <div id="content">
-    <h2> Informazioni e scopo del sito</h2>
+    <h2> Pagina iniziale </h2>
+    <h3> Informazioni e scopo del sito</h3>
     <p> <span xml:lang="en">Between the Lines</span> è una comunità di lettori appassionati e curiosi</p>
 
-    <h2 id="indexRicerca"> Ricerca</h2>
+    <h3 id="indexRicerca"> Ricerca</h3>
 
-    <form id="search_form" method="get" action="../php/ricerca.php">
+    <form class="searchForm form" method="get" action="../php/ricerca.php">
                 <fieldset>
                     <legend>Form di ricerca: </legend>
                     <ERRORE/>
                     
                     <div class="row">
                         <div class="col-25"> 
-                            <label for="search_bar">Cerca il libro</label>
+                            <label for="search_bar">Cerca un libro per <em>titolo</em> o per <em>autore</em></label>
                         </div>
                         <div class="col-75">
                             <input id="search_bar" name="search_bar" type="text"/>
@@ -49,19 +50,19 @@
                     </div>
 
                     <div class="row">
-                            <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
-                            <label for="filter_title">Cerca per TITOLO</label>
+                        <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
+                        <label for="filter_title">Filtra per <em>titolo</em></label>
                     </div>
 
 
                     <div class="row">
-                            <input id="filter_author" name="filter" type="radio" value="11"/>
-                            <label for="filter_author">Cerca per AUTORE</label> 
+                        <input id="filter_author" name="filter" type="radio" value="11"/>
+                        <label for="filter_author">Filtra per <em>autore</em></label> 
                     </div>
 
                     <div class="row">
                         <div class="col-25"> 
-                            <label for="genre">GENERE:</label>
+                            <label for="genre"><em>Genere<em>:</label>
                         </div>
                         <div class="col-75">
                             <select id="genre" name="genre" >
@@ -77,11 +78,12 @@
                 </fieldset>
             </form>
 
-    
-    <TOP3_RECENSITI/>
+    <div id="classifiche">
+        <h3>Classifiche</h3>
+            <TOP3_RECENSITI/>
+            <ULTIMI3_RECENSITI/>
+    </div>
 
-    <ULTIMI3_RECENSITI/>
-    
     <div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
 
 

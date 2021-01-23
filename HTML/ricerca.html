@@ -31,14 +31,14 @@
         <div id="content">
             <h2>Ricerca</h2>
 
-            <form id="search_form" method="get" action="../php/ricerca.php" class="form">
+            <form class="searchForm form" method="get" action="../php/ricerca.php" class="form">
                 <fieldset>
                     <legend>Form di ricerca: </legend>
                     <ERRORE/>
 
                     <div class="row">
                         <div class="col-25"> 
-                            <label for="search_bar">Cerca il libro</label>
+                            <label for="search_bar">Cerca un libro per <em>titolo</em> o per <em>autore</em></label>
                         </div>
                         <div class="col-75">
                             <input id="search_bar" name="search_bar" type="text"/>
@@ -47,18 +47,18 @@
 
                     <div class="row">
                         <input id="filter_title" name="filter" type="radio" checked="checked" value="0"/>
-                        <label for="filter_title">Cerca per TITOLO</label>
+                        <label for="filter_title">Filtra per <em>titolo</em></label>
                     </div>
 
 
                     <div class="row">
                         <input id="filter_author" name="filter" type="radio" value="11"/>
-                        <label for="filter_author">Cerca per AUTORE</label> 
+                        <label for="filter_author">Filtra per <em>autore</em></label> 
                     </div>
 
                     <div class="row">
                         <div class="col-25"> 
-                            <label for="genre">GENERE:</label>
+                            <label for="genre"><em>Genere</em>:</label>
                         </div>
                         <div class="col-75">
                             <select id="genre" name="genre" >
@@ -74,7 +74,7 @@
                 </fieldset>
             </form>
 
-            <h2>Risultati di ricerca</h2>
+            <h3>Risultati di ricerca</h3>
 
             <RISULTATI/>
 

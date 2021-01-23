@@ -47,10 +47,10 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryTopReview != null) {
-        $topReview = '<h2>I libri più recensiti </h2><div id="rankingTopReview"><ol>';
+        $topReview = '<div id="rankingTopReview"><h4>I libri più recensiti </h4><ol>';
         foreach ($queryTopReview as $book) {
             $topReview .= '<li><dl>';
-            $topReview .= '<dt><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></dt>';
+            $topReview .= '<dt><h5><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></h5></dt>';
             $topReview .= '<dd><img src="' . $book['path_img'] . '" alt="' . $book['alt_text'] . '" /> </dd>';
             $topReview .= '<dd>' . $book['nrecensioni'] . ' recensioni</dd>';
             $topReview .= '</dl></li>';
@@ -62,11 +62,11 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryLastReview != null) {
-        $lastReview = '<h2>Le nuove recensioni</h2><div id="rankingLastReview"><ol class="reviewList">';
+        $lastReview = '<div id="rankingLastReview"><h4>Le nuove recensioni</h4><ol class="reviewList">';
         foreach ($queryLastReview as $book) {
 
             $lastReview .= '<li>
-            <a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a>';
+            <h5><a href="dettagliLibro.php?id_libro=' . $book['id'] . '">' . $book['titolo'] . '</a></h5>';
 
 
             $lastReview .= '
