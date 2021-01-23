@@ -63,9 +63,8 @@ if ($_SESSION['permesso'] == 1) {
         <li><a href=\"inserisciGenere.php\">Aggiungi un nuovo genere</a></li>
     </ul>
     <a id=\"addBook\" href=\" ../php/stepWizard.php\" > Aggiungi un nuovo libro </a>";
-    $page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);
 }
-
+$page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);
 //if the user is not admin he can delete his account
 $delete = '';
 if ($_SESSION['permesso'] == 0) {
@@ -83,9 +82,8 @@ if ($_SESSION['permesso'] == 0) {
             <strong>Attenzione!</strong> L&apos;eliminazione dell&apos;<span xml:lang=\"en\">account</span> &egrave; irreversibile e comporta la rimozione di tutte le recensioni associate ad esso.
         </p>
     </form>";
-    $page = str_replace("<ELIMINA_ACCOUNT/>", $delete, $page);
 }
-
+$page = str_replace("<ELIMINA_ACCOUNT/>", $delete, $page);
 echo($page);
 
 ?>
