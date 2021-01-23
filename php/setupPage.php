@@ -54,7 +54,7 @@ function addHeader(&$page)
     else {
 
         // rimuovi logout
-        $header = str_replace('<a href="../php/logout.php" class="hdrButton">LOGOUT</a> ',
+        $header = str_replace('<a href="../php/logout.php" class="hdrButton">LOGOUT</a>',
             "", $header);
 
         // se si è nella pagina di login
