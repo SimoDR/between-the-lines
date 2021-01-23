@@ -20,8 +20,25 @@ html, body {
 }
 
 #content h2 {
+    font-size: 1.9em;
+    margin-top: 0em;
+    margin-bottom: 0.6em;
+}
+
+
+#content h3 + h4 {
+    margin-top: 0.6em;
+}
+#content h3 {
+    font-size: 1.5em;
     margin-top: 1.2em;
     margin-bottom: 0.5em;
+}
+
+#content h4 {
+    font-size: 1.1em;
+    margin-top: 1em;
+    margin-bottom: 0.4em;
 }
 
 #content h2:first-child {
@@ -98,7 +115,8 @@ body {
 
 #header img {
     max-width: 25%;
-    padding-left: 15%;
+    margin-left: 13%;
+    margin-right: 3%;
     float: left;
 }
 
@@ -364,7 +382,8 @@ ul.proPic img {
     margin-top: 1em;
 }
 
-#rankingTopReview dt {
+#rankingTopReview dt a {
+    display: block;
     background-color: sienna;
     border-radius: 1em;
     -webkit-border-radius: 1em;
@@ -476,8 +495,8 @@ ul.proPic img {
     overflow: hidden;
 }
 
-#bookArea h2 {
-    font-size: 2em;    
+#bookTitle h3 {
+    margin-top: 0;
 }
 
 #bookFrontpage img{
@@ -486,7 +505,7 @@ ul.proPic img {
   border-radius: 1em;
   border: 0.2em solid white;
   float:left;
-  margin: 3%;
+  margin: 0 3% 2% 3%;
 }
 
 #bookDetails dt:before {
@@ -509,8 +528,8 @@ ul.proPic img {
 
 
 /*area recensioni*/
-#reviewArea {
-    padding-top: 2em;
+#content #reviewTitlePage {
+    font-size: 1.4em;
 }
 
 
@@ -631,12 +650,6 @@ li.review {
 
 
 /*RECENSIONI*/
-
-#content #reviewTitlePhrase {
-    font-size: 1.3em;
-    margin-top: 0;
-    margin-bottom: 0.5em;
-}
 
 
 #insertReview {
@@ -777,7 +790,7 @@ li.review {
 
         #header img {
             min-width: 30%;
-            padding-left: 0;
+            margin-left: 0;
         }
 
 
@@ -813,7 +826,21 @@ li.review {
         margin-top: 0;
     }
     
+    h1 {
+        font-size: 1.5em;
+                margin-bottom: 1.5em;
+
+    }
     
+    #header h2 {
+        display: none;
+       
+    }
+    
+    #header img { /*TODO*/
+        width: 4em;
+        margin-bottom: 1em;
+    }
     
     .reviewDetails .buttonDelete {
         width: 40%;
