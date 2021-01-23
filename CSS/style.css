@@ -68,6 +68,9 @@ body {
     border-radius: 0.5em;
 }
 
+/*error*/
+
+
 /*header*/
 #header {
     background-color: peru;
@@ -283,8 +286,8 @@ ul.proPic img {
 }
 
 #rankingTopReview img{
-        width:70%;
-        border-radius: 1em;
+    border-radius: 1em;
+    height: 17em;
 }
 
 #rankingTopReview dt{
@@ -292,7 +295,7 @@ ul.proPic img {
 }
 
 #rankingTopReview dd{
-        display: block;
+    display: block;
 }
 
 #rankingLastReview ol{
