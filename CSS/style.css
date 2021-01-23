@@ -633,6 +633,14 @@ li.review {
     margin-top: 1em;
 }
 
+.linkRegistrazione{
+    background-color: brown;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    padding: 0.2em;
+    margin: 1em;
+}
+
 /*error e success message*/
 .errorMessage {
     margin:0.2em;
