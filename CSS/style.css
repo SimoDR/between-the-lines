@@ -617,14 +617,15 @@ li.review {
 }
 
 .successMessage {
-    margin:0.2em;
-    padding: 0.2em;
+    margin:0.8em;
+    text-align: center;
+    padding: 0.5em;
     font-weight: bold;
     font-size: 1.2em;
-    background-color: #fce4e4;
-    border: 1px solid #ff0307;
+    background-color: #eefce4;
+    border: 1px solid #039200;
     border-radius: 0.2em;
-    color: #cc0033;
+    color: #00ae08;
 }
 
 /*----------------------------------*/
