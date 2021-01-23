@@ -3,12 +3,12 @@ class factoryImg{
     public function uploadImage($directory,$input_file){
         $dest_path = '../img/'.$directory;
         $basename = date('Y-m-d') .'_'.round(microtime(true));
-        $dest_file = $dest_path . $basename;
         $error="";
         $success = 1;
         $path_parts = pathinfo($_FILES[$input_file]["name"]);
         $imgExtension = strtolower($path_parts['extension']);
         $size = getimagesize($_FILES[$input_file]["tmp_name"]);
+        $dest_file = $dest_path . $basename . '.' . $imgExtension;
         
         if($size == false) {
             $success = 0;

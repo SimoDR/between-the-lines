@@ -16,20 +16,24 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
     <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
   <body>
-      
-    <HEADER/>
-
+    <div id="header">
+      <img id="logo" src="../img/btllogo.jpg" alt="Libro aperto stilizzato" />
+      <h1 xml:lang="en">Between the Lines
+      </h1>
+      <h2 xml:lang="en">A world of books for young and old people
+      </h2>
+      <HEADER/>
+    </div>
     <div id="breadcrumb">
       <p>Ti trovi in: 
-        <a href="utente.php">Utente
-        </a> &raquo Aggiungi libro
+        <a href="utente.php">Utente</a> &raquo; Aggiungi libro
       </p>
     </div>
     <div id="menu">
       <MENU/>
     </div>
-<!--     <SUCCESSO/>
- -->    <div id="content">
+    <SUCCESSO/>
+    <div id="content">
       <form method="post" action="inserisciLibro.php" enctype="multipart/form-data" id="form_libro" class="vertical_input_form">
         <noscript>
           <div class="errorMessage">
@@ -62,6 +66,7 @@
               <GENERI/>
             </select>
           </div>
+
         </div>
         <div class="row">
           <div class="col-25">
@@ -110,7 +115,7 @@
             </textarea>
           </div>
         </div>
-        <div class="row" >
+        <div class="row" id ="btnContainer">
           <input type="reset" class="button" name="reset" id="libroResetButton" /> 
           <button type="submit" class="button" name="addBook" id="libroButton">Invia
           </button>
@@ -127,14 +132,10 @@
       <ul id="footerlist">
         <li>
           <span xml:lang="en"> Between the Lines
-          </span> - Opinioni sui libri
-        </li>
-        <li>049-267276 - Padova, Via Paolotti 5
-        </li>
-        <li xml:lang="en">betweenthelines@gmail.com
-        </li>
-        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved
-        </li>
+          </span> - Opinioni sui libri</li>
+        <li>049-267276 - Padova, Via Paolotti 5</li>
+        <li xml:lang="en">betweenthelines@gmail.com</li>
+        <li xml:lang="en">Copyright &copy; 2020 - All Rights Reserved</li>
       </ul>
     </div>
     <script type="text/javascript" src="../js/script.js">
