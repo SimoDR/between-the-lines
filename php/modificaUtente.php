@@ -4,8 +4,12 @@ require_once('sessione.php');
 require_once('regex_checker.php');
 require_once('setupPage.php');
 
+//if the user isn't logged 401 error
+if ($_SESSION["logged"] == false) {
+    header('location: 401.php');
+    exit;
+}
 
-//TODO: se un utente non è loggato che errore?
 $page = setup("../HTML/modificaUtente.html");
 //connection errors
 $error = "";
@@ -30,7 +34,7 @@ $emailOld="";
 
 $obj_connection = new DBAccess();
 if (!$obj_connection->openDBConnection()) {
-    $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+    $error = $error . "<div class=\"errorMessage\">Errore di connessione al <span xml:lang=\"en\">database</span></div>";
 } else {
     $id = $_SESSION["ID"];
     $queryResult = $obj_connection->queryDB("SELECT * FROM utenti WHERE ID=\"$id\"");
@@ -52,12 +56,10 @@ if (!$obj_connection->openDBConnection()) {
         $idPhoto=$result[$i]['ID'];
         if ($idPhoto == $idPropic)
             $checked = "checked=\"checked\"";
-        //TODO: help needed! control id name & value
         $pictures = $pictures . "<li>
-                            <input type=\"radio\" id=\"$idPhoto\" name=\"propic\" value=\"$idPhoto\" $checked />
-                            <label for=\"$idPhoto\"><img src=\"$path\" id=\"$idPhoto\" alt=\"$alt\"></label>
+                            <input type=\"radio\" id=\"img$idPhoto\" name=\"propic\" value=\"$idPhoto\" $checked />
+                            <label for=\"img$idPhoto\"><img src=\"$path\" alt=\"$alt\"></label>
                         </li>";
-
     }
 }
 //set modifiche
@@ -66,7 +68,7 @@ if (isset($_POST["submitModifiche"])) {
         $pwd = $_POST["oldPassword"];
         $pwd = $obj_connection->escape_string(trim(htmlentities($pwd)));
         if ($pwdOld != $pwd) {
-            $error = $error . "<div class=\"msg_box error_box\"><span xml:lang=\"en\" lang=\"en\">Password</span> attuale errata.</div>";
+            $error = $error . "<div class=\"errorMessage\"><span xml:lang=\"en\">Password</span> attuale errata.</div>";
         }
     }
     if (isset($_POST["propic"])) {
@@ -86,7 +88,7 @@ if (isset($_POST["submitModifiche"])) {
     }
 
     if (!$obj_connection->openDBConnection()) {
-        $error = $error . "<div class=\"msg_box error_box\">Errore di connessione al <span xml:lang=\"en\" lang=\"en\">database</span>.</div>";
+        $error = $error . "<div class=\"errorMessage\">Errore di connessione al <span xml:lang=\"en\">database</span>.</div>";
     } else {
         $email = $obj_connection->escape_string(trim(htmlentities($email)));
         $username = $obj_connection->escape_string(trim(htmlentities($username)));
@@ -94,29 +96,29 @@ if (isset($_POST["submitModifiche"])) {
         $pwd2 = $obj_connection->escape_string(trim(htmlentities($pwd2)));
         //check mail
         if (!check_email($email)) {
-            $errorEmail = $errorEmail . "<div class=\"msg_box error_box\">'L'<span xml:lang=\"en\" lang=\"en\">e-mail</span> inserita non è valida.</div>";
+            $errorEmail = $errorEmail . "<div class=\"errorMessage\">'L'<span xml:lang=\"en\">e-mail</span> inserita non è valida.</div>";
         }
         //check mail existence
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE mail=\"$email\" AND mail<>\"$emailOld\"")) {
-            $errorEmail = $errorEmail . "<div class=\"msg_box error_box\">Esiste già un utente con questa <span xml:lang=\"en\" lang=\"en\">e-mail</span>.</div>";
+            $errorEmail = $errorEmail . "<div class=\"errorMessage\">Esiste già un utente con questa <span xml:lang=\"en\">e-mail</span>.</div>";
         }
         //check username
         if (!check_username($username)) {
-            $errorUsername = $errorUsername . "<div class=\"msg_box error_box\">Il nome utente deve essere lungo tra i 5 e i 30 caratteri e deve contenere solo lettere e numeri.</div>";
+            $errorUsername = $errorUsername . "<div class=\"errorMessage\">Il nome utente deve essere lungo tra i 5 e i 30 caratteri e deve contenere solo lettere e numeri.</div>";
         }
         //check username existance
         if ($obj_connection->queryDB("SELECT * FROM utenti WHERE username=\"$username\" AND username<>\"$usernameOld\"")) {
-            $errorUsername = $errorUsername . "<div class=\"msg_box error_box\">Esiste già un utente con questo <span xml:lang=\"en\" lang=\"en\">username</span>.</div>";
+            $errorUsername = $errorUsername . "<div class=\"errorMessage\">Esiste già un utente con questo <span xml:lang=\"en\">username</span>.</div>";
             //check password equality
             if ($pwd1 != $pwd2) {
-                $errorPassword = $errorPassword . "<div class=\"msg_box error_box\">Le <span xml:lang=\"en\" lang=\"en\">password</span> non coincidono.</div>";
+                $errorPassword = $errorPassword . "<div class=\"errorMessage\">Le <span xml:lang=\"en\">password</span> non coincidono.</div>";
                 //check password
                 if (!check_pwd($pwd1)) {
-                    $errorPassword = $errorPassword . "<div class=\"msg_box error_box\">La <span xml:lang=\"en\" lang=\"en\">password</span> deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
+                    $errorPassword = $errorPassword . "<div class=\"errorMessage\">La <span xml:lang=\"en\">password</span> deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
                 }
             }
         }
-        if(empty($error) && empty($errorUsername) && empty($errorPassword)){
+        if(empty($error) && empty($errorUsername) && empty($errorPassword) && empty($errorEmail)){
             if($pwd1==""){
                 $pwd1=$pwdOld;
             }
@@ -127,7 +129,7 @@ if (isset($_POST["submitModifiche"])) {
                 exit;
             }
             else{
-                $error = $error . "<div class=\"msg_box error_box\">Non hai effettuato nessuna modifica.</div>";
+                $error = $error . "<div class=\"errorMessage\">Non hai effettuato nessuna modifica.</div>";
             }
         }
     }

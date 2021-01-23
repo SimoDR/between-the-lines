@@ -31,12 +31,12 @@ function addHeader(&$page)
 
                     // metto area utente al posto del login
                     $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',
-                        '<a href="../php/utente.php" class="hdrButton">Benvenuto,' . $username . '! Ecco la tua area utente </a>'
+                        '<a href="../php/utente.php" class="hdrButton">Benvenut*, ' . $username . '! Vai alla tua area utente </a>'
                         , $header);
 
                 } else if ($_SESSION['permesso'] == 1) { //se admin
                     $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',
-                        '<a href="../php/utente.php" class="hdrButton">Benvenuto, admin! Ecco il pannello di amministrazione </a>'
+                        '<a href="../php/utente.php" class="hdrButton">Benvenut*, admin! Vai al pannello di amministrazione </a>'
                         , $header);
                 }
 
@@ -54,7 +54,7 @@ function addHeader(&$page)
     else {
 
         // rimuovi logout
-        $header = str_replace('<a href="../php/logout.php" class="hdrButton">LOGOUT</a> ',
+        $header = str_replace('<a href="../php/logout.php" class="hdrButton">LOGOUT</a>',
             "", $header);
 
         // se si è nella pagina di login
