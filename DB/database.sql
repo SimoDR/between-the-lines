@@ -1,6 +1,14 @@
 SET time_zone = "+00:00";
 
+DROP TABLE IF EXISTS copertine;
+DROP TABLE IF EXISTS recensioni;
+DROP TABLE IF EXISTS libri;
 DROP TABLE IF EXISTS autori;
+DROP TABLE IF EXISTS generi;
+DROP TABLE IF EXISTS utenti;
+DROP TABLE IF EXISTS foto_profilo;
+
+
 CREATE TABLE autori
 (
     ID           INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -11,7 +19,7 @@ CREATE TABLE autori
     CONSTRAINT nominativo_univoco UNIQUE (nome, cognome)
 ) ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS generi;
+
 CREATE TABLE generi
 (
     ID   INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -19,7 +27,6 @@ CREATE TABLE generi
 ) ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS libri;
 CREATE TABLE libri
 (
     ID        INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -31,7 +38,7 @@ CREATE TABLE libri
     FOREIGN KEY (id_genere) REFERENCES generi (ID) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS copertine;
+
 CREATE TABLE copertine
 (
     ID       INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -42,8 +49,6 @@ CREATE TABLE copertine
 ) ENGINE = InnoDB;
 
 
-
-DROP TABLE IF EXISTS foto_profilo;
 CREATE TABLE foto_profilo
 (
     ID        SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -51,7 +56,7 @@ CREATE TABLE foto_profilo
     alt_text  VARCHAR(255)
 ) ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS utenti;
+
 CREATE TABLE utenti
 (
     ID        INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -65,7 +70,7 @@ CREATE TABLE utenti
     UNIQUE (mail)
 ) ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS recensioni;
+
 CREATE TABLE recensioni
 (
     ID          INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -78,6 +83,3 @@ CREATE TABLE recensioni
     FOREIGN KEY (id_utente) REFERENCES utenti (ID) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-
--- TO DO Elimina drop table classificazioni
-DROP TABLE IF EXISTS classificazioni;
