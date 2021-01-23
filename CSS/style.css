@@ -31,14 +31,15 @@ html {
 
 /* font */
 body {
-    background-color: antiquewhite;
+    background-color: burlywood;
     font-family: Geneva, Tahoma, sans-serif;
     width: 100%;
 }
 
 #content {
-    margin-left: 15%;
+    margin-left: 17%;
     padding: 1em;
+    background-color: antiquewhite;
 }
 
 
@@ -110,10 +111,9 @@ body {
 
 /*menu*/
 #menu {
-    margin-top: 10em;
+    margin-top: 7em;
     float: left;
     width: 17%;
-    
     border-bottom: none;
 }
 
@@ -121,6 +121,7 @@ body {
     list-style-type: none;
     text-align: center;
     font-size: 1.15em;
+    
 }
 
 .menu-list li {
@@ -401,6 +402,7 @@ ul.proPic img {
   max-width: 40%;
   width: 15em;
   border-radius: 1em;
+  border: 0.2em solid white;
   float:left;
   margin: 3%;
 }
