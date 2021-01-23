@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
-    <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
 </head>
 
 <body>
@@ -33,16 +33,13 @@
 <div id="content">
     <form method="post" action="../php/registrazione.php" id="registrazioneForm"
           class="form">
-        <!--multipart/form-data	Non vengono codificati i caratteri,
-        è necessario per i form che fanno file upload.
-        (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
         <fieldset>
             <legend>Registrazione</legend>
             <ERROR/>
 
             <div class="row">
                 <div class="col-25">
-                    <label for="email" lang="en">Email:</label>
+                    <label for="email" xml:lang="en">Email:</label>
                 </div>
                 <div class="col-75">
                     <input type="email" name="email" id="email" value="<EMAIL/>"/>
@@ -51,7 +48,7 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="username" lang="en">Nome utente:</label>
+                    <label for="username">Nome utente:</label>
                 </div>
                 <div class="col-75">
                     <input type="text" name="username" id="username" value="<USERNAME/>"/>
@@ -60,7 +57,7 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="password" lang="en">Password:</label>
+                    <label for="password" xml:lang="en">Password:</label>
                 </div>
                 <div class="col-75">
                     <input type="password" name="password" id="password" value="<PWD/>"/>
@@ -69,7 +66,7 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="repeatpassword">Ripeti <span xml:lang=\"en\" lang="en">password</span>:</label>
+                    <label for="repeatpassword">Ripeti <span xml:lang="en">password</span>:</label>
                 </div>
                 <div class="col-75">
                     <input type="password" name="repeatpassword" id="repeatpassword" value="<PWD_CONFERMA/>"/>

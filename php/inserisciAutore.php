@@ -28,14 +28,25 @@ if (isset($_POST["addAuthor"])) {
     }
     //check with the name regex checker: can be more than a word
     if (!check_nome($name)) {
-        $error = $error . "<div class=\"msg_box error_box\">Il nome dell'autore deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
+        $error = $error . "<div class=\"errorMessage\">Il nome dell'autore deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
     }
     if (!check_nome($surname)) {
-        $error = $error . "<div class=\"msg_box error_box\">Il cognome dell'autore deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
+        $error = $error . "<div class=\"errorMessage\">Il cognome dell'autore deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
+    }
+    // check on the dates
+    $today=new DateTime();
+    if($birthDate=="") {
+        $error = $error . "<div class=\"errorMessage\">La data di nascita dell'autore non può essere nulla</div>";
+    }
+    else if($birthDate>$today) {
+        $error = $error . "<div class=\"errorMessage\">La data di nascita dell'autore deve essere passata</div>";
     }
     if ($deathDate != NULL) {
         if ($birthDate > $deathDate) {
-            $error = $error . "<div class=\"msg_box error_box\">La data di nascita deve essere precedente alla data di morte.</div>";
+            $error = $error . "<div class=\"errorMessage\">La data di nascita deve essere precedente alla data di morte.</div>";
+        }
+        else if($deathDate>$today) {
+            $error = $error . "<div class=\"errorMessage\">La data di morte dell'autore deve essere passata</div>";
         }
     }
     if (empty($error)) {
@@ -63,14 +74,14 @@ if (isset($_POST["addAuthor"])) {
                     $deathDate = "";
                     $message = "<div class=\"successMessage\">Inserimento avvenuto con successo.</div>";
                 } else {
-                    $error = $error . "<div class=\"msg_box error_box\">l'inserimento non è andato a buon fine</div>";
+                    $error = $error . "<div class=\"errorMessage\">l'inserimento non è andato a buon fine</div>";
                 }
             } else {
-                $error = $error . "<div class=\"msg_box error_box\"> Esiste già un autore con questo nome e cognome</div>";
+                $error = $error . "<div class=\"errorMessage\"> Esiste già un autore con questo nome e cognome</div>";
             }
             $obj_connection->closeDBConnection();
         } else {
-            $error = $error . "<div class=\"msg_box error_box\">Impossibile stabilire la connessione con il <span xml:lang=\"en\" lang=\"en\">database</span></div>";
+            $error = $error . "<div class=\"errorMessage\">Impossibile stabilire la connessione con il <span xml:lang=\"en\">database</span></div>";
         }
     }
 }
