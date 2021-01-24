@@ -1,3 +1,4 @@
+/*  -------------  generale  ------------  */
 * {
   background: transparent;
   color: black;
@@ -15,7 +16,7 @@ body {
   padding: 0;
   width: 100%;
 }
-
+/*  links  */
 a {
     color: black;
     word-wrap: break-word;
@@ -29,6 +30,9 @@ a[href^="https://"]:after {
 a[href^="javascript:"]:after,
 a[href^="#"]:after {
   content: ""; }
+#header {
+  text-align: center;
+}
 
 img {
   max-width: 100%;
@@ -48,6 +52,7 @@ select {
 #userButtons,
 .hdrButton,
 .turnBack, 
+.toContent
 .pageNumbers {
   display: none;
 }
@@ -57,6 +62,7 @@ select {
 }
 
 #footer ul {
+  text-align: center;
   list-style-type: none;
 }
 

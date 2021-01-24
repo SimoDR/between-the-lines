@@ -350,21 +350,21 @@ ul.proPic img {
     border: 1px solid black;
     padding: 0.3em;
     margin: 1em;
+    display:inline-block
 }
 
 .newAuthorGenre {
     list-style-type: none;
-    padding:1em;
+    padding:0em;
 }
-.newAuthorGenre > li{
-    margin: 2em 2em 0em;
-}
+
 .newAuthorGenre a{
     background-color: maroon;
     border-radius: 0.5em;
     border: 1px solid black;
     padding: 0.3em;
-    margin: 2em;
+    margin: 1em 2em;
+    display:inline-block;
 }
 
 #addBook {
