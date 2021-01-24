@@ -78,7 +78,7 @@ if ($_SESSION['permesso'] == 0) {
             <input type=\"password\" id=\"userPwd\" name=\"userPwd\"                 />
             <input type=\"submit\" name=\"deleteUser\" value=\"Elimina\" class=\"button\" />
         </fieldset>
-        <p id=\"WarningMessage\">
+        <p id=\"warningMessage\">
             <strong>Attenzione!</strong> L&apos;eliminazione dell&apos;<span xml:lang=\"en\">account</span> &egrave; irreversibile e comporta la rimozione di tutte le recensioni associate ad esso.
         </p>
     </form>";

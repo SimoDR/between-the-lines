@@ -330,7 +330,13 @@ ul.proPic img {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
+}
+
+#panel{
+    border-radius: 1em;
+    border:0.2em solid sienna;
+    padding:0.5em;
 }
 #editUser {
     margin:2em;
@@ -368,6 +374,10 @@ ul.proPic img {
     border: 1px solid black;
     padding: 0.8em;
     margin: 2em;
+}
+
+#warningMessage {
+    margin:1em;
 }
 
 /*classifiche - homepage*/
