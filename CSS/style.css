@@ -156,33 +156,47 @@ body {
 
 /*menu*/
 #menu {
+    display: block;
     margin-top: 7em;
     float: left;
     width: 17%;
     border-bottom: none;
 }
 
-.menu-list {
-    list-style-type: none;
-    text-align: center;
-    font-size: 1.15em;
-    
+#menu ul {
+    font-size: 1.35em;
+    line-height: 2em;
 }
 
-.menu-list li .hdrButton{
-    display: block;
+#menu ul li{
+    list-style: none;
     background-color: brown;
-    border-radius: 0.5em;
-    border: 1px solid black;
-    padding: 0.2em;
-    margin: 1em;
+    text-align: center; 
+    border-bottom: 1px solid black;
+}
+
+#menu ul li:hover{
+    background-color: #2A1B0E;
+    color: white;
+}
+#menu ul li:hover{
+    background-color: #2A1B0E;
+    color: white;
+}
+/*#menu ul li:hover a{
+    color: white;
+}*/
+
+#menu ul li a{
+    width: 100%; 
+    display: inline-block;
 }
 
 
 /* Style inputs, select elements and textareas */
-input[type=text], select, textarea {
-    border-radius: 4px;
-    border: 1px solid #ccc;
+input[type=text],input[type=password], select, textarea {
+/*    border-radius: 4px;
+*/    border: 1px solid #0b0c0c;
     box-sizing: border-box;
     padding: 12px;
     resize: vertical;
@@ -233,11 +247,17 @@ input[type=submit] {
 }
 
 /* Clear floats after the columns */
-.row:after {
+.row{
+    width: 100%; 
+    display: inline-block;
+    /*box-sizing: border-box;*/
+    margin-bottom: 15px;
+}
+/*.row:after {
     content: "";
     clear: both;
     display: table;
-}
+}*/
 
 .containerPrevNextBtn {
     overflow: auto;
@@ -680,7 +700,7 @@ li.review {
     font-size: 1.1em;
 }
 
-.formLabel{
+.formReviewLabel{
     background-color: sienna;
     color: white;
     border-radius: 1em;
@@ -862,87 +882,98 @@ textarea:focus,
 select:focus,
 button:focus {
   outline: 3px solid sienna;
-  outline-offset: 0; }
+  outline-offset: 0;
+}
 
 option:active,
 option:checked {
   color: #fff;
-  background-color: #005ea5; }
+  background-color: #005ea5; 
+}
 
 
 
-  .button {
-  background-color: #00823b;
-  position: relative;
-  display: inline-block;
-  padding: .526315em .789473em .263157em;
+.button {
+  background-color: brown;
   border: none;
-  border-radius: 0;
-  outline: 1px solid transparent;
-  outline-offset: -1px;
   box-shadow: 0 2px 0 #003618;
-  font-size: 1em;
-  line-height: 1.25;
-  text-decoration: none;
-  cursor: pointer;
-  color: #fff;
   box-sizing: border-box;
-  vertical-align: top; }
-  .button:visited {
-    background-color: #00823b; }
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1.25;
+  padding: .8em 1.7em;
+  position: relative;
+  vertical-align: top;
+  margin: 3px;
+}
   .button:hover, .button:focus {
-    background-color: #00692f; }
-  .button:active {
-    top: 2px;
-    box-shadow: 0 0 0 #00823b; }
-  .button.disabled, .button[disabled="disabled"], .button[disabled] {
-    zoom: 1;
+    background-color: #2A1B0E;
+}
+
+  .button[disabled="disabled"] {
     filter: alpha(opacity=50);
-    opacity: 0.5; }
-    .button.disabled:hover, .button[disabled="disabled"]:hover, .button[disabled]:hover {
+    opacity: 0.5; 
+    zoom: 1;
+   }
+    .button[disabled="disabled"]:hover {
       cursor: default;
-      background-color: #00823b; }
-    .button.disabled:active, .button[disabled="disabled"]:active, .button[disabled]:active {
-      top: 0;
-      box-shadow: 0 2px 0 #003618; }
+      background-color: #00823b; 
+   }
+
   .button:link, .button:link:focus, .button:hover, .button:focus, .button:visited {
-    color: #fff; }
-  .button:before {
-    content: "";
-    height: 110%;
-    width: 100%;
-    display: block;
+    color: #fff;
+}
+.button:before {
     background: transparent;
+    content: "";
+    display: block;
+    height: 110%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0; }
+    width: 100%;
+}
 
-  .button:active:before {
+.button:active:before {
+    height: 120%;
     top: -10%;
-    height: 120%; }
-  @media (max-width: 640px) {
-    .button {
-      width: 100%;
-      text-align: center; 
-      }
-    }
-.button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
+}
+@media (max-width: 640px) {
+.button {
+  text-align: center; 
+  width: 100%;
+  }
 }
 
-.button:focus {
+/*.button:focus {
   outline: 3px solid #ffbf47;
-}
+}*/
 
-.button[disabled="disabled"] {
-  background: #00823b;
-}
-
-.button[disabled="disabled"]:focus {
-  outline: none;
-}
 
 #img_cover_preview{
   width: 100%;
+}
+
+
+
+.formLabel,
+.formLabelBold {
+    display: block;
+    color: #0b0c0c;
+    padding-bottom: 0.2em;
+}
+
+.formLabel {
+    font-weight: 400;
+    text-transform: none;
+    font-size: 1.25em;
+    line-height: 1.25; 
+}
+
+@media (min-width: 641px) {
+    .formLabel {
+        font-size: 1.4em;
+        line-height: 1.3; } 
 }

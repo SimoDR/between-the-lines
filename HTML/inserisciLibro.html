@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
-        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css"/>
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
         <body>
 
             <HEADER/>
@@ -41,22 +41,20 @@
                     <h2>
                         Inserisci i dati nel nuovo libro:
                     </h2>
-                    <div class="row"> 
-                        <div class="col-25">
-                            <label for="author">Seleziona autore:
+                    <div class="row">
+                            <label class="formLabel" for="author">Seleziona l'autore
                             </label>
-                        </div>
+
                         <div class="col-50">
-                            <select id="author" name="author" >
+                            <select id="author" name="author">
                                 <AUTORI/>
                             </select>
                         </div>
                     </div>
-                    <div class="row"> 
-                        <div class="col-25">
-                            <label for="genre">Seleziona genere:
+                    <div class="row">
+                            <label class="formLabel" for="genre">Seleziona il genere
                             </label>
-                        </div>
+
                         <div class="col-50">
                             <select id="genre" name="genre">
                                 <GENERI/>
@@ -64,29 +62,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
-                            <label for="titolo">Titolo:
+                            <label class="formLabel" for="titolo">Titolo
                             </label>
-                        </div>
+
                         <div class="col-75">
                             <input type="text" name="titolo" id="titolo" class="full_width_input" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
-                            <label for="trama">Trama:
+                            <label class="formLabel" for="trama">Trama
                             </label>
-                        </div>
+
                         <div class="col-75">
-                            <textarea name="trama" id="trama" class="full_width_input" rows="5">
-                            </textarea>
+                            <textarea name="trama" id="trama" class="full_width_input" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
-                            <label for="img_cover_preview">Copertina:
+                            <label class="formLabel" for="img_cover_preview">Copertina:
                             </label>
-                        </div>
+
                         <div class="col-75">
                             <div class="row">
                                 <label for="fileToUpload"> Carica un file: 
@@ -99,15 +93,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-25">
-                            <label for="alt_text">Testo alternativo 
-                                <span class="sr-only">(all'immmagine)
-                                </span>:
+                            <label class="formLabel" for="alt_text">Testo alternativo 
+                                <span class="sr-only">(all'immmagine)</span>
                             </label>
-                        </div>
+
                         <div class="col-75">
-                            <textarea name="alt_text" id="alt_text" class="full_width_input" rows="5">
-                            </textarea>
+                            <textarea name="alt_text" id="alt_text" class="full_width_input" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row" >

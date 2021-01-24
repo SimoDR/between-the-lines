@@ -1,9 +1,49 @@
-body {
-    font-family: Georgia, "Times New Roman", serif;
-    color: black;
+* {
+  background: transparent;
+  color: black;
+  text-shadow: none;
+  filter: none;
 }
 
-/*black links*/
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 11pt;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 a {
     color: black;
+    word-wrap: break-word;
 }
+a[href^="/"]:after,
+a[href^="http://"]:after,
+a[href^="https://"]:after {
+  content: " [" attr(href) "]";
+  font-size: 90%; }
+
+a[href^="javascript:"]:after,
+a[href^="#"]:after {
+  content: ""; }
+
+img {
+  max-width: 100% !important;
+}
+
+select {
+  background: white;
+}
+
+#imgValidCode,
+#imgValidCSS,
+.hidden,
+.sr-only {
+  display: none !important;
+}
+
+
+
