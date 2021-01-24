@@ -31,7 +31,7 @@ a[href^="#"]:after {
   content: ""; }
 
 img {
-  max-width: 100% !important;
+  max-width: 100%
 }
 
 select {
@@ -41,9 +41,17 @@ select {
 #imgValidCode,
 #imgValidCSS,
 .hidden,
-.sr-only {
-  display: none !important;
+.sr-only, #logo, #rankingTopReview img,.userPic ,#footer img {
+  display: none
 }
+
+#footer ul {
+  list-style-type: none;
+}
+
+
+
+
 
 
 
