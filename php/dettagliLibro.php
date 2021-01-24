@@ -223,18 +223,18 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         $inserimentoForm = '<div id="insertReviewButton"><form action="inserisciRecensione.php" method="post">
                                             <div>
                                                 <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
-                                                <input id="insertReviewButton" type="submit" value="Inserisci recensione" class="button"/>
+                                                <input type="submit" value="Inserisci recensione" class="reviewButton"/>
                                             </div>
                                             </form></div>';
                     } else { // se admin
-                        $inserimentoForm = "<p id=\"insertReviewButton\">Spiacente, l'<span xml:lang=\"en\" lang=\"en\">admin</span> non può effettuare recensioni</p>";
+                        $inserimentoForm = "<p id=\"insertReviewButton\">Spiacente, l'admin non può effettuare recensioni</p>";
                     }
                 } else { // non loggato
                     
                     $inserimentoForm = '<form action="login.php" method="get">
                                         <div>
                                             <input type="hidden" name="id_libro" value ="' . $ID_libro . '"/>
-                                            <input id="insertReviewButton" type="submit" value="Accedi per inserire una recensione" class="button"/>
+                                            <input type="submit" value="Effettua il login per inserire una recensione" class="reviewButton"/>
                                         </div>
                                         </form>';
                 }

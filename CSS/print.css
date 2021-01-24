@@ -46,10 +46,8 @@ select {
 .userPic, 
 #footer img, 
 #userButtons,
-#menu,
 .hdrButton,
 .turnBack, 
-.toContent,
 .pageNumbers {
   display: none;
 }
@@ -123,18 +121,6 @@ select {
   width: 20%;
 }
 
-/*modifica utente*/
-.proPic {
-  display: flex;
-  list-style-type: none;
-}
-.proPic img{
-  height: 3em;
-
-}
-.proPic li {
-  padding-right: 2em;
-}
 
 
 
