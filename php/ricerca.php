@@ -26,7 +26,7 @@
 			$pagHTML=str_replace("<GENERI/>", $genreList, $pagHTML);
 		}
 
-		$querySearch = "SELECT L.ID AS id, L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, COALESCE( AVG(R.valutazione),'Nessun voto') AS media, C.path_img AS path_img, C.alt_text AS alt_text 
+		$querySearch = "SELECT L.ID AS id, L.titolo AS titolo, A.nome AS nome, A.cognome AS cognome, G.nome AS genere, COALESCE( AVG(R.valutazione),0) AS media, C.path_img AS path_img, C.alt_text AS alt_text 
 		FROM libri L 
 		LEFT JOIN recensioni R ON  R.id_libro=L.ID 
 		INNER JOIN autori A ON L.id_autore=A.ID 
