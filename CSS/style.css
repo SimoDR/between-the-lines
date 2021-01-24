@@ -645,10 +645,6 @@ fieldset {
 
 }
 
-li.review::marker{ /*TODO*/
-  margin: 0;
-  padding: 0;
-}
 
 li.review {
     list-style-type: none;
