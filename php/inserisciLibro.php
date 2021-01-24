@@ -3,6 +3,7 @@ require_once("regex_checker.php");
 require_once('DBConnection.php');
 require_once('uploadImg.php');
 require_once('setupPage.php');
+require_once('sessione.php');
 
 $page = setup("../HTML/inserisciLibro.html");
 $error = "";
