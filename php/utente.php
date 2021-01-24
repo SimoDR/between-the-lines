@@ -30,7 +30,7 @@ if ($obj_connection->openDBConnection()) {
         $altPic = $proPic[0]["alt_text"];
         $userInfo = "<div class=\"imgWrapper\"><img class=\"userPic\" src=\"$pathPic\" alt=\"$altPic\" /></div>
         <h2 class=\"userName\"> $username </h2>
-        <p class=\"email\"> La tua <span xml:lang=\"en\">E-mail</span>: $email </p>";
+        <p class=\"email\"> La tua <span xml:lang=\"en\">e-mail</span>: $email </p>";
     }
     $obj_connection->closeDBConnection();
 } else {
@@ -62,7 +62,7 @@ if ($_SESSION['permesso'] == 1) {
         <li><a href=\"inserisciAutore.php\">Aggiungi un nuovo autore</a></li>
         <li><a href=\"inserisciGenere.php\">Aggiungi un nuovo genere</a></li>
     </ul>
-    <a id=\"addBook\" href=\"inserisciLibro.php\" > Aggiungi un nuovo libro </a>";
+    <a id=\"addBook\" href=\"inserisciLibro.php\">Aggiungi un nuovo libro </a>";
 }
 $page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);
 //if the user is not admin he can delete his account
@@ -71,7 +71,7 @@ if ($_SESSION['permesso'] == 0) {
     $delete = "<form id=\"deleteAccount\" class=\"print-hide cambio-info\"
           method=\"post\"
           action=\"../php/utente.php\">
-        <fieldset class=\"form-fieldset fieldset-elimina-account\">
+        <fieldset class=\"formF\">
             <legend class=\"legend\">Eliminazione <span xml:lang=\"en\">account</span></legend>
             <ERRORI/>
             <label for=\"userPwd\">Per confermare inserisci la tua <span xml:lang=\"en\">password</span>:</label>
