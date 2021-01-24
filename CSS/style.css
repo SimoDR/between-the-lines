@@ -376,25 +376,11 @@ ul.proPic img {
 {
     font-weight:bold;     
 }
-<<<<<<< HEAD
 #rankingTopReview dt {
     display: table-cell;
     vertical-align: middle;
     font-size: 100%;
     background-color: maroon;
-=======
-
-#rankingTopReview img {
-    border-radius: 1em;
-    height: 15em;
-    border: 0.2em solid white;
-    margin-top: 1em;
-}
-
-#rankingTopReview dt a {
-    display: block;
-    background-color: sienna;
->>>>>>> 9ff3d39fd5f9f8bec41898402094636c200d89f1
     border-radius: 1em;
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
