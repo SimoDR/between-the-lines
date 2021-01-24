@@ -76,8 +76,9 @@ function checkUsername(username) {
     return new RegExp(/^[a-zA-Z0-9]{5,30}$/).test(username);
 }
 
+//more permissive than its backend counterpart: accepted everything which is not number, 2-30 digits
 function checkNome(name) {
-    return true;
+    return new RegExp(/^[^0-9]{2,30}$/).test(name);;
 }
 
 function checkPassword(password) {

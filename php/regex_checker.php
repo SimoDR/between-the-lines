@@ -13,7 +13,7 @@ function check_email($email){
 //  - Only letters and numbers (a-z, A-z, 0-9).
 //  - No spaces, linebreaks, tabs or special characters.
 //  - At least 5 characters in length.
-//  - No more than 20 characters in length.
+//  - No more than 30 characters in length.
 function check_username($username){
     if(preg_match('/^[a-zA-Z0-9]{5,30}$/',$username)==1){
         return true;
@@ -21,6 +21,7 @@ function check_username($username){
     return false;
 }
 
+// a capital letter, a lowecase  letter and a number, no special characters allowed. Minimum 8 digits
 function check_pwd($password){
     if(preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/',$password)==1){
         return true;
