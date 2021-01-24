@@ -58,11 +58,11 @@ $page = str_replace("<INFO_UTENTE/>", "$userInfo", $page);
 //if the user is admin he can access the admin functions
 $buttons = '';
 if ($_SESSION['permesso'] == 1) {
-    $buttons = "<ul class=\"newAuthorGenre\">
-        <li><a href=\"inserisciAutore.php\">Aggiungi un nuovo autore</a></li>
-        <li><a href=\"inserisciGenere.php\">Aggiungi un nuovo genere</a></li>
-    </ul>
-    <a id=\"addBook\" href=\"inserisciLibro.php\">Aggiungi un nuovo libro </a>";
+    $buttons = "<ul class=\"newAuthorGenreBook\">
+        <li><a href=\"inserisciAutore.php\" class = \"hdrButton\">Aggiungi un nuovo autore</a></li>
+        <li><a href=\"inserisciGenere.php\" class = \"hdrButton\">Aggiungi un nuovo genere</a></li>
+        <li><a id=\"addBook\" href=\"inserisciLibro.php\" class = \"hdrButton\"> Aggiungi un nuovo libro </a></li>
+    </ul>";
 }
 $page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);
 //if the user is not admin he can delete his account

@@ -4,6 +4,10 @@
     margin: 0em;
 }
 
+a {
+    background: brown;
+    display: inline-block;
+}
 
 a:link {
     color: yellow;
@@ -84,10 +88,6 @@ body {
     list-style-type: none;
 }
 
-.turnBack {
-    margin-top: 1em;
-
-}
 
 .toContent {
 	position: absolute;
@@ -98,11 +98,7 @@ body {
 }
 
 .turnBackLink {
-    border: 1px solid black;
-    background-color: maroon;
-    padding: 0.3em;
-    text-align: center;
-    border-radius: 0.5em;
+    display: none;
 }
 
 /*header*/
@@ -138,16 +134,21 @@ body {
 }
 
 .hdrButton {
-    display: inline-block;
     background-color: brown;
-    color: #ffffff;
     border-radius: 1em;
-    -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border: 0.1em solid black;
-    padding: 0.6em 1.5em;
+    color: #ffffff;
+    display: inline-block;
     font-size: 1em;
     margin: 0.2em 0.2em;
+    padding: 0.6em 1em;
+    text-align: center;
+}
+
+.hdrButton:hover{
+    background-color: #2A1B0E;
 }
 
 #logo {
@@ -155,12 +156,15 @@ body {
 }
 
 #breadcrumb {
-    padding: 1em;
-    margin: 0em;
-    color: white;
     background-color: sienna;
+    color: white;
+    margin: 0em;
+    padding: 1em;
 }
 
+#breadcrumb a, #footer a {
+    background-color: sienna;
+}
 
 
 /*menu*/
@@ -179,17 +183,12 @@ body {
 
 #menu ul li{
     list-style: none;
-    color: white;
     background-color: brown;
     text-align: center; 
     border-bottom: 1px solid black;
 }
 
-#menu ul li:hover{
-    background-color: #2A1B0E;
-    color: white;
-}
-#menu ul li:hover{
+#menu ul li a:hover{
     background-color: #2A1B0E;
     color: white;
 }
@@ -202,8 +201,7 @@ body {
 
 /* Style inputs, select elements and textareas */
 input[type=text],input[type=password], select, textarea {
-/*    border-radius: 4px;
-*/    border: 1px solid #0b0c0c;
+    border: 1px solid #0b0c0c;
     box-sizing: border-box;
     padding: 12px;
     resize: vertical;
@@ -254,14 +252,23 @@ input[type=submit] {
     width: 100%; 
     display: inline-block;
     /*box-sizing: border-box;*/
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
-/*.row:after {
-    content: "";
-    clear: both;
-    display: table;
-}*/
 
+.titleLogo{
+    width: 100%; 
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    clear: both;
+    overflow: auto;
+}
+
+.titleLogo::after {
+    content: "";
+    display: table;
+    clear: both;
+}
 .containerPrevNextBtn {
     overflow: auto;
 }
@@ -377,18 +384,9 @@ fieldset {
     display:inline-block
 }
 
-.newAuthorGenre {
+.newAuthorGenreBook {
     list-style-type: none;
-    padding:0em;
-}
-
-.newAuthorGenre a{
-    background-color: maroon;
-    border-radius: 0.5em;
-    border: 1px solid black;
-    padding: 0.3em;
-    margin: 1em 2em;
-    display:inline-block;
+    padding:1em;
 }
 
 #addBook {
@@ -569,6 +567,9 @@ fieldset {
     border: 1px solid white;
     margin-bottom: 1em;
     
+.buttonDelete {
+    background-color: #822323;
+    color: white;
 }
 
 /*area libro*/
@@ -888,11 +889,7 @@ li.review {
     #content {
         margin-left: 0;
     }
-    
-    #logout {
-        display: block;
-        width: 4em;
-    }
+
     
         #header {
             overflow: hidden;
@@ -943,18 +940,49 @@ li.review {
     }      
 }
 
-@media screen and (max-width: 585px) {
+@media screen and (max-width: 600px) {
     .col-25, .col-50, .col-75, input[type=submit] {
         width: 100%;
         margin-top: 0;
     }
-    
+    #userButtons {
+        float: left;
+        width: 80%;
+    }
+    .button {
+      text-align: center; 
+      width: 100%;
+    }
+    .hdrButton {
+      width: 100%;
+    }
+
+    .turnBackLink {
+        background-color: brown;
+        border: 0.1em solid black;
+        border-radius: 1em;
+        -moz-border-radius: 1em;
+        -webkit-border-radius: 1em;
+        color: #ffffff;
+        margin: 0.2em 0.2em;
+        padding: 0.6em;
+        text-align: center;
+        float: none;
+        width: 85%;
+        display: inline-block;
+    }
+
     h1 {
         font-size: 1.45em;
         margin-bottom: 0;
 
     }
-    
+        #header h1:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
     #header h2 {
         display: none;
        
@@ -964,7 +992,9 @@ li.review {
         width: 4em;
         margin-bottom: 1em;
     }
-    
+    .mobileHidden{
+        display: none;
+    }
     .reviewDetails .buttonDelete {
         width: 40%;
         padding: 0.6em 0em 0.6em 0em;
@@ -1066,10 +1096,6 @@ option:checked {
     height: 120%;
     top: -10%;
 }
-@media (max-width: 640px) {
-
-    
-}
 
 /*.button:focus {
   outline: 3px solid #ffbf47;
@@ -1092,6 +1118,13 @@ option:checked {
 .formLabel {
     font-weight: 400;
     text-transform: none;
-    font-size: 1.25em;
+    font-size: 1.15em;
     line-height: 1.25; 
+}
+
+
+#userButtonsWrapper a{
+    width: 100%; 
+    display: inline-block;
+    margin-bottom: 10px;
 }

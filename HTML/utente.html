@@ -37,18 +37,23 @@
             <div class="userInfo">
                 <INFO_UTENTE/>
             </div>
-            <div id="panel">
-            <BOTTONI_ADMIN/>
+            <div class="row">
+                <div class="col-50" id="userButtonsWrapper">
+                    <BOTTONI_ADMIN/>
 
-            <!-- link modifica dati -->
-            <p id="editUser">
-                Per modificare i tuoi dati vai su:
-                <a id="editLink" href="../php/modificaUtente.php">Modifica dati</a>
-            </p>
-            <!--Eliminazione account-->
-            <ELIMINA_ACCOUNT/>
+                    <!-- link modifica dati -->
+                    <div class="row">
+                        Per modificare i tuoi dati vai su:
+                        <a id="editLink" class="hdrButton" href="../php/modificaUtente.php">Modifica dati</a>
+                    </div>
+
+                    <!--Eliminazione account-->
+                    <!--    TODO: ste cose nel layout di stampa si possono cancellare-->
+                    <ELIMINA_ACCOUNT/>
+
+                </div>
             </div>
-            <div class="turnBack"><a class="turnBackLink" href="#">Torna su</a></div>
+        <div class="turnBack"><a class="turnBackLink" href="#">Torna su</a></div>
         </div>
 
         <div id="footer">

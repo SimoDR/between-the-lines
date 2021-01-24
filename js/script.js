@@ -275,32 +275,15 @@ function contattiChecker() {
     }
 }
 
- function hasClass(element, className) {
-    return element.classList.contains(className);
-  }
-  MSG_TYPES = {
-    ERROR: -1, 
-    WARNING: 0, 
-    SUCCESS: 1
-  };
-  function createHTMLBox(msg, type) {
-    var box = document.createElement("div");
-    box.classList.add("msg_box");
-    var msgClass = "success_box";
-    if(type == MSG_TYPES.ERROR)
-      msgClass = "error_box";
-    else if(type == MSG_TYPES.WARNING)
-      msgClass = "warning_box";
-    box.classList.add(msgClass);
-    box.innerHTML = msg;
-    return box;
-  }
-  function showAlertBox(element, message) {
-    var alertBox = createHTMLBox(message, MSG_TYPES.ERROR);
-    element.parentNode.insertBefore(alertBox, element);
-  }
 
-  function changeImg(sourceElement, previewElement) {
+function showAlertBox(element, message) {
+    var alertBox = document.createElement("div");
+    alertBox.classList.add("errorMessage");
+    alertBox.innerHTML = message;
+    element.parentNode.insertBefore(alertBox, element);
+}
+
+function changeImg(sourceElement, previewElement) {
     if(sourceElement.files && sourceElement.files[0]) {
       var reader = new FileReader();
       reader.onload = function(ee) {
@@ -308,7 +291,7 @@ function contattiChecker() {
       }
       reader.readAsDataURL(sourceElement.files[0]);
     }
-  }
+}
   function extensionAccepted(path) {
     var extensions = ['png','jpg','jpeg','gif'];
     return extensions.includes(path.split('.').pop());
