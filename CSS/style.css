@@ -392,7 +392,7 @@ ul.proPic img {
 #rankingTopReview li{
         list-style: none;
         width: 14em;
-        height: 22em;
+        height: 24em;
         margin:0.5em;
         padding: 1em;
         background-color: peru;
@@ -407,18 +407,18 @@ ul.proPic img {
 }
 #rankingTopReview dt {
     display: table-cell;
-    vertical-align: middle;
     font-size: 100%;
     background-color: maroon;
     border-radius: 1em;
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     text-align: center;
-    padding: 0.5em;
+    padding-top: 1.6em;
+    height: 4.3em;
     width: 15em;
-    height: 3em;
     border: 0.05em solid black;
 }
+
 
 #rankingTopReview img {
     border-radius: 1em;

@@ -31,7 +31,7 @@ a[href^="#"]:after {
   content: ""; }
 
 img {
-  max-width: 100%
+  max-width: 100%;
 }
 
 select {
@@ -41,13 +41,89 @@ select {
 #imgValidCode,
 #imgValidCSS,
 .hidden,
-.sr-only, #logo, #rankingTopReview img,.userPic ,#footer img {
-  display: none
+.sr-only, 
+#logo, 
+.userPic, 
+#footer img, 
+#userButtons,
+.hdrButton,
+.turnBack, 
+.pageNumbers {
+  display: none;
+}
+
+#footer {
+  display: block;
 }
 
 #footer ul {
   list-style-type: none;
 }
+
+/*index*/
+#rankingTopReview img{
+  width:10%; 
+  padding: 1em;
+}
+
+#rankingTopReview li{
+  list-style-type: decimal;
+}
+
+.searchForm, #indexRicerca {
+  display: none;
+}
+
+#rankingLastReview .username, #rankingLastReview .stelle{
+  display: block;
+}
+
+/*chisiamo*/
+#staff ul{
+  list-style-type: none;
+}
+
+#staff dt{
+  float: left;
+}
+
+#staff dd:before{
+  content:": ";
+}
+
+/*contatti*/
+
+#contact_message {
+  display: none;
+}
+
+/*ricerca*/
+
+.buttonDettagli {
+  display: none;
+}
+
+.book h3 {
+  clear: left;
+}
+
+.book dt {
+  float: left;
+  display: inline;
+}
+
+.book dt {
+  clear: left;
+}
+
+
+.book img {
+  width: 20%;
+}
+
+
+
+
 
 
 
