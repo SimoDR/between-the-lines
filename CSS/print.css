@@ -50,7 +50,6 @@ select {
 .userPic, 
 #footer img, 
 #userButtons,
-#menu,
 .hdrButton,
 .turnBack, 
 .toContent,
@@ -68,13 +67,24 @@ select {
 }
 
 /*index*/
+
+
+#rankingTopReview{
+  display: inline-block;
+}
 #rankingTopReview img{
-  width:10%; 
-  padding: 1em;
+  float: left;
+  width:20%; 
+  padding: 0.5em;
 }
 
 #rankingTopReview li{
   list-style-type: decimal;
+  clear:left;
+}
+
+#rankingTopReview dd{
+  padding-top: 2em;
 }
 
 .searchForm, #indexRicerca {
@@ -86,16 +96,24 @@ select {
 }
 
 /*chisiamo*/
-#staff ul{
-  list-style-type: none;
+#staff{
+  display: inline-block;
+  
 }
 
-#staff dt{
+#staff img {
+  display: inline;
   float: left;
 }
 
-#staff dd:before{
-  content:": ";
+#staff li{
+  clear:left;
+  list-style-type: none;
+}
+
+#staff dd, #staff dt {
+  display: inline;
+  float: left;
 }
 
 /*contatti*/
@@ -106,8 +124,18 @@ select {
 
 /*ricerca*/
 
-.buttonDettagli {
+.buttonDettagli, .confirmationMessage {
   display: none;
+}
+
+.book {
+    display: inline-block;
+}
+
+.book img {
+  float:left;
+  width: 20%;
+  padding-right: 2em;
 }
 
 .book h3 {
@@ -115,31 +143,26 @@ select {
 }
 
 .book dt {
-  float: left;
-  display: inline;
+    font-weight: bold;
+    display: inline;
 }
 
-.book dt {
-  clear: left;
+.book dt:before {
+    content: "";
+    display: block;
+}
+
+.book dd:before {
+    content: " ";
 }
 
 
-.book img {
-  width: 20%;
-}
 
-/*modifica utente*/
-.proPic {
-  display: flex;
-  list-style-type: none;
-}
-.proPic img{
-  height: 3em;
 
-}
-.proPic li {
-  padding-right: 2em;
-}
+
+
+
+
 
 
 
