@@ -36,14 +36,26 @@
                 $titleOrAuthor='';
                 $genre='';
                 $search ='';       
-                if(isset($_GET['filter'])) {
+                if(isset($_GET['filter']) && (($_GET['filter'])==0 || ($_GET['filter'])==11)) {
                     $titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
                 }
-                if(isset($_GET['genre'])) {
+                else {
+                    header('location: 400.php'); //bad request
+                    exit;
+                }
+                if(isset($_GET['genre']) && is_string($_GET['genre'])) {
                     $genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
                 }
-                if(isset($_GET['search_bar'])) {
+                else {
+                    header('location: 400.php'); //bad request
+                    exit;
+                }
+                if(isset($_GET['search_bar']) && is_string($_GET['search_bar'])) {
                     $search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
+                }
+                else {
+                    header('location: 400.php'); //bad request
+                    exit;
                 }
 
                 
