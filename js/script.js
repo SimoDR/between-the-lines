@@ -255,8 +255,8 @@ function contattiChecker() {
     if (document.getElementById("message-form")) {
         var contattiControls = {};
         contattiControls["e_mail"] = [[checkEmail, "Inserire una e-mail valida"]];
-        contattiControls["message"] = [[isNotEmpty, "La recensione non può essere vuota"],
-                                     [reviewContentLowerBound,"La recensione deve contenere almeno 50 caratteri."]];
+        contattiControls["message"] = [[isNotEmpty, "Il messaggio non può essere vuoto"],
+                                     [reviewContentLowerBound,"Il messaggio deve contenere almeno 50 caratteri."]];
         contattiControls["first_name"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
         contattiControls["last_name"] = [[isNotEmpty, "Il cognome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
         // link the controls to the event "focusOut"
