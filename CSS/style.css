@@ -15,7 +15,7 @@ a:visited {
 
 html, body {
     max-width: 1024px;
-    min-height: 100vh;
+    min-height: 50vh;
     margin: 0em auto;
     padding: 0em
 }
