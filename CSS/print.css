@@ -91,9 +91,6 @@ select {
   display: none;
 }
 
-#rankingLastReview .username, #rankingLastReview .stelle{
-  display: block;
-}
 
 /*chisiamo*/
 #staff{
@@ -156,20 +153,111 @@ select {
     content: " ";
 }
 
+/*dettagli libro*/
+
+#bookFrontpage img{
+    width: 10em;
+    float: left;
+    margin-right: 1em;
+}
 
 
 
+#bookDetails dt {
+    font-weight: bold;
+    
+}
+
+#bookDetails dt:before {
+  content: "";
+  display: block;
+}
+
+#insertReviewButton {
+    display: none;
+}
+
+#bookArea .button {
+    display: none;
+}
 
 
+#reviewArea .reviewDetails .button {
+    display: none;
+}
+
+.reviewDetails img {
+  float: left;
+  max-width: 10%;
+  min-width: 2em;
+  width: 3em;
+
+}
 
 
+li.review {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+.reviewDetails {
+    margin: 0.3em;
+    padding: 0.2em;
+    overflow: hidden;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    color: white;
+}
+
+.review {
+    border: 1px solid black;
+    border-radius: 0.5em;
+}
+
+.reviewContent {
+    padding:0.2em 0.2em 0.2em 0.2em;
+}
+
+.stelle {
+    display: block;
+    margin: 0.3em 0 0 0.3em;
+    font-weight: bold;
+}
 
 
+ .stelleCounter {
+    display: inline;
+}
+.reviewDetails .username {
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
 
 
+.reviewDatetime {
+    font-family: monospace;
+    display: block;
+}
+
+.userDetails p {
+    vertical-align: middle;
+}
 
 
+#rankingLastReview h5 {
+    padding: 0;
+}
 
+#rankingLastReview a {
+    padding: 0;
+}
 
+input[type=submit] {
+    float: right;
+}
 
-
+label {
+    display: block;
+}
