@@ -29,4 +29,5 @@
 *.synctex.gz
 *.synctex*
 *.zip
+*.pdf
 Makefile
