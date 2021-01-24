@@ -101,8 +101,12 @@ function checkTitle(str) {
     return str && str.trim().length>4;
 }
 
-function checkAltText(str) {
+function shortTextLowerBound(str) {
     return str && str.trim().length>4;
+}
+
+function shortTextUpperBound(str) {
+    return str && str.trim().length<51;
 }
 
 function plotLowerBound(str) {
@@ -340,25 +344,37 @@ function contattiChecker() {
   }
 
 function newLibroChecker(){
+
     if (document.getElementById("form_libro")) {
+
         var libroControls = {};
-        // libroControls["author"] = [[isNotEmpty, "L'autore deve essere selezionato"]];
-        // libroControls["genre"] = [[isNotEmpty, "Il genere deve essere selezionato"]];
+        libroControls["author"] = [[isNotEmpty, "L'autore deve essere selezionato"]];
+        libroControls["genre"] = [[isNotEmpty, "Il genere deve essere selezionato"]];
         libroControls["titolo"]=[[checkTitle,"Il titolo non può essere vuoto e deve contenere almeno 5 caratteri."]];
         libroControls["trama"]=[[isNotEmpty,"La trama non può essere vuota"],
                                 [plotLowerBound,"La trama deve contenere almeno 50 caratteri."],
                                 [plotUpperBound,"La trama deve contenere al massimo 500 caratteri."]];
-        libroControls["alt_text"]=[[checkAltText,"Il testo alternativo non può essere vuoto e deve contenere almeno 5 caratteri"]];
+        libroControls["alt_text"]=[[isNotEmpty, "Il testo alternativo deve essere impostato"],
+                           [shortTextLowerBound,"Il testo alternativo deve contenere almeno 5 caratteri"],
+                           [shortTextUpperBound,
+                           "Il testo alternativo deve contenere al massimo 50 caratteri"
+                           ]];
         addFocusOutEvent(libroControls);
 
         var libroButton = document.getElementById("libroButton");
         libroButton.addEventListener("click", (event) => {
-            if (!clickController(libroControls)) event.preventDefault();
+            if (!clickController(libroControls)) {
+                event.preventDefault();
+                createMessage(document.getElementById("btnContainer"), "L'inserimento non è stato autorizzato perché erano presenti errori nei form. Ricontrollare gli errori segnalati.");
+            }
         });
         var newImg = document.getElementById("fileToUpload");
         newImg.addEventListener("change", function(e) {
         if(checkPhoto(e.target))
             changeImg(newImg, document.getElementById("img_cover_preview"));
+        });
+        document.getElementById('form_libro').addEventListener("reset", function() {
+            document.getElementById("img_cover_preview").setAttribute("src", "../img/defaultuser.png");
         });
     }
 }
