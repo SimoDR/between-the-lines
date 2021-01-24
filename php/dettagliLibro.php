@@ -223,7 +223,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                         $inserimentoForm = '<div id="insertReviewButton"><form action="inserisciRecensione.php" method="post">
                                             <div>
                                                 <input type="hidden" name="ID_libro" value="' . $ID_libro .'"/>
-                                                <input type="submit" value="Inserisci recensione" class="reviewButton"/>
+                                                <input type="submit" value="Inserisci recensione" class="button"/>
                                             </div>
                                             </form></div>';
                     } else { // se admin
