@@ -746,6 +746,12 @@ li.review {
     margin-top: 1em;
 }
 
+.book h3{
+    
+    margin: 0.2em;
+    border-bottom: 0.2em solid maroon;
+}
+
 .linkRegistrazione{
     background-color: brown;
     border-radius: 0.5em;
