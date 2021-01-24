@@ -19,18 +19,17 @@
     <body>
 
         <HEADER/>
-        
+
         <div id="content">
-            <h1 id="errorPageTitle">Questa pagina è accessibile solo da utenti registrati</h1>  
-            <p id="errorPageExplanation">
-                Puoi tornare alla <a href="index.php"><span class="button" id="errorLinkHome" xml:lang="en">Home</span></a> e ricominciare la navigazione.
+            <h1 id="401_message"><span xml:lang="en">Questa pagina è accessibile solo da utenti registrati.</h1>  
+            <p id="401_explanation">
+                Puoi tornare alla <a href="index.php"><span xml:lang="en">home</span></a> e ricominciare la navigazione.
             </p> 
-            <img id="errorImg" src="../img/closedgate.png" alt="Cancello nero chiuso" />
+            <img class="errorImg" id="img_401" src="../img/closedgate.png" alt="Cancello chiuso" />
         </div>
         <div id="footer">
             <FOOTER/>
         </div>
-        
 
         <script type="text/javascript" src="../js/script.js"></script>
     </body>

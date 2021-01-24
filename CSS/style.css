@@ -305,8 +305,6 @@ ul.proPic img {
     flex: 1 1 5em;
 }
 
-/*form*/
-
 legend {
     position: relative;
     top: 1em;
@@ -325,6 +323,12 @@ fieldset {
     
 }
 
+/*#loginFieldset {
+    padding: 1em;
+    border-radius: 1em;
+    background-color: peru;
+   
+}*/
 
 
 
@@ -848,28 +852,6 @@ li.review {
 }
 
 
-/*pagina d'errore*/
-
-#errorPageExplanation {
-    margin-top: 1em;
-    margin-bottom: 2em;
-}
-
-#errorImg {
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20em;
-  padding: 1em;
-  max-width: 60%
-}
-
-#errorLinkHome {
-    display: inline;
-    padding: 0.2em;
-}
-
-
 /*----------------------------------*/
 
 /*mobile*/
@@ -903,9 +885,7 @@ li.review {
             margin-left: 0;
         }
 
-        #breadcrumb {
-            border-bottom: 1px solid black;
-        }
+
 
     
     #menu {
