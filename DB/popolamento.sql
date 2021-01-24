@@ -41,10 +41,10 @@ INSERT INTO libri VALUES
 # Popolamento Tabella copertine
 #
 INSERT INTO copertine VALUES 
-(1,1,'../img/copertina_1.jpg','caricatura di Luigi Pirandello'),
-(2,2,'../img/copertina_2.jpg','Sherlock Holmes guarda una scritta enigmatica ''RACHE'' con la lente di ingrandimento e fumando una pipa'),
-(3,3,'../img/copertina_3.jpg','un gatto con un collare osserva un gabbiano volare con le ali spiegate'),
-(4,4,'../img/copertina_4.jpg','insegna di un motel che si staglia nel deserto');
+(1,1,'../img/copertina_1.jpg','copertina: caricatura di Luigi Pirandello'),
+(2,2,'../img/copertina_2.jpg','copertina: Sherlock Holmes guarda una scritta enigmatica ''RACHE'' con la lente di ingrandimento e fumando una pipa'),
+(3,3,'../img/copertina_3.jpg','copertina: un gatto con un collare osserva un gabbiano volare con le ali spiegate'),
+(4,4,'../img/copertina_4.jpg','copertina: insegna di un motel che si staglia nel deserto');
 
 #
 # Popolamento Tabella foto_profilo
