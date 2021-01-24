@@ -1,6 +1,5 @@
 <?php
 
-//TODO: control everything here: not sure it works properly
 
 function check_email($email){
     if(preg_match('/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/',$email)==1){

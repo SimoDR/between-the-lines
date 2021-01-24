@@ -142,7 +142,12 @@ Per garantire un alto livello di accessibilità sono state seguite le linee guid
 \section{Implementazione}
 \subsection{Linguaggi}
 \subsubsection{XHTML}
+Il linguaggio di markup utilizzato per tutte le pagine statiche del sito è XHTML con il fine di garantire una ampia compatibilità con tutti i tipi di browser, anche i più obsoleti. La limitazione più grande riscontrata nell'uso di XHTML invece che HTML5 riguarda le funzionalità che quest'ultimo offre per l'input di dati da parte dell'utente. Nei form, anche per l'input di e-mail si è optato per il tipo \texttt{text} che grazie a controlli implementati sia lato server che lato client si comporta in modo simile al tipo \texttt{email} di HTML5. Allo stesso modo anche l'input di numeri (anno di nascita e morte di un autore) e per la barra di ricerca dei libri si è optato per il tipo \texttt{text} che con opportuni controlli si dimostra un valido sostenuto a \texttt{number} e \texttt{search}. \\
+Altre feature utili di HTML5 alle quali si è dovuto sopperire implementando dei controlli PHP e CSS sono la possibilità di impostare una lunghezza minima e massima per i campi di input, di settare un placeholder e di poter indicare un campo di input come obbligatorio per l'invio del form.
+
 \subsubsection{CSS}
+Per la presentazione dei contenuti è stato utilizzato CSS3. Per mantenere la totale separazione tra contenuto e presentazione non sono state definite regole di stile inline o embedded all'interno del codice XHTML ma sono stati utilizzati solo fogli di stile esterni. Le regole utilizzate sono state scelte per la loro ampia compatibilità con tutti i browser anche nelle loro versioni più datate. Per ottenere un layout facilmente scalabile su schermi con dimensioni diverse sono state privilegiate le unita di misura relative rispetto a quelle assolute ed è stato adottato il layout flexbox per vari componenti del sito. Il layout ottenuto è di tipo responsive: fluido con dei punti di rottura %TODO
+
 \subsubsection{SQL}
 \subsubsection{Javascript}
 
