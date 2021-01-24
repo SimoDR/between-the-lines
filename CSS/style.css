@@ -593,10 +593,10 @@ fieldset {
   margin: 0 3% 2% 3%;
 }
 
-/*#bookDetails dt:before {
+#bookDetails dt:before {
   content: "";
   display: block;
-}*/
+}
 
 #bookDetails {
     margin: 3%;
