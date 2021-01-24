@@ -115,7 +115,7 @@
                     <form class="form" method="get" action="dettagliLibro.php">
                         <div class="row">
                         <input type="hidden" value="' . $book['id'] . '" name="id_libro"/>
-                        <input class="button" type="submit" value="Dettagli del libro"/>
+                        <input class="button buttonDettagli" type="submit" value="Dettagli del libro"/>
                         </div>
                     </form>
             </li>';
