@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <title xml:lang="en">Inserisci autore - Between the Lines</title>
+        <meta name="title" content="Inserisci autore - Between the Lines"/>
+        <meta name="description" content="Pagina per l'inserimento di un nuovo autore."/>
+
+        <meta name="keywords" content="inserimento, autore, nuovo, Between the Lines, libri"/>
+        <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+        <meta name="language" content="italian it"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
+    </head>
+
+    <body>
+
+        <HEADER/>
+
+
+        <div id="breadcrumb">
+            <p>Ti trovi in: <a href="utente.php">Utente</a> &raquo; Aggiungi autore</p>
+        </div>
+
+        <div id="menu">
+            <MENU/>
+        </div>    
+
+        <SUCCESSO/>
+
+        <div id="content">
+            <form method="post" action="../php/inserisciAutore.php" id="autoreForm" class="form">
+                <noscript>
+                    <div class="errorMessage">ATTENZIONE: <span xml:lang="en">javascript</span> non è attivo: alcune
+                        funzionalità potrebbero non essere disponibili
+                    </div>
+                </noscript>
+                <fieldset>
+                    <legend>Inserimento di un nuovo autore</legend>
+                    <ERROR/>
+
+                    <div class="row">    
+                        <label class="formLabel" for="authorName">Nome:</label>
+                        <div class="col-75">
+                            <input type="text" name="authorName" id="authorName" value="<NOME/>"/>
+                        </div>
+                    </div>
+
+                    <div class="row">    
+                        <label class="formLabel" for="authorSurname" xml:lang="en">Cognome:</label>
+                        <div class="col-75">
+                            <input type="text" name="authorSurname" id="authorSurname" value="<COGNOME/>"/>
+                        </div>
+                    </div>
+
+                    <div class="row">    
+                        <label class="formLabel" for="birthDate" xml:lang="en">Anno di nascita:</label>
+                        <div class="col-75">
+                            <input type="text" name="birthDate" id="birthDate" value="<DATA_NASCITA/>"/>
+                        </div>
+                    </div>
+
+                    <div class="row">    
+                        <label class="formLabel" for="deathDate" xml:lang="en">Anno di morte (lasciare vuoto se l'autore è in vita):</label>
+                        <div class="col-75">
+                            <input type="text" name="deathDate" id="deathDate" value="<DATA_MORTE/>" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <input type="submit" id="autoreButton" class="button" name="addAuthor" value="Aggiungi"/>
+                    </div>
+                </fieldset>
+            </form>
+
+            <form action="../php/utente.php"
+                  method="post"
+                  class="formAnnulla">
+                <fieldset class="form">
+                    <legend class="legend">Annulla le modifiche</legend>
+                    <div class="row">
+                        <input class="button" type="submit" name="rollBack" value="Annulla"/>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
+
+
+        </div>
+
+
+        <div id="footer">
+            <FOOTER/>
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>

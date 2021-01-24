@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title xml:lang="en">Registrazione - Between the Lines</title>
+    <meta name="title" content="Registrazione - Between the Lines"/>
+    <meta name="description" content="Pagina per la registrazione dell'utente al sito Between the Lines."/>
+
+    <meta name="keywords"
+          content="Between the Lines, registrazione, email, password, utente, libri, recensioni, opinioni"/>
+    <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis"/>
+    <meta name="language" content="italian it"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" media="print" href="../CSS/print.css"/>
+</head>
+
+<body>
+
+<HEADER/>
+
+<div id="breadcrumb">
+    <p>Ti trovi in: Registrazione</p>
+</div>
+
+<div id="menu">
+    <MENU/>
+</div>
+
+<div id="content">
+    <form method="post" action="../php/registrazione.php" id="registrazioneForm" class="form">
+        <noscript>
+            <div class="errorMessage">ATTENZIONE: <span xml:lang="en">javascript</span> non è attivo: alcune
+                funzionalità potrebbero non essere disponibili
+            </div>
+        </noscript>
+        <fieldset>
+            <legend>Registrazione</legend>
+            <ERROR/>
+
+            <div class="row">
+                <label class="formLabel" class="formLabel" for="email" xml:lang="en">Email:</label>
+                <div class="col-75">
+                    <input type="text" name="email" id="email" value="<EMAIL/>"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="formLabel" for="username">Nome utente:</label>
+                <div class="col-75">
+                    <input type="text" name="username" id="username" value="<USERNAME/>"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="formLabel" for="password" xml:lang="en">Password:</label>
+                <div class="col-75">
+                    <input type="password" name="password" id="password" value="<PWD/>"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="formLabel" for="repeatpassword">Ripeti <span xml:lang="en">password</span>:</label>
+                <div class="col-75">
+                    <input type="password" name="repeatpassword" id="repeatpassword" value="<PWD_CONFERMA/>"/>
+                </div>
+            </div>
+            <div class="row">
+                <p>Seleziona un'immagine profilo:</p>
+                <ul class="proPic">
+                    <FOTO_PROFILO/>
+                </ul>
+            </div>
+
+            <div class="row">
+                <input id="regButton" type="submit" value="Registrati" class="button" name="registrati"/>
+            </div>
+
+        </fieldset>
+    </form>
+    <div class="turnBack"><a class="turnBackLink" href="#">Torna su</a></div>
+</div>
+
+<div id="footer">
+    <FOOTER/>
+</div>
+
+<script type="text/javascript" src="../js/script.js"></script>
+</body>
+
+</html>

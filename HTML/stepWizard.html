@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title xml:lang="en">Between the Lines</title>
+        <meta name="title" content="Between the Lines - Opinioni sui libri" />
+        <meta name="description" content="Sito di cultura letteraria, per leggere e condividere Opinioni sui libri." />
+
+        <meta name="keywords" content="Between the Lines, libri, recensioni, opinioni" />
+        <meta name="author" content="Antonio Badan, Francesco Trolese, Luca Veronese, Simone De Renzis" />
+        <meta name="language" content="italian it" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+
+        <link rel="stylesheet" type="text/css" media="screen" href="../CSS/style.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="../CSS/stampa.css" /> 
+    </head>
+    <!--     USEFUL RESOURCES FOR THIS PAGE
+        https://www.w3schools.com/howto/howto_css_pagination.asp
+        https://www.w3schools.com/howto/howto_js_filter_lists.asp
+        https://www.w3schools.com/howto/howto_js_filter_table.asp
+        https://www.w3schools.com/howto/howto_css_responsive_form.asp
+        https://www.w3schools.com/howto/howto_js_form_steps.asp 
+        https://sweetcode.io/scrollable-selectable-html-table/-->
+    <body>
+
+        <HEADER/>
+
+        <div id="breadcrumb">
+            <!-- <p>Ti trovi in: <a href="pannelloadmin.html">Pannello di amministrazione</a> >> INSERIMENTO LIBRO </div> -->
+            <p>Ti trovi in: <BREADCRUMBS/> </p>
+        </div>
+
+        <div id="menu">
+            <MENU/>
+        </div>  
+        <div id="content">
+            <form method="post" action="insert_book.php" enctype="multipart/form-data" id="form_registrazione"class="vertical_input_form">
+
+                <div class="tab">
+                    <h2>
+                        Seleziona autore:
+                    </h2>
+                    <div class = "queryDb"> 
+                        <input type="text" id="autoreInput" class="filtro" placeholder="Cerca autore..." onkeyup="searchAuthor()" />
+                        <div class = "risultatiQuery"> 
+                            <!--Da generare tramite PHP -->
+                            <!-- ESEMPIO:
+                            -->
+                            <input type="radio" id="author1" name="author1" class="authorItem" />
+                            <label for="male">Jack Kerouac</label>
+                            <input type="radio" id="author2" name="author2" class="authorItem" />
+                            <label for="female">Robert Baden Powell</label>
+                            <input type="radio" id="author3" name="author3" class="authorItem" />
+                            <label for="other">Other</label>  
+                            <div class="pagination">
+                                <!--Da generare tramite PHP -->
+                                <!-- ESEMPIO:
+                                  <a href="#">&laquo;</a>
+                                  <a href="#">1</a>
+                                  <a class="activePage" href="#">2</a>
+                                  <a href="#">3</a>
+                                  <a href="#">&raquo;</a>
+                                -->
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="insertForm">
+                        <h2>
+                            Oppure inserisci i dati di un nuovo Autore, poi selezionalo dalla lista sopra:
+                        </h2>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="Nome">Nome:</label>
+                            </div>
+                            <div class="col-75">
+                                <input placeholder="Nome" type="text" name="Nome" id="Nome" tabindex="" class="full_width_input" value="%NAME%" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="Cognome">Cognome:</label>
+                            </div>
+                            <div class="col-75">
+                                <input placeholder="Cognome" type="text" name="Cognome" id="Cognome" tabindex="" class="full_width_input" value="%SURNAME%" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="nascita">Data di nascita:</label>
+                            </div>
+                            <div class="col-75">
+                                <input placeholder="DD/MM/YYYY" type="date" name="nascita" id="nascita" tabindex="" class="full_width_input" value="%BDATE_VALUE%" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="morte">Data di morte:</label>
+                            </div>
+                            <div class="col-75">
+                                <input placeholder="DD/MM/YYYY" type="date" name="morte" id="morte" tabindex="" class="full_width_input" value="%DDATE_VALUE%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <h2>
+                        Seleziona genere:
+                    </h2>
+                    <div class = "queryDb"> 
+                        <input type="text" id="genereInput" class="filtro" onkeyup="searchGenre()" placeholder="Cerca genere..." />
+                        <div class = "risultatiQuery"> 
+                            <ul id="listaRisultatiAutore">
+                                <!--Da generare tramite PHP -->
+                                <!-- ESEMPIO:
+                                -->
+                                <li>
+                                    <input type="checkbox" id="genere1" name="genere1" value="1" />
+                                    <label for="genere1"> Giallo</label><br />
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="genere2" name="genere2" value="2" />
+                                    <label for="genere2"> Noir</label><br />
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="genere3" name="genere3" value="3" />
+                                    <label for="genere3"> Autobiografico</label><br />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h2>
+                        Oppure inserisci i dati di un nuovo Genere, poi selezionalo dalla lista sopra:
+                    </h2>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Genere">Genere:</label>
+                        </div>
+                        <div class="col-75">
+                            <input placeholder="Genere" type="text" name="genere" id="genere" tabindex="" class="full_width_input" value="%GENRE%" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <h2>
+                        Nuovo Libro:
+                    </h2>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="titolo">Titolo:</label>
+                        </div>
+                        <div class="col-75">
+                            <input placeholder="nome" type="text" name="titolo" id="titolo" tabindex="" class="full_width_input" value="%TITLE%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="img_copertina">Trama:</label>
+                        </div>
+                        <div class="col-75">
+                            <input placeholder="trama" type="text" name="trama" id="trama"  tabindex="" class="full_width_input" value="%TRAMA%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="img_sel">
+                            <div class="col-25">
+                                <label for="img_cover_preview">Copertina:</label>
+                            </div>
+                            <div class="col-75 browse_photo_box">
+                                <img id="img_cover_preview" src="../img/defaultcover.png" alt="foto della copertina" />
+                                <input type="file" name="fileToUpload" id="img_cover" tabindex="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="alt_text">Testo alternativo:</label>
+                        </div>
+                        <div class="col-75">
+                            <input placeholder="Testo alternativo (all'immmagine)" type="text" name="alt_text" id="alt_text" tabindex="" class="full_width_input" value="%ALTTEXT%" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="containerPrevNextBtn">
+                    <div style="float:right;">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+                </div>
+
+
+                <!-- Circles which indicates the steps of the form: -->
+                <div class="step-progress">
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                </div>
+            </form> 
+
+            <div class="turnBack"><a class="turnBackLink" href="#header">Torna su</a></div>
+
+        </div>
+
+        <div id="footer">
+            <FOOTER/>
+        </div>
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>
