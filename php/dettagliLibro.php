@@ -159,7 +159,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                                 $eliminazioneRecensione = '<form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
                                                         <div>
                                                             <input type="hidden" name="ID_recensione" value="' . $queryRecensioni[$i]['id_recensione'] .'"/>
-                                                            <input type="submit" value="Elimina recensione" class="buttonDelete"/>
+                                                            <input type="submit" value="Elimina recensione" class="button"/>
                                                         </div>
                                                         </form>';
                             }
@@ -249,7 +249,7 @@ if (isset($_GET['id_libro']) && check_num($_GET['id_libro'])) {
                     $eliminazioneLibro .= ' <form action="dettagliLibro.php?id_libro=' . $ID_libro .'" method="post">
                                             <div>
                                                 <input type="hidden" name="ID_libro_eliminazione" value="' . $ID_libro .'"/>
-                                                <input type="submit" value="Elimina libro" class="buttonDelete"/>
+                                                <input type="submit" value="Elimina libro" class="button"/>
                                             </div>
                                             </form>';
                 }    
