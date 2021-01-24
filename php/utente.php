@@ -62,7 +62,7 @@ if ($_SESSION['permesso'] == 1) {
         <li><a href=\"inserisciAutore.php\">Aggiungi un nuovo autore</a></li>
         <li><a href=\"inserisciGenere.php\">Aggiungi un nuovo genere</a></li>
     </ul>
-    <a id=\"addBook\" href=\"inserisciLibro.php\" > Aggiungi un nuovo libro </a>";
+    <a id=\"addBook\" href=\"inserisciLibro.php\">Aggiungi un nuovo libro </a>";
 }
 $page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);
 //if the user is not admin he can delete his account
