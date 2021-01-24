@@ -377,7 +377,6 @@ ul.proPic img {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
 #rankingTopReview li{
@@ -405,9 +404,9 @@ ul.proPic img {
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     text-align: center;
-    padding: 0.2em;
+    padding: 0.5em;
     width: 15em;
-    height: 4em;
+    height: 3em;
     border: 0.05em solid black;
 }
 
@@ -421,6 +420,11 @@ ul.proPic img {
 #rankingTopReview dd{
     display: block;
     text-align: center;
+}
+
+#rankingTopReview a {
+    display:block; 
+    height:100%; 
 }
 
 
@@ -457,6 +461,11 @@ ul.proPic img {
     font-weight:bold;
 }
 
+#rankingLastReview a {
+    display:block; 
+    height:100%; 
+}
+
 /*chi siamo - staff*/
 
 #staff ul{
@@ -467,8 +476,8 @@ ul.proPic img {
 }
 
 #staff h4{
-    padding: 0.5em;
     font-size: 150%;
+    border-bottom: 0.2em solid maroon;
 }
 
 #staff img{
