@@ -54,18 +54,18 @@ function addHeader(&$page)
     else {
 
         // rimuovi logout
-        $header = str_replace('<a href="../php/logout.php" id="logout" class="hdrButton">LOGOUT</a>',
+        $header = str_replace('<a href="../php/logout.php" id="logout" class="button">LOGOUT</a>',
             "", $header);
 
         // se si è nella pagina di login
         if (preg_match("/^login\.php\?id_libro=\d+$|^login\.php$/", basename($_SERVER["REQUEST_URI"]))) {
             //rimuovi login
-            $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',"", $header);
+            $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',"", $header);
         }
         // se si è nella pagina di registrazione
         if (basename($_SERVER["REQUEST_URI"]) == "registrazione.php") {
             //rimuovi registrazione
-            $header = str_replace('<a href="../php/registrazione.php" class="hdrButton">REGISTRAZIONE</a>',
+            $header = str_replace('<a href="../php/registrazione.php" class="button">REGISTRAZIONE</a>',
                 "", $header);
         }
     }
