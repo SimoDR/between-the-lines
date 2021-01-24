@@ -129,7 +129,7 @@
 			$i=1;
             $pagesList="<div class=\"pageNumbers\">";
             $address=$_SERVER['REQUEST_URI'];
-            $address = preg_replace("/&amp;currentPage=\d/","",$address);
+            $address=htmlspecialchars($address);
 
             if($currentPage>1){
                 $prec=$currentPage-1;

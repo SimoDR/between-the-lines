@@ -53,7 +53,7 @@ INSERT INTO foto_profilo VALUES
 (1, '../img/profile/icona_libro_rosso.png', 'foto profilo utente rappresentante un libro rosso'),
 (2, '../img/profile/icona_libro_verde.png', 'foto profilo utente rappresentante un libro verde'),
 (3, '../img/profile/icona_libro_blu.png', 'foto profilo utente rappresentante un libro blu'),
-(4, '../img/profile/icona_libro_giallo.png', 'foto profilo admin rappresentante un libro giallo');
+(4, '../img/profile/icona_libro_giallo.png', 'foto profilo utente rappresentante un libro giallo');
 
 #
 # Popolamento Tabella utenti
