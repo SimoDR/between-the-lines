@@ -98,7 +98,7 @@ function addMenu(&$page)
         $menu = str_replace('<a href="chisiamo.php">Chi Siamo</a>','<span class="menuItemSelected">Chi siamo</span>',$menu);
     } 
     if(basename($_SERVER["REQUEST_URI"]) == "contatti.php") {
-        $menu = str_replace('<a href="contatti.php">Contattaci</a>','<span class="menuItemSelected">Contattaci</span>',$menu);
+        $menu = str_replace('<a href="contatti.php">Contatti</a>','<span class="menuItemSelected">Contatti</span>',$menu);
     } 
 
     $page = str_replace("<MENU/>", $menu, $page);
