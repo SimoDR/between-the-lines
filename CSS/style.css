@@ -114,7 +114,13 @@ body {
     margin-bottom: 8%;
 }
 
+#header .button:visited {
+    color: aquamarine;
+}
 
+#header .button:link {
+    color: yellow;
+}
 
 
 #header img {
