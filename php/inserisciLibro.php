@@ -27,7 +27,7 @@ if ($connectionSuccess == false) {
     $dbAccess->closeDBConnection();
 
     if ($queryAuthor != null) {
-        $authorList= '<option value='. '"" selected="selected" hidden="true">' . 'Seleziona un autore' . '</option>';
+        $authorList= '<option value='. '"" selected="selected">' . 'Seleziona un autore' . '</option>';
         foreach ($queryAuthor as $author) {
             $authorList.= '<option value='. '"' . $author['ID'] . '">' . strtoupper($author['cognome']) . ' ' . $author['nome'] . '</option>';
         }
@@ -35,7 +35,7 @@ if ($connectionSuccess == false) {
     }
 
     if ($queryGenre != null) {
-        $genreList= '<option value='. '"" selected="selected" hidden="true">' . 'Seleziona un genere' . '</option>';
+        $genreList= '<option value='. '"" selected="selected">' . 'Seleziona un genere' . '</option>';
         foreach ($queryGenre as $genre) {
             $genreList.= '<option value="' . $genre['ID'] . '">' . strtolower($genre['nome']) . '</option>';
         }

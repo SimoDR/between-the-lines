@@ -25,7 +25,7 @@ INSERT INTO generi VALUES
 INSERT INTO autori VALUES 
 (1, 'Luigi','Pirandello','1867','1936'),
 (2, 'Arthur Conan','Doyle','1859','1930'),
-(3, 'Luis','Sepúlveda','1949','2020'),
+(3, 'Luis','Sepulveda','1949','2020'),
 (4, 'Jack', 'Kerouac', '1922', '1969');
 
 #
@@ -42,8 +42,8 @@ INSERT INTO libri VALUES
 #
 INSERT INTO copertine VALUES 
 (1,1,'../img/copertine/copertina_1.jpg','copertina: caricatura di Luigi Pirandello'),
-(2,2,'../img/copertine/copertina_2.jpg','copertina: Sherlock Holmes guarda una scritta enigmatica ''RACHE'' con la lente di ingrandimento e fumando una pipa'),
-(3,3,'../img/copertine/copertina_3.jpg','copertina: un gatto con un collare osserva un gabbiano volare con le ali spiegate'),
+(2,2,'../img/copertine/copertina_2.jpg','copertina: Sherlock Holmes con lente di ingradimento e pipa'),
+(3,3,'../img/copertine/copertina_3.jpg','copertina: un gatto osserva un gabbiano volare'),
 (4,4,'../img/copertine/copertina_4.jpg','copertina: insegna di un motel che si staglia nel deserto');
 
 #
