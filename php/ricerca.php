@@ -36,35 +36,30 @@
                 $titleOrAuthor='';
                 $genre='';
                 $search ='';
-                $almenoUno = false;
-                if(isset($_GET['filter']) && isset($_GET['genre']) && isset($_GET['search_bar'])) {
                     
-                    $almenoUno = true;
-                    
-                    if(isset($_GET['filter']) && (is_numeric($_GET['filter']) && ($_GET['filter'])==0 || ($_GET['filter'])==11)) {
-                        $titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
-                    }
-                    else {
-                        header('location: 400.php'); //bad request
-                        exit;
-                    }
-                    if(isset($_GET['genre']) && is_string($_GET['genre'])) {
-                        $genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
-                    }
-                    else {
-                        header('location: 400.php'); //bad request
-                        exit;
-                    }
-                    if(isset($_GET['search_bar']) && is_string($_GET['search_bar'])) {
-                        $search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
-                    }
-                    else {
-                        header('location: 400.php'); //bad request
-                        exit;
-                    }
+    
+                if(isset($_GET['filter']) && (is_numeric($_GET['filter']) && (($_GET['filter'])==0 || ($_GET['filter'])==11))) {
+                    $titleOrAuthor=$dbAccess->escape_string(trim(htmlentities($_GET['filter'])));
                 }
-
-                
+                else {
+                    header('location: 400.php'); //bad request
+                    exit;
+                }
+                if(isset($_GET['genre']) && is_string($_GET['genre'])) {
+                    $genre=$dbAccess->escape_string(trim(htmlentities($_GET['genre'])));
+                }
+                else {
+                    header('location: 400.php'); //bad request
+                    exit;
+                }
+                if(isset($_GET['search_bar']) && is_string($_GET['search_bar'])) {
+                    $search=$dbAccess->escape_string(trim(htmlentities($_GET['search_bar'])));
+                }
+                else {
+                    header('location: 400.php'); //bad request
+                    exit;
+                }
+                                
 		if($titleOrAuthor == 0){ // ricerca per titolo
 			$querySearch .= "L.titolo LIKE '%$search%' ";
         }
@@ -141,10 +136,7 @@
 			}
 			$bookList .= '</ul></div>';
 		} else {
-                    
-                    if($almenoUno) {
-                        $bookList = "<h3>Risultati di ricerca</h3> <div class=confirmationMessage>Nessun risultato corrispondente ai criteri di ricerca</div>";
-                    }
+                        $bookList = "<div class=confirmationMessage>Nessun risultato corrispondente ai criteri di ricerca</div>";
 		}
 
 			$i=1;
