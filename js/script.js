@@ -125,6 +125,10 @@ function isDatePast(date) {
     return date < today;
 }
 
+function isYear(year) {
+    return new RegExp(/^[0-9]{1,4}$/).test(year);
+}
+
 function isMinor(arg1, arg2) {
     return arg1<arg2;
 }
@@ -202,15 +206,15 @@ function newAutoreChecker(){
         var autoreControls = {};
         autoreControls["authorName"] = [[isNotEmpty, "Il nome non può essere vuoto"],[checkNome, "Il nome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
         autoreControls["authorSurname"] = [[isNotEmpty, "Il cognome non può essere vuoto"],[checkNome, "Il cognome deve avere almeno 2 caratteri ed essere formato solo da lettere e spazi"]];
-        autoreControls["birthDate"]=[[isNotEmpty, "La data di nascita non può essere vuota"],[isDatePast, "La data di nascita non può essere futura"]];
-        autoreControls["deathDate"]=[[isDatePast, "La data di morte non può essere futura"]];
+        autoreControls["birthDate"]=[[isNotEmpty, "L'anno di nascita non può essere vuoto"],[isYear, "L'anno deve essere formato da 1-4 numeri"],[isDatePast, "L'anno di nascita non può essere futuro"]];
+        autoreControls["deathDate"]=[[isYear, "L'anno deve essere formato da 1-4 numeri"],[isDatePast, "L'anno di morte non può essere futuro"]];
         addFocusOutEvent(autoreControls);
         //death is later than birth
         var death = document.getElementById("deathDate");
         death.addEventListener("focusout", function (event) {
 
             if (!isMinor(document.getElementById("birthDate").value, event.target.value)) {
-                createMessage(event.target, "La data di nascita deve essere precedente a quella di morte.");
+                createMessage(event.target, "L'anno di nascita deve essere precedente a quello di morte.");
                 removePreviousBox(event.target);}
             });
         var autoreButton = document.getElementById("autoreButton");
