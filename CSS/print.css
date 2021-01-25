@@ -44,6 +44,7 @@ select {
 
 #imgValidCode,
 #imgValidCSS,
+#menu,
 .hidden,
 .sr-only, 
 #logo, 
@@ -84,7 +85,7 @@ select {
 }
 
 #rankingTopReview dd{
-  padding-top: 2em;
+  padding-top: 1em;
 }
 
 .searchForm, #indexRicerca {
@@ -260,4 +261,9 @@ input[type=submit] {
 
 label {
     display: block;
+}
+
+#img_cover_preview{
+  max-height: 10em;
+  max-width: 8em;
 }
