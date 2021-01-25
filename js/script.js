@@ -357,7 +357,7 @@ function newLibroChecker(){
             changeImg(newImg, document.getElementById("img_cover_preview"));
         });
         document.getElementById('form_libro').addEventListener("reset", function() {
-            document.getElementById("img_cover_preview").setAttribute("src", "../img/defaultuser.png");
+            document.getElementById("img_cover_preview").setAttribute("src", "../img/Copertine/icona_libro_verde.png");
         });
     }
 }

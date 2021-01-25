@@ -110,18 +110,18 @@ body {
 }
 
 #header h1 {
-    padding-top: 5%;
+    padding-top: 4%;
 }
 
 #header h2 {
-    margin-bottom: 10%;
+    margin-bottom: 8%;
 }
 
 
 
 
 #header img {
-    max-width: 25%;
+/*    max-width: 25%;*/
     margin-left: 13%;
     margin-right: 3%;
     float: left;
@@ -152,7 +152,7 @@ body {
 }
 
 #logo {
-    max-width: 15em;
+    max-width: 12em;
 }
 
 #breadcrumb {
@@ -389,17 +389,6 @@ fieldset {
     padding:1em;
 }
 
-#addBook {
-    text-align: center;
-    font-size: 1.2em;
-    display: block;
-    background-color: maroon;
-    border-radius: 0.5em;
-    border: 1px solid black;
-    padding: 0.8em;
-    margin: 1.7em;
-}
-
 #warningMessage {
     margin:1em;
 }
@@ -457,6 +446,7 @@ fieldset {
 }
 
 #rankingTopReview a {
+    background: transparent;
     display:block; 
     height:100%; 
 }
@@ -496,6 +486,7 @@ fieldset {
 }
 
 #rankingLastReview a {
+    background: transparent;
     display:block; 
     height:100%; 
 }
@@ -566,7 +557,8 @@ fieldset {
     float: none;
     border: 1px solid white;
     margin-bottom: 1em;
-    
+}
+
 .buttonDelete {
     background-color: #822323;
     color: white;
@@ -730,6 +722,7 @@ li.review {
 }
 
 .currentPage span, .notCurrentPage a {
+    background-color: transparent;
     position: relative;
     top: 0.15em;
 }
@@ -891,23 +884,23 @@ li.review {
     }
 
     
-        #header {
-            overflow: hidden;
-        }
+    #header {
+        overflow: hidden;
+    }
 
-        #header h1 {
-            padding-top: 5%;
-        }
+    #header h1 {
+        padding-top: 5%;
+    }
 
 
-        #header img {
-            min-width: 30%;
-            margin-left: 0;
-        }
+    #header img {
+        min-width: 30%;
+        margin-left: 0;
+    }
 
-        #breadcrumb {
-            border-bottom: 1px solid black;
-        }
+    #breadcrumb {
+        border-bottom: 1px solid black;
+    }
 
     
     #menu {
@@ -947,7 +940,14 @@ li.review {
     }
     #userButtons {
         float: left;
-        width: 80%;
+        margin-left: 2%;
+        margin-right: 5%;
+        padding: 0;
+        width: 90%;
+    }
+    #userButtons a {
+        margin-left: 0%;
+        margin-right: 0%;
     }
     .button {
       text-align: center; 
@@ -977,11 +977,12 @@ li.review {
         margin-bottom: 0;
 
     }
-        #header h1:after {
-            content: "";
-            clear: both;
-            display: table;
-        }
+
+    #header h1:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
 
     #header h2 {
         display: none;
@@ -1001,11 +1002,7 @@ li.review {
 
     }
     
-    .formLabel {
-        font-size: 1.4em;
-        line-height: 1.3; 
-    }
-    
+
     #header .button {
         width: auto;
         padding: 0.4em;
@@ -1028,6 +1025,35 @@ li.review {
 }
 
 
+#img_cover_preview{
+  width: 100%;
+}
+
+.formLabel {
+    font-weight: 400;
+    text-transform: none;
+    font-size: 1.15em;
+    line-height: 1.25; 
+    display: block;
+    color: #0b0c0c;
+    padding-bottom: 0.2em;
+}
+
+.formHint {
+      display: block;
+      color: #3e3e3e;
+      font-weight: normal;
+      margin-top: -2px;
+      padding-bottom: 0.2em; 
+      font-size: 1em;
+      line-height: 1.25; 
+}
+
+#userButtonsWrapper a{
+    width: 100%; 
+    display: inline-block;
+    margin-bottom: 10px;
+}
 
 
 input:focus,
@@ -1035,7 +1061,6 @@ textarea:focus,
 select:focus,
 button:focus {
   outline: 3px solid sienna;
-  outline-offset: 0;
 }
 
 option:active,
@@ -1069,9 +1094,7 @@ option:checked {
 }
 
   .button[disabled="disabled"] {
-    filter: alpha(opacity=50);
     opacity: 0.5; 
-    zoom: 1;
    }
     .button[disabled="disabled"]:hover {
       cursor: default;
@@ -1097,34 +1120,4 @@ option:checked {
     top: -10%;
 }
 
-/*.button:focus {
-  outline: 3px solid #ffbf47;
-}*/
 
-
-#img_cover_preview{
-  width: 100%;
-}
-
-
-
-.formLabel,
-.formLabelBold {
-    display: block;
-    color: #0b0c0c;
-    padding-bottom: 0.2em;
-}
-
-.formLabel {
-    font-weight: 400;
-    text-transform: none;
-    font-size: 1.15em;
-    line-height: 1.25; 
-}
-
-
-#userButtonsWrapper a{
-    width: 100%; 
-    display: inline-block;
-    margin-bottom: 10px;
-}

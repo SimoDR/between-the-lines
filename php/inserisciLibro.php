@@ -122,7 +122,7 @@ if ($connectionSuccess == false) {
                 } else {
                     $copertinaInsert=$obj_connection->insertDB("INSERT INTO `copertine` (`id_libro`,`path_img`,`alt_text`) VALUES ($queryInsert, \"$filePath\", \"$desc_foto\")");
                     if ($copertinaInsert){
-                        $error = "<div class=\"errorMessage\">Inserimento avvenuto con successo.</div>";
+                        $error = "<div class=\"successMessage\">Inserimento avvenuto con successo.</div>";
                     } else {
                         $error = "<div class=\"errorMessage\">Inserimento del libro avvenuto con successo, inserimento della copertina non completato.</div>";
                     }
