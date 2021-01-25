@@ -80,13 +80,13 @@ function addMenu(&$page)
     
     // rimozione dei link circolari
     if(basename($_SERVER["REQUEST_URI"]) == "index.php") {
-        $menu = str_replace('<a href="index.php">Home</a>','<span>Home</span>',$menu);
+        $menu = str_replace('<a href="index.php">Home</a>','<span class="menuItemSelected">Home</span>',$menu);
     }
     if(basename($_SERVER["REQUEST_URI"]) == "chisiamo.php") {
-        $menu = str_replace('<a href="chisiamo.php">Chi Siamo</a>','<span>Chi siamo</span>',$menu);
+        $menu = str_replace('<a href="chisiamo.php">Chi Siamo</a>','<span class="menuItemSelected">Chi siamo</span>',$menu);
     } 
     if(basename($_SERVER["REQUEST_URI"]) == "contatti.php") {
-        $menu = str_replace('<a href="contatti.php">Contattaci</a>','<span>Contattaci</span>',$menu);
+        $menu = str_replace('<a href="contatti.php">Contattaci</a>','<span class="menuItemSelected">Contattaci</span>',$menu);
     } 
 
     $page = str_replace("<MENU/>", $menu, $page);

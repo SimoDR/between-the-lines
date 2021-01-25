@@ -175,7 +175,10 @@ body {
     width: 17%;
     border-bottom: none;
 }
-
+#menu ul li .menuItemSelected{
+    color: #ffffff;
+    font-weight: bold;
+}
 #menu ul {
     font-size: 1.35em;
     line-height: 2em;
