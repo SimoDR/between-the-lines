@@ -88,19 +88,19 @@ if ($connectionSuccess == false) {
             } else {
                 if($_FILES["fileToUpload"]['size'] != 0){
                     $factoryImg = new factoryImg();
-                    $filePath="../img/Copertine/";
+                    $filePath="../img/copertine/";
                     if(isset($_FILES['fileToUpload'])){
-                        $uploadResult = $factoryImg->uploadImage("Copertine/","fileToUpload");
+                        $uploadResult = $factoryImg->uploadImage("copertine/","fileToUpload");
                         if($uploadResult['error']==""){
                             $filePath=$uploadResult['path'];
                         } else{
                             $error.=$uploadResult['error'];
                         }
                     } else {
-                        $filePath="../img/Copertine/icona_libro_verde.png";
+                        $filePath="../img/copertine/icona_libro_verde.png";
                     }
                 } else {
-                    $filePath="../img/Copertine/icona_libro_verde.png";
+                    $filePath="../img/copertine/icona_libro_verde.png";
                 }
             }
         } else {
@@ -108,7 +108,7 @@ if ($connectionSuccess == false) {
         }
         if(empty($error)) {
             $obj_connection = new DBAccess();
-            if ($filePath!=="../img/Copertine/" && $obj_connection->openDBConnection()) {
+            if ($filePath!=="../img/copertine/" && $obj_connection->openDBConnection()) {
                 $titolo = $obj_connection->escape_string(trim(htmlentities($titolo)));
                 $autore = $obj_connection->escape_string(trim(htmlentities($autore)));
                 $genere = $obj_connection->escape_string(trim(htmlentities($genere)));
