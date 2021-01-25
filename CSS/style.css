@@ -936,15 +936,18 @@ li.review {
 
     #breadcrumb {
         border-bottom: 1px solid black;
+        padding: 0.8em 1em;
     }
 
-    
     #menu {
         margin-top: 0em;
         float: none;
         width: 100%;
     }
-    
+    #menu ul {
+       font-size: 1.3em;
+        line-height: 1.8em;
+    }
     #reviewArea .reviewDetails .button {
         width: auto;
         font-size: 1em;
@@ -974,17 +977,10 @@ li.review {
         width: 100%;
         margin-top: 0;
     }
-    #userButtons {
+/*    #userButtons {
         float: left;
-        margin-left: 2%;
-        margin-right: 5%;
-        padding: 0;
-        width: 90%;
-    }
-    #userButtons a {
-        margin-left: 0%;
-        margin-right: 0%;
-    }
+        width: 80%;
+    }*/
     .button {
       text-align: center; 
       width: 100%;
@@ -1014,15 +1010,8 @@ li.review {
 
     }
 
-    #header h1:after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
     #header h2 {
-        display: none;
-       
+        display: none;  
     }
     
     #header img { /*TODO*/
@@ -1047,13 +1036,6 @@ li.review {
         /*margin-left: 0;*/
         /*margin-right: 1%;*/
     }
-
-    
-    .button {
-      text-align: center; 
-      width: 100%;
-      }
-      
       #toHide {
           display: none;
       }
