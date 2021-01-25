@@ -222,6 +222,8 @@ input[type=submit] {
 /* Style the container */
 .container {
     background-color: #f2f2f2;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     padding: 1.2em;
 }
@@ -305,6 +307,9 @@ ul.proPic img {
 }
 
 .proPic {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -329,6 +334,8 @@ fieldset {
     background-color: burlywood;
     padding: 1em;
     padding-bottom: 0;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
 
     
@@ -367,6 +374,8 @@ fieldset {
 }
 
 #panel{
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     background-color: peru;
     padding:0.5em;
@@ -388,6 +397,9 @@ fieldset {
 /*classifiche - homepage*/
 
 #rankingTopReview ol{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -426,6 +438,8 @@ fieldset {
 
 
 #rankingTopReview img {
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     height: 15em;
     border: 0.2em solid white;
@@ -486,6 +500,9 @@ fieldset {
 /*chi siamo - staff*/
 
 #staff ul{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -508,7 +525,6 @@ fieldset {
     margin:0.5em;
     padding: 1em;
     margin:1em;
-    border-radius: 2em;
     background-color: peru;
     border-radius: 1em;
     -webkit-border-radius: 1em;
@@ -560,6 +576,8 @@ fieldset {
 #bookArea {
     /*border: 2px solid;*/
     padding: 2em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     background-color: peru;
     overflow: hidden;
@@ -572,6 +590,8 @@ fieldset {
 #bookFrontpage img{
   max-width: 40%;
   width: 15em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
   border-radius: 1em;
   border: 0.2em solid white;
   float:left;
@@ -639,6 +659,8 @@ li.review {
     margin: 0.3em;
     padding: 0.2em;
     overflow: hidden;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
     border-radius: 0.5em;
     background-color: sienna;
     color: white;
@@ -646,6 +668,8 @@ li.review {
 
 .review {
     background-color: peru;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
     border-radius: 0.5em;
 }
 
@@ -693,6 +717,8 @@ li.review {
 .currentPage {
     background-color: peru;
     margin: 0.2em 0.2em 0.2em 0.2em;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
     border-radius: 0.2em;
     display: inline-block;
     width: 2em;
@@ -704,6 +730,8 @@ li.review {
 .notCurrentPage {
     background-color: maroon;
     color: white;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
     border-radius: 0.2em;
     display: inline-block;
     width: 6em;
@@ -727,6 +755,8 @@ li.review {
 #insertReview {
     padding: 1em;
     margin-bottom: 3em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     background-color: peru;
     overflow: hidden;
@@ -735,6 +765,8 @@ li.review {
 #bookAreaReview img {
     max-width: 50%;
     width: 10em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     float:left;
     margin: 1em 3em 0 0;
@@ -752,6 +784,8 @@ li.review {
 .formReviewLabel{
     background-color: sienna;
     color: white;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     margin: 0.2em 0.1em 0.3em 0.1em;
     padding: 0.7em;
@@ -761,6 +795,8 @@ li.review {
 
 .book{
     padding: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     background-color: peru;
     overflow: hidden;
@@ -768,6 +804,8 @@ li.review {
 
 .book img{
     width: 5em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
     margin: 1em 3em 0.5em 0;
     float:left;
@@ -808,6 +846,8 @@ li.review {
 
 .linkRegistrazione{
     background-color: maroon;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
     border-radius: 0.5em;
     border: 1px solid black;
     padding: 0.2em;
@@ -822,6 +862,8 @@ li.review {
     font-size: 1em;
     background-color: #fce4e4;
     border: 1px solid #ff0307;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
     border-radius: 0.2em;
     color: #cc0033;
 }
@@ -834,6 +876,8 @@ li.review {
     font-size: 1.2em;
     background-color: #eefce4;
     border: 1px solid #039200;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
     border-radius: 0.2em;
     color: #00ae08;
 }
@@ -1084,6 +1128,8 @@ option:checked {
     position: relative;
     vertical-align: top;
     margin: 0.2em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
     border-radius: 1em;
 }
 
