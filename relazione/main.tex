@@ -226,7 +226,59 @@
 	\subsubsection{Desktop}
 	\subsubsection{Mobile}
 	\subsubsection{Stampa}
-	
+
+\subsection{Accessibilità}
+In concomitanza con l'analisi dei requisiti il gruppo ha selezionato le fonti da cui trarre i principi di accessibilità e si è impegnato a rispettare questi principi in ogni fase dei processi di codifica e progettazione.
+Inoltre il gruppo ha testato adeguatamente l'accessibilità del sito con gli strumenti e le modalità elencate nella sezione §6.
+Per garantire un alto livello di accessibilità sono state seguite le linee guida WCAG ed i principi di accessibilità presentati durante il corso di Tecnologie Web. Inoltre per fini formativi i componenti hanno letto le guide del sito \url{https://www.w3.org/WAI/tutorials/}, ed alcuni hanno preso spunto dagli esempi del sito per risolvere dubbi o indecisioni durante la realizzazione. Si tiene a precisare che non è stato copiato codice dal sito.
+Struttura, presentazione e comportamento sono state separate per migliorare il posizionamento del sito nei motori di ricerca e per agevolare la fruizione del sito ad utenti che presentano disabilità.
+
+\begin{itemize}
+	\item la \textbf{struttura} è contenuta principalmente nei file .html. All'interno di molti dei file .html sono presenti delle stringhe speciali che fungono da segnaposto, ovvero hanno il solo fine di essere sostituite da codice HTML generato tramite script PHP definiti in file esterni. Ad ogni modo non è presente codice PHP, JavaScript e CSS all'interno dei file .html;
+	\item le regole di \textbf{presentazione} sono contenute solo all'interno dei file .css;
+	\item il comportamento lato client è definito all'interno del file \textit{js/script.js}, in linguaggio JavaScript. I file .php invece gestiscono l'interazione con il database, ed il comportamento lato server. Inoltre i file .php inseriscono nei file .html le parti comuni, che sono definite nella directory \textit{HTML/template}.
+\end{itemize}
+
+\subsubsection{Struttura e comportamento}
+L'utente registrato o non registrato può navigare le pagine del sito per mezzo del menu laterale, e può effettuare login, logout e può spostarsi nell'area utente premendo il pulsante nell'header e spostandosi nell'apposita pagina, come si attenderebbe.
+
+Per impedire il disorientamento dell'utente ogni pagina presenta un breadcrump, nel quale solo il link più a destra è disattivato per impedire il verificarsi di link circolare (in ogni pagina del sito si è evitato di creare link circolari).
+
+Tutti i vocaboli in lingua straniera presenti tra i contenuti del sito sono contrassegnati dall'attributo \textit{xml:lang="lingua"}, per facilitare la navigazione con gli screen reader. Sono presenti aiuti per gli screen reader nascosti nella navigazione visiva. Non si sono utilizzati elementi WAI-ARIA perché si è preferito utilizzare XHTML e perché le linee guide WCAG scoraggiano l'utilizzo di elementi WAI-ARIA prima di un'approfondito studio individuale dell'argomento.
+
+Tutte le immagini presenti nel sito sono dotate di un testo alternativo. Inoltre non è possibile inserire un'immagine di copertina senza fornirne il testo alternativo.
+
+Nel sito sono presenti numerosi campi di input e form. Ad ogni campo di input è stata associata una label, mentre nei form più lunghi il pulsante submit viene accompagnato da un pulsante che effettua il reset dei dati. Viene effettuato un controllo di validazione per ogni campo \textit{input} al fine di evitare l'inserimento di codice possibilmente malevolo nel server. 
+Vengono effettuati anche altri controlli sui valori di input per evitare l'inserimento di valori errati. Se JavaScript è attivo compare un messaggio di errore esplicativo nel momento in cui l'utente lascia il campo in cui ha immesso un errore, e viene impedito il submit del form fintanto che sono presenti errori nei form. Se invece JavaScript non è attivo compare un messaggio di errore in seguito alla sottomissione del form che segnala gli errori e il mancato inserimento dei dati nel database. La sottomissione di un form contenente errori non comporta la cancellazione dei dati nei campi di inserimento.
+
+L'inserimento dei dati è possibile anche senza JavaScript attivo, ma viene mostrato un messaggio che notifica l'utente dell'assenza di alcune funzionalità (es. preview immagine di copertina nell'inserimento del libro).
+
+Per ridurre gli errori da parte dell'utente si è inserito un messaggio esplicativo prima del campo di input quando è stato ritenuto necessario (es. inserisci tra i 5 e i 50 caratteri prima di un \texttt{input type ="text"} nel form di inserimento libro). 
+
+\subsubsection{Presentazione}
+Gli sfondi delle varie sezione della pagina sono tendenti al marroncino o alle sue gradazioni. Per tale motivo è stato ridefinito il colore dei link da visitare (giallo) e dei link visitati (verde acqua). Per motivi di contrasto ogni link presente nel contenuto (che ha sfondo tendente al giallo) è evidenziato in marrone.
+
+Tutti i pulsanti che contengono un link ipertestuale mantengono il colore del link visitato o meno, ad eccezione dei pulsanti presenti nell'header.
+
+Ogni campo di input presente nel sito viene messo in risalto con uno spesso bordo di colore marrone.
+
+Vengono utilizzate prevalentemente misure relative o percentuali per permettere un'adeguata visualizzazione delle pagine su schermi con dimensioni diverse.
+Per ridurre il numero di chiamate al server sono presenti solamente due fogli di stile: il primo è dedicato alla visualizzazione su schermo mentre il secondo è dedicato alla visualizzazione su carta stampata.
+
+\subsection{Visualizzazione}
+La progettazione ha avuto tra gli obiettivi anche quello di realizzare un design intuitivo e fluido, per adattarsi facilmente ad ogni tipo di dispositivo utilizzato dall'utente.
+A tal scopo si sono definiti nel file \texttt{CSS/style.css} i punti di rottura a 768px e 600px e la dimensione massima del contenuto a 1024px.
+Si è fatto uso di tag di CSS3 non presenti in CSS2.1 per inserire flexbox, dimensioni minime, bordi arrotondati e colori attraverso il nome.
+
+Il sito presenta le seguenti visualizzazioni
+\begin{itemize}
+\item la visualizzazione desktop presenta il layout a tre pannelli: header, contenuto e menu laterale. Nell'header sono presenti anche i pulsanti per effettuare login, registrazione, logout, accesso all'area utente.\\
+La visualizzazione desktop permette all'utente di avere gran parte delle informazioni di interesse senza dover effettuare scroll verticale. Allo stesso tempo la dimensione massima è pensata per non richiedere all'utente di dover ruotare la testa finché naviga;
+\item la visualizzazione tablet differisce dalla visualizzazione desktop per il posizionamento del menu, che in questo caso non si trova a lato del contenuto bensì nell'area sottostante all'header, e ricopre l'intera larghezza dello schermo;
+\item nella visualizzazione mobile la larghezza di molti degli elementi che occupano solo una frazione dello schermo nelle visualizzazioni di sopra viene estesa all'intero schermo (es. \texttt{div}, \texttt{input} e \texttt{button}). Inoltre compare il pulsante "torna su" presente anche nella navigazione con tecnologie assistive;
+\item la visualizzazione della stampa è finalizzata a nascondere all'utente colori di decorazione e elementi inutili alla stampa. Rimangono visibili inoltre i breadcrumbs e il footer (poiché il footer contiene il copyright del sito).
+\end{itemize}
+
 \subsection{Accessibilità}
 	Per garantire un alto livello di accessibilità sono state seguite le linee guida dello standard WCAG. Struttura, presentazione e comportamento sono separate per permettere un miglior posizionamento del sito nei motori di ricerca, un miglior accesso ad esso tramite i diversi browser e per agevolare la fruizione ad utenti che presentano disabilità.
 
@@ -288,7 +340,8 @@
 	\subsubsection{PHP}
 	\paragraph{Costruzione delle pagine} %TODO: simo
 	
-	\paragraph{Ricerca} %TODO:tonio
+	\paragraph{Ricerca}
+	La funzionalità di ricerca permette all'utente di visualizzare i dati relativi ai libri registrati nel database, tramite una ricerca case insensitive sui titoli oppure sugli autori. È possibile inoltre impostare un filtro di genere (es. romanzo, narrativa, fantasy, etc\dots). Nella query di ricerca viene utilizzato il parametro LIKE "\%\textit{termine di ricerca}\%" che consente di trovare il \textit{termine di ricerca} in ogni posizione.
 	
 	\paragraph{Autenticazione}
 	L'autenticazione è gestita con il sistema nativo di PHP delle sessioni. Quando un utente effettua con successo il login o la registrazione nel sistema, alcune delle sue informazioni vengono salvate all'interno della variabile superglobale \texttt{\_SESSION} per permetterne l'accesso da qualunque altro script. Quando un utente effettua il logout uno script si occupa di eliminare tutte le informazioni salvate in questa variabile. 
@@ -331,7 +384,57 @@
 	\paragraph{Visualizzazione della preview dell'immagine di copertina} %todo:Luca
 	
 	\section{Testing}
+	Il testing ha impegnato il gruppo non solo alla conclusione del progetto ma anche durante il suo sviluppo, in maniera da emendare prima possibile eventuali criticità.
+	Sono stati utilizzati i seguenti strumenti:
+	\begin{itemize}
+		\item \href{https://validator.w3.org/}{Markup Validation Service} per verificare la conformità a \textit{XHTML 1.0 Strict} di ogni pagina del sito;
+		\item \href{https://jigsaw.w3.org/css-validator/}{W3C CSS Validation Service} per i fogli di stile.
+Si noti che le pagine sono fruibili anche senza fogli di stile in quanto sono state ridimensionate le immagini;
+		\item il tool \textbf{Accessibility Insights for Web}, che offre un'analisi accurata di vari aspetti legati all'accessibilità e usabilità del sito; sono stati eseguiti test automatici (molto utili per verificare il rispetto del contrasto fra colori: 3:1 per testo grande e 4.5:1 per testo piccolo) ma anche test manuali tramite procedure guidate;
+		\begin{figure}[h!]
+			\caption{Accessibility Insights for Web - assessment in corso}
+			\includegraphics[width=0.7\textwidth]{../img/testing/AIFW.png}
+		\end{figure}
+		\item il tool \textbf{Total Validator} che ha segnalato la seguente criticità, poi emendata: alt troppo lunghi che sono stati accorciati (codice \textit{P888 - WCAG21 1.1.1 (A)});
+		\item \textbf{Silktide - website accessibility simulator} che permette di comprendere quale sia la percezione del sito da parte di utenti fisicamente svantaggiati;
+		\begin{figure}[h!]
+			\caption{Silktide - test screen reader}
+			\includegraphics[width=0.7\textwidth]{../img/testing/silktide.png}
+		\end{figure}
+		\item \textbf{Web developer tool} per verificare l'input tramite form e la corretta visualizzazione delle immagini.
+	\end{itemize}
 	
-	\section{Suddivisione del lavoro}
+	\section{Suddivisione del lavoro} %todo:Tutti - verificare e integrare
+	Nella fase iniziale il gruppo ha lavorato assieme per la definizione dell'argomento del progetto, dei requisiti e della struttura del sito. Una volta definite le linee guida, i compiti sono stati suddivisi equamente fra i componenti del gruppo e in modo da garantire a tutti di affrontare ogni aspetto della realizzazione del sito (database, HTML, PHP, Javascript, CSS, testing). Periodicamente venivano indette delle riunioni per aggiornare il gruppo sul procedere dei lavori e risolvere eventuali problematiche.
+	
+	\begin{itemize}
+		\item Antonio Badan: 
+		\begin{itemize}
+			\item popolamento database;
+			\item realizzazione pagine (parti: HTML, PHP, Javascript, CSS, testing): chisiamo, contatti, ricerca, home;
+			\item testing e validazione finale;
+		\end{itemize}
+		
+		\item Simone De Renzis: 
+		\begin{itemize}
+			\item mockup sito;
+			\item ossatura pagine HTML;
+			\item realizzazione pagine (parti: HTML, PHP, Javascript, CSS, testing): dettagliLibro, sessione, pagine d'errore;
+		\end{itemize}
+		
+		\item Francesco Trolese:
+		\begin{itemize}
+			\item realizzazione database;
+			\item realizzazione pagine(parti: HTML, PHP, Javascript, CSS, testing): autenticazione utente / admin, inserimento autore - genere;
+			\item definizione funzioni javascript;
+		\end{itemize}
+		
+		\item Luca Veronese: 
+		\begin{itemize}
+			\item realizzazione database;
+			\item ossatura pagine HTML;
+			\item realizzazione pagine(parti: HTML, PHP, Javascript, CSS, testing): inserimento libro, pagine d'errore;
+		\end{itemize}
+	\end{itemize}
 	
 	\end{document}
