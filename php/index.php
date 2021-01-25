@@ -73,7 +73,7 @@ if ($connectionSuccess == false) {
             <div class="reviewDetails">
             <img class="userPic" src="' . $book['foto'] . '" alt="' . $book['alt'] . '" />' .
              '<span class="username">' . $book['nome'] . '</span>' .
-             '<span class="reviewDatetime">' . $book['dataora'] .'</span></div>'
+             '<span class="reviewDatetime">' . substr($book['dataora'],0,16) .'</span></div>'
 
              . '<div class="reviewContent"><span>' . $book['testo'] . '</span>' .
              '<span class="stelle">' . round($book['valutazione'],1) . " " .printStars($book['valutazione']) . '</span></div>';
