@@ -59,9 +59,9 @@ $page = str_replace("<INFO_UTENTE/>", "$userInfo", $page);
 $buttons = '';
 if ($_SESSION['permesso'] == 1) {
     $buttons = "<ul class=\"newAuthorGenreBook\">
-        <li><a href=\"inserisciAutore.php\" class = \"hdrButton\">Aggiungi un nuovo autore</a></li>
-        <li><a href=\"inserisciGenere.php\" class = \"hdrButton\">Aggiungi un nuovo genere</a></li>
-        <li><a id=\"addBook\" href=\"inserisciLibro.php\" class = \"hdrButton\"> Aggiungi un nuovo libro </a></li>
+        <li><a href=\"inserisciAutore.php\" class = \"button\">Aggiungi un nuovo autore</a></li>
+        <li><a href=\"inserisciGenere.php\" class = \"button\">Aggiungi un nuovo genere</a></li>
+        <li><a id=\"addBook\" href=\"inserisciLibro.php\" class = \"button\"> Aggiungi un nuovo libro </a></li>
     </ul>";
 }
 $page = str_replace("<BOTTONI_ADMIN/>", $buttons, $page);
