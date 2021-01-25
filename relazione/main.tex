@@ -129,12 +129,13 @@
 	\begin{itemize}
 		\item \textbf{Utente generico}: non è registrato nel sito;
 		\item \textbf{Utente registrato}: è registrato nel sito e vi accede con le proprie credenziali;
-		\item \textbf{Utente Amministratore}: utente registrato con privilegi di amministrazione sul sito.	
+		\item \textbf{Utente Amministratore}: utente registrato con privilegi di amministrazione sul sito. \'E unico e non sono creabili nuovi account Amministratore. 
 	\end{itemize} 
 	
 	
 	\subsection{Funzionalità}
 	
+	\subsubsection{Tutti}
 	Tutte le tipologie di utenti possono accedere al sito e usufruire delle funzionalità base di:
 	\begin{itemize}
 		\item \textbf{Ricerca}: una barra di ricerca permette di individuare il libro di proprio interesse tra i libri presenti nel catalogo. \'E possibile applicare dei filtri per discriminare se la ricerca avviene per Titolo o per Autore. \'E possibile ma non obbligatorio specificare un Genere. Questi accorgimenti danno la possibilità anche agli utenti che hanno un'idea meno chiara sulla lettura di individuare di esplorare le possibilità che offre il catalogo del sito;
@@ -144,27 +145,33 @@
 		\item \textbf{Contattare i creatori del sito}: la pagina Contatti presenta un form che permette di contattare i creatori del sito (visualizzabili nella pagina Chi siamo);
 	\end{itemize}
 
+	\subsubsection{Utente generico}
+
 	L'utente generico può inoltre:
 	\begin{itemize}
-		\item \textbf{Registrarsi}: tramite pulsante di Registrazione posto in alto alla pagina: questo gli permette di entrare a far parte della comunità di Between the Lines.
+		\item \textbf{Registrarsi}: l'utente generico può entrare a far parte della comunità di Between the Lines.
 	\end{itemize}
+	
+	\subsubsection{Utente registrato}
 	
 	L'utente registrato può:
 	\begin{itemize}
-		\item \textbf{Effettuare il login}: tramite pulsante di Login posto in alto alla pagina. Verranno richieste le credenziali di accesso;
+		\item \textbf{Effettuare il login};
 		\item \textbf{Inserire una recensione}: tramite apposito form a cui viene indirizzato dalla pagina dei dettagli del libro di cui vuole esprimere la propria opinione. La recensione si compone di una valutazione numerica sul gradimento del libro, e da un contenuto testuale. Ogni utente può inserire più di una recensione per ogni libro;
 		\item \textbf{Eliminare una propria recensione}: tramite pulsante posto a fianco alla propria recensione;
-		\item \textbf{Modificare i propri dati}: se loggato, l'utente può modificare i propri dati di registrazione al sito tramite pulsante posto in alto alla pagina;
-		\item \textbf{Effettuare il logout}: tramite pulsante di Logout posto in alto alla pagina.
+		\item \textbf{Modificare i propri dati}: se loggato, l'utente può modificare i propri dati di registrazione al sito;
+		\item \textbf{Effettuare il logout};
 	\end{itemize}
+
+	\subsubsection{Utente amministratore}
 
 	L'utente amministratore \textbf{non} può effettuare recensioni. Tutte le altre operazioni nominate precedentemente sono effettuabili e in aggiunta può:
 	\begin{itemize}
 		\item \textbf{Eliminare le recensioni di tutti};
 		\item \textbf{Eliminare un libro}: tramite pulsante posto a fianco al titolo del libro nella pagina di dettagli del libro da eliminare;
-		\item \textbf{Inserire un nuovo genere}: tramite l'area admin accedibile con pulsante in alto alla pagina;
-		\item \textbf{Inserire un nuovo autore}: tramite l'area admin accedibile con pulsante in alto alla pagina;
-		\item \textbf{Inserire un nuovo libro}: tramite l'area admin accedibile con pulsante in alto alla pagina. Gli autori e i generi selezionabili per il libro da inserire comprendono solo gli autori e generi già inseriti nel database.
+		\item \textbf{Inserire un nuovo genere}: tramite l'Area amministratore;
+		\item \textbf{Inserire un nuovo autore}: tramite l'Area amministratore;
+		\item \textbf{Inserire un nuovo libro}: tramite l'Area amministratore. Gli autori e i generi selezionabili per il libro da inserire comprendono solo gli autori e generi già inseriti nel database.
 	\end{itemize}
 	
 	
@@ -176,6 +183,10 @@
 	\section{Progettazione}
 	\subsection{Struttura}
 	\subsubsection{Header}
+	
+	L'header contiene il logo e il nome del sito; i pulsanti di login e registrazione, e le breadcrumbs. 
+	
+	
 	\subsubsection{Menù}
 	\subsubsection{Content}
 	\subsubsection{Footer}
