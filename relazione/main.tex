@@ -185,11 +185,34 @@
 	\subsubsection{Mobile}
 	\subsubsection{Stampa}
 	
-	\subsection{Accessibilità}
+\subsection{Accessibilità}
 	Per garantire un alto livello di accessibilità sono state seguite le linee guida dello standard WCAG. Struttura, presentazione e comportamento sono separate per permettere un miglior posizionamento del sito nei motori di ricerca, un miglior accesso ad esso tramite i diversi browser e per agevolare la fruizione ad utenti che presentano disabilità.
+
 	\subsubsection{Struttura}
+	Tutte le pagine del sito permettono facilmente all'utente di rispondere alle 3 domande fondamentali:
+	\begin{itemize}
+		\item Come ci sono arrivato? Grazie ai breadcrumbs è possibile risalire al percorso fatto per arrivare alla pagina;
+		\item Dove sono? I breadcrumbs forniscono una risposta anche a questa domanda;
+		\item Dove posso andare? La risposta è fornita da tutti i link, facilmente individuabili per il loro colore e perché sono sottolineati.
+	\end{itemize} 
+	I link circolari sono evitati rendendo l'ultimo campo dei breadcrumbs non cliccabile (semplice testo) e allo stesso modo rimuovendo il link dalla voce del menù se ci si trova nella pagina relativa ad una di esse. Vengono rimossi anche i link di login/registrazione/area utente presenti nel header se ci si trova in una delle pagine menzionate.  \\
+	Le immagini presenti sono tutte racchiuse nel tag \texttt{img} e ad ognuna è aggiunto un \texttt{alt} per fornire una descrizione utilizzabile dagli screen reader. Per lo stesso motivo anche a tutti i campi di input è associata una \texttt{label} descrittiva. \\
+	All'interno del header e sopra al footer di ogni pagina sono presenti gli aiuti alla navigazione "Vai al contenuto" e "Torna su" che agevolano gli utenti disabili che fanno uso di uno screen reader. Nel layout desktop questi link sono nascosti, mentre in quello mobile il link "Torna su" è visibile.\\
+	Le parole straniere che è possibile trovare all'interno del sito sono dotate dell'attributo \texttt{xml:lang="lingua"} per fare in modo che gli screen reader le leggano correttamente. Anche all'admin, nell'inserimento del libro viene data la possibilità di includere tag e attributi XHTML nella trama al fine di permettergli di segnalare eventuali parole straniere. Sono escluse da questa funzionalità gli \texttt{alt} delle immagini.
+
 	\subsubsection{Presentazione}
+	Le regole CSS definite vengono applicate a classi e id il cui valore definisce ciò che contengono e non l'aspetto che il contenuto deve avere. Ciò contribuisce alla separazione di struttura e presentazione e favorisce la mantenibilità del codice prodotto.\\
+	Le unità di misura utilizzate sono relative: em e percentuali, per permettere la scalabilità su schermi di dimensione diversa. \\
+	I fogli di stile sono due: \texttt{print.css} per la stampa e \texttt{style.css} destinato a dispositivi desktop e mobile. \\
+	Il colore predominante nel sito è il marrone, del quale sono state usate varie sfumature. Anche per il background, pur con la presenza di disegni, il colore predominante è una sfumatura chiara di marrone. Per rispettare quanto stabilito dalle WCAG, sono stati adottati degli accorgimenti sui colori del testo:
+	\begin{itemize}
+		\item il testo dei breadcrumb e in altre parti del sito è bianco. La scelta è stata dettata dalla necessità di creare un contrasto sufficiente con lo sfondo per permettere anche agli utenti con disabilità visive di distinguere chiaramente le lettere dal background;
+		\item il colore dei link è stato cambiato. Sia i link visitati che quelli da visitare rompono la convenzione esterna sulla colorazione. Sono stati definiti 2 colori che risaltassero dallo sfondo e fossero ben visibili agli utenti. La convenzione interna non dovrebbe risultare problematica in quanto viene rispettata sempre nel sito (non crea disorientamento) e in ogni caso tutti i link sono sottolineati;
+		\item anche il colore scelto per l'azione di hover sui link non crea problemi di contrasto.
+	\end{itemize} 
+
 	\subsubsection{Comportamento}
+	Il sito permette di cercare libri direttamente dalla home page. In alternativa è possibile esplorare i libri tramite le classifiche presenti nella home. Per gli utenti autenticati è possibile anche inserire recensioni mentre l'admin può aggiungere libri, generi e autori al database. Tutti gli input forniti dagli utenti sono filtrati e validati prima di essere elaborati. Se tutti i controlli vengono passati e l'operazione di elaborazione ha successo l'utente viene direzionato in una pagina di landing o gli viene mostrato un messaggio di successo, altrimenti viene mostrato un feedback negativo che fornisce all'utente una spiegazione esaustiva di come fare per correggere l'errore e per i campi di input non viene eseguito il reset in modo da permettere all'utente di ricominciare da dove era arrivato.
 	
 	\section{Implementazione}
 	\subsection{Linguaggi}
@@ -198,10 +221,12 @@
 	Altre feature utili di HTML5 alle quali si è dovuto sopperire implementando dei controlli PHP e CSS sono la possibilità di impostare una lunghezza minima e massima per i campi di input, di settare un placeholder e di poter indicare un campo di input come obbligatorio per l'invio del form.
 	
 	\subsubsection{CSS}
-	Per la presentazione dei contenuti è stato utilizzato CSS3. Per mantenere la totale separazione tra contenuto e presentazione non sono state definite regole di stile inline o embedded all'interno del codice XHTML ma sono stati utilizzati solo fogli di stile esterni. Le regole utilizzate sono state scelte per la loro ampia compatibilità con tutti i browser anche nelle loro versioni più datate. Per ottenere un layout facilmente scalabile su schermi con dimensioni diverse sono state privilegiate le unita di misura relative rispetto a quelle assolute ed è stato adottato il layout flexbox per vari componenti del sito. Il layout ottenuto è di tipo responsive: fluido con dei punti di rottura... %TODO
-	
+	Per la presentazione dei contenuti è stato utilizzato CSS3. Per mantenere la totale separazione tra contenuto e presentazione non sono state definite regole di stile inline o embedded all'interno del codice XHTML ma sono stati utilizzati solo fogli di stile esterni. Le regole utilizzate sono state scelte per la loro ampia compatibilità con tutti i browser anche nelle loro versioni più datate. Per ottenere un layout facilmente scalabile su schermi con dimensioni diverse sono state privilegiate le unita di misura relative rispetto a quelle assolute ed è stato adottato il layout flexbox per vari componenti del sito. Per seguire le convenzioni del \textit{responsive design} sono stati definiti due punti di rottura (corrispondenti alla larghezza di 768px%tablet 10' portrait
+	 e 600px); %tablet piccoli portrait
+	  per ogni intervallo è stato creato un layout fluido che ottimizzasse gli spazi, con un particolare focus sui contenuti nella porzione di pagina \textit{"above the fold"}.
+
 	\subsubsection{SQL}
-	I dati del sito per i quali è necessaria la persistenza sono mantenuti all'interno del database. Le informazioni contenute dalla base di dati comprendono:
+	I dati del sito per i quali è necessaria la persistenza sono mantenuti all'interno del database SQL. Le informazioni contenute dalla base di dati comprendono:
 	\begin{itemize}
 		\item informazioni sui libri;
 		\item dati degli utenti;
@@ -211,12 +236,12 @@
 	Le chiavi primarie di tutte le tabelle sono degli ID numerici autoincrementali. \\
 	Per la coppia nome e cognome in \textit{"autori"} è stato imposto un vincolo di unicità. Allo stesso modo anche il nome utente così come l'indirizzo e-mail sono imposti unici all'interno della tabella \textit{"utenti"} in modo che un utente non possa registrarsi due volte con la stessa e-mail e che due utenti distinti non possano avere lo stesso username.\\  
 	Per impedire che dati non più presenti nella base di dati vengano riferiti, all'eliminazione di un libro o di un utente vengono eliminate anche le rispettive recensioni. Inoltre all'eliminazione di un libro viene eliminata anche la sua copertina. L'eliminazione di un genere o di un autore provoca la cancellazione di tutti i libri che li riferiscono.
-	\begin{center}
+	
 		\begin{figure}[h!]
+			\centering
 			\includegraphics[width=0.6\textwidth]{../img/db_diagram/betweenthelines.png}
 			\caption{Diagramma rappresentante la struttura del database}
 		\end{figure}
-	\end{center}
 	
 	\subsubsection{PHP}
 	\paragraph{Costruzione delle pagine} %TODO: simo
@@ -250,6 +275,7 @@
 		\item confrontano due numeri stabilendo quale è il minore, il maggiore o se sono uguali;
 		\item confrontano un anno con l'anno attuale per controllare che il primo non sia futuro.
 	\end{itemize}
+	Il feedback della validazione è mostrato tramite messaggi di successo o di errore che compaiono in testa al form e forniscono una descrizione dettagliata di come risolvere il problema riscontrato.
 	
 	
 	\subsubsection{Javascript}
@@ -258,6 +284,7 @@
 	Per la validazione dell'input utente lato client sono stati implementati dei metodi che effettuano dei controlli sui parametri che gli vengono passati, accertando che questi rispettino determinati criteri. Questi metodi sono spesso equivalenti alle loro controparti lato server implementate con PHP. \\
 	Degno di nota è \texttt{checkNome(name)} la cui funzione è quella di confrontare una stringa con una espressione regolare per assicurarsi che corrisponda ai criteri di un nome. Viene utilizzato ad esempio per la validazione di un genere e del nome e cognome di un autore. Questo controllo è più permissivo del suo corrispondente lato server (rifiuta solo i numeri) in quanto non è stato trovato un espediente per filtrare esclusivamente le lettere di ogni alfabeto codificate in UTF8, cosa possibile invece con le espressioni regolari messe a disposizione da PHP.\\
 	I test di validazione vengono eseguiti quando il focus viene spostato da un campo di input e quando il form viene inviando, impedendone l'invio se almeno un test non viene superato.\\
+	Il risultato della validazione è mostrato con messaggi di successo o di errore che precedono il campo di input al quale si riferiscono e forniscono una spiegazione esaustiva di come risolvere il problema riscontrato.
 	
 	\paragraph{Visualizzazione della preview dell'immagine di copertina} %todo:Luca
 	

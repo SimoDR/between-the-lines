@@ -29,18 +29,18 @@ function addHeader(&$page)
             if (isset($_SESSION['permesso'])) {
                 if ($_SESSION['permesso'] == 0) { //se utente
                     // metto area utente al posto del login
-                    $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',
-                        '<a href="../php/utente.php" class="hdrButton"><span class="mobileHidden">Benvenut*, ' . $username . '! Vai alla tua </span>AREA UTENTE</a>'
+                    $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
+                        '<a href="../php/utente.php" class="button"><span class="mobileHidden">Benvenut*, ' . $username . '! Vai alla tua </span>AREA UTENTE</a>'
                         , $header);
 
                 } else if ($_SESSION['permesso'] == 1) { //se admin
-                    $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',
-                        '<a href="../php/utente.php" class="hdrButton"><span class="mobileHidden">Benvenut*, admin! Vai al </span>PANNELLO ADMIN</a>'
+                    $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
+                        '<a href="../php/utente.php" class="button"><span class="mobileHidden">Benvenut*, admin! Vai all\'</span>AREA ADMIN</a>'
                         , $header);
                 }
 
                 //tolgo registrazione
-                $header = str_replace('<a href="../php/registrazione.php" class="hdrButton">REGISTRAZIONE</a>',
+                $header = str_replace('<a href="../php/registrazione.php" class="button">REGISTRAZIONE</a>',
                     "", $header);
             } else {
                 //errore connessione db
@@ -53,18 +53,18 @@ function addHeader(&$page)
     else {
 
         // rimuovi logout
-        $header = str_replace('<a href="../php/logout.php" id="logout" class="hdrButton">LOGOUT</a>',
+        $header = str_replace('<a href="../php/logout.php" id="logout" class="button">LOGOUT</a>',
             "", $header);
 
         // se si è nella pagina di login
         if (preg_match("/^login\.php\?id_libro=\d+$|^login\.php$/", basename($_SERVER["REQUEST_URI"]))) {
             //rimuovi login
-            $header = str_replace('<a href="../php/login.php" class="hdrButton">LOGIN</a>',"", $header);
+            $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',"", $header);
         }
         // se si è nella pagina di registrazione
         if (basename($_SERVER["REQUEST_URI"]) == "registrazione.php") {
             //rimuovi registrazione
-            $header = str_replace('<a href="../php/registrazione.php" class="hdrButton">REGISTRAZIONE</a>',
+            $header = str_replace('<a href="../php/registrazione.php" class="button">REGISTRAZIONE</a>',
                 "", $header);
         }
     }
@@ -80,13 +80,13 @@ function addMenu(&$page)
     
     // rimozione dei link circolari
     if(basename($_SERVER["REQUEST_URI"]) == "index.php") {
-        $menu = str_replace('<a href="index.php" class="hdrButton">Home</a>','<span class="hdrButton">Home</span>',$menu);
+        $menu = str_replace('<a href="index.php">Home</a>','<span class="menuItemSelected">Home</span>',$menu);
     }
     if(basename($_SERVER["REQUEST_URI"]) == "chisiamo.php") {
-        $menu = str_replace('<a href="chisiamo.php" class="hdrButton">Chi Siamo</a>','<span class="hdrButton">Chi siamo</span>',$menu);
+        $menu = str_replace('<a href="chisiamo.php">Chi Siamo</a>','<span class="menuItemSelected">Chi siamo</span>',$menu);
     } 
     if(basename($_SERVER["REQUEST_URI"]) == "contatti.php") {
-        $menu = str_replace('<a href="contatti.php" class="hdrButton">Contattaci</a>','<span class="hdrButton">Contattaci</span>',$menu);
+        $menu = str_replace('<a href="contatti.php">Contattaci</a>','<span class="menuItemSelected">Contattaci</span>',$menu);
     } 
 
     $page = str_replace("<MENU/>", $menu, $page);
