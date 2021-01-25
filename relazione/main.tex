@@ -181,14 +181,45 @@
 	
 	
 	\section{Progettazione}
+	
 	\subsection{Struttura}
+	
+	
 	\subsubsection{Header}
 	
-	L'header contiene il logo e il nome del sito; i pulsanti di login e registrazione, e le breadcrumbs. 
-	
-	
+	L'header contiene il \textbf{logo} e il \textbf{nome} del sito; i pulsanti di \textbf{login} e \textbf{registrazione}, e le \textbf{breadcrumbs}. 
+	Quando l'utente si autentica, il login è sostituito da messaggio di benvenuto che rimanda alla propria area utente (area admin nel caso dell'Amministratore), e il pulsante di registrazione viene rimosso in favore del pulsante di logout.
+	Le breadcrumbs tracciano la propria posizione all'interno del sito: le pagine percorse sono riportate tramite link cliccabili. 
+		
 	\subsubsection{Menù}
+	
+	Il Menù è situato sulla sinistra del sito. Prevede i collegamenti alla pagina Home, alla pagina Chi siamo e alla pagina Contatti.
+	
 	\subsubsection{Content}
+	
+	\begin{itemize}
+		\item \textbf{Home}: presenta un form per la ricerca dei libri. L'utente digita le parole chiave e, a seconda che la ricerca avvenga per titolo o per autore, seleziona il radiobox adeguato. \'E possibile filtrare per genere, lasciando "Qualsiasi" se non si intende restringere la ricerca con questo campo. La ricerca rimanda alla pagina Ricerca. Nella Home sono presenti anche le classifiche di:
+		\begin{itemize}
+			\item Primi 3 libri per numero di recensioni
+			\item Ultime 3 recensioni inserite.
+		\end{itemize} 
+		\item \textbf{Ricerca}:
+		\item \textbf{Chi siamo}:
+		\item \textbf{Contatti}:
+		\item \textbf{Dettagli libro}:
+		\item \textbf{Inserisci Recensione}:
+		\item \textbf{Area utente}:
+		\item \textbf{Modifica utente}:
+		\item \textbf{Aggiungi nuovo autore}:
+		\item \textbf{Aggiungi nuovo genere}:
+		\item \textbf{Aggiungi nuovo libro}:
+	\end{itemize}
+	
+	
+	
+	
+	
+	
 	\subsubsection{Footer}
 	
 	\subsection{Layout}
@@ -351,7 +382,7 @@ La visualizzazione desktop permette all'utente di avere gran parte delle informa
 	Il risultato della validazione è mostrato con messaggi di successo o di errore che precedono il campo di input al quale si riferiscono e forniscono una spiegazione esaustiva di come risolvere il problema riscontrato.
 	
 	\paragraph{Visualizzazione della preview dell'immagine di copertina} %todo:Luca
-	
+	Il form di inserimento del libro consente il caricamento dell'immagine di copertina e la preview dell'immagine caricata. A tal fine viene chiamata la funzione \textit{checkImg} che effettua controlli preventivi sull'immagine e lancia un messaggio di errore quando il file supera la dimensione massima di 3MB o quando si tenta di caricare un file non riconosciuto come immagine. Se la funzione \textit{checkImg} non lancia eccezioni allora viene eseguita la funzione \textit{uploadImg} che carica l'immagine nella cartella \texttt{img/Copertine} mostra a video l'immagine scelta. In seguito alla pressione del pulsante submit l'immagine di copertina viene deselezionata e sostituita nella preview dalla copertina di default.
 	\section{Testing}
 	Il testing ha impegnato il gruppo non solo alla conclusione del progetto ma anche durante il suo sviluppo, in maniera da emendare prima possibile eventuali criticità.
 	Sono stati utilizzati i seguenti strumenti:
