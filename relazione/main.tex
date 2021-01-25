@@ -257,7 +257,8 @@
 	\subsubsection{PHP}
 	\paragraph{Costruzione delle pagine} %TODO: simo
 	
-	\paragraph{Ricerca} %TODO:tonio
+	\paragraph{Ricerca}
+	La funzionalità di ricerca permette all'utente di visualizzare i dati relativi ai libri registrati nel database, tramite una ricerca case insensitive sui titoli oppure sugli autori. È possibile inoltre impostare un filtro di genere (es. romanzo, narrativa, fantasy, etc\dots). Nella query di ricerca viene utilizzato il parametro LIKE "\%\textit{termine di ricerca}\%" che consente di trovare il \textit{termine di ricerca} in ogni posizione.
 	
 	\paragraph{Autenticazione}
 	L'autenticazione è gestita con il sistema nativo di PHP delle sessioni. Quando un utente effettua con successo il login o la registrazione nel sistema, alcune delle sue informazioni vengono salvate all'interno della variabile superglobale \texttt{\_SESSION} per permetterne l'accesso da qualunque altro script. Quando un utente effettua il logout uno script si occupa di eliminare tutte le informazioni salvate in questa variabile. 
@@ -304,7 +305,8 @@
 	Sono stati utilizzati i seguenti strumenti:
 	\begin{itemize}
 		\item \href{https://validator.w3.org/}{Markup Validation Service} per verificare la conformità a \textit{XHTML 1.0 Strict} di ogni pagina del sito;
-		\item \href{https://jigsaw.w3.org/css-validator/}{W3C CSS Validation Service} per i fogli di stile.Si noti che le pagine sono fruibili anche senza fogli di stile in quanto sono state ridimensionate le immagini;
+		\item \href{https://jigsaw.w3.org/css-validator/}{W3C CSS Validation Service} per i fogli di stile.
+Si noti che le pagine sono fruibili anche senza fogli di stile in quanto sono state ridimensionate le immagini;
 		\item il tool \textbf{Accessibility Insights for Web}, che offre un'analisi accurata di vari aspetti legati all'accessibilità e usabilità del sito; sono stati eseguiti test automatici (molto utili per verificare il rispetto del contrasto fra colori: 3:1 per testo grande e 4.5:1 per testo piccolo) ma anche test manuali tramite procedure guidate;
 		\begin{figure}[h!]
 			\caption{Accessibility Insights for Web - assessment in corso}
