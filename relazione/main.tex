@@ -181,14 +181,45 @@
 	
 	
 	\section{Progettazione}
+	
 	\subsection{Struttura}
+	
+	
 	\subsubsection{Header}
 	
-	L'header contiene il logo e il nome del sito; i pulsanti di login e registrazione, e le breadcrumbs. 
-	
-	
+	L'header contiene il \textbf{logo} e il \textbf{nome} del sito; i pulsanti di \textbf{login} e \textbf{registrazione}, e le \textbf{breadcrumbs}. 
+	Quando l'utente si autentica, il login è sostituito da messaggio di benvenuto che rimanda alla propria area utente (area admin nel caso dell'Amministratore), e il pulsante di registrazione viene rimosso in favore del pulsante di logout.
+	Le breadcrumbs tracciano la propria posizione all'interno del sito: le pagine percorse sono riportate tramite link cliccabili. 
+		
 	\subsubsection{Menù}
+	
+	Il Menù è situato sulla sinistra del sito. Prevede i collegamenti alla pagina Home, alla pagina Chi siamo e alla pagina Contatti.
+	
 	\subsubsection{Content}
+	
+	\begin{itemize}
+		\item \textbf{Home}: presenta un form per la ricerca dei libri. L'utente digita le parole chiave e, a seconda che la ricerca avvenga per titolo o per autore, seleziona il radiobox adeguato. \'E possibile filtrare per genere, lasciando "Qualsiasi" se non si intende restringere la ricerca con questo campo. La ricerca rimanda alla pagina Ricerca. Nella Home sono presenti anche le classifiche di:
+		\begin{itemize}
+			\item Primi 3 libri per numero di recensioni
+			\item Ultime 3 recensioni inserite.
+		\end{itemize} 
+		\item \textbf{Ricerca}:
+		\item \textbf{Chi siamo}:
+		\item \textbf{Contatti}:
+		\item \textbf{Dettagli libro}:
+		\item \textbf{Inserisci Recensione}:
+		\item \textbf{Area utente}:
+		\item \textbf{Modifica utente}:
+		\item \textbf{Aggiungi nuovo autore}:
+		\item \textbf{Aggiungi nuovo genere}:
+		\item \textbf{Aggiungi nuovo libro}:
+	\end{itemize}
+	
+	
+	
+	
+	
+	
 	\subsubsection{Footer}
 	
 	\subsection{Layout}
