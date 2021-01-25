@@ -27,6 +27,9 @@ function addHeader(&$page)
             $username = $queryResult[0]['username'];
 
             if (isset($_SESSION['permesso'])) {
+                
+                
+                
                 if ($_SESSION['permesso'] == 0) { //se utente
                     // metto area utente al posto del login
                     $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
@@ -37,6 +40,12 @@ function addHeader(&$page)
                     $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',
                         '<a href="../php/utente.php" class="button"><span class="mobileHidden">Benvenut*, admin! Vai all\'</span>AREA ADMIN</a>'
                         , $header);
+                }
+                //se si è nella pagina di utente
+                if (basename($_SERVER["REQUEST_URI"]) == "utente.php") {
+                    //rimuovi benvenuto
+                    $header = str_replace('<a href="../php/utente.php" class="button"><span class="mobileHidden">Benvenut*, ' . $username . '! Vai alla tua </span>AREA UTENTE</a>',"", $header);
+                    $header = str_replace('<a href="../php/utente.php" class="button"><span class="mobileHidden">Benvenut*, admin! Vai all\'</span>AREA ADMIN</a>',"", $header);
                 }
 
                 //tolgo registrazione
@@ -60,7 +69,10 @@ function addHeader(&$page)
         if (preg_match("/^login\.php\?id_libro=\d+$|^login\.php$/", basename($_SERVER["REQUEST_URI"]))) {
             //rimuovi login
             $header = str_replace('<a href="../php/login.php" class="button">LOGIN</a>',"", $header);
+            
         }
+        
+        
         // se si è nella pagina di registrazione
         if (basename($_SERVER["REQUEST_URI"]) == "registrazione.php") {
             //rimuovi registrazione
