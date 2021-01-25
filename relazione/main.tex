@@ -289,7 +289,56 @@
 	\paragraph{Visualizzazione della preview dell'immagine di copertina} %todo:Luca
 	
 	\section{Testing}
+	Il testing ha impegnato il gruppo non solo alla conclusione del progetto ma anche durante il suo sviluppo, in maniera da emendare prima possibile eventuali criticità.
+	Sono stati utilizzati i seguenti strumenti:
+	\begin{itemize}
+		\item \href{https://validator.w3.org/}{Markup Validation Service} per verificare la conformità a \textit{XHTML 1.0 Strict} di ogni pagina del sito;
+		\item \href{https://jigsaw.w3.org/css-validator/}{W3C CSS Validation Service} per i fogli di stile.Si noti che le pagine sono fruibili anche senza fogli di stile in quanto sono state ridimensionate le immagini;
+		\item il tool \textbf{Accessibility Insights for Web}, che offre un'analisi accurata di vari aspetti legati all'accessibilità e usabilità del sito; sono stati eseguiti test automatici (molto utili per verificare il rispetto del contrasto fra colori: 3:1 per testo grande e 4.5:1 per testo piccolo) ma anche test manuali tramite procedure guidate;
+		\begin{figure}[h!]
+			\caption{Accessibility Insights for Web - assessment in corso}
+			\includegraphics[width=0.7\textwidth]{../img/testing/AIFW.png}
+		\end{figure}
+		\item il tool \textbf{Total Validator} che ha segnalato la seguente criticità, poi emendata: alt troppo lunghi che sono stati accorciati (codice \textit{P888 - WCAG21 1.1.1 (A)});
+		\item \textbf{Silktide - website accessibility simulator} che permette di comprendere quale sia la percezione del sito da parte di utenti fisicamente svantaggiati;
+		\begin{figure}[h!]
+			\caption{Silktide - test screen reader}
+			\includegraphics[width=0.7\textwidth]{../img/testing/silktide.png}
+		\end{figure}
+		\item \textbf{Web developer tool} per verificare l'input tramite form e la corretta visualizzazione delle immagini.
+	\end{itemize}
 	
-	\section{Suddivisione del lavoro}
+	\section{Suddivisione del lavoro} %todo:Tutti - verificare e integrare
+	Nella fase iniziale il gruppo ha lavorato assieme per la definizione dell'argomento del progetto, dei requisiti e della struttura del sito. Una volta definite le linee guida, i compiti sono stati suddivisi equamente fra i componenti del gruppo e in modo da garantire a tutti di affrontare ogni aspetto della realizzazione del sito (database, HTML, PHP, Javascript, CSS, testing). Periodicamente venivano indette delle riunioni per aggiornare il gruppo sul procedere dei lavori e risolvere eventuali problematiche.
+	
+	\begin{itemize}
+		\item Antonio Badan: 
+		\begin{itemize}
+			\item popolamento database;
+			\item realizzazione pagine (parti: HTML, PHP, Javascript, CSS, testing): chisiamo, contatti, ricerca, home;
+			\item testing e validazione finale;
+		\end{itemize}
+		
+		\item Simone De Renzis: 
+		\begin{itemize}
+			\item mockup sito;
+			\item ossatura pagine HTML;
+			\item realizzazione pagine (parti: HTML, PHP, Javascript, CSS, testing): dettagliLibro, sessione, pagine d'errore;
+		\end{itemize}
+		
+		\item Francesco Trolese:
+		\begin{itemize}
+			\item realizzazione database;
+			\item realizzazione pagine(parti: HTML, PHP, Javascript, CSS, testing): autenticazione utente / admin, inserimento autore - genere;
+			\item definizione funzioni javascript;
+		\end{itemize}
+		
+		\item Luca Veronese: 
+		\begin{itemize}
+			\item realizzazione database;
+			\item ossatura pagine HTML;
+			\item realizzazione pagine(parti: HTML, PHP, Javascript, CSS, testing): inserimento libro, pagine d'errore;
+		\end{itemize}
+	\end{itemize}
 	
 	\end{document}
