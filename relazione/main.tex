@@ -43,7 +43,7 @@
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
 
-\center % Center everything on the page
+\center% Center everything on the page
  
 %----------------------------------------------------------------------------------------
 %	HEADING SECTIONS
@@ -146,10 +146,65 @@ Il linguaggio di markup utilizzato per tutte le pagine statiche del sito è XHTM
 Altre feature utili di HTML5 alle quali si è dovuto sopperire implementando dei controlli PHP e CSS sono la possibilità di impostare una lunghezza minima e massima per i campi di input, di settare un placeholder e di poter indicare un campo di input come obbligatorio per l'invio del form.
 
 \subsubsection{CSS}
-Per la presentazione dei contenuti è stato utilizzato CSS3. Per mantenere la totale separazione tra contenuto e presentazione non sono state definite regole di stile inline o embedded all'interno del codice XHTML ma sono stati utilizzati solo fogli di stile esterni. Le regole utilizzate sono state scelte per la loro ampia compatibilità con tutti i browser anche nelle loro versioni più datate. Per ottenere un layout facilmente scalabile su schermi con dimensioni diverse sono state privilegiate le unita di misura relative rispetto a quelle assolute ed è stato adottato il layout flexbox per vari componenti del sito. Il layout ottenuto è di tipo responsive: fluido con dei punti di rottura %TODO
+Per la presentazione dei contenuti è stato utilizzato CSS3. Per mantenere la totale separazione tra contenuto e presentazione non sono state definite regole di stile inline o embedded all'interno del codice XHTML ma sono stati utilizzati solo fogli di stile esterni. Le regole utilizzate sono state scelte per la loro ampia compatibilità con tutti i browser anche nelle loro versioni più datate. Per ottenere un layout facilmente scalabile su schermi con dimensioni diverse sono state privilegiate le unita di misura relative rispetto a quelle assolute ed è stato adottato il layout flexbox per vari componenti del sito. Il layout ottenuto è di tipo responsive: fluido con dei punti di rottura... %TODO
 
 \subsubsection{SQL}
+I dati del sito per i quali è necessaria la persistenza sono mantenuti all'interno del database. Le informazioni contenute dalla base di dati comprendono:
+\begin{itemize}
+	\item informazioni sui libri;
+	\item dati degli utenti;
+	\item dati degli autori dei libri;
+	\item recensioni.
+\end{itemize}
+Le chiavi primarie di tutte le tabelle sono degli ID numerici autoincrementali. \\
+Per la coppia nome e cognome in \textit{"autori"} è stato imposto un vincolo di unicità. Allo stesso modo anche il nome utente così come l'indirizzo e-mail sono imposti unici all'interno della tabella \textit{"utenti"} in modo che un utente non possa registrarsi due volte con la stessa e-mail e che due utenti distinti non possano avere lo stesso username.\\  
+Per impedire che dati non più presenti nella base di dati vengano riferiti, all'eliminazione di un libro o di un utente vengono eliminate anche le rispettive recensioni. Inoltre all'eliminazione di un libro viene eliminata anche la sua copertina. L'eliminazione di un genere o di un autore provoca la cancellazione di tutti i libri che li riferiscono.
+\begin{figure}[h!]
+	\caption{Diagramma rappresentante la struttura del database}
+\includegraphics[width=0.6\textwidth]{../img/db_diagram/betweenthelines.png}
+\end{figure}
+
+\subsubsection{PHP}
+\paragraph{Costruzione delle pagine} %TODO: simo
+
+\paragraph{Ricerca} %TODO:tonio
+
+\paragraph{Autenticazione}
+L'autenticazione è gestita con il sistema nativo di PHP delle sessioni. Quando un utente effettua con successo il login o la registrazione nel sistema, alcune delle sue informazioni vengono salvate all'interno della variabile superglobale \texttt{\_SESSION} per permetterne l'accesso da qualunque altro script. Quando un utente effettua il logout uno script si occupa di eliminare tutte le informazioni salvate in questa variabile. 
+
+\paragraph{Pagine di errore} %non sono sicuro che sta parte vada qua
+Per segnalare agli utenti errori nelle richieste al server sono state create delle pagine relative agli errori HTTP principali. Le pagine, il cui nome corrisponde al codice dell'errore che notificano sono:
+\begin{itemize}
+	\item 400 - BAD REQUEST: quando l'URL della richiesta non rispetta alcuni criteri. Ritornato ad esempio in caso di una richiesta GET mal formata;
+	\item 401 - UNAUTHORIZED: se per l'accesso alla pagina è necessaria l'autenticazione. Ritornato ad esempio provando ad entrare nel pannello utente se non è stata effettuata l'autenticazione;
+	\item 403 - FORBIDDEN: nel caso in cui l'utente, pur se autenticato, non abbia i permessi necessari per eseguire l'operazione richiesta. Ad esempio nel caso in cui un utente non admin provasse ad aggiungere un libro;
+	\item 404 - NOT FOUND: se la richiesta fatta al server non viene risolta.
+\end{itemize}
+
+\paragraph{Query al database}
+Per incentivare il riuso di codice si è scelto di implementare due funzioni con lo scopo di interagire con il database per la consultazione, l'inserimento e la modifica di dati:
+\begin{itemize}
+	\item \texttt{queryDB(\$query)}: effettua una query e ritorna il risultato sotto forma di array o \texttt{NULL} se non va a buon fine;
+	\item \texttt{insertDB(\$query)}: per effettuare query di inserimento e modifica al database: ritorna \texttt{true} se la query modifica almeno una tupla, \texttt{false} se nessuna riga viene modificata e \texttt{NULL} se la query non va a buon fine.
+\end{itemize}
+\paragraph{Validazione lato server}
+Le funzioni per la validazione dell'input lato server necessarie per la verifica dell'input inserito dall'utente agiscono in più modi:
+\begin{itemize}
+	\item controllano, utilizzando il match con un espressione regolare, che l'input rispetti determinati criteri di accettazione. Le funzioni di questo tipo sono tutte contenute all'interno del file \texttt{regex\_checker}.Solitamente richiedono il match dell'intera stringa passata al metodo come parametro con l'espressione regolare definita;
+	\item accertano che la stringa che gli viene passata stia all'interno di una determinato range stabilendo una dimensione minima, una massima o entrambe;
+	\item confrontano due stringhe, accertando la loro uguaglianza;
+	\item confrontano due numeri stabilendo quale è il minore, il maggiore o se sono uguali;
+	\item confrontano un anno con l'anno attuale per controllare che il primo non sia futuro.
+\end{itemize}
+
+
 \subsubsection{Javascript}
+\paragraph{Validazione lato client}
+Per la validazione dell'input utente lato client sono stati implementati dei metodi che effettuano dei controlli sui parametri che gli vengono passati, accertando che questi rispettino determinati criteri. Questi metodi sono spesso equivalenti alle loro controparti lato server implementate con PHP. \\
+Degno di nota è \texttt{checkNome(name)} la cui funzione è quella di confrontare una stringa con una espressione regolare per assicurarsi che corrisponda ai criteri di un nome. Viene utilizzato ad esempio per la validazione di un genere e del nome e cognome di un autore. Questo controllo è più permissivo del suo corrispondente lato server (rifiuta solo i numeri) in quanto non è stato trovato un espediente per filtrare esclusivamente le lettere di ogni alfabeto codificate in UTF8, cosa possibile invece con le espressioni regolari messe a disposizione da PHP.\\
+I test di validazione vengono eseguiti quando il focus viene spostato da un campo di input e quando il form viene inviando, impedendone l'invio se almeno un test non viene superato.
+
+\paragraph{Visualizzazione della preview dell'immagine di copertina} %todo:Luca
 
 \section{Testing}
 
