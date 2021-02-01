@@ -1,0 +1,269 @@
+/*  -------------  generale  ------------  */
+* {
+  background: transparent;
+  color: black;
+  text-shadow: none;
+  filter: none;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 11pt;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+/*  links  */
+a {
+    color: black;
+    word-wrap: break-word;
+}
+a[href^="/"]:after,
+a[href^="http://"]:after,
+a[href^="https://"]:after {
+  content: " [" attr(href) "]";
+  font-size: 90%; }
+
+a[href^="javascript:"]:after,
+a[href^="#"]:after {
+  content: ""; }
+#header {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+select {
+  background: white;
+}
+
+#imgValidCode,
+#imgValidCSS,
+#menu,
+.hidden,
+.sr-only, 
+#logo, 
+.userPic, 
+#footer img, 
+#userButtons,
+.hdrButton,
+.turnBack, 
+.toContent,
+.pageNumbers {
+  display: none;
+}
+
+#footer {
+  display: block;
+}
+
+#footer ul {
+  text-align: center;
+  list-style-type: none;
+}
+
+/*index*/
+
+
+#rankingTopReview{
+  display: inline-block;
+}
+#rankingTopReview img{
+  float: left;
+  width:20%; 
+  padding: 0.5em;
+}
+
+#rankingTopReview li{
+  list-style-type: decimal;
+  clear:left;
+}
+
+#rankingTopReview dd{
+  padding-top: 1em;
+}
+
+.searchForm, #indexRicerca {
+  display: none;
+}
+
+
+/*chisiamo*/
+#staff{
+  display: inline-block;
+  
+}
+
+#staff img {
+  display: inline;
+  float: left;
+}
+
+#staff li{
+  clear:left;
+  list-style-type: none;
+}
+
+#staff dd, #staff dt {
+  display: inline;
+  float: left;
+}
+
+/*contatti*/
+
+#contact_message {
+  display: none;
+}
+
+/*ricerca*/
+
+.buttonDettagli, .confirmationMessage {
+  display: none;
+}
+
+.book {
+    display: inline-block;
+}
+
+.book img {
+  float:left;
+  width: 20%;
+  padding-right: 2em;
+}
+
+.book h3 {
+  clear: left;
+}
+
+.book dt {
+    font-weight: bold;
+    display: inline;
+}
+
+.book dt:before {
+    content: "";
+    display: block;
+}
+
+.book dd:before {
+    content: " ";
+}
+
+/*dettagli libro*/
+
+#bookFrontpage img{
+    width: 10em;
+    float: left;
+    margin-right: 1em;
+}
+
+
+
+#bookDetails dt {
+    font-weight: bold;
+    
+}
+
+#bookDetails dt:before {
+  content: "";
+  display: block;
+}
+
+#insertReviewButton {
+    display: none;
+}
+
+#bookArea .button {
+    display: none;
+}
+
+
+#reviewArea .reviewDetails .button {
+    display: none;
+}
+
+.reviewDetails img {
+  float: left;
+  max-width: 10%;
+  min-width: 2em;
+  width: 3em;
+
+}
+
+
+li.review {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+.reviewDetails {
+    margin: 0.3em;
+    padding: 0.2em;
+    overflow: hidden;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    color: white;
+}
+
+.review {
+    border: 1px solid black;
+    border-radius: 0.5em;
+}
+
+.reviewContent {
+    padding:0.2em 0.2em 0.2em 0.2em;
+}
+
+.stelle {
+    display: block;
+    margin: 0.3em 0 0 0.3em;
+    font-weight: bold;
+}
+
+
+ .stelleCounter {
+    display: inline;
+}
+.reviewDetails .username {
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.reviewDatetime {
+    font-family: monospace;
+    display: block;
+}
+
+.userDetails p {
+    vertical-align: middle;
+}
+
+
+#rankingLastReview h5 {
+    padding: 0;
+}
+
+#rankingLastReview a {
+    padding: 0;
+}
+
+input[type=submit] {
+    float: right;
+}
+
+label {
+    display: block;
+}
+
+#img_cover_preview{
+  max-height: 10em;
+  max-width: 8em;
+}
