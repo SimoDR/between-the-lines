@@ -7,7 +7,7 @@ class DBAccess
     private const HOST_DB = "localhost";
     private const USERNAME = "root";
     private const PASSWORD = "";
-    private const DATABASE_NAME = "betweenthelines";
+    private const DATABASE_NAME = "my_betweenthelines";
 
     private $connection = null;
 

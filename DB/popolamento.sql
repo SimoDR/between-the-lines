@@ -59,12 +59,12 @@ INSERT INTO foto_profilo VALUES
 # Popolamento Tabella utenti
 #
 INSERT INTO utenti VALUES 
-(1, 'admin', 'admin',4,'admin@admin.it','1'),
-(2, 'user', 'user',2,'user@user.it','0'),
-(3, 'francy99', 'francy99',3,'francy99@gmail.com','0'),
-(4, 'antobaddo', 'antobaddo',1,'antobaddo@gmail.com','0'),
-(5, 'kayser', 'kayser',1,'kayser@unipd.it','0'),
-(6, 'simonetta', 'simonetta',2,'simonetta@yahoo.it','0');
+(1, 'admin', '1234_admin_3_4_5',4,'admin@admin.it','1'),
+(2, 'user', '1234_user_3_4_5',2,'user@user.it','0'),
+(3, 'francy99', '1234_francy99_3_4_5',3,'francy99@gmail.com','0'),
+(4, 'antobaddo', '1234_antobaddo_3_4_5',1,'antobaddo@gmail.com','0'),
+(5, 'kayser', '1234_kayser_3_4_5',1,'kayser@unipd.it','0'),
+(6, 'simo', '1234_simo_3_4_5',2,'simonetta@yahoo.it','0');
 
 #
 # Popolamento Tabella recensioni
